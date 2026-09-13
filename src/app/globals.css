@@ -1,57 +1,45 @@
 :root {
-    --primary: #002766; /* Deep Navy Blue matching website */
-    --primary-alt: #0b2545;
-    /* The brand orange comes in two values, and which one is correct depends
-       entirely on what it sits against — that is the whole reason there are two
-       tokens instead of one.
-         --cta            white text on orange, or orange text on a light bg.
-                          #BF4F0B = 4.84:1 with white. The three shades this
-                          replaced (#F58220 2.59:1, #E05A0C 3.73:1,
-                          #C8530C 4.47:1) all failed AA.
-         --accent-on-dark orange text on the navy bands. #F58220 scores 4.94:1
-                          there; darkening it to --cta would DROP it to 2.65:1,
-                          so the light shade is the accessible one on navy. */
-    --accent: #BF4F0B;  /* Warm Orange-Red/Rust matching website */
-    --cta: #BF4F0B;     /* Action Color (WhatsApp) */
-    --cta-hover: #A34309;
-    --accent-on-dark: #F58220;
-    --radius-md: 14px;
-    --radius-lg: 22px;
-    --container-width: 850px;
+    --primary: #0b101d; /* Deep Battle Born Slate/Navy */
+    --primary-alt: #131c2e;
+    --accent: #38bdf8;  /* Vibrant HPLC Sky Blue/Cyan */
+    --cta: #ffffff;     /* Solid crisp white primary CTA button */
+    --cta-hover: #e2e8f0;
+    --accent-on-dark: #38bdf8;
+    --radius-md: 8px;   /* Clean modern rounded corners matching Battleborn */
+    --radius-lg: 14px;
+    --container-width: 1140px;
     
-    /* Light Theme (Default) */
-    --bg-main: #F4F6F9; /* Off-white/Light clinical grey */
-    --bg-card: #ffffff;
-    --bg-secondary: #E9EDF4; /* Light slate blue-grey */
-    --text-main: #0F172A; /* Slate 900 */
-    --text-muted: #64748B; /* Slate 500 */
-    --text-primary: #002766; /* Navy */
-    --border: rgba(0, 39, 102, 0.08);
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
-    /* Red 600 rather than 500: at the 0.85rem the field errors render at, 500
-       misses AA contrast on the white card. */
-    --danger: #dc2626;
-    --danger-border: #dc2626;
-    --danger-ring: rgba(220, 38, 38, 0.16);
-    --danger-bg: rgba(220, 38, 38, 0.05);
+    /* Battle Born Dark Theme (Default) */
+    --bg-main: #080c14; /* Deep lab dark graphite/slate background */
+    --bg-card: #111827; /* Elevated card slate */
+    --bg-secondary: #172236; /* Dark slate blue-grey */
+    --text-main: #f8fafc; /* Crisp white body text */
+    --text-muted: #94a3b8; /* Muted slate grey */
+    --text-primary: #38bdf8; /* Vibrant HPLC cyan */
+    --border: rgba(255, 255, 255, 0.09);
+    --border-highlight: rgba(56, 189, 248, 0.25);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.08);
+    --danger: #f43f5e;
+    --danger-border: #e11d48;
+    --danger-ring: rgba(244, 63, 94, 0.25);
+    --danger-bg: rgba(244, 63, 94, 0.1);
 }
 
 [data-theme="dark"] {
-    --bg-main: #050b18;
-    --bg-card: #0e1626;
-    --bg-secondary: #172237;
+    --bg-main: #080c14;
+    --bg-card: #111827;
+    --bg-secondary: #172236;
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
-    --text-primary: #38bdf8; /* Vibrant light blue for dark mode */
-    --border: rgba(255, 255, 255, 0.08);
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
-    /* Red 400 on the dark card — 600 goes muddy against #0e1626. */
-    --danger: #f87171;
-    --danger-border: #ef4444;
-    --danger-ring: rgba(248, 113, 113, 0.22);
-    --danger-bg: rgba(248, 113, 113, 0.07);
+    --text-primary: #38bdf8;
+    --border: rgba(255, 255, 255, 0.09);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 20px 30px rgba(0, 0, 0, 0.7);
+    --danger: #f43f5e;
+    --danger-border: #e11d48;
+    --danger-ring: rgba(244, 63, 94, 0.25);
+    --danger-bg: rgba(244, 63, 94, 0.1);
 }
 
 * {
@@ -671,7 +659,7 @@ body {
 .cat-chip {
     white-space: nowrap;
     padding: 8px 16px;
-    border-radius: 10px;
+    border-radius: 6px;
     border: 1px solid var(--border);
     background: var(--bg-card);
     font-size: 0.8rem;
@@ -683,12 +671,13 @@ body {
 
 .cat-chip.active {
     background: var(--text-primary);
-    color: white;
+    color: #0b101d;
     border-color: var(--text-primary);
 }
 
 [data-theme="dark"] .cat-chip.active {
-    color: #050b18;
+    background: var(--text-primary);
+    color: #0b101d;
 }
 
 /* Product Grid */
@@ -711,7 +700,7 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 16px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -736,7 +725,7 @@ body {
 .product-card:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
-    border-color: rgba(0, 33, 105, 0.15);
+    border-color: rgba(56, 189, 248, 0.35);
 }
 
 .add-to-cart-btn {
@@ -747,38 +736,38 @@ body {
     width: 80%;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 8px 10px;
-    background: var(--cta);
-    color: white;
-    border: 1px solid var(--cta);
-    border-radius: 20px;
-    /* 0.68rem rendered at ~9px once the mobile scale applied — below the point
-       where a label stays legible regardless of how well it contrasts. */
+    padding: 9px 12px;
+    background: #ffffff;
+    color: #0b101d;
+    border: 1px solid #ffffff;
+    border-radius: 6px;
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 [data-theme="dark"] .add-to-cart-btn {
-    background: var(--cta);
-    border-color: var(--cta);
-    color: white;
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #0b101d;
 }
 
 .add-to-cart-btn:hover:not(:disabled) {
-    background: var(--cta-hover);
-    border-color: var(--cta-hover);
-    color: white;
+    background: #38bdf8;
+    border-color: #38bdf8;
+    color: #0b101d;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(191, 79, 11, 0.25);
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
 }
 
 [data-theme="dark"] .add-to-cart-btn:hover:not(:disabled) {
-    background: var(--cta-hover);
-    border-color: var(--cta-hover);
-    color: white;
-    box-shadow: 0 4px 12px rgba(191, 79, 11, 0.3);
+    background: #38bdf8;
+    border-color: #38bdf8;
+    color: #0b101d;
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
 }
 
 .add-to-cart-btn:active:not(:disabled) {

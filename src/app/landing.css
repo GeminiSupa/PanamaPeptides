@@ -2,14 +2,14 @@
 
 .clone-home {
     min-height: 100vh;
-    background: #fff;
-    color: #10214a;
+    background: #080c14;
+    color: #f8fafc;
     font-family: var(--font-inter), Arial, sans-serif;
     padding-bottom: 70px;
 }
 
 .clone-shell {
-    width: min(1120px, calc(100% - 32px));
+    width: min(1140px, calc(100% - 32px));
     margin: 0 auto;
 }
 
@@ -17,31 +17,35 @@
     position: sticky;
     top: 0;
     z-index: 60;
-    background: #fff;
-    box-shadow: 0 6px 24px rgba(12, 34, 78, .08);
+    background: rgba(8, 12, 20, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .clone-topbar {
-    background: #082d74;
-    color: #fff;
+    background: #05080f;
+    color: #38bdf8;
     font-size: .78rem;
     font-weight: 800;
     overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .clone-topbar .promo-banner-global {
-    min-height: 44px;
-    padding: 8px 0;
+    min-height: 40px;
+    padding: 6px 0;
     border-bottom: 0;
     box-shadow: none;
 }
 
 .clone-topbar .promo-banner-text {
-    min-height: 44px;
+    min-height: 40px;
 }
 
 .clone-nav-wrap {
-    background: #f6f8fc;
+    background: #0b101d;
 }
 
 .clone-nav {
@@ -65,33 +69,39 @@
     height: 48px;
     border-radius: 0;
     object-fit: contain;
+    filter: brightness(1.1);
 }
 
 .clone-nav-links {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 18px;
 }
 
 .clone-nav-links a {
     min-height: 44px;
     display: inline-flex;
     align-items: center;
-    color: #17244b;
-    font-size: .78rem;
-    font-weight: 900;
+    color: #f8fafc;
+    font-size: .8rem;
+    font-weight: 800;
     text-decoration: none;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
     white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.clone-nav-links a:hover {
+    color: #38bdf8;
 }
 
 .clone-nav-links a.is-active,
 .clone-nav-group > button.is-active {
-    color: #e11d2f;
+    color: #38bdf8;
 }
 
-/* "Shop by Category" opens a menu of real category filters rather than being a
-   second link to the same catalog page. */
+/* "Shop by Category" menu */
 .clone-nav-group {
     position: relative;
 }
@@ -105,12 +115,18 @@
     border: 0;
     background: none;
     cursor: pointer;
-    color: #17244b;
+    color: #f8fafc;
     font-family: inherit;
-    font-size: .78rem;
-    font-weight: 900;
+    font-size: .8rem;
+    font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
     white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.clone-nav-group > button:hover {
+    color: #38bdf8;
 }
 
 .clone-nav-dropdown {
@@ -120,13 +136,13 @@
     z-index: 70;
     display: none;
     flex-direction: column;
-    min-width: 232px;
+    min-width: 250px;
     margin-top: 10px;
     padding: 8px 0;
-    border: 1px solid #dbe3ee;
-    border-radius: 6px;
-    background: #fff;
-    box-shadow: 0 14px 34px rgba(12, 34, 78, .16);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: #111827;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
 }
 
 .clone-nav-group.is-open .clone-nav-dropdown {
@@ -136,14 +152,15 @@
 .clone-nav-dropdown a {
     min-height: 44px;
     padding: 9px 16px;
-    font-size: .74rem;
+    font-size: .78rem;
+    color: #cbd5e1;
     text-transform: none;
     white-space: nowrap;
 }
 
 .clone-nav-dropdown a:hover {
-    background: #f2f5fb;
-    color: #e11d2f;
+    background: #172236;
+    color: #38bdf8;
 }
 
 .clone-search {
@@ -151,10 +168,15 @@
     min-width: 0;
     height: 44px;
     min-height: 44px;
-    border: 1px solid #cad3e1;
-    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
     overflow: hidden;
-    background: #fff;
+    background: #111827;
+    transition: border-color 0.2s;
+}
+
+.clone-search:focus-within {
+    border-color: #38bdf8;
 }
 
 .clone-search input {
@@ -163,10 +185,15 @@
     flex: 1;
     border: 0;
     outline: 0;
-    padding: 0 12px;
-    color: #17244b;
+    padding: 0 14px;
+    background: transparent;
+    color: #f8fafc;
     font: inherit;
-    font-size: .82rem;
+    font-size: .84rem;
+}
+
+.clone-search input::placeholder {
+    color: #64748b;
 }
 
 .clone-search button {
@@ -174,8 +201,8 @@
     min-width: 44px;
     min-height: 44px;
     border: 0;
-    background: #fff;
-    color: #082d74;
+    background: transparent;
+    color: #38bdf8;
     cursor: pointer;
 }
 
@@ -192,25 +219,33 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    border: 1px solid #d8e0ed;
-    border-radius: 4px;
-    background: #fff;
-    color: #082d74;
-    font-size: .78rem;
-    font-weight: 900;
+    gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    background: #111827;
+    color: #f8fafc;
+    font-size: .8rem;
+    font-weight: 800;
     text-decoration: none;
     cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.clone-nav-actions button:hover,
+.clone-nav-actions a:hover {
+    border-color: #38bdf8;
+    background: #172236;
+    color: #38bdf8;
 }
 
 .clone-menu-toggle {
     display: none;
     width: 44px;
     height: 44px;
-    border: 1px solid #d8e0ed;
-    border-radius: 4px;
-    background: #fff;
-    color: #082d74;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    background: #111827;
+    color: #f8fafc;
 }
 
 .clone-hero {
@@ -218,114 +253,134 @@
     grid-template-columns: minmax(0, 1fr) minmax(320px, .92fr);
     gap: 44px;
     align-items: center;
-    padding: 54px 0 36px;
+    padding: 60px 0 44px;
 }
 
 .clone-red-label {
     display: inline-flex;
     align-items: center;
     width: fit-content;
-    padding: 5px 9px;
-    border-radius: 3px;
-    background: #e11d2f;
-    color: #fff;
-    font-size: .68rem;
+    padding: 5px 12px;
+    border-radius: 4px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #38bdf8;
+    font-size: .72rem;
     font-weight: 900;
-    letter-spacing: .06em;
+    letter-spacing: .08em;
     text-transform: uppercase;
 }
 
 .clone-hero h1 {
-    max-width: 540px;
-    margin: 14px 0 14px;
-    color: #082d74;
-    font-family: var(--font-montserrat), Arial, sans-serif;
-    font-size: clamp(2.05rem, 5vw, 4.4rem);
-    line-height: .98;
-    letter-spacing: 0;
-}
-
-.clone-hero p {
     max-width: 560px;
-    margin: 0 0 14px;
-    color: #3f4d6b;
-    font-size: .97rem;
+    margin: 16px 0 16px;
+    color: #ffffff;
+    font-family: var(--font-montserrat), Arial, sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+}.clone-hero p {
+    max-width: 560px;
+    margin: 0 0 16px;
+    color: #94a3b8;
+    font-size: .98rem;
     line-height: 1.65;
 }
 
 .clone-hero-lead {
-    color: #13275f !important;
-    font-size: 1.08rem !important;
+    color: #38bdf8 !important;
+    font-size: 1.1rem !important;
     font-weight: 800;
 }
 
 .clone-proof-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px 16px;
-    margin: 18px 0 24px;
+    gap: 12px 18px;
+    margin: 20px 0 26px;
 }
 
 .clone-proof-row span {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: #082d74;
-    font-size: .82rem;
-    font-weight: 900;
+    color: #f8fafc;
+    font-size: .84rem;
+    font-weight: 800;
 }
 
 .clone-hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
 }
 
 .clone-hero-actions a,
 .clone-hero-actions button,
 .clone-bulk button {
-    min-height: 44px;
+    min-height: 46px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     border: 0;
-    border-radius: 4px;
-    padding: 12px 18px;
-    background: #082d74;
-    color: #fff;
-    font-size: .84rem;
+    border-radius: 6px;
+    padding: 12px 22px;
+    background: #ffffff;
+    color: #0b101d;
+    font-size: .86rem;
     font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     text-decoration: none;
     cursor: pointer;
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clone-hero-actions a:hover,
+.clone-hero-actions button:hover,
+.clone-bulk button:hover {
+    background: #e2e8f0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
 }
 
 .clone-hero-actions button,
 .clone-bulk button {
-    background: var(--cta);
+    background: #172236;
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.clone-hero-actions button:hover,
+.clone-bulk button:hover {
+    background: #38bdf8;
+    color: #0b101d;
 }
 
 .clone-hero-dropdown {
     width: min(100%, 430px);
     display: grid;
     gap: 7px;
-    margin-top: 16px;
+    margin-top: 18px;
 }
 
 .clone-hero-dropdown span {
-    color: #17244b;
+    color: #cbd5e1;
     font-size: .78rem;
-    font-weight: 900;
+    font-weight: 800;
 }
 
 .clone-hero-dropdown select {
     width: 100%;
     min-height: 46px;
-    border: 1px solid #cad3e1;
-    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
     padding: 0 12px;
-    background: #fff;
-    color: #082d74;
+    background: #111827;
+    color: #f8fafc;
     font: inherit;
     font-size: .86rem;
     font-weight: 800;
@@ -341,9 +396,9 @@
 .clone-hero-media::before {
     content: "";
     position: absolute;
-    inset: 9% 0 0;
+    inset: 5% 0 0;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 141, 214, .22), transparent 62%);
+    background: radial-gradient(circle, rgba(56, 189, 248, .18), transparent 68%);
 }
 
 .clone-hero-media img {
@@ -357,36 +412,23 @@
     display: block;
     margin-top: 18px;
     margin-bottom: 18px;
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
-    background: #eef3ff;
-    box-shadow: 0 10px 28px rgba(12, 34, 78, .08);
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .4);
     transition: transform .18s ease, box-shadow .18s ease;
 }
 
 .clone-catalog-banner:hover {
     transform: translateY(-1px);
-    box-shadow: 0 14px 34px rgba(12, 34, 78, .12);
+    box-shadow: 0 14px 34px rgba(56, 189, 248, .15);
 }
 
 .clone-catalog-banner img {
     display: block;
     width: 100%;
     height: auto;
-}
-
-.clone-catalog-banner--top {
-    margin-top: 18px;
-    margin-bottom: 0;
-}
-
-.clone-catalog-banner--top + .clone-hero {
-    padding-top: 30px;
-}
-
-.catalog-promo-image-banner--top + .clone-hero,
-.catalog-promo-text-banner + .clone-hero {
-    padding-top: 30px;
 }
 
 .clone-press {
@@ -397,11 +439,12 @@
     margin-top: 16px;
     margin-bottom: 44px;
     padding: 18px 28px;
-    border-radius: 4px;
-    background: linear-gradient(100deg, #fff, #f2f5fb);
-    color: #082d74;
+    border-radius: 6px;
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #f8fafc;
     text-decoration: none;
-    box-shadow: 0 8px 30px rgba(12, 34, 78, .08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .4);
 }
 
 .clone-press span,
@@ -410,15 +453,18 @@
     font-weight: 900;
     letter-spacing: .08em;
     text-transform: uppercase;
+    color: #38bdf8;
 }
 
 .clone-press img {
     width: 150px;
     height: auto;
+    filter: brightness(1.2);
 }
 
 .clone-press strong {
     font-size: .94rem;
+    color: #ffffff;
 }
 
 .clone-press em {
@@ -429,13 +475,78 @@
     font-style: normal;
 }
 
+/* Battle Born Feature Highlights 4-column Grid */
+.bb-features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    margin: 10px 0 20px;
+}
+
+.bb-feature-card {
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 24px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bb-feature-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 16px rgba(56, 189, 248, 0.1);
+}
+
+.bb-feature-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    color: #38bdf8;
+    display: grid;
+    place-items: center;
+    margin-bottom: 16px;
+}
+
+.bb-feature-card h3 {
+    color: #ffffff;
+    font-size: 0.98rem;
+    font-weight: 800;
+    margin: 0 0 8px;
+    line-height: 1.3;
+}
+
+.bb-feature-card p {
+    color: #94a3b8;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .bb-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 540px) {
+    .bb-features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .clone-section {
-    padding: 46px 0;
+    padding: 50px 0;
 }
 
 .clone-section-head {
     max-width: 760px;
-    margin: 0 auto 30px;
+    margin: 0 auto 32px;
     text-align: center;
 }
 
@@ -453,11 +564,12 @@
 .clone-quality h2,
 .clone-bulk h2 {
     margin: 0 0 10px;
-    color: #082d74;
+    color: #ffffff;
     font-family: var(--font-montserrat), Arial, sans-serif;
-    font-size: clamp(1.55rem, 3vw, 2.5rem);
-    line-height: 1.12;
-    letter-spacing: 0;
+    font-size: clamp(1.65rem, 3vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
 }
 
 .clone-section-head p,
@@ -466,8 +578,8 @@
 .clone-quality p,
 .clone-bulk p {
     margin: 0;
-    color: #56637a;
-    font-size: .96rem;
+    color: #94a3b8;
+    font-size: .98rem;
     line-height: 1.65;
 }
 
@@ -475,7 +587,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: #082d74;
+    color: #38bdf8;
     font-weight: 900;
     text-decoration: none;
     white-space: nowrap;
@@ -485,26 +597,34 @@
 .clone-offer-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 18px;
 }
 
 .clone-difference-grid article,
 .clone-offer-grid article,
 .clone-quality-cards article {
     min-width: 0;
-    border: 1px solid #e3e8f1;
-    border-radius: 4px;
-    padding: 22px;
-    background: #fff;
-    box-shadow: 0 8px 26px rgba(12, 34, 78, .05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 24px;
+    background: #111827;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, .4);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.clone-difference-grid article:hover,
+.clone-offer-grid article:hover {
+    border-color: rgba(56, 189, 248, 0.25);
+    transform: translateY(-2px);
 }
 
 .clone-difference-grid h3,
 .clone-offer-grid h3,
 .clone-audience h3 {
-    margin: 0 0 8px;
-    color: #102a64;
-    font-size: 1rem;
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 800;
     line-height: 1.25;
 }
 
@@ -512,9 +632,9 @@
 .clone-offer-grid p,
 .clone-audience-list p {
     margin: 0;
-    color: #68748a;
-    font-size: .86rem;
-    line-height: 1.58;
+    color: #94a3b8;
+    font-size: .88rem;
+    line-height: 1.6;
 }
 
 .clone-category-chips {
@@ -522,23 +642,30 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
 }
 
 .clone-category-chips a {
     min-width: 44px;
-    min-height: 44px;
+    min-height: 40px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #bcc9dc;
-    border-radius: 4px;
-    padding: 9px 15px;
-    background: #fff;
-    color: #082d74;
-    font-size: .78rem;
-    font-weight: 900;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 8px 16px;
+    background: #111827;
+    color: #cbd5e1;
+    font-size: .8rem;
+    font-weight: 800;
     text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.clone-category-chips a:hover {
+    border-color: #38bdf8;
+    color: #38bdf8;
+    background: #172236;
 }
 
 .clone-products-grid {
@@ -550,92 +677,119 @@
 .clone-product-card {
     position: relative;
     min-width: 0;
-    border: 1px solid #e2e8f0;
-    border-radius: 4px;
-    background: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    background: #111827;
     overflow: hidden;
-    box-shadow: 0 8px 26px rgba(12, 34, 78, .07);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, .5);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clone-product-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(56, 189, 248, 0.35);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .7), 0 0 18px rgba(56, 189, 248, 0.12);
 }
 
 .clone-sale-badge {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 12px;
+    left: 12px;
     z-index: 2;
-    padding: 5px 8px;
-    border-radius: 3px;
-    background: #e11d2f;
-    color: #fff;
-    font-size: .62rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: #f43f5e;
+    color: #ffffff;
+    font-size: .65rem;
     font-weight: 900;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .clone-product-media {
     display: grid;
     place-items: center;
-    min-height: 190px;
-    background: #f7f9fd;
-    color: #8190ab;
+    min-height: 200px;
+    background: #0d1424;
+    color: #64748b;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .clone-product-media img {
     width: 100%;
-    height: 165px;
+    height: 175px;
     object-fit: contain;
-    padding: 20px;
+    padding: 16px;
+    transition: transform 0.3s ease;
+}
+
+.clone-product-card:hover .clone-product-media img {
+    transform: scale(1.04);
 }
 
 .clone-product-copy {
-    padding: 15px;
+    padding: 18px;
 }
 
 .clone-product-copy small {
     display: block;
     min-height: 16px;
-    color: #475569;
-    font-size: .66rem;
+    color: #38bdf8;
+    font-size: .7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .clone-product-copy h3 {
-    min-height: 38px;
-    margin: 5px 0 10px;
-    color: #082d74;
-    font-size: .92rem;
-    line-height: 1.2;
+    min-height: 40px;
+    margin: 6px 0 10px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.25;
 }
 
 .clone-product-price {
-    min-height: 22px;
+    min-height: 24px;
     display: flex;
     align-items: baseline;
-    gap: 7px;
-    margin-bottom: 12px;
+    gap: 8px;
+    margin-bottom: 14px;
 }
 
 .clone-product-price span {
-    color: #4b5568;
-    font-size: .76rem;
+    color: #64748b;
+    font-size: .8rem;
     text-decoration: line-through;
 }
 
 .clone-product-price strong {
-    color: #082d74;
-    font-size: .98rem;
+    color: #f8fafc;
+    font-size: 1.05rem;
+    font-weight: 800;
 }
 
 .clone-product-copy a {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    min-height: 44px;
-    border-radius: 3px;
-    background: #082d74;
-    color: #fff;
-    font-size: .72rem;
+    gap: 6px;
+    min-height: 42px;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #0b101d;
+    font-size: .78rem;
     font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     text-decoration: none;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.clone-product-copy a:hover {
+    background: #38bdf8;
+    color: #0b101d;
 }
 
 .clone-offer-grid {
@@ -649,19 +803,22 @@
 .clone-offer-grid span {
     display: inline-grid;
     place-items: center;
-    width: 28px;
-    height: 28px;
-    margin-bottom: 12px;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 14px;
     border-radius: 50%;
-    background: #fff1f0;
-    color: #e11d2f;
-    font-size: .78rem;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #38bdf8;
+    font-size: .82rem;
     font-weight: 900;
 }
 
 .clone-audience {
-    padding: 58px 0;
-    background: #f7f9fd;
+    padding: 60px 0;
+    background: #0b101d;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .clone-audience-grid {
@@ -678,8 +835,8 @@
 }
 
 .clone-audience-list article {
-    padding-left: 16px;
-    border-left: 3px solid #e11d2f;
+    padding-left: 18px;
+    border-left: 3px solid #38bdf8;
 }
 
 .clone-audience-images {
@@ -691,13 +848,14 @@
     width: 100%;
     max-height: 260px;
     object-fit: contain;
-    border-radius: 4px;
-    background: #dff7ff;
+    border-radius: 6px;
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .clone-proof {
-    padding: 52px 0;
-    background: #082d74;
+    padding: 60px 0;
+    background: #070a12;
     color: #fff;
 }
 
@@ -708,15 +866,14 @@
     align-items: center;
 }
 
-/* Eyebrow on the navy testimonials band — the light shade is the accessible
-   one here (4.94:1); --cta would drop it to 2.65:1. */
 .clone-proof span {
     display: inline-block;
     margin-bottom: 8px;
-    color: var(--accent-on-dark);
-    font-size: .72rem;
+    color: #38bdf8;
+    font-size: .75rem;
     font-weight: 900;
     letter-spacing: .08em;
+    text-transform: uppercase;
 }
 
 .clone-proof h2,
@@ -728,7 +885,8 @@
     width: 100%;
     max-height: 330px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .clone-quality {
@@ -747,8 +905,10 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    color: #082d74;
-    font-weight: 900;
+    color: #f8fafc;
+    font-weight: 800;
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .clone-faq {
@@ -764,38 +924,48 @@
 
 .clone-faq-list {
     display: grid;
-    gap: 10px;
+    gap: 12px;
 }
 
 .clone-faq-list article {
-    border: 1px solid #e2e8f0;
-    border-radius: 4px;
-    background: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    background: #111827;
     overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.clone-faq-list article:hover {
+    border-color: rgba(56, 189, 248, 0.25);
 }
 
 .clone-faq-list button {
     width: 100%;
-    min-height: 50px;
+    min-height: 54px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 14px;
     border: 0;
-    background: #fff;
-    color: #102a64;
-    padding: 14px 17px;
+    background: #111827;
+    color: #f8fafc;
+    padding: 16px 20px;
     font: inherit;
-    font-weight: 900;
+    font-size: .95rem;
+    font-weight: 800;
     text-align: left;
     cursor: pointer;
+}
+
+.clone-faq-list button svg {
+    color: #38bdf8;
 }
 
 .clone-faq-list p {
     display: none;
     margin: 0;
-    padding: 0 17px 17px;
-    color: #59677e;
+    padding: 0 20px 20px;
+    color: #94a3b8;
     font-size: .9rem;
     line-height: 1.6;
 }
@@ -805,8 +975,11 @@
 }
 
 .clone-bulk {
-    background: #082d74;
+    background: #0b101d;
     color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 24px 0;
 }
 
 .clone-bulk-inner {
@@ -817,14 +990,18 @@
     gap: 28px;
 }
 
-.clone-bulk h2,
-.clone-bulk p {
+.clone-bulk h2 {
     color: #fff;
 }
 
+.clone-bulk p {
+    color: #94a3b8;
+}
+
 .clone-footer {
-    background: #fff;
-    color: #10214a;
+    background: #05080f;
+    color: #cbd5e1;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .clone-footer-grid {
@@ -835,60 +1012,70 @@
 }
 
 .clone-footer h3 {
-    margin: 0 0 14px;
-    color: #082d74;
+    margin: 0 0 16px;
+    color: #ffffff;
     font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .clone-footer p,
 .clone-footer a,
 .clone-footer button {
-    color: #29406f;
+    color: #94a3b8;
     font-size: .86rem;
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 .clone-footer a,
 .clone-footer button {
-    min-height: 44px;
+    min-height: 40px;
     min-width: 44px;
     display: flex;
     align-items: center;
-    margin-bottom: 9px;
+    margin-bottom: 6px;
     border: 0;
     background: transparent;
     padding: 0;
     text-align: left;
     text-decoration: none;
     cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.clone-footer a:hover,
+.clone-footer button:hover {
+    color: #38bdf8;
 }
 
 .clone-footer strong {
-    color: #082d74;
+    color: #ffffff;
 }
 
 .clone-review-row {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 4px;
-    padding-top: 18px;
-    border-top: 1px solid #e6edf7;
+    gap: 14px;
+    margin-top: 8px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .clone-review-row > .clone-review-card {
-    min-height: 54px;
+    min-height: 56px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
-    border: 1px solid #d7e0ee;
-    border-radius: 4px;
-    padding: 10px 12px;
-    color: #082d74;
-    font-size: .76rem;
-    font-weight: 900;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 6px;
+    padding: 10px 14px;
+    background: #111827;
+    color: #f8fafc;
+    font-size: .78rem;
+    font-weight: 800;
     text-decoration: none;
     margin-bottom: 0;
     transition: border-color .16s ease, box-shadow .16s ease, transform .16s ease;
@@ -896,8 +1083,8 @@
 }
 
 .clone-review-row > a.clone-review-card:hover {
-    border-color: #aebbd0;
-    box-shadow: 0 8px 18px rgba(12, 34, 78, .1);
+    border-color: #38bdf8;
+    box-shadow: 0 8px 24px rgba(56, 189, 248, .15);
     transform: translateY(-1px);
 }
 
@@ -916,21 +1103,21 @@
 }
 
 .clone-review-copy strong {
-    color: #102a64;
-    font-size: .76rem;
+    color: #f8fafc;
+    font-size: .78rem;
     line-height: 1.1;
 }
 
 .clone-review-copy span {
-    color: #082d74;
+    color: #38bdf8;
     font-size: .95rem;
     line-height: 1;
 }
 
 .clone-review-logo {
-    width: 28px;
-    height: 28px;
-    flex: 0 0 28px;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
     display: inline-grid;
     place-items: center;
     border-radius: 50%;
@@ -940,18 +1127,18 @@
 }
 
 .clone-review-logo--trustpilot {
-    background: #007a55;
+    background: #00b67a;
     color: #fff;
 }
 
 .clone-review-logo--google {
-    background: #174ea6;
+    background: #4285f4;
     color: #fff;
     font-family: Arial, sans-serif;
 }
 
 .clone-review-logo--facebook {
-    background: #0b5fbd;
+    background: #1877f2;
     color: #fff;
     font-family: Arial, sans-serif;
 }

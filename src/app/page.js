@@ -9,6 +9,9 @@ import {
   ChevronDown,
   ChevronUp,
   FlaskConical,
+  Truck,
+  ShieldCheck,
+  Boxes,
 } from 'lucide-react';
 import { safeLocalStorage as localStorage } from '@/lib/storage';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
@@ -264,6 +267,32 @@ export default function LandingPage() {
         <div className="clone-shell">
           <PressBand lang={lang} settings={settings} variant="landing" />
         </div>
+
+        {/* Battle Born Feature Highlights Grid */}
+        <section className="clone-section clone-shell">
+          <div className="bb-features-grid">
+            <div className="bb-feature-card">
+              <div className="bb-feature-icon"><Truck size={28} /></div>
+              <h3>{lang === 'en' ? 'Fast & Reliable Shipping' : 'Envío Rápido y Confiable'}</h3>
+              <p>{lang === 'en' ? 'Timely delivery with local tracking to support your research.' : 'Entrega a tiempo con rastreo local para respaldar su investigación.'}</p>
+            </div>
+            <div className="bb-feature-card">
+              <div className="bb-feature-icon"><ShieldCheck size={28} /></div>
+              <h3>{lang === 'en' ? 'Purity Guarantee & Refund' : 'Garantía de Pureza y Reembolso'}</h3>
+              <p>{lang === 'en' ? 'Full refund guarantee if any peptide fails 3rd-party purity standards.' : 'Garantía de reembolso si algún péptido no cumple los estándares de pureza.'}</p>
+            </div>
+            <div className="bb-feature-card">
+              <div className="bb-feature-icon"><FlaskConical size={28} /></div>
+              <h3>{lang === 'en' ? 'Third-Party HPLC Tested' : 'Probado por HPLC de Terceros'}</h3>
+              <p>{lang === 'en' ? 'Every lot is verified by independent labs with published COA reports.' : 'Cada lote es verificado por laboratorios independientes con reportes COA.'}</p>
+            </div>
+            <div className="bb-feature-card">
+              <div className="bb-feature-icon"><Boxes size={28} /></div>
+              <h3>{lang === 'en' ? 'Bulk & Wholesale Options' : 'Opciones al por Mayor y Volumen'}</h3>
+              <p>{lang === 'en' ? 'Tiered volume pricing available for laboratories and institutions.' : 'Precios escalonados por volumen disponibles para laboratorios e instituciones.'}</p>
+            </div>
+          </div>
+        </section>
 
         <section className="clone-section clone-shell">
           <div className="clone-section-head">
