@@ -1,0 +1,179 @@
+import { NextResponse } from 'next/server';
+import { getSupabaseAdmin } from '@/lib/supabaseAdmin';
+import { canSendWhatsAppMarketing } from '@/lib/whatsappCompliance';
+import { sendWhatsAppMessage } from '@/lib/whatsappOutbound';
+import { getAbandonedCartConversion } from '@/lib/leadConversion.mjs';
+import { markAbandonedCartsConverted, selectRecoveryTargets } from '@/lib/abandonedCartRecovery.mjs';
+import { LIVE_SITE_URL } from '@/lib/publicUrl';
+
+export const maxDuration = 60; // Vercel limit
+export const dynamic = 'force-dynamic';
+
+// This cron was returning 500 on every run because it filtered on
+// `abandoned_carts.is_recovered`, a column that does not exist. While it was
+// down a backlog built up, so sends are capped per run: draining it as one
+// burst is exactly the pattern that costs a WhatsApp number its quality rating.
+const MAX_RECOVERY_SENDS_PER_RUN = 3;
+
+export async function GET(request) {
+  // Optional security: Ensure cron is called via secure cron secret in production
+  const authHeader = request.headers.get('authorization');
+  if (
+    process.env.CRON_SECRET &&
+    authHeader !== `Bearer ${process.env.CRON_SECRET}` &&
+    request.headers.get('x-vercel-cron') !== '1'
+  ) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const supabaseAdmin = getSupabaseAdmin();
+
+  // Find carts abandoned > 30 minutes ago but < 24 hours ago
+  // and have NOT been recovered, and have NOT had a whatsapp sent yet.
+  const thirtyMinsAgo = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+  const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+
+  const { data: abandonedCarts, error } = await supabaseAdmin
+    .from('abandoned_carts')
+    .select('*')
+    // `status` is the real source of truth — markAbandonedCartsConverted sets
+    // it to 'converted', and the paid-order sweep already queries on it.
+    .eq('status', 'active')
+    .eq('recovery_whatsapp_sent', false)
+    .lt('created_at', thirtyMinsAgo)
+    .gt('created_at', twentyFourHoursAgo);
+
+  if (error) {
+    console.error('Error fetching abandoned carts for cron:', error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  if (!abandonedCarts || abandonedCarts.length === 0) {
+    return NextResponse.json({ success: true, message: 'No carts require recovery at this time.' });
+  }
+
+  const { data: orders, error: ordersError } = await supabaseAdmin
+    .from('orders')
+    .select('id, order_number, status, created_at, customer_email, customer_phone')
+    .order('created_at', { ascending: false })
+    .limit(1000);
+
+  if (ordersError) {
+    console.error('Error fetching orders for abandoned cart recovery guard:', ordersError);
+    return NextResponse.json({ error: ordersError.message }, { status: 500 });
+  }
+
+  const convertedCarts = abandonedCarts.filter((cart) => getAbandonedCartConversion(cart, orders || [], { ignoreTiming: true }).converted);
+  const recoverableCarts = abandonedCarts.filter((cart) => !getAbandonedCartConversion(cart, orders || [], { ignoreTiming: true }).converted);
+
+  if (convertedCarts.length > 0) {
+    const { error: convertedUpdateError } = await markAbandonedCartsConverted(
+      supabaseAdmin,
+      convertedCarts.map((cart) => cart.session_id)
+    );
+    if (convertedUpdateError) {
+      console.warn('Failed to mark converted abandoned carts:', convertedUpdateError.message);
+    }
+  }
+
+  if (recoverableCarts.length === 0) {
+    return NextResponse.json({
+      success: true,
+      message: 'No carts require recovery after paid-order filtering.',
+      processed: 0,
+      sent: 0,
+      skippedPaidOrders: convertedCarts.length,
+    });
+  }
+
+  let sentCount = 0;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || LIVE_SITE_URL;
+
+  let skippedNoConsent = 0;
+  let failedCount = 0;
+
+  // One person with two abandoned carts is still one person. Their extra carts
+  // are marked as sent rather than left alone, or the next run would pick them
+  // up and message the customer a second time anyway.
+  const { targets, duplicates } = selectRecoveryTargets(recoverableCarts, MAX_RECOVERY_SENDS_PER_RUN);
+
+  for (const cart of duplicates) {
+    await supabaseAdmin
+      .from('abandoned_carts')
+      .update({ recovery_whatsapp_sent: true, recovery_whatsapp_sent_at: new Date().toISOString() })
+      .eq('id', cart.id);
+  }
+
+  for (const cart of targets) {
+    // Compliance gate: only message people who explicitly opted in to WhatsApp.
+    // This is a marketing (promo) message, so it must never go to a non-opted-in
+    // number — that is what gets the WhatsApp number flagged for spam.
+    const gate = await canSendWhatsAppMarketing(supabaseAdmin, cart.customer_phone);
+    if (!gate.ok) { skippedNoConsent++; continue; }
+
+    // Build the recovery message. These are real newlines: the escaped `\\n`
+    // this used to carry put a literal backslash-n in the customer's message.
+    let cartItemsText = "";
+    try {
+      const items = typeof cart.cart_data === 'string' ? JSON.parse(cart.cart_data) : cart.cart_data;
+      if (Array.isArray(items)) {
+        cartItemsText = items.map(item => `- ${item.product} (x${item.quantity})`).join('\n');
+      }
+    } catch(e) {
+      cartItemsText = "- Tus artículos seleccionados / Your selected items";
+    }
+
+    const isSpanish = (cart.customer_phone.startsWith('+506') || !cart.customer_phone.startsWith('+1'));
+
+    // Recovery link with auto-fill query params
+    const recoveryLink = `${baseUrl}/checkout?session_id=${cart.session_id}&recover=true`;
+
+    const msg = isSpanish
+      ? `¡Hola! Notamos que dejaste algunos artículos en tu carrito en Peptides Costa Rica 🧪:\n\n${cartItemsText}\n\n¿Tuviste algún problema al completar tu pedido? Usa este enlace para finalizar tu compra y obtén un 5% de descuento extra en tu orden:\n${recoveryLink}`
+      : `Hi! We noticed you left some items in your cart at Peptides Costa Rica 🧪:\n\n${cartItemsText}\n\nDid you have any issues completing your order? Use this link to complete your checkout and get an extra 5% off your order:\n${recoveryLink}`;
+
+    // Send in-process. Posting to /api/whatsapp/send returned 401 on every run:
+    // that route requires an admin session and a cron has none, so no recovery
+    // message ever went out. The failure was invisible because the only check
+    // here was `res.ok`, with no else branch.
+    try {
+      const result = await sendWhatsAppMessage({
+        to: cart.customer_phone,
+        message: msg,
+        customerName: cart.customer_name || null,
+        supabase: supabaseAdmin,
+      });
+
+      if (result.ok) {
+        // Mark as sent
+        await supabaseAdmin
+          .from('abandoned_carts')
+          .update({
+            recovery_whatsapp_sent: true,
+            recovery_whatsapp_sent_at: new Date().toISOString()
+          })
+          .eq('id', cart.id);
+
+        sentCount++;
+      } else {
+        failedCount++;
+        console.error(`[abandoned-cart-recovery] Send failed for cart ${cart.id}: ${result.error}`);
+      }
+    } catch(err) {
+      failedCount++;
+      console.error(`Failed to send WhatsApp recovery to cart ${cart.id}:`, err);
+    }
+  }
+
+  console.log(`[abandoned-cart-recovery] processed=${recoverableCarts.length} sent=${sentCount} failed=${failedCount} skippedNoConsent=${skippedNoConsent} skippedDuplicatePhone=${duplicates.length} skippedPaidOrders=${convertedCarts.length}`);
+
+  return NextResponse.json({
+    success: true,
+    processed: recoverableCarts.length,
+    sent: sentCount,
+    failed: failedCount,
+    skippedNoConsent,
+    skippedDuplicatePhone: duplicates.length,
+    skippedPaidOrders: convertedCarts.length
+  });
+}

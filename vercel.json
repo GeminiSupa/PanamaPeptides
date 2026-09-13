@@ -1,0 +1,56 @@
+{
+  "crons": [
+    {
+      "path": "/api/admin/commissions/weekly-report?period=previous",
+      "schedule": "0 14 * * 1"
+    },
+    {
+      "path": "/api/cron/abandoned-cart-recovery",
+      "schedule": "0,30 * * * *"
+    },
+    {
+      "path": "/api/cron/vip-tagging",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/reorder-reminders",
+      "schedule": "0 14 * * *"
+    },
+    {
+      "path": "/api/cron/review-requests",
+      "schedule": "0 15 * * *"
+    },
+    {
+      "path": "/api/cron/process-journeys",
+      "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/cron/process-broadcasts",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/process-campaigns",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/process-lead-notifications",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/expire-deals",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/analytics-digest",
+      "schedule": "0 13 * * 1"
+    },
+    {
+      "path": "/api/cron/prospect-sweep",
+      "schedule": "15,45 * * * *"
+    },
+    {
+      "path": "/api/cron/prospect-enrich",
+      "schedule": "0,30 * * * *"
+    }
+  ]
+}

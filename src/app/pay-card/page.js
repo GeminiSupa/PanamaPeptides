@@ -1,0 +1,354 @@
+'use client';
+
+import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { CreditCard, Lock, AlertCircle, CheckCircle2, Wrench } from 'lucide-react';
+import { cardCheckoutMessage } from '@/lib/cardCheckoutMessages.mjs';
+import { areCardPaymentsPausedForClient } from '@/lib/cardPaymentsPaused.mjs';
+import { buildWhatsAppLink } from '@/lib/whatsappLink.mjs';
+import { useBusinessLinks } from '@/hooks/useBusinessLinks';
+
+// Read once at module scope: this is a build-time constant, and re-reading it
+// per render would only invite someone to think it can change mid-session.
+const CARD_PAYMENTS_PAUSED = areCardPaymentsPausedForClient();
+
+function formatMoney(value, currency = 'USD') {
+  const amount = Number(value || 0);
+  if (currency === 'CRC') return `CRC ${Math.round(amount).toLocaleString('en-US')}`;
+  return `$${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+function CardPaymentContent() {
+  const searchParams = useSearchParams();
+  const orderNumber = searchParams.get('order') || '';
+  const token = searchParams.get('token') || '';
+  const { links } = useBusinessLinks();
+  const [order, setOrder] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [paying, setPaying] = useState(false);
+  const [paid, setPaid] = useState(false);
+  // Synchronous double-submit guard. `paying` (React state) updates too late to
+  // stop a fast second click, so a ref blocks re-entry the instant submit fires —
+  // a repeated charge attempt is what trips the gateway's "attempts allowed" error.
+  const submitLockRef = useRef(false);
+  const [form, setForm] = useState({
+    holder: '',
+    number: '',
+    expiry: '',
+    cvv: '',
+    email: '',
+  });
+
+  const lang = useMemo(() => (order?.currency === 'CRC' ? 'es' : 'en'), [order?.currency]);
+  const isEn = lang === 'en';
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadOrder() {
+      setLoading(true);
+      setError('');
+      try {
+        const params = new URLSearchParams({ order: orderNumber, token });
+        const res = await fetch(`/api/card-payment-link/order?${params.toString()}`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Payment link could not be loaded');
+        if (cancelled) return;
+        setOrder(data.order);
+        setForm(prev => ({
+          ...prev,
+          holder: prev.holder || data.order.customerName || '',
+          email: data.order.customerEmail || '',
+        }));
+      } catch (err) {
+        if (!cancelled) setError(err.message);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    // Nothing to load during a pause — the page shows the apology instead of a
+    // form, so fetching the order would only put a loading flash in front of it.
+    if (CARD_PAYMENTS_PAUSED) {
+      setLoading(false);
+      return () => {};
+    }
+
+    if (!orderNumber || !token) {
+      setError('Invalid payment link');
+      setLoading(false);
+      return () => {};
+    }
+
+    loadOrder();
+    return () => {
+      cancelled = true;
+    };
+  }, [orderNumber, token]);
+
+  const updateCardNumber = (value) => {
+    const digits = value.replace(/\D/g, '').slice(0, 19);
+    const formatted = digits.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
+    setForm(prev => ({ ...prev, number: formatted }));
+  };
+
+  const updateExpiry = (value) => {
+    const digits = value.replace(/\D/g, '').slice(0, 4);
+    const expiry = digits.length > 2 ? `${digits.slice(0, 2)}/${digits.slice(2)}` : digits;
+    setForm(prev => ({ ...prev, expiry }));
+  };
+
+  const submitPayment = async (event) => {
+    event.preventDefault();
+    if (submitLockRef.current) return; // a charge is already in flight — ignore repeat clicks
+    setError('');
+
+    const cleanCardNumber = form.number.replace(/\D/g, '');
+    const cleanCvv = form.cvv.replace(/\D/g, '');
+    if (!form.holder.trim() || cleanCardNumber.length < 12 || !form.expiry.trim() || cleanCvv.length < 3 || !form.email.trim()) {
+      setError(isEn ? 'Please enter complete card and email details.' : 'Ingrese los datos completos de tarjeta y correo.');
+      return;
+    }
+
+    submitLockRef.current = true;
+    setPaying(true);
+    try {
+      const res = await fetch('/api/card-payment-link/pay', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderNumber,
+          token,
+          lang,
+          customerEmail: form.email.trim(),
+          card: {
+            holder: form.holder,
+            number: form.number,
+            expiry: form.expiry,
+            cvv: form.cvv,
+          },
+        }),
+      });
+      const data = await res.json();
+
+      if (data.paymentUrl) {
+        window.location.href = data.paymentUrl;
+        return;
+      }
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || (isEn ? 'Card payment failed' : 'El pago con tarjeta falló'));
+      }
+
+      setPaid(true);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setPaying(false);
+      submitLockRef.current = false; // released so a genuine retry (e.g. new card) can proceed
+    }
+  };
+
+  return (
+    <main className="card-pay-page">
+      <section className="card-pay-shell">
+        <div className="card-pay-brand">
+          <img src="/logo.png" alt="Peptides Costa Rica" />
+          <span>{isEn ? 'Secure card payment' : 'Pago seguro con tarjeta'}</span>
+        </div>
+
+        {/* First branch in the chain on purpose. A link that arrived before the
+            pause began is still a valid, signed link, so without this the
+            customer would be shown a working-looking card form and only find
+            out at submit time. Both languages, because the order is never
+            loaded during a pause and isEn has nothing to go on. */}
+        {CARD_PAYMENTS_PAUSED ? (
+          <div className="card-pay-panel card-pay-message">
+            <Wrench size={28} />
+            <h1>Pagos con tarjeta en mantenimiento</h1>
+            <p>{cardCheckoutMessage('paused', 'es').message}</p>
+            <h2 style={{ fontSize: '1rem', marginTop: '18px' }}>Card payments under maintenance</h2>
+            <p>{cardCheckoutMessage('paused', 'en').message}</p>
+
+            {/* The order already exists and is already agreed — this customer
+                only needs a way to pay it. So the way out is a message that
+                names the order, not a trip back to the catalog to start over. */}
+            <a
+              className="whatsapp-btn card-paused-whatsapp"
+              href={buildWhatsAppLink(
+                links.whatsappNumber,
+                orderNumber
+                  ? `Hola / Hi! Order #${orderNumber} — quiero pagar por otro medio / I would like to pay by another method.`
+                  : 'Hola / Hi! Quiero pagar mi pedido por otro medio / I would like to pay for my order by another method.',
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Pagar por WhatsApp / Pay via WhatsApp
+            </a>
+
+            <Link href="/catalog">Volver al catálogo / Return to catalog</Link>
+          </div>
+        ) : loading ? (
+          <div className="card-pay-panel">
+            <p className="card-pay-muted">{isEn ? 'Loading payment link...' : 'Cargando enlace de pago...'}</p>
+          </div>
+        ) : error && !order ? (
+          <div className="card-pay-panel card-pay-message">
+            <AlertCircle size={28} />
+            <h1>{isEn ? 'Payment link unavailable' : 'Enlace de pago no disponible'}</h1>
+            <p>{error}</p>
+            <Link href="/catalog">{isEn ? 'Return to catalog' : 'Volver al catálogo'}</Link>
+          </div>
+        ) : paid ? (
+          <div className="card-pay-panel card-pay-message card-pay-success">
+            <CheckCircle2 size={34} />
+            <h1>{isEn ? 'Payment received' : 'Pago recibido'}</h1>
+            <p>
+              {isEn
+                ? `Thank you. Your payment for order ${order.orderNumber} was approved.`
+                : `Gracias. Su pago para la orden ${order.orderNumber} fue aprobado.`}
+            </p>
+            <Link href={`/thank-you?lang=${lang}&order=${encodeURIComponent(order.orderNumber)}`}>
+              {isEn ? 'View confirmation' : 'Ver confirmación'}
+            </Link>
+          </div>
+        ) : (
+          <div className="card-pay-grid">
+            <aside className="card-pay-panel card-pay-summary">
+              <p className="card-pay-kicker">{isEn ? 'Order summary' : 'Resumen de orden'}</p>
+              <h1>#{order.orderNumber}</h1>
+              <div className="card-pay-customer">{order.customerName || (isEn ? 'Customer' : 'Cliente')}</div>
+              <div className="card-pay-items">
+                {(order.items || []).map((item, index) => (
+                  <div key={`${item.product}-${index}`}>
+                    <span>{item.product}</span>
+                    <strong>x{item.qty}</strong>
+                  </div>
+                ))}
+              </div>
+              <div className="card-pay-total-row">
+                <span>{isEn ? 'Card charge' : 'Cargo a tarjeta'}</span>
+                <strong>{formatMoney(order.cardAmountUsd, 'USD')}</strong>
+              </div>
+              {order.currency === 'CRC' && (
+                <p className="card-pay-muted">
+                  {isEn ? 'Order total' : 'Total de la orden'}: {formatMoney(order.totalCrc, 'CRC')}
+                </p>
+              )}
+              <p className="card-pay-note">
+                <Lock size={14} />
+                {isEn
+                  ? 'Card details are processed by Shield Hub Pay and are not stored by Costa Peptides.'
+                  : 'Los datos de tarjeta son procesados por Shield Hub Pay y no se almacenan en Costa Peptides.'}
+              </p>
+              <div className="card-pay-statement-notice">
+                <p className="card-pay-statement-notice__heading">
+                  🏦 {isEn ? 'What you will see on your statement:' : 'Lo que verás en tu estado de cuenta:'}
+                </p>
+                <ul className="card-pay-statement-notice__list">
+                  <li>
+                    {isEn
+                      ? <><strong>Mexican bank</strong> — the charge is routed through Mexico with a USD conversion. This is normal.</>
+                      : <><strong>Banco mexicano</strong> — el cargo se procesa a través de México con conversión a USD. Esto es normal.</>}
+                  </li>
+                  <li>
+                    {isEn
+                      ? <>Statement name: <strong>&ldquo;SOF IA&rdquo;</strong> — this is our payment processor. <strong>Do not dispute</strong> this charge.</>
+                      : <>Nombre en el estado de cuenta: <strong>&ldquo;SOF IA&rdquo;</strong> — este es nuestro procesador de pagos. <strong>No disputes</strong> este cargo.</>}
+                  </li>
+                </ul>
+              </div>
+            </aside>
+
+            <form className="card-pay-panel card-pay-form" onSubmit={submitPayment}>
+              <div className="card-pay-form-title">
+                <CreditCard size={20} />
+                <h2>{isEn ? 'Card details' : 'Datos de tarjeta'}</h2>
+              </div>
+              <label>
+                <span>{isEn ? 'Email for receipt' : 'Correo para recibo'}</span>
+                <input
+                  type="email"
+                  autoComplete="email"
+                  value={form.email}
+                  onChange={(e) => setForm(prev => ({ ...prev, email: e.target.value }))}
+                  required
+                />
+              </label>
+              <label>
+                <span>{isEn ? 'Name on card' : 'Nombre en la tarjeta'}</span>
+                <input
+                  type="text"
+                  autoComplete="cc-name"
+                  value={form.holder}
+                  onChange={(e) => setForm(prev => ({ ...prev, holder: e.target.value }))}
+                  required
+                />
+              </label>
+              <label>
+                <span>{isEn ? 'Card number' : 'Numero de tarjeta'}</span>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="cc-number"
+                  value={form.number}
+                  onChange={(e) => updateCardNumber(e.target.value)}
+                  required
+                />
+              </label>
+              <div className="card-pay-row">
+                <label>
+                  <span>{isEn ? 'Expiry' : 'Vence'}</span>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    autoComplete="cc-exp"
+                    placeholder="MM/YY"
+                    value={form.expiry}
+                    onChange={(e) => updateExpiry(e.target.value)}
+                    required
+                  />
+                </label>
+                <label>
+                  <span>CVV</span>
+                  <input
+                    type="password"
+                    inputMode="numeric"
+                    autoComplete="cc-csc"
+                    value={form.cvv}
+                    onChange={(e) => setForm(prev => ({ ...prev, cvv: e.target.value.replace(/\D/g, '').slice(0, 4) }))}
+                    required
+                  />
+                </label>
+              </div>
+
+              {error && (
+                <div className="card-pay-error">
+                  <AlertCircle size={16} />
+                  {error}
+                </div>
+              )}
+
+              <button type="submit" disabled={paying}>
+                {paying
+                  ? (isEn ? 'Processing...' : 'Procesando...')
+                  : `${isEn ? 'Pay' : 'Pagar'} ${formatMoney(order.cardAmountUsd, 'USD')}`}
+              </button>
+            </form>
+          </div>
+        )}
+      </section>
+    </main>
+  );
+}
+
+export default function CardPaymentPage() {
+  return (
+    <Suspense fallback={<main className="card-pay-page"><section className="card-pay-shell"><div className="card-pay-panel">Loading...</div></section></main>}>
+      <CardPaymentContent />
+    </Suspense>
+  );
+}

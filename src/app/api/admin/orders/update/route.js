@@ -1,0 +1,533 @@
+import { NextResponse } from 'next/server';
+import { getSupabaseAdmin } from '@/lib/supabaseAdmin';
+import { verifyAdminSession } from '@/lib/adminAuth';
+import { appendOrderActivity } from '@/lib/orderActivity';
+import { isGiftLine, stripGiftSuffix } from '@/lib/bacWater.mjs';
+import { authoritativeCheckout } from '@/lib/authoritativeCheckout.mjs';
+import { affiliateCommissionPatch } from '@/lib/affiliateCommission.mjs';
+import { getDatabaseBackedUsdToCrcRate } from '@/lib/exchangeRate';
+import { isRefundStatus } from '@/lib/orderRefund.mjs';
+import { markActiveAbandonedCartsConvertedForOrder } from '@/lib/abandonedCartRecovery.mjs';
+import { orderVisibleToAgent } from '@/lib/agentOrders';
+import { missingColumnFrom, ORDER_ATTRIBUTION_COLUMNS, ORDER_FULFILLMENT_COLUMNS, ORDER_INVENTORY_COLUMNS, writeDroppingMissingColumns } from '@/lib/optionalColumns.mjs';
+import { recordReadyToPrepareNotification, sendAffiliateOrderWhatsApp, sendFulfillmentReadyWhatsApp } from '@/lib/orderWhatsAppAlerts';
+import { isFirstPaidTransition, shouldSendPaidConfirmation } from '@/lib/orderStatusEmails.mjs';
+import { shouldRestoreForStatus } from '@/lib/inventoryRestore.mjs';
+import { restoreInventoryForOrder } from '@/lib/inventoryRestoreServer';
+import { notifyLowInventory, prepareInventoryReservation } from '@/lib/orderInventoryServer';
+import { internalJsonHeaders } from '@/lib/internalRequestAuth.mjs';
+import {
+  calculateAdminOrderTotals,
+  getAdminCurrencyPair,
+  manualDiscountReplacesVolume,
+  normalizeAdminOrderCurrency,
+  normalizeManualDiscountType,
+  storedOrderVolumePct,
+} from '@/lib/adminOrderTotals.mjs';
+import {
+  applySalesAgentReferral,
+  isEligibleSalesAgentProfile,
+  isSalesAgentAffiliate,
+} from '@/lib/salesAgentAffiliate.mjs';
+
+export const runtime = 'nodejs';
+
+const MANUAL_DISCOUNT_FIELDS = [
+  'manual_discount_type',
+  'manual_discount_value',
+  'manual_discount_reason',
+];
+
+const isSettledStatus = (status) => {
+  const normalized = String(status || '').toLowerCase();
+  return normalized.includes('paid') || normalized.includes('complete');
+};
+
+const sameNullableText = (left, right) =>
+  (String(left || '').trim() || null) === (String(right || '').trim() || null);
+
+export async function PATCH(request) {
+  const auth = await verifyAdminSession(request);
+  if (auth.error) return auth.error;
+
+  let inventoryReservation = null;
+  try {
+    const body = await request.json();
+    const { orderId, updates, activity, acknowledgePaidOrderDiscount } = body;
+
+    if (!orderId || !updates || typeof updates !== 'object') {
+      return NextResponse.json({ error: 'orderId and updates required' }, { status: 400 });
+    }
+
+    const allowed = [
+      'status', 'tracking_number', 'sales_agent', 'internal_notes',
+      'payment_proof_url', 'shipping_cost_crc', 'shipping_cost_usd',
+      'customer_name', 'customer_phone', 'customer_email', 'customer_id_number',
+      'shipping_address', 'items', 'total_usd', 'total_crc',
+      'payment_transaction_id', 'payment_provider_status', 'payment_authorization',
+      'payment_descriptor', 'payment_provider_response',
+      'affiliate_id', 'agent_commission_rate_override', 'agent_commission_source',
+      'manual_discount_type', 'manual_discount_value', 'manual_discount_reason',
+      'ready_to_prepare_at', 'ready_to_prepare_by',
+    ];
+    const patch = {};
+    for (const key of allowed) {
+      if (updates[key] !== undefined) patch[key] = updates[key];
+    }
+
+    const supabase = getSupabaseAdmin();
+
+    const { data: currentOrder, error: currentOrderError } = await supabase
+      .from('orders')
+      .select('*')
+      .eq('id', orderId)
+      .single();
+
+    if (currentOrderError || !currentOrder) {
+      return NextResponse.json({ error: currentOrderError?.message || 'Order not found' }, { status: 404 });
+    }
+
+    if (!orderVisibleToAgent(currentOrder, auth.profile)) {
+      return NextResponse.json({ error: 'Forbidden: order is not visible to this staff member' }, { status: 403 });
+    }
+
+    // A refund status carries an amount, a commission consequence and three
+    // emails. Setting it from the plain status dropdown would write the label
+    // and none of that — leaving an order marked "Refunded" with nothing
+    // actually refunded on it, which the agent's pay would then be based on.
+    if (patch.status && isRefundStatus(patch.status)) {
+      return NextResponse.json({
+        error: 'The status list cannot record a refund. Open the order and use the red '
+          + 'Refund box in the Transaction section — it checks the amount against what '
+          + 'the customer paid, emails them, and adjusts the agent\'s commission. '
+          + 'This order has not been changed.',
+      }, { status: 400 });
+    }
+
+    const manualDiscountRequested = MANUAL_DISCOUNT_FIELDS.some((field) => field in patch);
+    if (manualDiscountRequested) {
+      const manualType = normalizeManualDiscountType(patch.manual_discount_type);
+      const manualValue = Number(patch.manual_discount_value || 0);
+      const manualReason = String(patch.manual_discount_reason || '').trim();
+
+      if (!Number.isFinite(manualValue) || manualValue < 0) {
+        return NextResponse.json({ error: 'Discount value must be zero or greater' }, { status: 400 });
+      }
+      if (manualType === 'percentage' && manualValue > 100) {
+        return NextResponse.json({ error: 'Percentage discount cannot exceed 100%' }, { status: 400 });
+      }
+      if (manualReason.length > 200) {
+        return NextResponse.json({ error: 'Discount reason cannot exceed 200 characters' }, { status: 400 });
+      }
+
+      patch.manual_discount_type = manualType;
+      patch.manual_discount_value = manualType ? manualValue : 0;
+      patch.manual_discount_reason = manualType ? (manualReason || null) : null;
+    }
+
+    const manualDiscountChanged = manualDiscountRequested && (
+      normalizeManualDiscountType(currentOrder.manual_discount_type) !== patch.manual_discount_type ||
+      Number(currentOrder.manual_discount_value || 0) !== Number(patch.manual_discount_value || 0) ||
+      !sameNullableText(currentOrder.manual_discount_reason, patch.manual_discount_reason)
+    );
+
+    const pricingChanged = [
+      'items',
+      'shipping_cost_crc',
+      'shipping_cost_usd',
+      ...MANUAL_DISCOUNT_FIELDS,
+    ].some((field) => field in patch);
+
+    if (pricingChanged && isSettledStatus(currentOrder.status)) {
+      return NextResponse.json({
+        error: 'Items, shipping, and discounts are locked after payment. Create a separate adjustment instead of changing the settled order.',
+      }, { status: 409 });
+    }
+
+    let inventoryCurrentLines = null;
+    let inventoryDesiredItems = null;
+
+    if (pricingChanged) {
+      const items = 'items' in patch ? patch.items : currentOrder.items;
+      if (!Array.isArray(items) || items.length === 0) {
+        return NextResponse.json({ error: 'Order must have at least one item' }, { status: 400 });
+      }
+      if (items.some((item) => !item?.product || Number(item.qty) <= 0)) {
+        return NextResponse.json({ error: 'Every order item needs a product and positive quantity' }, { status: 400 });
+      }
+
+      const currency = normalizeAdminOrderCurrency(currentOrder.currency);
+      const shippingCrc = Number(('shipping_cost_crc' in patch ? patch.shipping_cost_crc : currentOrder.shipping_cost_crc) || 0);
+      const shippingUsd = Number(('shipping_cost_usd' in patch ? patch.shipping_cost_usd : currentOrder.shipping_cost_usd) || 0);
+      const shipping = currency === 'CRC' ? shippingCrc : shippingUsd;
+
+      const productNames = [...new Set(items
+        .filter((item) => !isGiftLine(item))
+        .map((item) => stripGiftSuffix(item?.product || item?.name))
+        .filter(Boolean))];
+      const [{ data: products, error: productsError }, rateResult] = await Promise.all([
+        supabase
+          .from('products')
+          .select('id,product,price_usd,price_crc,status,inventory_count')
+          .in('product', productNames),
+        getDatabaseBackedUsdToCrcRate(),
+      ]);
+      if (productsError) {
+        return NextResponse.json({ error: `Could not verify current prices: ${productsError.message}` }, { status: 503 });
+      }
+
+      let promo = null;
+      if (currentOrder.promo_code) {
+        const { data: promoRow, error: promoError } = await supabase
+          .from('promo_codes')
+          .select('discount_pct,target_product,is_flash_sale')
+          .eq('code', String(currentOrder.promo_code).trim().toUpperCase())
+          .maybeSingle();
+        if (promoError) {
+          return NextResponse.json({ error: `Could not verify the order promo: ${promoError.message}` }, { status: 503 });
+        }
+        promo = promoRow;
+      }
+
+      const currentReserved = Array.isArray(currentOrder.inventory_deducted)
+        ? currentOrder.inventory_deducted
+        : (currentOrder.items || []);
+      const reservedByProduct = new Map();
+      for (const line of currentReserved || []) {
+        const name = stripGiftSuffix(line?.product || line?.name);
+        reservedByProduct.set(name, (reservedByProduct.get(name) || 0) + Number(line?.qty || 0));
+      }
+      const productsAvailableToThisOrder = (products || []).map((product) => ({
+        ...product,
+        inventory_count: product.inventory_count === null
+          ? null
+          : Number(product.inventory_count || 0) + Number(reservedByProduct.get(product.product) || 0),
+      }));
+      // Resolved before the rebuild: on a manual order a negotiated discount
+      // replaces the volume tier, and the rebuild has to price it that way or
+      // reopening the order would quietly change its total.
+      const nextManualType = normalizeManualDiscountType(
+        'manual_discount_type' in patch ? patch.manual_discount_type : currentOrder.manual_discount_type
+      );
+      const nextManualValue = Number(
+        ('manual_discount_value' in patch ? patch.manual_discount_value : currentOrder.manual_discount_value) || 0
+      );
+      // The choice the operator made when the order was created wins. Only
+      // when it was never recorded — a website order, or one saved before
+      // add-order-volume-discount-flag.sql was run — does the default rule
+      // decide, so reopening an order cannot silently reprice it.
+      const replaceVolumeDiscount = currentOrder.apply_volume_discount === null
+        || currentOrder.apply_volume_discount === undefined
+        ? manualDiscountReplacesVolume(currentOrder.source, nextManualType, nextManualValue)
+        : currentOrder.apply_volume_discount === false;
+
+      const authoritative = authoritativeCheckout({
+        postedOrder: { ...currentOrder, items, currency },
+        products: productsAvailableToThisOrder,
+        promo,
+        exchangeRate: rateResult.rate,
+        suppressVolumeDiscount: replaceVolumeDiscount,
+        // Same principle as apply_volume_discount above: the rate recorded when
+        // this order was priced wins, so editing an item cannot move a deal-week
+        // order onto the standing tier. Absent on older rows, which reprice as
+        // they always did.
+        volumeDiscountPctOverride: storedOrderVolumePct(currentOrder),
+      });
+      if (!authoritative.ok) {
+        return NextResponse.json({ error: authoritative.error, errorCode: 'cart_invalid' }, { status: 409 });
+      }
+
+      patch.items = authoritative.items;
+      const normalizedShipping = getAdminCurrencyPair(shipping, currency, rateResult.rate);
+      patch.shipping_cost_crc = normalizedShipping.crc;
+      patch.shipping_cost_usd = normalizedShipping.usd;
+      const promoDiscountPair = getAdminCurrencyPair(authoritative.promoDiscount, currency, rateResult.rate);
+      patch.discount_amount_crc = promoDiscountPair.crc;
+      patch.discount_amount_usd = promoDiscountPair.usd;
+
+      const totals = calculateAdminOrderTotals(authoritative.items, shipping, {
+        promoDiscountAmount: authoritative.promoDiscount,
+        manualDiscountType: nextManualType,
+        manualDiscountValue: nextManualValue,
+        replaceVolumeDiscount,
+        volumeDiscountPct: storedOrderVolumePct(currentOrder),
+      });
+      const primaryTotal = currency === 'CRC' ? Math.round(totals.total) : Number(totals.total.toFixed(2));
+      const totalPair = getAdminCurrencyPair(primaryTotal, currency, rateResult.rate);
+      patch.total_usd = totalPair.usd;
+      patch.total_crc = totalPair.crc;
+
+      if (manualDiscountRequested || Object.hasOwn(currentOrder, 'manual_discount_amount_usd')) {
+        const manualDiscountPair = getAdminCurrencyPair(totals.manualDiscountAmount, currency, rateResult.rate);
+        patch.manual_discount_amount_usd = manualDiscountPair.usd;
+        patch.manual_discount_amount_crc = manualDiscountPair.crc;
+      }
+
+      inventoryCurrentLines = currentReserved;
+      inventoryDesiredItems = authoritative.items;
+    }
+
+    // Public checkout no longer reserves stock. A manual/WhatsApp order earns
+    // that mutation only when an authenticated operator settles it. New rows
+    // carry inventory_deducted: []; legacy rows with no array are treated as
+    // already reserved so an old order is never deducted twice.
+    if (!inventoryDesiredItems && isFirstPaidTransition(currentOrder.status, patch.status)) {
+      const currentReserved = Array.isArray(currentOrder.inventory_deducted)
+        ? currentOrder.inventory_deducted
+        : currentOrder.items;
+      if (currentReserved.length === 0) {
+        inventoryCurrentLines = [];
+        inventoryDesiredItems = currentOrder.items || [];
+      }
+    }
+
+    const superadminOnlyFields = [
+      'affiliate_id',
+      'agent_commission_rate_override',
+      'agent_commission_source',
+    ];
+    if (!auth.profile.is_superadmin && superadminOnlyFields.some((field) => field in patch)) {
+      return NextResponse.json({ error: 'Forbidden: only superadmins can edit payout attribution' }, { status: 403 });
+    }
+
+    if ('agent_commission_rate_override' in patch) {
+      const rate = Number(patch.agent_commission_rate_override || 0);
+      patch.agent_commission_rate_override = rate > 0 ? rate : null;
+      if (!patch.agent_commission_rate_override) patch.agent_commission_source = null;
+    }
+
+    if ('agent_commission_source' in patch) {
+      patch.agent_commission_source = String(patch.agent_commission_source || '').trim() || null;
+    }
+
+    if ('affiliate_id' in patch) {
+      patch.affiliate_id = patch.affiliate_id || null;
+      let affiliate = null;
+      if (patch.affiliate_id) {
+        const { data: affiliateRow, error: affiliateError } = await supabase
+          .from('affiliates')
+          .select('*')
+          .eq('id', patch.affiliate_id)
+          .maybeSingle();
+        if (affiliateError) {
+          return NextResponse.json({ error: affiliateError.message }, { status: 500 });
+        }
+        if (!affiliateRow) {
+          return NextResponse.json({ error: 'Affiliate not found' }, { status: 404 });
+        }
+        affiliate = affiliateRow;
+      }
+      if (isSalesAgentAffiliate(affiliate)) {
+        const { data: linkedProfile, error: linkedProfileError } = await supabase
+          .from('admin_profiles')
+          .select('*')
+          .eq('user_id', affiliate.admin_profile_user_id)
+          .maybeSingle();
+        if (linkedProfileError) {
+          return NextResponse.json({ error: linkedProfileError.message }, { status: 500 });
+        }
+        if (!isEligibleSalesAgentProfile(linkedProfile)) {
+          return NextResponse.json({ error: 'This sales-agent affiliate is not active.' }, { status: 400 });
+        }
+        const combined = applySalesAgentReferral({ ...currentOrder, ...patch }, linkedProfile);
+        Object.assign(patch, {
+          sales_agent: combined.sales_agent,
+          agent_commission_rate_override: combined.agent_commission_rate_override,
+          agent_commission_source: combined.agent_commission_source,
+          affiliate_commission_usd: 0,
+          affiliate_commission_crc: 0,
+        });
+      } else {
+        Object.assign(patch, affiliateCommissionPatch({ ...currentOrder, ...patch }, affiliate));
+      }
+      if (currentOrder.affiliate_id !== patch.affiliate_id) {
+        patch.affiliate_whatsapp_notified_at = null;
+        patch.affiliate_whatsapp_message_id = null;
+      }
+    }
+
+    if (pricingChanged && !('affiliate_id' in patch) && currentOrder.affiliate_id) {
+      const { data: affiliate, error: affiliateError } = await supabase
+        .from('affiliates')
+        .select('*')
+        .eq('id', currentOrder.affiliate_id)
+        .maybeSingle();
+      if (affiliateError) {
+        return NextResponse.json({ error: affiliateError.message }, { status: 500 });
+      }
+      Object.assign(
+        patch,
+        isSalesAgentAffiliate(affiliate)
+          ? { affiliate_commission_usd: 0, affiliate_commission_crc: 0 }
+          : affiliateCommissionPatch({ ...currentOrder, ...patch }, affiliate)
+      );
+    }
+
+    const authoritativeActivity = manualDiscountChanged
+      ? {
+          type: patch.manual_discount_type ? 'manual_discount_applied' : 'manual_discount_removed',
+          message: patch.manual_discount_type
+            ? `Order discount set to ${patch.manual_discount_type === 'percentage' ? `${patch.manual_discount_value}%` : `${patch.manual_discount_value} ${normalizeAdminOrderCurrency(currentOrder.currency)}`}${patch.manual_discount_reason ? ` — ${patch.manual_discount_reason}` : ''}`
+            : 'Order discount removed',
+        }
+      : activity;
+
+    let activityLog;
+    if (authoritativeActivity) {
+      activityLog = appendOrderActivity(currentOrder.activity_log, {
+        type: authoritativeActivity.type || 'note',
+        message: authoritativeActivity.message || '',
+        by: auth.user.email,
+      });
+      patch.activity_log = activityLog;
+    }
+
+    if (inventoryDesiredItems) {
+      inventoryReservation = await prepareInventoryReservation(
+        supabase,
+        inventoryCurrentLines,
+        inventoryDesiredItems,
+      );
+      patch.inventory_deducted = inventoryReservation.reservations;
+    }
+
+    const { data, error, droppedColumns } = await writeDroppingMissingColumns(
+      patch,
+      [...ORDER_ATTRIBUTION_COLUMNS, ...ORDER_INVENTORY_COLUMNS, ...ORDER_FULFILLMENT_COLUMNS],
+      (row) => supabase
+        .from('orders')
+        .update(row)
+        .eq('id', orderId)
+        .select('*')
+        .single()
+    );
+
+    if (droppedColumns?.some((column) => ORDER_INVENTORY_COLUMNS.includes(column))) {
+      // The stock still moved; only the record of what moved is missing, so a
+      // later restore falls back to the order's face quantities.
+      console.warn('[admin/orders/update] inventory columns not stored — run add-inventory-restore.sql');
+    }
+
+    if (error) {
+      if (inventoryReservation) await inventoryReservation.rollback().catch(() => {});
+      console.error('[admin/orders/update]', error.message);
+      const missingColumn = missingColumnFrom(error);
+      if (manualDiscountRequested && missingColumn?.startsWith('manual_discount_')) {
+        return NextResponse.json({
+          error: 'Order discounts are not enabled in the database yet. Run add-manual-order-discounts.sql first.',
+        }, { status: 503 });
+      }
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    if (inventoryReservation) {
+      const committedInventory = inventoryReservation;
+      inventoryReservation = null;
+      try {
+        await notifyLowInventory(supabase, committedInventory.changes);
+      } catch (notifyError) {
+        console.error('[admin/orders/update] low inventory alert failed:', notifyError.message);
+      }
+    }
+
+    if (droppedColumns?.length) {
+      console.warn('[admin/orders/update] Order attribution columns missing, run add-order-attribution-controls.sql:', droppedColumns.join(', '));
+    }
+
+    // Stock was reserved when the order was placed. A status that means the
+    // sale is off — cancelled, declined, payment blocked, errored — puts it
+    // back. Idempotent and non-throwing, so re-saving a cancelled order cannot
+    // pay the stock out twice and a restore failure cannot fail the edit.
+    if (patch.status && shouldRestoreForStatus(patch.status)) {
+      await restoreInventoryForOrder(supabase, data, {
+        reason: `status set to ${patch.status}`,
+      });
+    }
+
+    if (
+      auth.profile.is_superadmin &&
+      'affiliate_id' in patch &&
+      data.affiliate_id &&
+      currentOrder.affiliate_id !== data.affiliate_id
+    ) {
+      await sendAffiliateOrderWhatsApp(supabase, data, data.order_number, data.id);
+    }
+
+    // The hand-off into the Fulfillment tab: only on the transition into the
+    // flag, never on every save of an order that already carries it, so
+    // reopening and re-saving an order already in the queue cannot re-buzz
+    // the packer's phone.
+    if (data.ready_to_prepare_at && !currentOrder.ready_to_prepare_at) {
+      await recordReadyToPrepareNotification(supabase, data, data.order_number);
+      await sendFulfillmentReadyWhatsApp(supabase, data, data.order_number, data.id);
+    }
+
+    // Trigger Customer Receipt if status changed to Paid/Completed
+    if (patch.status && currentOrder) {
+      if (isFirstPaidTransition(currentOrder.status, patch.status)) {
+        const { error: cartCleanupError } = await markActiveAbandonedCartsConvertedForOrder(supabase, data);
+        if (cartCleanupError) {
+          console.warn('[admin/orders/update] Paid cart cleanup failed:', cartCleanupError.message);
+        }
+      }
+
+      // Completion is left to /api/order-shipped-notification, which carries
+      // the tracking number and the accounting CC. Sending the confirmation
+      // from here too gave the customer the same receipt twice, one second
+      // apart, and the accountant two tax copies of one sale.
+      if (shouldSendPaidConfirmation(currentOrder.status, patch.status)) {
+        try {
+          const dataCurrency = normalizeAdminOrderCurrency(data.currency);
+          const itemsAmount = (data.items || []).reduce((sum, item) => sum + ((Number(item.price) || 0) * (Number(item.qty) || 0)), 0);
+          const shippingCost = dataCurrency === 'CRC' ? Number(data.shipping_cost_crc || 0) : Number(data.shipping_cost_usd || 0);
+          const promoDiscount = dataCurrency === 'CRC' ? Number(data.discount_amount_crc || 0) : Number(data.discount_amount_usd || 0);
+          const manualDiscount = dataCurrency === 'CRC' ? Number(data.manual_discount_amount_crc || 0) : Number(data.manual_discount_amount_usd || 0);
+          const total = dataCurrency === 'CRC' ? Number(data.total_crc || 0) : Number(data.total_usd || 0);
+          
+          let volumeDiscount = itemsAmount - promoDiscount - manualDiscount + shippingCost - total;
+          if (volumeDiscount < 0.01) volumeDiscount = 0; // handle floating point errors
+
+          const baseUrl = new URL(request.url).origin;
+          const notificationBody = JSON.stringify({
+             orderNumber: data.order_number,
+             customerName: data.customer_name,
+             customerPhone: data.customer_phone,
+             customerEmail: data.customer_email,
+             shippingAddress: data.shipping_address,
+             customerIdType: data.customer_id_type,
+             customerIdNumber: data.customer_id_number,
+             items: data.items || [],
+             total: total,
+             totalUsd: data.total_usd,
+             totalCrc: data.total_crc,
+             subtotal: itemsAmount,
+             volumeDiscount: volumeDiscount,
+             promoDiscount: promoDiscount,
+             manualDiscount: manualDiscount,
+             manualDiscountReason: data.manual_discount_reason || null,
+             shipping: shippingCost,
+             currency: dataCurrency,
+             paymentMethod: data.payment_method,
+             status: data.status,
+             customerReceiptOnly: true,
+             forceCustomerReceipt: true,
+             lang: dataCurrency === 'CRC' ? 'es' : 'en',
+          });
+          await fetch(`${baseUrl}/api/order-notification`, {
+            method: 'POST',
+            headers: internalJsonHeaders(notificationBody, '/api/order-notification'),
+            body: notificationBody,
+          });
+        } catch (e) {
+          console.error('[admin/orders/update] Failed to send customer confirmation:', e);
+        }
+      }
+    }
+
+    return NextResponse.json({ ok: true, order: data });
+  } catch (err) {
+    if (inventoryReservation) await inventoryReservation.rollback().catch(() => {});
+    console.error('[admin/orders/update]', err);
+    return NextResponse.json({ error: err.message || 'Internal error' }, { status: 500 });
+  }
+}
