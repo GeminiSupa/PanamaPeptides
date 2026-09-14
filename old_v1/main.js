@@ -461,7 +461,7 @@ function parsePrice(priceStr) {
 function updateStaticText() {
     const texts = {
         en: {
-            title: 'Peptides Costa Rica',
+            title: 'Peptides Panama',
             searchPlaceholder: 'Search products...',
             howToOrder: 'How to Order',
             contact: 'Contact WhatsApp',
@@ -478,7 +478,7 @@ function updateStaticText() {
             highLow: 'Price: High to Low'
         },
         es: {
-            title: 'Péptidos Costa Rica',
+            title: 'Péptidos panama',
             searchPlaceholder: 'Buscar productos...',
             howToOrder: 'Cómo Ordenar',
             contact: 'Contactar WhatsApp',

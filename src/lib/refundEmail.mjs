@@ -43,7 +43,7 @@ function keptAmount(plan, currency) {
  * The customer's message.
  *
  * Spanish or English on the same rule the order receipts use: the order's
- * currency decides, because a colón order is a Costa Rican customer.
+ * currency decides, because a colón order is a panaman customer.
  */
 export function buildCustomerRefundEmail({ order = {}, plan = {}, lang } = {}) {
   const currency = plan.currency || order.currency || 'USD';
@@ -54,8 +54,8 @@ export function buildCustomerRefundEmail({ order = {}, plan = {}, lang } = {}) {
   const partial = !plan.fullyRefunded;
 
   const subject = isEn
-    ? `Refund approved - Order #${orderNumber} - Peptides Costa Rica`
-    : `Reembolso aprobado - Pedido #${orderNumber} - Péptidos Costa Rica`;
+    ? `Refund approved - Order #${orderNumber} - Peptides Panama`
+    : `Reembolso aprobado - Pedido #${orderNumber} - Péptidos panama`;
 
   const heading = isEn ? 'Refund Approved' : 'Reembolso Aprobado';
 
@@ -82,7 +82,7 @@ export function buildCustomerRefundEmail({ order = {}, plan = {}, lang } = {}) {
   const html = `
     <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1e293b;line-height:1.6;max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;">
       <div style="background-color:#0f172a;padding:32px;text-align:center;">
-        <div style="color:#ffffff;font-size:14px;font-weight:800;letter-spacing:1.2px;margin:0 0 12px;">PEPTIDES COSTA RICA</div>
+        <div style="color:#ffffff;font-size:14px;font-weight:800;letter-spacing:1.2px;margin:0 0 12px;">Peptides Panama</div>
         <h1 style="color:#ffffff;font-size:26px;font-weight:800;margin:0;">${heading}</h1>
       </div>
       <div style="padding:32px;">
@@ -140,7 +140,7 @@ export function buildTeamRefundEmail({ order = {}, plan = {}, clawback = null, a
   const html = `
     <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1e293b;line-height:1.6;max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;">
       <div style="background-color:#7f1d1d;padding:28px;text-align:center;">
-        <div style="color:#ffffff;font-size:13px;font-weight:800;letter-spacing:1.2px;margin:0 0 10px;">PEPTIDES COSTA RICA</div>
+        <div style="color:#ffffff;font-size:13px;font-weight:800;letter-spacing:1.2px;margin:0 0 10px;">Peptides Panama</div>
         <h1 style="color:#ffffff;font-size:24px;font-weight:800;margin:0;">${label}</h1>
       </div>
       <div style="padding:28px;">

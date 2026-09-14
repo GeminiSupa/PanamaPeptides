@@ -148,7 +148,7 @@ export default function AnalyticsDashboard({ orders: parentOrders = [], abandone
     revenue: {
       title: "💵 Total Sales (Revenue)",
       concept: "Ventas Totales (Ingresos)",
-      description: "This is your gross income from paid or completed orders. It shows your business performance in both US Dollars ($) and Costa Rican Colones (₡). Pending, cancelled, and fully refunded orders are excluded.",
+      description: "This is your gross income from paid or completed orders. It shows your business performance in both US Dollars ($) and panaman Colones (₡). Pending, cancelled, and fully refunded orders are excluded.",
       spanish: "Este es el ingreso bruto de todos los pedidos pagados y completados con éxito. Muestra el rendimiento de tu negocio tanto en dólares ($) como en colones costarricenses (₡). No incluye pedidos pendientes o cancelados."
     },
     aov: {
@@ -190,7 +190,7 @@ export default function AnalyticsDashboard({ orders: parentOrders = [], abandone
     device_breakdown: {
       title: "📱 Device Usage (Mobile vs. Desktop)",
       concept: "Uso de Dispositivos (Móvil vs. Escritorio)",
-      description: "This tells you whether your visitors are accessing your catalog on smartphones (Mobile) or laptops/desktop computers (Desktop). Over 85% of modern traffic in Costa Rica comes from mobile, which is why having an outstanding mobile storefront visualizer is critical!",
+      description: "This tells you whether your visitors are accessing your catalog on smartphones (Mobile) or laptops/desktop computers (Desktop). Over 85% of modern traffic in panama comes from mobile, which is why having an outstanding mobile storefront visualizer is critical!",
       spanish: "Esto te indica si tus visitantes acceden a tu catálogo desde teléfonos inteligentes (Móvil) o desde computadoras portátiles/de escritorio (Escritorio). Más del 85% del tráfico moderno proviene de dispositivos móviles, por lo que es vital que el escaparate móvil funcione a la perfección."
     },
     clicks_feed: {
@@ -208,8 +208,8 @@ export default function AnalyticsDashboard({ orders: parentOrders = [], abandone
     geo_insights: {
       title: "📍 Customer Locations (Top Cities)",
       concept: "Ubicaciones de Clientes (Ciudades Principales)",
-      description: "Shows which cities in Costa Rica (like San José, Alajuela, Heredia, or Escazú) your visitors are accessing your site from. You can use this geographical data to offer free shipping promos or target specific local marketing campaigns!",
-      spanish: "Muestra desde qué ciudades de Costa Rica (como San José, Alajuela, Heredia o Escazú) acceden los visitantes a tu sitio. ¡Puedes usar estos datos geográficos para ofrecer promociones de envío gratis o dirigir campañas de marketing local específicas!"
+      description: "Shows which cities in panama (like San José, Alajuela, Heredia, or Escazú) your visitors are accessing your site from. You can use this geographical data to offer free shipping promos or target specific local marketing campaigns!",
+      spanish: "Muestra desde qué ciudades de panama (como San José, Alajuela, Heredia o Escazú) acceden los visitantes a tu sitio. ¡Puedes usar estos datos geográficos para ofrecer promociones de envío gratis o dirigir campañas de marketing local específicas!"
     }
   };
 
@@ -324,7 +324,7 @@ export default function AnalyticsDashboard({ orders: parentOrders = [], abandone
     setAiInsightText('');
     setAiInsightError('');
     try {
-      const prompt = `You are the chief e-commerce financial analyst at Peptides Costa Rica.
+      const prompt = `You are the chief e-commerce financial analyst at Peptides Panama.
 Analyze the following store metrics and provide a comprehensive executive e-commerce audit report:
 - Gross Revenue: $${totalRevenueUsd.toFixed(2)} (CRC ${totalRevenueCrc.toLocaleString()})
 - Total Completed Orders: ${successfulOrders.length}
@@ -984,7 +984,7 @@ Keep your tone highly professional, precise, data-driven, and empowering. Format
     }
     return {
       title: "🔬 Specialized Clinical Peptide Hook",
-      desc: "Promote certified clinical purity sheets and certified cold-chain shipping throughout Costa Rica to build high technical trust.",
+      desc: "Promote certified clinical purity sheets and certified cold-chain shipping throughout panama to build high technical trust.",
       badge: "Niche Research",
       color: "var(--an-ink-muted)",
       hookText: "📡 Trust Builder: Include a direct download link to the COA (Certificate of Analysis) in outreach messages to overcome security doubts."
@@ -3627,7 +3627,7 @@ Keep your tone highly professional, precise, data-driven, and empowering. Format
         <div className="dashboard-section-card">
           <div className="section-card-title">
             <MapPin size={16} style={{ color: 'var(--an-accent)' }} />
-            <span>Geographic Distribution (Costa Rica Demographics) {renderExplainerTrigger('geo_insights')}</span>
+            <span>Geographic Distribution (panama Demographics) {renderExplainerTrigger('geo_insights')}</span>
           </div>
 
           <div className="geo-cities-grid">
@@ -4038,7 +4038,7 @@ Keep your tone highly professional, precise, data-driven, and empowering. Format
                   right: 0
                 }}>
                   <span style={{ fontSize: '0.75rem', color: 'var(--an-positive)' }}>🔒</span>
-                  <span style={{ fontWeight: 500, letterSpacing: '0.3px', color: 'var(--an-ink-soft)' }}>peptidescostarica.net/catalog</span>
+                  <span style={{ fontWeight: 500, letterSpacing: '0.3px', color: 'var(--an-ink-soft)' }}>peptidespanama.net/catalog</span>
                 </div>
                 
                 {/* Actual Storefront Viewport using Iframe */}
@@ -4245,7 +4245,7 @@ Keep your tone highly professional, precise, data-driven, and empowering. Format
                 <li>
                   <strong>Geographical Targeting</strong>: {sortedVisitorCities.length > 0 ? (
                     <span>
-                      Your traffic is heavily centered in <strong>{sortedVisitorCities[0]?.[0]}</strong>. Coordinating with local couriers (e.g., Mensajería) in this region allows you to advertise <strong>"Same-Day Delivery"</strong>, which is the #1 conversion catalyst in Costa Rica.
+                      Your traffic is heavily centered in <strong>{sortedVisitorCities[0]?.[0]}</strong>. Coordinating with local couriers (e.g., Mensajería) in this region allows you to advertise <strong>"Same-Day Delivery"</strong>, which is the #1 conversion catalyst in panama.
                     </span>
                   ) : (
                     "Identify where your traffic is coming from and run localized social ads (in Escazu, Santa Ana, or San Jose) with fast SINPE payment checkout to capture local demands."

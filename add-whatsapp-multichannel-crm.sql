@@ -73,7 +73,7 @@ WHERE conversation.channel_id IS NULL
 
 -- Link existing WhatsApp conversations to the canonical CRM lead selected by
 -- add-lead-claiming.sql. The final eight digits are the existing CRM identity
--- convention for Costa Rica and international formatting variants.
+-- convention for panama and international formatting variants.
 UPDATE public.whatsapp_conversations conversation
 SET contact_lead_id = identity.lead_id
 FROM public.lead_contact_identities identity

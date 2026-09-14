@@ -13,7 +13,7 @@ import {
 } from '../src/lib/whatsappRecovery.js';
 
 test('mandatory WhatsApp policy carries authoritative logistics and pricing facts', () => {
-  assert.match(WHATSAPP_AI_REPLY_POLICY, /stocked in Costa Rica/i);
+  assert.match(WHATSAPP_AI_REPLY_POLICY, /stocked in panama/i);
   assert.match(WHATSAPP_AI_REPLY_POLICY, /processed within 24 hours/i);
   assert.match(WHATSAPP_AI_REPLY_POLICY, /1-3 business days/i);
   assert.match(WHATSAPP_AI_REPLY_POLICY, /\$200 USD-equivalent/i);
@@ -81,7 +81,7 @@ test('fallback replies use one language and end with a useful sales question', (
   });
   assert.equal(detectWhatsAppReplyLanguage('English is ok for you?'), 'en');
   assert.match(english, /^Hi Juju/);
-  assert.match(english, /Costa Rica/);
+  assert.match(english, /panama/);
   assert.match(english, /processed within 24 hours/i);
   assert.match(english, /1-3 business days/i);
   assert.match(english, /Which product are you looking for\?/);

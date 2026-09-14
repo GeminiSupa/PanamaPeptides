@@ -42,7 +42,7 @@ export function getTaxRecordsSmtpConfig(env = process.env) {
   const pass = host ? read(env, `${prefix}PASS`) : '';
   const configured = Boolean(host && user && pass);
   const explicitFrom = read(env, 'TAX_RECORDS_SMTP_FROM');
-  const from = explicitFrom || (user ? `Peptides Costa Rica Records <${user}>` : '');
+  const from = explicitFrom || (user ? `Peptides Panama Records <${user}>` : '');
 
   return {
     host,

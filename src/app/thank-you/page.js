@@ -51,11 +51,11 @@ function ThankYouContent() {
       button: "Return to Catalog",
       notice: "Conversion goal tracked successfully",
       reviewTitle: "⭐ Support Our Research, Get 15% Off!",
-      reviewBody: "Share your experience with Peptides Costa Rica. Leave us a 5-star Google Review and instantly unlock a 15% discount code for your next order.",
+      reviewBody: "Share your experience with Peptides Panama. Leave us a 5-star Google Review and instantly unlock a 15% discount code for your next order.",
       reviewButton: "Write Google Review",
       reviewReveal: "🎉 Thank you! Use coupon code COSTA15 on your next order.",
       referralTitle: "🧬 Ambassador Referral Program",
-      referralBody: "Share Peptides Costa Rica with a research colleague. If they buy, you both get a free Bacteriostatic Water added to your next package!",
+      referralBody: "Share Peptides Panama with a research colleague. If they buy, you both get a free Bacteriostatic Water added to your next package!",
       referralCopy: "Copy Referral Link",
       referralCopied: "Copied!",
       referralWhatsapp: "Share on WhatsApp",
@@ -65,7 +65,7 @@ function ThankYouContent() {
       cardStatementTitle: "🏦 About your card statement",
       cardStatementBody: "So there are no surprises — here is exactly what to expect:",
       cardStatementMexicoLabel: "Charged from Mexico:",
-      cardStatementMexicoDetail: "Our payment processor routes the charge through a Mexican bank with a USD conversion. This is completely normal — your order is with us in Costa Rica.",
+      cardStatementMexicoDetail: "Our payment processor routes the charge through a Mexican bank with a USD conversion. This is completely normal — your order is with us in panama.",
       cardStatementNameLabel: "Statement descriptor:",
       cardStatementNameDetail: "The charge will appear as \"SOF IA\" on your card statement. That is our payment processor — it is us. Please do not dispute this charge.",
     },
@@ -77,11 +77,11 @@ function ThankYouContent() {
       button: "Volver al Catálogo",
       notice: "Meta de conversión registrada exitosamente",
       reviewTitle: "⭐ Apoye Nuestra Investigación, ¡Reciba 15% Off!",
-      reviewBody: "Comparta su experiencia con Péptidos Costa Rica. Déjenos una reseña de 5 estrellas en Google Maps e inmediatamente desbloqueará un código de 15% de descuento para su próxima orden.",
+      reviewBody: "Comparta su experiencia con Péptidos panama. Déjenos una reseña de 5 estrellas en Google Maps e inmediatamente desbloqueará un código de 15% de descuento para su próxima orden.",
       reviewButton: "Escribir Reseña en Google",
       reviewReveal: "🎉 ¡Muchas gracias! Utilice el cupón COSTA15 en su próxima orden.",
       referralTitle: "🧬 Programa de Embajadores",
-      referralBody: "Comparta Péptidos Costa Rica con un colega de investigación. Si realiza su compra, ¡ambos recibirán un Agua Bacteriostática gratis en su próximo pedido!",
+      referralBody: "Comparta Péptidos panama con un colega de investigación. Si realiza su compra, ¡ambos recibirán un Agua Bacteriostática gratis en su próximo pedido!",
       referralCopy: "Copiar Enlace de Referido",
       referralCopied: "¡Copiado!",
       referralWhatsapp: "Compartir por WhatsApp",
@@ -91,7 +91,7 @@ function ThankYouContent() {
       cardStatementTitle: "🏦 Sobre tu estado de cuenta",
       cardStatementBody: "Para que no haya sorpresas — esto es exactamente lo que esperarás:",
       cardStatementMexicoLabel: "Cargo desde México:",
-      cardStatementMexicoDetail: "Nuestro procesador de pagos enruta el cargo a través de un banco mexicano con conversión a USD. Esto es completamente normal — tu pedido es con nosotros en Costa Rica.",
+      cardStatementMexicoDetail: "Nuestro procesador de pagos enruta el cargo a través de un banco mexicano con conversión a USD. Esto es completamente normal — tu pedido es con nosotros en panama.",
       cardStatementNameLabel: "Nombre en el estado de cuenta:",
       cardStatementNameDetail: "El cargo aparecerá como \"SOF IA\" en tu estado de cuenta. Ese es nuestro procesador de pagos — somos nosotros. Por favor no disputes este cargo.",
     }
@@ -238,7 +238,7 @@ function ThankYouContent() {
           letterSpacing: '1.5px',
           marginBottom: '32px'
         }}>
-          <img src="/logo.png" alt="Peptides Costa Rica Logo" style={{ height: '26px', width: 'auto', borderRadius: '5px', verticalAlign: 'middle' }} /> {t.status}
+          <img src="/logo.png" alt="Peptides Panama Logo" style={{ height: '26px', width: 'auto', borderRadius: '5px', verticalAlign: 'middle' }} /> {t.status}
         </div>
 
         {/* Dynamic Glowing Success Checkmark */}
@@ -325,7 +325,7 @@ function ThankYouContent() {
         {/* GROWTH LOOPS SECTION */}
         {(() => {
           const handleCopyLink = () => {
-            const refLink = `https://catalog.peptidescostarica.net/catalog?lang=${lang}&utm_source=referral`;
+            const refLink = `https://catalog.peptidespanama.net/catalog?lang=${lang}&utm_source=referral`;
             if (typeof navigator !== 'undefined' && navigator.clipboard) {
               navigator.clipboard.writeText(refLink);
             }

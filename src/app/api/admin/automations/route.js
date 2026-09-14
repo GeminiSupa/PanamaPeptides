@@ -11,26 +11,26 @@ const FLOW_CATALOG = [
     name: 'Welcome New Leads',
     audience: 'leads_7_days',
     channel: 'email',
-    subject: 'Welcome to Costa Peptides',
-    message: `Welcome to Costa Peptides.
+    subject: 'Welcome to Panama Peptides',
+    message: `Welcome to Panama Peptides.
 
 Thanks for checking out our catalog. If you need help choosing products, shipping options, or bulk pricing, reply here and our team will help.
 
 View the catalog anytime:
-https://catalog.peptidescostarica.net/catalog`
+https://catalog.peptidespanama.net/catalog`
   },
   {
     id: 'abandoned_cart',
     name: 'Abandoned Cart Recovery',
     audience: 'abandoned_carts',
     channel: 'email',
-    subject: 'Still need help with your Costa Peptides order?',
+    subject: 'Still need help with your Panama Peptides order?',
     message: `Hi,
 
-Looks like you started an order but did not finish checkout. If you had a question about availability, payment, or delivery inside Costa Rica, our team can help.
+Looks like you started an order but did not finish checkout. If you had a question about availability, payment, or delivery inside panama, our team can help.
 
 You can return to the catalog here:
-https://catalog.peptidescostarica.net/catalog`
+https://catalog.peptidespanama.net/catalog`
   },
   {
     id: 'reorder_30_day',
@@ -40,23 +40,23 @@ https://catalog.peptidescostarica.net/catalog`
     subject: 'Time to restock?',
     message: `Hi,
 
-It may be time to restock your research supplies. Costa Peptides offers fast local delivery, bulk pricing, and direct support if you need help planning your next order.
+It may be time to restock your research supplies. Panama Peptides offers fast local delivery, bulk pricing, and direct support if you need help planning your next order.
 
 Browse the catalog:
-https://catalog.peptidescostarica.net/catalog`
+https://catalog.peptidespanama.net/catalog`
   },
   {
     id: 'winback_60_day',
     name: '60-Day Win-Back',
     audience: 'all_customers',
     channel: 'email',
-    subject: 'Need anything from Costa Peptides?',
+    subject: 'Need anything from Panama Peptides?',
     message: `Hi,
 
 We have not seen you in a while. If you need updated availability, pricing, or product guidance, reply to this email and we will help.
 
 Catalog:
-https://catalog.peptidescostarica.net/catalog`
+https://catalog.peptidespanama.net/catalog`
   }
 ];
 

@@ -155,7 +155,7 @@ function CardPaymentContent() {
     <main className="card-pay-page">
       <section className="card-pay-shell">
         <div className="card-pay-brand">
-          <img src="/logo.png" alt="Peptides Costa Rica" />
+          <img src="/logo.png" alt="Peptides Panama" />
           <span>{isEn ? 'Secure card payment' : 'Pago seguro con tarjeta'}</span>
         </div>
 
@@ -241,8 +241,8 @@ function CardPaymentContent() {
               <p className="card-pay-note">
                 <Lock size={14} />
                 {isEn
-                  ? 'Card details are processed by Shield Hub Pay and are not stored by Costa Peptides.'
-                  : 'Los datos de tarjeta son procesados por Shield Hub Pay y no se almacenan en Costa Peptides.'}
+                  ? 'Card details are processed by Shield Hub Pay and are not stored by Panama Peptides.'
+                  : 'Los datos de tarjeta son procesados por Shield Hub Pay y no se almacenan en Panama Peptides.'}
               </p>
               <div className="card-pay-statement-notice">
                 <p className="card-pay-statement-notice__heading">

@@ -1,10 +1,10 @@
 /**
  * Own-domain order alerts leave through our own mail host.
  *
- * Rackspace hosts peptidescostarica.net and refuses mail claiming to be from
+ * Rackspace hosts peptidespanama.net and refuses mail claiming to be from
  * that domain when it arrives from anywhere else. Elastic accepts the
  * submission and reports success, so from 12 Aug 2026 every new-order alert to
- * info@peptidescostarica.net was thrown away after the app had already logged
+ * info@peptidespanama.net was thrown away after the app had already logged
  * it as delivered.
  *
  * Only own-domain recipients move to Rackspace. Everyone else stays on
@@ -20,34 +20,34 @@ import {
 } from '../src/lib/ownDomainSmtp.mjs';
 
 test('our own mailboxes are recognised, however they are written', () => {
-  assert.equal(isOwnDomainAddress('info@peptidescostarica.net'), true);
-  assert.equal(isOwnDomainAddress('INFO@PeptidesCostaRica.NET'), true);
-  assert.equal(isOwnDomainAddress('Ops <daniela@peptidescostarica.net>'), true);
-  assert.equal(isOwnDomainAddress('  sean@peptidescostarica.net  '), true);
+  assert.equal(isOwnDomainAddress('info@peptidespanama.net'), true);
+  assert.equal(isOwnDomainAddress('INFO@peptidespanama.net'), true);
+  assert.equal(isOwnDomainAddress('Ops <daniela@peptidespanama.net>'), true);
+  assert.equal(isOwnDomainAddress('  sean@peptidespanama.net  '), true);
 
   assert.equal(isOwnDomainAddress('omerforce@gmail.com'), false);
   assert.equal(isOwnDomainAddress('joe@tolm.co'), false);
   // A lookalike domain must not be routed to our mailbox.
-  assert.equal(isOwnDomainAddress('info@peptidescostarica.net.evil.com'), false);
-  assert.equal(isOwnDomainAddress('info@notpeptidescostarica.net'), false);
+  assert.equal(isOwnDomainAddress('info@peptidespanama.net.evil.com'), false);
+  assert.equal(isOwnDomainAddress('info@notpeptidespanama.net'), false);
   assert.equal(isOwnDomainAddress(''), false);
   assert.equal(isOwnDomainAddress(null), false);
 });
 
 test('the address is read out of a display name', () => {
-  assert.equal(emailAddressOf('Ops inbox <info@peptidescostarica.net>'), 'info@peptidescostarica.net');
+  assert.equal(emailAddressOf('Ops inbox <info@peptidespanama.net>'), 'info@peptidespanama.net');
   assert.equal(emailAddressOf('plain@example.com'), 'plain@example.com');
   assert.equal(emailAddressOf(''), '');
 });
 
 test('only our own addresses are moved; everyone else stays put', () => {
   const split = splitOwnDomainRecipients({
-    to: ['info@peptidescostarica.net', 'omerforce@gmail.com'],
-    cc: ['daniela@peptidescostarica.net', 'korinneda@icloud.com'],
+    to: ['info@peptidespanama.net', 'omerforce@gmail.com'],
+    cc: ['daniela@peptidespanama.net', 'korinneda@icloud.com'],
     bcc: ['joe@tolm.co'],
   });
 
-  assert.deepEqual(split.ownRecipients, ['info@peptidescostarica.net', 'daniela@peptidescostarica.net']);
+  assert.deepEqual(split.ownRecipients, ['info@peptidespanama.net', 'daniela@peptidespanama.net']);
   assert.deepEqual(split.rest.to, ['omerforce@gmail.com']);
   assert.deepEqual(split.rest.cc, ['korinneda@icloud.com']);
   assert.deepEqual(split.rest.bcc, ['joe@tolm.co']);
@@ -57,8 +57,8 @@ test('only our own addresses are moved; everyone else stays put', () => {
 
 test('a mailbox listed twice is mailed once', () => {
   const split = splitOwnDomainRecipients({
-    to: ['info@peptidescostarica.net'],
-    cc: ['Ops <INFO@peptidescostarica.net>'],
+    to: ['info@peptidespanama.net'],
+    cc: ['Ops <INFO@peptidespanama.net>'],
   });
   assert.equal(split.ownRecipients.length, 1);
 });
@@ -73,7 +73,7 @@ test('a list with none of ours leaves the send untouched', () => {
 test('a list of only ours leaves nothing for Elastic to send', () => {
   // The caller must skip the Elastic send entirely here — a sendMail with no
   // recipients throws, and would report the whole alert as failed.
-  const split = splitOwnDomainRecipients({ to: ['info@peptidescostarica.net'] });
+  const split = splitOwnDomainRecipients({ to: ['info@peptidespanama.net'] });
   assert.equal(split.hasOwn, true);
   assert.equal(split.hasRest, false);
 });
@@ -84,27 +84,27 @@ test('without configuration nothing is routed anywhere new', () => {
 
   const full = getOwnDomainSmtpConfig({
     OWN_DOMAIN_SMTP_HOST: 'secure.emailsrvr.com',
-    OWN_DOMAIN_SMTP_USER: 'info@peptidescostarica.net',
+    OWN_DOMAIN_SMTP_USER: 'info@peptidespanama.net',
     OWN_DOMAIN_SMTP_PASS: 'secret',
   });
   assert.equal(full.configured, true);
   assert.equal(full.port, 465);
   assert.equal(full.secure, true, '465 is implicit TLS');
-  assert.equal(full.from, 'Peptides Costa Rica <info@peptidescostarica.net>');
+  assert.equal(full.from, 'Peptides Panama <info@peptidespanama.net>');
 });
 
 test('port 587 is STARTTLS, not implicit TLS', () => {
   const cfg = getOwnDomainSmtpConfig({
     OWN_DOMAIN_SMTP_HOST: 'secure.emailsrvr.com',
     OWN_DOMAIN_SMTP_PORT: '587',
-    OWN_DOMAIN_SMTP_USER: 'info@peptidescostarica.net',
+    OWN_DOMAIN_SMTP_USER: 'info@peptidespanama.net',
     OWN_DOMAIN_SMTP_PASS: 'secret',
   });
   assert.equal(cfg.secure, false);
 });
 
 test('the domain is the real one, not a placeholder', () => {
-  assert.equal(OWN_MAIL_DOMAIN, 'peptidescostarica.net');
+  assert.equal(OWN_MAIL_DOMAIN, 'peptidespanama.net');
 });
 
 /**
@@ -118,12 +118,12 @@ test('the domain is the real one, not a placeholder', () => {
 import { receiptBccExcluding } from '../src/lib/ownDomainSmtp.mjs';
 
 test('a watcher who already had the team alert is not copied again', () => {
-  const team = ['info@peptidescostarica.net', 'omerforce@gmail.com', 'korinneda@icloud.com'];
+  const team = ['info@peptidespanama.net', 'omerforce@gmail.com', 'korinneda@icloud.com'];
   assert.equal(receiptBccExcluding('omerforce@gmail.com', team), '');
 });
 
 test('a watcher who is not on the team alert still gets the receipt copy', () => {
-  const team = ['info@peptidescostarica.net'];
+  const team = ['info@peptidespanama.net'];
   assert.equal(receiptBccExcluding('omerforce@gmail.com', team), 'omerforce@gmail.com');
 });
 

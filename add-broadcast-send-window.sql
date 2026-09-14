@@ -1,4 +1,4 @@
--- The hours a one-time announcement is allowed to send, in Costa Rica time.
+-- The hours a one-time announcement is allowed to send, in panama time.
 --
 -- Pacing a send slowly is right for 1,500 recipients and wrong for a night:
 -- spread over thirteen hours, a broadcast started in the afternoon runs until
@@ -19,8 +19,8 @@ ALTER TABLE public.scheduled_broadcasts
   ADD COLUMN IF NOT EXISTS send_window_end_hour INTEGER;
 
 COMMENT ON COLUMN public.scheduled_broadcasts.send_window_start_hour IS
-  'First Costa Rica hour (0-23) this broadcast may send in. NULL means no restriction.';
+  'First panama hour (0-23) this broadcast may send in. NULL means no restriction.';
 COMMENT ON COLUMN public.scheduled_broadcasts.send_window_end_hour IS
-  'Costa Rica hour (0-23) sending stops at, exclusive. NULL means no restriction.';
+  'panama hour (0-23) sending stops at, exclusive. NULL means no restriction.';
 
 NOTIFY pgrst, 'reload schema';

@@ -10,11 +10,11 @@ VALUES (
     "googleMapsUrl": "https://maps.app.goo.gl/b9YaeUXyuvBuj8vo8",
     "facebookUrl": "",
     "instagramUrl": "",
-    "trustpilotUrl": "https://www.trustpilot.com/review/peptidescostarica.net",
-    "trustpilotUrlEn": "https://www.trustpilot.com/review/peptidescostarica.net",
-    "trustpilotUrlEs": "https://es.trustpilot.com/review/peptidescostarica.net",
+    "trustpilotUrl": "https://www.trustpilot.com/review/peptidespanama.net",
+    "trustpilotUrlEn": "https://www.trustpilot.com/review/peptidespanama.net",
+    "trustpilotUrlEs": "https://es.trustpilot.com/review/peptidespanama.net",
     "googleReviewUrl": "https://maps.app.goo.gl/b9YaeUXyuvBuj8vo8",
-    "supportEmail": "support@peptidescostarica.net"
+    "supportEmail": "support@peptidespanama.net"
   }'::jsonb
 )
 ON CONFLICT (id) DO NOTHING;

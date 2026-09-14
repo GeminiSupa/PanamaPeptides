@@ -21,8 +21,8 @@ const getVisitorId = () => {
   const existing = readCookie(VISITOR_COOKIE) || localStorage.getItem(VISITOR_COOKIE);
   if (existing) return existing;
   const created = randomId('visitor');
-  const sharedDomain = location.hostname === 'peptidescostarica.net' || location.hostname.endsWith('.peptidescostarica.net');
-  document.cookie = `${VISITOR_COOKIE}=${encodeURIComponent(created)}; Max-Age=31536000; Path=/; SameSite=Lax${sharedDomain ? '; Domain=.peptidescostarica.net; Secure' : ''}`;
+  const sharedDomain = location.hostname === 'peptidespanama.net' || location.hostname.endsWith('.peptidespanama.net');
+  document.cookie = `${VISITOR_COOKIE}=${encodeURIComponent(created)}; Max-Age=31536000; Path=/; SameSite=Lax${sharedDomain ? '; Domain=.peptidespanama.net; Secure' : ''}`;
   localStorage.setItem(VISITOR_COOKIE, created);
   return created;
 };

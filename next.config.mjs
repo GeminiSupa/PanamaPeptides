@@ -22,11 +22,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'peptidescostarica.net',
+        hostname: 'peptidespanama.net',
       },
       {
         protocol: 'https',
-        hostname: 'catalog.peptidescostarica.net',
+        hostname: 'catalog.peptidespanama.net',
       },
     ],
   },
@@ -37,7 +37,7 @@ const nextConfig = {
   // bookmarks. The host match is exact, so branch preview deployments
   // (peptidecosta-git-*.vercel.app etc.) are untouched.
   //
-  // Do NOT "shut down" the Vercel project itself - catalog.peptidescostarica.net
+  // Do NOT "shut down" the Vercel project itself - catalog.peptidespanama.net
   // is a custom domain ON this project; removing the project takes the live
   // site with it.
   async redirects() {
@@ -45,7 +45,7 @@ const nextConfig = {
       {
         source: '/:path((?!api(?:/|$)).*)',
         has: [{ type: 'host', value: 'peptidecosta.vercel.app' }],
-        destination: 'https://catalog.peptidescostarica.net/:path*',
+        destination: 'https://catalog.peptidespanama.net/:path*',
         permanent: true,
       },
       // /our-story and /about told the same founder story. /about is canonical:

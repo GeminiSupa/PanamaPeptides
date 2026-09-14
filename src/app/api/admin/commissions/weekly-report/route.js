@@ -44,7 +44,7 @@ export const maxDuration = 60;
 // recipients rather than named twice on the same envelope.
 const ADMIN_CC_EMAILS = stripOwnerAddress(
   process.env.COMMISSION_REPORT_ADMIN_EMAILS
-    || 'info@peptidescostarica.net, omerforce@gmail.com'
+    || 'info@peptidespanama.net, omerforce@gmail.com'
 );
 
 const formatMoney = (value, currency) => {
@@ -54,7 +54,7 @@ const formatMoney = (value, currency) => {
 };
 
 const formatCrDate = (value, options = {}) => new Intl.DateTimeFormat('en-US', {
-  timeZone: 'America/Costa_Rica',
+  timeZone: 'America/panama',
   month: 'short',
   day: 'numeric',
   ...options,
@@ -92,11 +92,11 @@ export async function GET(request) {
     const period = searchParams.get('period') || 'previous';
     const targetAgentEmail = searchParams.get('agentEmail');
 
-    // 3. Calculate Monday-to-Sunday boundaries in Costa Rica Time (UTC-6)
-    const CR_OFFSET = -6; // Costa Rica is UTC-6 all year
+    // 3. Calculate Monday-to-Sunday boundaries in panama Time (UTC-6)
+    const CR_OFFSET = -6; // panama is UTC-6 all year
     const nowUTC = new Date();
     
-    // Shift current time to Costa Rica timezone to correctly determine current "day"
+    // Shift current time to panama timezone to correctly determine current "day"
     const nowCR = new Date(nowUTC.getTime() + (CR_OFFSET * 60 * 60 * 1000));
     const day = nowCR.getUTCDay();
     const dayOffset = day === 0 ? 7 : day; // Normalize so Monday is 1, Sunday is 7
@@ -557,10 +557,10 @@ export async function GET(request) {
           <div style="background:#f1f5f9;padding:24px 12px;">
           <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#334155;background:#ffffff;max-width:680px;margin:0 auto;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;">
             <div style="background:#0f172a;padding:28px 24px;text-align:center;">
-              <img src="https://catalog.peptidescostarica.net/logo.png?v=2" alt="Peptides Costa Rica" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
-              <div style="color:#ffffff;font-size:19px;font-weight:800;letter-spacing:.7px;">PEPTIDES COSTA RICA</div>
+              <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+              <div style="color:#ffffff;font-size:19px;font-weight:800;letter-spacing:.7px;">Peptides Panama</div>
               <h1 style="color:#ffffff;font-size:24px;margin:14px 0 6px;">Weekly team pay report</h1>
-              <p style="color:#cbd5e1;font-size:13px;margin:0;">${periodDisplay} · Costa Rica time</p>
+              <p style="color:#cbd5e1;font-size:13px;margin:0;">${periodDisplay} · panama time</p>
             </div>
             <div style="padding:26px 24px;">
               <p style="font-size:15px;line-height:1.5;margin:0 0 18px;">Reports are ready for ${reportResults.length} agent${reportResults.length === 1 ? '' : 's'}. Each row shows one payout in two equivalent currencies; the USD and CRC figures are alternatives, not amounts to add together.</p>
@@ -590,12 +590,12 @@ export async function GET(request) {
             </div>
 
             <div style="text-align:center;margin-bottom:24px;">
-              <a href="https://peptidescostarica.net/admin?tab=team" style="display:inline-block;background:#0f766e;color:#ffffff;font-weight:bold;padding:13px 24px;border-radius:9px;text-decoration:none;font-size:13px;">
+              <a href="https://peptidespanama.net/admin?tab=team" style="display:inline-block;background:#0f766e;color:#ffffff;font-weight:bold;padding:13px 24px;border-radius:9px;text-decoration:none;font-size:13px;">
                 Review & Approve Payouts
               </a>
             </div>
             <div style="border-top:1px solid #e2e8f0;padding-top:16px;text-align:center;font-size:11px;color:#94a3b8;">
-              Automated weekly report · Peptides Costa Rica
+              Automated weekly report · Peptides Panama
             </div>
             </div>
           </div>
@@ -625,7 +625,7 @@ export async function GET(request) {
         start: startDateStr,
         end: endDateStr,
         label: periodLabel,
-        timeZone: 'America/Costa_Rica',
+        timeZone: 'America/panama',
       },
       payoutReport: reportResults,
       skippedNoPay,

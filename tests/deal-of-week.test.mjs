@@ -22,11 +22,11 @@ import {
   isUnavailableForDeal,
 } from '../src/lib/dealOfWeek.mjs';
 
-// Costa Rica is UTC-6, so 23:59:59.999 CR is 05:59:59.999 UTC the NEXT day.
+// panama is UTC-6, so 23:59:59.999 CR is 05:59:59.999 UTC the NEXT day.
 // Every expected endsAt below is a Monday morning in UTC for that reason.
 const SUNDAY_2_AUG_END = '2026-08-03T05:59:59.999Z';
 
-test('a midweek launch ends at the close of the coming Sunday, Costa Rica time', () => {
+test('a midweek launch ends at the close of the coming Sunday, panama time', () => {
   // Thursday 30 Jul 2026, 10:00 CR = 16:00 UTC
   const window = weekWindow(new Date('2026-07-30T16:00:00Z'));
   assert.equal(window.endsAt, SUNDAY_2_AUG_END);
@@ -79,7 +79,7 @@ test('a Saturday launch is short but not rolled forward — the week is nearly o
 test('the end boundary lands inside Sunday, never on Monday', () => {
   const endsAt = new Date(weekWindow(new Date('2026-07-30T16:00:00Z')).endsAt);
   const crWall = new Date(endsAt.getTime() - 6 * 60 * 60 * 1000);
-  assert.equal(crWall.getUTCDay(), 0, 'still Sunday in Costa Rica');
+  assert.equal(crWall.getUTCDay(), 0, 'still Sunday in panama');
   assert.equal(crWall.getUTCHours(), 23);
   assert.equal(crWall.getUTCMinutes(), 59);
 });
@@ -260,13 +260,13 @@ test('deal links use the real catalog host and preserve attribution', () => {
   const deal = { id: 'deal-123', product_names: ['NAD+ 1000/500'] };
   const url = new URL(dealCatalogUrl(deal));
 
-  assert.equal(url.origin, 'https://catalog.peptidescostarica.net');
+  assert.equal(url.origin, 'https://catalog.peptidespanama.net');
   assert.equal(url.pathname, '/catalog');
   assert.equal(url.searchParams.get('deal_id'), 'deal-123');
   assert.equal(url.searchParams.get('utm_source'), 'weekly_deal');
   assert.equal(url.searchParams.get('utm_campaign'), 'deal_deal-123');
   assert.equal(url.searchParams.get('product'), 'NAD+ 1000/500');
-  assert.match(dealBroadcastDrafts({ ...deal, discount_pct: 0.15 }).message, /catalog\.peptidescostarica\.net/);
+  assert.match(dealBroadcastDrafts({ ...deal, discount_pct: 0.15 }).message, /catalog\.peptidespanama\.net/);
 });
 
 test('stacking safety requires review at 30% and refuses dangerous totals', () => {

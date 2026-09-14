@@ -1,5 +1,5 @@
 -- =========================================================================
---               PEPTIDES COSTA RICA - COMMISSION SCHEMAS
+--               Peptides Panama - COMMISSION SCHEMAS
 -- =========================================================================
 -- Run this in your Supabase SQL Editor.
 

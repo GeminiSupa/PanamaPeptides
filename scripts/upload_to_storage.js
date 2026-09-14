@@ -2,7 +2,7 @@ const { createClient } = require('@supabase/supabase-js');
 const fs = require('fs');
 const path = require('path');
 
-const envPath = '/Users/apple/Desktop/costapeptides/.env.local';
+const envPath = '/Users/apple/Desktop/panamapeptides/.env.local';
 let supabaseUrl = 'https://cbanvzipzfmllexraiei.supabase.co';
 let supabaseServiceKey = '';
 
@@ -29,8 +29,8 @@ const IMAGES_TO_UPLOAD = [
   'hero_peptide_vial.png',
   'modern_3d_vial_hero.png',
   'modern_3d_vials_group.png',
-  'vial_costarica_hero.png',
-  'vials_group_costarica.png'
+  'vial_panama_hero.png',
+  'vials_group_panama.png'
 ];
 
 async function migrate() {
@@ -39,7 +39,7 @@ async function migrate() {
   const publicUrls = {};
 
   for (const filename of IMAGES_TO_UPLOAD) {
-    const filePath = path.join('/Users/apple/Desktop/costapeptides/public', filename);
+    const filePath = path.join('/Users/apple/Desktop/panamapeptides/public', filename);
     if (!fs.existsSync(filePath)) {
       console.warn(`File not found: ${filePath}`);
       continue;
@@ -93,11 +93,11 @@ async function migrate() {
     if (nameLower.includes('fat blaster')) {
       targetImage = 'modern_3d_vials_group.png';
     } else if (nameLower.includes('super human') || nameLower.includes('nad+')) {
-      targetImage = 'vials_group_costarica.png';
+      targetImage = 'vials_group_panama.png';
     } else if (nameLower.includes('bpc-157') || nameLower.includes('tb-500') || nameLower.includes('tb-4') || nameLower.includes('klow') || nameLower.includes('pt-141') || nameLower.includes('selank') || nameLower.includes('adamax') || nameLower.includes('semax') || nameLower.includes('pinealon')) {
       targetImage = 'hero_peptide_vial.png';
     } else if (catLower.includes('weight') || nameLower.includes('glp-1') || nameLower.includes('tirzepatide') || nameLower.includes('semaglutide') || nameLower.includes('tesamorelin') || nameLower.includes('5-amino') || nameLower.includes('slu-pp332')) {
-      targetImage = 'vial_costarica_hero.png';
+      targetImage = 'vial_panama_hero.png';
     } else {
       targetImage = 'modern_3d_vial_hero.png';
     }

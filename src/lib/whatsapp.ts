@@ -3,7 +3,7 @@ import { safeLocalStorage as localStorage } from '@/lib/storage';
 
 /**
  * Cleans and formats a phone number for WhatsApp API usage.
- * Assumes default country codes based on length (e.g., 8 digits -> Costa Rica +506, 10 digits -> US/Canada +1).
+ * Assumes default country codes based on length (e.g., 8 digits -> panama +506, 10 digits -> US/Canada +1).
  * @param phone - The raw phone number string
  * @returns The cleaned phone number in E.164 format (without the '+')
  */
@@ -13,7 +13,7 @@ export const cleanPhoneNumber = (phone: string | null | undefined): string => {
   if (cleaned.startsWith('00')) {
     cleaned = cleaned.substring(2);
   }
-  // Standard Costa Rican 8-digit phone number -> prepend '506'
+  // Standard panaman 8-digit phone number -> prepend '506'
   if (cleaned.length === 8) {
     cleaned = '506' + cleaned;
   }

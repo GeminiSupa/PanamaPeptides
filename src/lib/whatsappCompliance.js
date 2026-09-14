@@ -141,4 +141,4 @@ export async function setWhatsAppSuppression(supabase, phone, active, opts = {})
 export const OPT_OUT_CONFIRMATION =
   '🔕 Listo. No le enviaremos más mensajes promocionales. Seguirá recibiendo información importante sobre sus pedidos. Para volver a recibir promociones, escriba *ALTA*.';
 export const OPT_IN_CONFIRMATION =
-  '🔔 ¡Listo! Se ha suscrito nuevamente a nuestras promociones y novedades. Gracias por su interés en Peptides Costa Rica. Para cancelar en cualquier momento, escriba *BAJA*.';
+  '🔔 ¡Listo! Se ha suscrito nuevamente a nuestras promociones y novedades. Gracias por su interés en Peptides Panama. Para cancelar en cualquier momento, escriba *BAJA*.';

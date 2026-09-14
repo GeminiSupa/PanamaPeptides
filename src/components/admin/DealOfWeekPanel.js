@@ -5,7 +5,7 @@ import { formatCrInstant } from '@/lib/crTime.mjs';
 import { toPercent, hasUntrackedStock, isUnavailableForDeal } from '@/lib/dealOfWeek.mjs';
 
 /**
- * Deal of the Week — one promotion a week, ending Sunday midnight Costa Rica.
+ * Deal of the Week — one promotion a week, ending Sunday midnight panama.
  *
  * A deal marks the chosen products' prices down for the week rather than issuing
  * a promo code, so the discount applies with nothing for the customer to type
@@ -274,7 +274,7 @@ export default function DealOfWeekPanel({ products = [], onSendAnnouncement, onP
             <Zap size={18} color="#fbbf24" /> Deal of the Week
           </h3>
           <p style={{ color: '#94a3b8', fontSize: '0.82rem', margin: '4px 0 0' }}>
-            One promotion for the week, ending Sunday at midnight Costa Rica time. The
+            One promotion for the week, ending Sunday at midnight panama time. The
             discount is applied to the shelf price — customers do not enter a code — and it
             stacks on top of the automatic volume discounts.
           </p>

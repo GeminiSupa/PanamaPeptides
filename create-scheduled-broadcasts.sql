@@ -1,5 +1,5 @@
 -- =========================================================================
---               PEPTIDES COSTA RICA - SCHEDULED BROADCASTS
+--               Peptides Panama - SCHEDULED BROADCASTS
 -- =========================================================================
 -- Run this script in your Supabase SQL Editor to add the scheduled broadcasts queue.
 

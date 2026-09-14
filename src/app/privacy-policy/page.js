@@ -39,7 +39,7 @@ export default function PrivacyPolicyPage() {
       <header className={`lp-header${scrolled ? ' lp-header--scrolled' : ''}`}>
         <div className="lp-header-inner">
           <Link href="/" className="lp-logo">
-            <img src="/logo.png" alt="Peptides Costa Rica" className="logo-img-custom" style={{ maxHeight: '40px', width: 'auto', borderRadius: '8px' }} />
+            <img src="/logo.png" alt="Peptides Panama" className="logo-img-custom" style={{ maxHeight: '40px', width: 'auto', borderRadius: '8px' }} />
           </Link>
 
           <nav className="lp-nav">
@@ -80,8 +80,8 @@ export default function PrivacyPolicyPage() {
           <div style={{ fontSize: '1.1rem', color: 'var(--text-muted)', lineHeight: '1.8' }}>
             <p style={{ marginBottom: '24px' }}>
               {lang === 'en' 
-                ? 'At Peptides Costa Rica, we prioritize the privacy and security of your personal data. This privacy policy explains how we collect, use, and protect your information when you interact with our website and catalog.' 
-                : 'En Peptides Costa Rica, priorizamos la privacidad y seguridad de sus datos personales. Esta política de privacidad explica cómo recopilamos, usamos y protegemos su información cuando interactúa con nuestro sitio web.'}
+                ? 'At Peptides Panama, we prioritize the privacy and security of your personal data. This privacy policy explains how we collect, use, and protect your information when you interact with our website and catalog.' 
+                : 'En Peptides Panama, priorizamos la privacidad y seguridad de sus datos personales. Esta política de privacidad explica cómo recopilamos, usamos y protegemos su información cuando interactúa con nuestro sitio web.'}
             </p>
 
             <h2 style={{ fontSize: '1.8rem', fontWeight: '700', color: 'var(--text-main)', marginTop: '40px', marginBottom: '16px' }}>
@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
               {lang === 'en' ? 'How We Use Your Data' : 'Cómo Usamos sus Datos'}
             </h2>
             <ul style={{ listStyleType: 'disc', paddingLeft: '24px', marginBottom: '24px' }}>
-              <li>{lang === 'en' ? 'To fulfill and securely ship your orders within Costa Rica.' : 'Para procesar y enviar sus pedidos de forma segura.'}</li>
+              <li>{lang === 'en' ? 'To fulfill and securely ship your orders within panama.' : 'Para procesar y enviar sus pedidos de forma segura.'}</li>
               <li>{lang === 'en' ? 'To communicate order statuses and tracking information.' : 'Para comunicar el estado de los pedidos y la información de seguimiento.'}</li>
               <li>{lang === 'en' ? 'To improve our catalog experience through anonymous analytics.' : 'Para mejorar nuestra experiencia en el catálogo mediante análisis anónimos.'}</li>
             </ul>
@@ -120,7 +120,7 @@ export default function PrivacyPolicyPage() {
           <img src="/logo.png" alt="Logo" style={{ height: '36px', marginBottom: '16px', opacity: 0.95, borderRadius: '8px' }} />
           <div className="footer-links" style={{ marginBottom: '24px' }}>
             <Link href={`/catalog?lang=${lang}`}>{lang === 'en' ? 'Shop Catalog' : 'Catálogo'}</Link>
-            <a href="mailto:info@peptidescostarica.net">info@peptidescostarica.net</a>
+            <a href="mailto:info@peptidespanama.net">info@peptidespanama.net</a>
           </div>
         </div>
       </footer>

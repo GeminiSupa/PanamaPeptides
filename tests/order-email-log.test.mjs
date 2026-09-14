@@ -14,7 +14,7 @@ test('a sent email reads as sent, and names who received it', () => {
 test('a failed email keeps its reason, because the reason is the whole point', () => {
   const entry = orderEmailActivity({
     kind: 'accounting-copy',
-    to: 'pbagcr@peptidescostarica.net',
+    to: 'pbagcr@peptidespanama.net',
     sent: false,
     error: '550 rejected as spam',
   });

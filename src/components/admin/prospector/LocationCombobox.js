@@ -1,13 +1,13 @@
 import React, { useId, useMemo, useRef, useState } from 'react';
 import { MapPin } from 'lucide-react';
-import { suggestCostaRicaLocations } from '@/lib/costaRicaLocations.mjs';
+import { suggestpanamaLocations } from '@/lib/panamaLocations.mjs';
 
 export default function LocationCombobox({ value, onChange }) {
   const listId = useId();
   const inputRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
-  const suggestions = useMemo(() => suggestCostaRicaLocations(value), [value]);
+  const suggestions = useMemo(() => suggestpanamaLocations(value), [value]);
   const activeSuggestion = open ? suggestions[activeIndex] : null;
 
   const choose = (suggestion) => {
@@ -65,7 +65,7 @@ export default function LocationCombobox({ value, onChange }) {
         placeholder="City, canton, province, or country (optional)"
       />
       {open && suggestions.length > 0 && (
-        <div id={listId} className="prospector-location-menu" role="listbox" aria-label="Costa Rica location suggestions">
+        <div id={listId} className="prospector-location-menu" role="listbox" aria-label="panama location suggestions">
           {suggestions.map((suggestion, index) => (
             <button
               id={`${listId}-${suggestion.id}`}

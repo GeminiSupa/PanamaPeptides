@@ -43,8 +43,8 @@ function getOrderSmtpConfig() {
   const { host, port, secure, user, pass, configured } = getTransactionalSmtpConfig();
   // Order mail always presents the verified company inbox as the sender. The
   // SMTP login may be an Elastic Email account and must never leak into From.
-  const fromEmail = 'info@peptidescostarica.net';
-  const from = `Peptides Costa Rica <${fromEmail}>`;
+  const fromEmail = 'info@peptidespanama.net';
+  const from = `Peptides Panama <${fromEmail}>`;
   const replyTo = readEnv('ORDER_NOTIFICATION_REPLY_TO') || readEnv('SMTP_REPLY_TO') || fromEmail;
 
   // A silent copy of every receipt a customer is sent, for whoever needs to be
@@ -214,8 +214,8 @@ export async function POST(request) {
       
       const adminText = [
         order.notificationKind === 'payment-result'
-          ? ` Peptides Costa Rica - Payment ${adminOutcome === 'paid' ? 'Approved' : adminOutcome === 'declined' ? 'Declined' : 'Update'}`
-          : ' Peptides Costa Rica - New Order Received',
+          ? ` Peptides Panama - Payment ${adminOutcome === 'paid' ? 'Approved' : adminOutcome === 'declined' ? 'Declined' : 'Update'}`
+          : ' Peptides Panama - New Order Received',
         ...(order.declineReason ? [`Gateway reason: ${order.declineReason}`] : []),
         `Order Reference: ${order.orderNumber || 'N/A'}`,
         `Payment Method: ${paymentLabel}`,
@@ -257,7 +257,7 @@ export async function POST(request) {
         .flat()
         .filter(Boolean);
 
-      // Rackspace hosts peptidescostarica.net and refuses mail claiming to be
+      // Rackspace hosts peptidespanama.net and refuses mail claiming to be
       // from that domain when it arrives from anywhere but Rackspace. Elastic
       // accepts the submission and reports success, so the alert to info@ was
       // discarded after we had already logged it as delivered. Our own
@@ -366,19 +366,19 @@ export async function POST(request) {
         const outcome = classifyPaymentOutcome(order.status);
         const customerSubject = order.isResend === true
           ? (orderLang === 'en'
-            ? `Your receipt - Order #${order.orderNumber || ''} - Peptides Costa Rica`
-            : `Su recibo - Pedido #${order.orderNumber || ''} - Péptidos Costa Rica`)
+            ? `Your receipt - Order #${order.orderNumber || ''} - Peptides Panama`
+            : `Su recibo - Pedido #${order.orderNumber || ''} - Péptidos panama`)
           : outcome === 'declined'
           ? (orderLang === 'en'
-            ? `Payment declined - Order #${order.orderNumber || ''} - Peptides Costa Rica`
-            : `Pago rechazado - Pedido #${order.orderNumber || ''} - Péptidos Costa Rica`)
+            ? `Payment declined - Order #${order.orderNumber || ''} - Peptides Panama`
+            : `Pago rechazado - Pedido #${order.orderNumber || ''} - Péptidos panama`)
           : outcome === 'paid'
             ? (orderLang === 'en'
-              ? `Payment confirmed - Order #${order.orderNumber || ''} - Peptides Costa Rica`
-              : `Pago confirmado - Pedido #${order.orderNumber || ''} - Péptidos Costa Rica`)
+              ? `Payment confirmed - Order #${order.orderNumber || ''} - Peptides Panama`
+              : `Pago confirmado - Pedido #${order.orderNumber || ''} - Péptidos panama`)
             : (orderLang === 'en'
-              ? `Order received #${order.orderNumber || ''} - Peptides Costa Rica`
-              : `Pedido recibido #${order.orderNumber || ''} - Péptidos Costa Rica`);
+              ? `Order received #${order.orderNumber || ''} - Peptides Panama`
+              : `Pedido recibido #${order.orderNumber || ''} - Péptidos panama`);
 
         customerHtml = buildCustomerHtml(order, paymentLabel, totalPrimary, totalUsd, totalCrc, orderLang, links, salesTextEn, salesTextEs, promoCodesList);
 

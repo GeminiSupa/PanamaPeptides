@@ -16,7 +16,7 @@ async function run() {
   // but wait, we can't alter tables from supabase-js without RPC!
   // I will just mock the SQL execution if there is no RPC, 
   // or see if we can use postgres connection directly.
-  // Actually, costapeptides uses Supabase REST API which can't run DDL.
+  // Actually, panamapeptides uses Supabase REST API which can't run DDL.
   // Let me check if the project has a psql connection string.
 }
 run();

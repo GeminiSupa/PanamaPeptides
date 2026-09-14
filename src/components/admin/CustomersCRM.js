@@ -146,11 +146,11 @@ const buildSalesScript = (cust) => {
     : cartLine;
 
   if (cust.isLead) {
-    return `Hi ${firstName}, this is Peptides Costa Rica. ${cartLine} We have local Costa Rica inventory, COA documentation, and CRC pricing ready. Would you like me to check current availability or answer any questions before you order?`;
+    return `Hi ${firstName}, this is Peptides Panama. ${cartLine} We have local panama inventory, COA documentation, and CRC pricing ready. Would you like me to check current availability or answer any questions before you order?`;
   }
 
   if (daysSince(cust.lastOrderDate) >= 60) {
-    return `Hi ${firstName}, quick follow-up from Peptides Costa Rica. ${purchaseLine} We have updated local stock and COA documentation available. If you are planning a new research order, I can check current inventory and CRC pricing for you.`;
+    return `Hi ${firstName}, quick follow-up from Peptides Panama. ${purchaseLine} We have updated local stock and COA documentation available. If you are planning a new research order, I can check current inventory and CRC pricing for you.`;
   }
 
   if (cust.totalSpentUsd >= 500) {
@@ -161,7 +161,7 @@ const buildSalesScript = (cust) => {
     return `Hi ${firstName}, thanks for ordering with us again. ${purchaseLine} ${rec.product} may be worth reviewing next. I can confirm live CRC pricing and local availability before you place the order.`;
   }
 
-  return `Hi ${firstName}, this is Peptides Costa Rica. ${purchaseLine} I can help you verify COA documentation, current Costa Rica stock, and live CRC pricing before you order.`;
+  return `Hi ${firstName}, this is Peptides Panama. ${purchaseLine} I can help you verify COA documentation, current panama stock, and live CRC pricing before you order.`;
 };
 
 export default function CustomersCRM({ orders = [], abandonedCarts = [], leads = [], agentProfiles = [], onWhatsAppClick, onCreateOrder }) {
@@ -624,7 +624,7 @@ export default function CustomersCRM({ orders = [], abandonedCarts = [], leads =
         } else if (format === 'pdf') {
           const doc = new jsPDF('landscape');
           doc.setFontSize(16);
-          doc.text('Costa Rica Peptides - Customers Export', 14, 15);
+          doc.text('panama Peptides - Customers Export', 14, 15);
           doc.setFontSize(10);
           doc.text(`Generated on: ${new Date().toLocaleString()}`, 14, 22);
           doc.autoTable({
@@ -2086,7 +2086,7 @@ export default function CustomersCRM({ orders = [], abandonedCarts = [], leads =
                     {selectedCustomer.email && (
                       <a
                         className="crm-workspace-btn"
-                        href={`mailto:${selectedCustomer.email}?subject=${encodeURIComponent('Peptides Costa Rica follow-up')}&body=${encodeURIComponent(selectedCustomerScript)}`}
+                        href={`mailto:${selectedCustomer.email}?subject=${encodeURIComponent('Peptides Panama follow-up')}&body=${encodeURIComponent(selectedCustomerScript)}`}
                         onClick={() => recordActivity('Started email follow-up', selectedCustomer, resolveRecommendation(selectedCustomer).product)}
                       >
                         <Mail size={14} /> Email script

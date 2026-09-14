@@ -19,7 +19,7 @@ test('uses the existing Rackspace mailbox only for accounting', () => {
     SMTP_HOST: ' secure.emailsrvr.com ',
     SMTP_PORT: '465',
     SMTP_SECURE: 'true',
-    SMTP_USER: 'info@peptidescostarica.net',
+    SMTP_USER: 'info@peptidespanama.net',
     SMTP_PASS: 'secret',
   });
 
@@ -27,7 +27,7 @@ test('uses the existing Rackspace mailbox only for accounting', () => {
   assert.equal(config.source, 'rackspace-local-mailbox');
   assert.equal(config.provider, 'Rackspace');
   assert.equal(config.secure, true);
-  assert.equal(config.from, 'Peptides Costa Rica Records <info@peptidescostarica.net>');
+  assert.equal(config.from, 'Peptides Panama Records <info@peptidespanama.net>');
 });
 
 test('never inherits a generic non-Rackspace SMTP account', () => {
@@ -51,7 +51,7 @@ test('an explicit accounting transport wins over the legacy mailbox', () => {
     TAX_RECORDS_SMTP_PASS: 'dedicated-secret',
     TAX_RECORDS_SMTP_FROM: 'Records Desk <records@example.net>',
     SMTP_HOST: 'secure.emailsrvr.com',
-    SMTP_USER: 'info@peptidescostarica.net',
+    SMTP_USER: 'info@peptidespanama.net',
     SMTP_PASS: 'legacy-secret',
   });
 
@@ -75,11 +75,11 @@ test('Rackspace is primary whenever an accounting mailbox is configured', async 
   const created = [];
   const rackspace = resolveTaxRecordsMailer({
     fallbackTransporter,
-    fallbackFrom: 'Shop <info@peptidescostarica.net>',
+    fallbackFrom: 'Shop <info@peptidespanama.net>',
     env: {
       SMTP_HOST: 'secure.emailsrvr.com',
       SMTP_PORT: '465',
-      SMTP_USER: 'info@peptidescostarica.net',
+      SMTP_USER: 'info@peptidespanama.net',
       SMTP_PASS: 'secret',
     },
     createTransport: (config) => {
@@ -90,17 +90,17 @@ test('Rackspace is primary whenever an accounting mailbox is configured', async 
 
   assert.equal((await rackspace.transporter.sendMail({})).messageId, 'rackspace');
   assert.equal(elasticCalls, 0);
-  assert.equal(rackspace.from, 'Peptides Costa Rica Records <info@peptidescostarica.net>');
+  assert.equal(rackspace.from, 'Peptides Panama Records <info@peptidespanama.net>');
   assert.equal(rackspace.source, 'rackspace-local-mailbox');
   assert.equal(created.length, 1);
   assert.deepEqual(created[0].auth, {
-    user: 'info@peptidescostarica.net',
+    user: 'info@peptidespanama.net',
     pass: 'secret',
   });
 
   const unconfigured = resolveTaxRecordsMailer({
     fallbackTransporter,
-    fallbackFrom: 'Shop <info@peptidescostarica.net>',
+    fallbackFrom: 'Shop <info@peptidespanama.net>',
     env: {},
     createTransport: () => assert.fail('must not create an unconfigured transport'),
   });
@@ -120,12 +120,12 @@ test('an accounting SMTP failure is surfaced and never hidden by Elastic', async
         return { messageId: 'elastic-accepted' };
       },
     },
-    fallbackFrom: 'Shop <info@peptidescostarica.net>',
+    fallbackFrom: 'Shop <info@peptidespanama.net>',
     fallbackUser: 'transactional@managedcloudhostingemail.com',
     env: {
       SMTP_HOST: 'secure.emailsrvr.com',
       SMTP_PORT: '465',
-      SMTP_USER: 'info@peptidescostarica.net',
+      SMTP_USER: 'info@peptidespanama.net',
       SMTP_PASS: 'stale-secret',
     },
     createTransport: () => ({
@@ -136,7 +136,7 @@ test('an accounting SMTP failure is surfaced and never hidden by Elastic', async
   await assert.rejects(
     resolved.transporter.sendMail({
       from: resolved.from,
-      to: 'pbagcr@peptidescostarica.net',
+      to: 'pbagcr@peptidespanama.net',
     }),
     /Rackspace authentication failed/,
   );

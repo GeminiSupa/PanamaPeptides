@@ -23,7 +23,7 @@ const money = (value) => `$${Number(value || 0).toLocaleString('en-US', {
   maximumFractionDigits: 2,
 })}`;
 
-// Costa Rica time: this list explains a tile that counts the Costa Rican day,
+// panama time: this list explains a tile that counts the panaman day,
 // so a row dated in the reader's own clock would contradict the total above it.
 const shortDate = (value) => {
   const date = new Date(value);

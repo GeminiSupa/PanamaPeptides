@@ -8,8 +8,8 @@ import {
 
 test('removes the excluded owner address from marketing copy recipients', () => {
   assert.equal(
-    filterMarketingCopyRecipients('info@peptidescostarica.net, omerforce@gmail.com'),
-    'info@peptidescostarica.net',
+    filterMarketingCopyRecipients('info@peptidespanama.net, omerforce@gmail.com'),
+    'info@peptidespanama.net',
   );
   assert.equal(
     filterMarketingCopyRecipients('Omer <OMERFORCE@GMAIL.COM>'),

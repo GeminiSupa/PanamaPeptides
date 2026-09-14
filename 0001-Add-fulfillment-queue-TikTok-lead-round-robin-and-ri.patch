@@ -419,7 +419,7 @@ index 6ac3d97..47dc24b 100644
      new_agent: newAgent,
 -    reason: 'TikTok form leads are assigned to Yese',
 +    reason: 'TikTok form leads rotate between Pollita, Dani and Korinne',
-     actor_email: 'tiktok-leads@peptidescostarica.net',
+     actor_email: 'tiktok-leads@peptidespanama.net',
    });
    if (error) console.warn('[leads/tiktok] Assignment audit skipped:', error.message);
 @@ -118,9 +126,6 @@ export async function POST(request) {

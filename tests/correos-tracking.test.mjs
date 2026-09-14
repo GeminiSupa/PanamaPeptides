@@ -31,8 +31,8 @@ test('both languages name Correos and carry the URL', () => {
   const es = correosTrackingStrings('es');
   const en = correosTrackingStrings('en');
 
-  assert.match(es.button, /Correos de Costa Rica/);
-  assert.match(en.button, /Correos de Costa Rica/);
+  assert.match(es.button, /Correos de panama/);
+  assert.match(en.button, /Correos de panama/);
   assert.match(es.textLine, /correos\.go\.cr\/rastreo/);
   assert.match(en.textLine, /correos\.go\.cr\/rastreo/);
   assert.notEqual(es.body, en.body);

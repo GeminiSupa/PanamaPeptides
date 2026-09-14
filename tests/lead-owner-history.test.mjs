@@ -18,7 +18,7 @@ test('a lead is keyed by every contact detail it carries, however it was stored'
   );
 });
 
-test('Costa Rican numbers collapse to one key no matter how the agent typed them', () => {
+test('panaman numbers collapse to one key no matter how the agent typed them', () => {
   assert.deepEqual([...leadContactKeys({ contact_value: '8404 6973' })], ['phone:84046973']);
   assert.deepEqual([...leadContactKeys({ contact_value: '84-04-69-73' })], ['phone:84046973']);
   assert.deepEqual([...leadContactKeys({ contact_value: '+50684046973' })], ['phone:84046973']);
@@ -122,7 +122,7 @@ test('on an exact tie the email match wins, matching the order-book rule', () =>
 // ── Who is told about a lead ────────────────────────────────────────────────
 //
 // Production is shaped like this: Dani logs in as elainedrb@gmail.com but her
-// alert row is daniela@peptidescostarica.net, and Korinne has no WhatsApp
+// alert row is daniela@peptidespanama.net, and Korinne has no WhatsApp
 // number on file at all.
 
 const PROFILES = [
@@ -131,9 +131,9 @@ const PROFILES = [
 ];
 
 const ROWS = [
-  { channel: 'email', label: 'Dani', destination: 'daniela@peptidescostarica.net' },
+  { channel: 'email', label: 'Dani', destination: 'daniela@peptidespanama.net' },
   { channel: 'whatsapp', label: 'Dani', destination: '50687817225' },
-  { channel: 'email', label: 'Ops inbox', destination: 'info@peptidescostarica.net' },
+  { channel: 'email', label: 'Ops inbox', destination: 'info@peptidespanama.net' },
   { channel: 'email', label: 'Joe (temp CC until info@ fixed)', destination: 'joe@tolm.co' },
 ];
 
@@ -147,18 +147,18 @@ test('a row labelled with an agent name is theirs', () => {
 test('shared destinations belong to nobody, including a label that merely contains a name', () => {
   assert.equal(recipientOwnerProfile(ROWS[2], PROFILES), null);
   // "Joe (temp CC…)" is a shared CC. Matching loosely would silence it.
-  assert.equal(recipientOwnerProfile(ROWS[3], [{ name: 'Joe', email: 'joe@peptidescostarica.net' }]), null);
+  assert.equal(recipientOwnerProfile(ROWS[3], [{ name: 'Joe', email: 'joe@peptidespanama.net' }]), null);
 });
 
 test('a shared inbox that is also somebody login stays shared', () => {
-  // info@peptidescostarica.net is the ops inbox AND the superadmin account.
+  // info@peptidespanama.net is the ops inbox AND the superadmin account.
   // Matching on the address alone took it off every lead that was not his.
-  const withWebster = [...PROFILES, { name: 'Webster', email: 'info@peptidescostarica.net', whatsapp_number: null }];
+  const withWebster = [...PROFILES, { name: 'Webster', email: 'info@peptidespanama.net', whatsapp_number: null }];
   assert.equal(recipientOwnerProfile(ROWS[2], withWebster), null);
 
   const audience = leadAlertAudience({ rows: ROWS, profiles: withWebster, owner: 'Korinne' });
   assert.ok(
-    audience.emails.includes('info@peptidescostarica.net'),
+    audience.emails.includes('info@peptidespanama.net'),
     'the ops inbox must be told about every lead, whoever owns it',
   );
 });
@@ -167,7 +167,7 @@ test('the owner is reached on their own profile, and the campaign agent is left 
   const audience = leadAlertAudience({ rows: ROWS, profiles: PROFILES, owner: 'Korinne' });
   assert.deepEqual(audience.emails, [
     'korinneda@icloud.com',          // from her own profile, and first
-    'info@peptidescostarica.net',
+    'info@peptidespanama.net',
     'joe@tolm.co',
   ]);
   // Dani's phone and inbox are both absent: this is not her lead.
@@ -179,8 +179,8 @@ test('the campaign agent keeps her own lead, on every destination she has', () =
   const audience = leadAlertAudience({ rows: ROWS, profiles: PROFILES, owner: 'Dani' });
   assert.deepEqual(audience.emails, [
     'elainedrb@gmail.com',
-    'daniela@peptidescostarica.net',
-    'info@peptidescostarica.net',
+    'daniela@peptidespanama.net',
+    'info@peptidespanama.net',
     'joe@tolm.co',
   ]);
   assert.deepEqual(audience.whatsapp.map((entry) => entry.destination), ['50687817225']);
@@ -195,7 +195,7 @@ test('an agent with no number on file simply gets no WhatsApp, not a broken send
 test('an unowned lead still reaches the shared inboxes', () => {
   const audience = leadAlertAudience({ rows: ROWS, profiles: PROFILES, owner: '' });
   // Nobody owns it, so no personal row fires — but the campaign is not silent.
-  assert.deepEqual(audience.emails, ['info@peptidescostarica.net', 'joe@tolm.co']);
+  assert.deepEqual(audience.emails, ['info@peptidespanama.net', 'joe@tolm.co']);
 });
 
 test('a number is deduped however it was typed, and an unreachable one is dropped', () => {

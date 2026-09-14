@@ -1,5 +1,5 @@
 -- =========================================================================
---                     PEPTIDES COSTA RICA - AUTOMATED FLOWS
+--                     Peptides Panama - AUTOMATED FLOWS
 -- =========================================================================
 -- Run this SQL script in your Supabase Project SQL Editor to update the 
 -- orders table to support the automated CRON flows.

@@ -156,7 +156,7 @@ export function renderAnalyticsDigestEmail(digest, { rangeLabel = 'last week', d
 <html><body style="margin:0;padding:24px;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;">
     <tr><td>
-      <div style="font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Costa Peptides · ${escapeHtml(rangeLabel)}</div>
+      <div style="font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:.06em;">Panama Peptides · ${escapeHtml(rangeLabel)}</div>
       <h1 style="margin:6px 0 2px;font-size:19px;color:#0f172a;">${escapeHtml(digest.headline)}</h1>
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:14px;">
         ${digest.rows.map(row).join('')}
@@ -182,7 +182,7 @@ export function renderAnalyticsDigestEmail(digest, { rangeLabel = 'last week', d
   ].join('\n');
 
   return {
-    subject: `Costa Peptides weekly: ${digest.headline}`,
+    subject: `Panama Peptides weekly: ${digest.headline}`,
     html,
     text,
   };

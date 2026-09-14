@@ -46,10 +46,10 @@ export function getProductFallbackImage(productName, category) {
     nameLower.includes('wolverine') ||
     nameLower.includes('group')
   ) {
-    return productName.length % 2 === 0 ? '/vials_group_costarica.png' : '/modern_3d_vials_group.png';
+    return productName.length % 2 === 0 ? '/vials_group_panama.png' : '/modern_3d_vials_group.png';
   }
   if (catLower.includes('weight') || catLower.includes('peso') || catLower.includes('metabol')) {
-    return '/vial_costarica_hero.png';
+    return '/vial_panama_hero.png';
   }
   if (catLower.includes('recovery') || catLower.includes('healing') || catLower.includes('curación')) {
     return '/hero_peptide_vial.png';
@@ -58,7 +58,7 @@ export function getProductFallbackImage(productName, category) {
     return '/modern_3d_vial_hero.png';
   }
   if (catLower.includes('aging') || catLower.includes('longevity') || catLower.includes('longevidad')) {
-    return '/vial_costarica_hero.png';
+    return '/vial_panama_hero.png';
   }
   if (catLower.includes('cognitive') || catLower.includes('mood') || catLower.includes('cognitivo')) {
     return '/hero_peptide_vial.png';
@@ -66,7 +66,7 @@ export function getProductFallbackImage(productName, category) {
   if (catLower.includes('skin') || catLower.includes('hair') || catLower.includes('piel') || catLower.includes('cabello')) {
     return '/modern_3d_vial_hero.png';
   }
-  if (productName.length % 3 === 0) return '/vial_costarica_hero.png';
+  if (productName.length % 3 === 0) return '/vial_panama_hero.png';
   if (productName.length % 3 === 1) return '/modern_3d_vial_hero.png';
   return '/hero_peptide_vial.png';
 }

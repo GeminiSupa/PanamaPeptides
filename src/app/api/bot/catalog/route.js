@@ -68,9 +68,9 @@ function shapeProduct(p, exchangeRate) {
 
 function buildKnowledgeText({ meta, products, reviews, blogs, landing }) {
   const lines = [];
-  lines.push('# Peptides Costa Rica — Product Knowledge Base');
+  lines.push('# Peptides Panama — Product Knowledge Base');
   lines.push(`Generated: ${meta.generatedAt}`);
-  lines.push(`Prices shown in USD ($) and Costa Rican Colón (₡). Approx rate: 1 USD = ${meta.exchangeRate} CRC.`);
+  lines.push(`Prices shown in USD ($) and panaman Colón (₡). Approx rate: 1 USD = ${meta.exchangeRate} CRC.`);
   lines.push('');
 
   if (products) {

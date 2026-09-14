@@ -1,5 +1,5 @@
 -- =========================================================================
---            PEPTIDES COSTA RICA - ORDER EMAIL NOTIFICATIONS
+--            Peptides Panama - ORDER EMAIL NOTIFICATIONS
 -- =========================================================================
 -- Run this in your Supabase SQL Editor.
 --
@@ -14,6 +14,6 @@ ALTER TABLE public.admin_profiles
 UPDATE public.admin_profiles
 SET order_email_notifications = false
 WHERE lower(email) IN (
-  'sean@peptidescostarica.net',
-  'aziza@peptidescostarica.net'
+  'sean@peptidespanama.net',
+  'aziza@peptidespanama.net'
 );

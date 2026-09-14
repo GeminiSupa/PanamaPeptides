@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import AccountShell from '../AccountShell';
-import costaricaData from '@/lib/costarica.json';
+import panamaData from '@/lib/panama.json';
 import { getCustomerSupabase } from '@/lib/customerSupabase';
 import { useCustomerSession, useStorefrontLang } from '@/hooks/useCustomerSession';
 
@@ -23,7 +23,7 @@ const EMPTY_FORM = {
 // matches them back against this same file to drive its cascading selects. The
 // account form has to offer exactly those strings or a saved address would
 // prefill fields the checkout then rejects as unrecognised.
-const provinces = Object.values(costaricaData.provincias);
+const provinces = Object.values(panamaData.provincias);
 
 function cantonsOf(provinceName) {
   const province = provinces.find((item) => item.nombre === provinceName);

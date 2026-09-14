@@ -1,10 +1,10 @@
 export const metadata = {
-  title: 'Contacto',
-  description: 'Contacta directamente a Peptides Costa Rica por WhatsApp o correo para consultas sobre inventario, documentación y pedidos locales.',
+  title: 'Contacto | Panama Peptides',
+  description: 'Contacta directamente a Panama Peptides por WhatsApp o correo para consultas sobre inventario, documentación y pedidos locales en Panamá.',
   alternates: { canonical: '/contact' },
   openGraph: {
-    title: 'Contacto | Peptides Costa Rica',
-    description: 'Atención directa por WhatsApp y correo en Costa Rica.',
+    title: 'Contacto | Panama Peptides',
+    description: 'Atención directa por WhatsApp y correo en Panamá.',
     url: '/contact',
   },
 };

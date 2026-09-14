@@ -10,7 +10,7 @@ const fullLead = {
   name: 'Maria Rodriguez',
   phone: '+50688881234',
   dueAt: '2026-08-15T17:41:00.000Z',
-  qualification: { category: 'Weight Loss', location: 'Costa Rica', volume: '5-9 vials' },
+  qualification: { category: 'Weight Loss', location: 'panama', volume: '5-9 vials' },
 };
 
 test('the alert fills every approved variable in template order', () => {
@@ -19,13 +19,13 @@ test('the alert fills every approved variable in template order', () => {
   assert.equal(parameters.length, LEAD_ALERT_VARIABLE_COUNT);
   assert.equal(parameters[0], 'Maria Rodriguez');
   assert.equal(parameters[1], 'Weight Loss');
-  assert.equal(parameters[2], 'Costa Rica');
+  assert.equal(parameters[2], 'panama');
   assert.equal(parameters[3], '5-9 vials');
   assert.equal(parameters[4], '+50688881234');
 });
 
-test('the deadline is rendered in Costa Rica time, not the server timezone', () => {
-  // 17:41 UTC is 11:41 in Costa Rica. A server in another zone must not shift it,
+test('the deadline is rendered in panama time, not the server timezone', () => {
+  // 17:41 UTC is 11:41 in panama. A server in another zone must not shift it,
   // or the agent is given a deadline that has already passed.
   const [, , , , , due] = buildLeadAlertParameters(fullLead);
   assert.equal(due, '11:41 AM');

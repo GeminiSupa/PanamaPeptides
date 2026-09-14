@@ -9,19 +9,19 @@ import {
 } from '../src/lib/businessLinks.js';
 
 test('the CMS review URL wins', () => {
-  const links = normalizeBusinessLinks({ facebookReviewUrl: 'https://www.facebook.com/costaricapeptides/reviews' });
-  assert.equal(getFacebookReviewUrl(links), 'https://www.facebook.com/costaricapeptides/reviews');
+  const links = normalizeBusinessLinks({ facebookReviewUrl: 'https://www.facebook.com/panamapeptides/reviews' });
+  assert.equal(getFacebookReviewUrl(links), 'https://www.facebook.com/panamapeptides/reviews');
 });
 
 test('setting only the profile field takes effect', () => {
   // It could not before: facebookReviewUrl carried a non-empty default that
   // outranked facebookUrl in every `a || b` chain, so this field was dead.
-  const links = normalizeBusinessLinks({ facebookUrl: 'https://www.facebook.com/costaricapeptides' });
-  assert.equal(getFacebookReviewUrl(links), 'https://www.facebook.com/costaricapeptides');
+  const links = normalizeBusinessLinks({ facebookUrl: 'https://www.facebook.com/panamapeptides' });
+  assert.equal(getFacebookReviewUrl(links), 'https://www.facebook.com/panamapeptides');
 });
 
 test('a stored retired profile loses to the current one', () => {
-  const links = normalizeBusinessLinks({ facebookReviewUrl: 'https://www.facebook.com/Peptidescostaricaresearch/reviews' });
+  const links = normalizeBusinessLinks({ facebookReviewUrl: 'https://www.facebook.com/Peptidespanamaresearch/reviews' });
   assert.equal(getFacebookReviewUrl(links), FACEBOOK_REVIEW_URL);
 });
 

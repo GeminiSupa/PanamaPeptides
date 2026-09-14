@@ -70,7 +70,7 @@ const NOT_WORDLIKE = /^[A-Za-z]{1,6}$/;
 const HAS_VOWEL = /[aeiouyáéíóúü]/i;
 
 /**
- * Scripts the storefront is not written in. The shop sells in Costa Rica in
+ * Scripts the storefront is not written in. The shop sells in panama in
  * Spanish and English; a name in Cyrillic, Greek, Hebrew, Arabic, Han, Kana or
  * Hangul is not a customer who is going to take the call. Suspicious rather
  * than conclusive, because it is a statement about this shop's market and not
@@ -99,7 +99,7 @@ const digitsOf = (value) => text(value).replace(/\D/g, '');
 /**
  * The subscriber number, with a country code taken off.
  *
- * Costa Rican numbers are eight digits and US ones ten, and both arrive here
+ * panaman numbers are eight digits and US ones ten, and both arrive here
  * dialled either way. Without this, `+506 1111-1111` reads as 50611111111 —
  * eleven digits that are not all the same — and walks straight past the check
  * below, which is exactly how a form gets filled in practice.
@@ -211,7 +211,7 @@ export function classifyLeadSubmission({
   // whole pages of ours have gone out not sending one: the two ad landing
   // pages in public/ are plain HTML rather than our React forms, and every
   // lead they sent arrived already one signal down. A single ordinary quirk
-  // on top — a Costa Rican number that reads as a run, a throwaway inbox, a
+  // on top — a panaman number that reads as a run, a throwaway inbox, a
   // long name — was then enough to bin a paid lead, and the visitor was told
   // it had been received. Counting it only in the pair keeps the script caught
   // and stops silence about the page standing in as evidence about the person.

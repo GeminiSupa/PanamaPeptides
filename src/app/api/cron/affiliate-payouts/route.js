@@ -106,7 +106,7 @@ export async function GET(request) {
     // 5. Send Admin Summary Report
     const adminHtml = `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-        <img src="https://catalog.peptidescostarica.net/logo.png?v=2" alt="Peptides Costa Rica" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+        <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
         <h2>Weekly Affiliate Commission Report</h2>
         <p>Total commissions generated this week: <strong style="font-size: 18px; color: #059669;">$${totalCommissionsUsd.toFixed(2)}</strong></p>
         <hr style="border: 1px solid #e2e8f0; margin: 20px 0;" />
@@ -123,7 +123,7 @@ export async function GET(request) {
     // Only send the admin email to the first email in the list to avoid spamming multiple admin addresses if not wanted, but we'll send to the whole raw string.
     await transporter.sendMail({
             bcc: process.env.BCC_EMAIL || 'omerforce@gmail.com',
-      from: `Peptides Costa Rica System <${SMTP_USER}>`,
+      from: `Peptides Panama System <${SMTP_USER}>`,
       to: ADMIN_EMAIL,
       subject: `Weekly Affiliate Report - $${totalCommissionsUsd.toFixed(2)}`,
       html: adminHtml,
@@ -134,9 +134,9 @@ export async function GET(request) {
       if (payout.totalEarned > 0) {
         const affHtml = `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
-            <img src="https://catalog.peptidescostarica.net/logo.png?v=2" alt="Peptides Costa Rica" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+            <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
             <h2 style="color: #0f172a;">Hello ${payout.name},</h2>
-            <p style="color: #334155;">Here is your weekly affiliate summary from <strong>Peptides Costa Rica</strong>.</p>
+            <p style="color: #334155;">Here is your weekly affiliate summary from <strong>Peptides Panama</strong>.</p>
             
             <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 16px; border-radius: 8px; margin: 20px 0; text-align: center;">
               <p style="margin: 0 0 8px; color: #166534;">Your promo code was used on <strong>${payout.ordersCount}</strong> orders this week.</p>
@@ -145,15 +145,15 @@ export async function GET(request) {
             </div>
 
             <p style="color: #334155;">We will be reaching out shortly to process your payout via your preferred payment method.</p>
-            <p style="color: #334155; margin-top: 24px;">Thank you for your partnership!<br/><strong>Peptides Costa Rica</strong></p>
+            <p style="color: #334155; margin-top: 24px;">Thank you for your partnership!<br/><strong>Peptides Panama</strong></p>
           </div>
         `;
 
         await transporter.sendMail({
             bcc: process.env.BCC_EMAIL || 'omerforce@gmail.com',
-          from: `Peptides Costa Rica Affiliates <${SMTP_USER}>`,
+          from: `Peptides Panama Affiliates <${SMTP_USER}>`,
           to: payout.email,
-          subject: `Your Weekly Affiliate Summary - Peptides Costa Rica`,
+          subject: `Your Weekly Affiliate Summary - Peptides Panama`,
           html: affHtml,
         });
       }

@@ -13,7 +13,7 @@ async function run() {
     components: [
       {
         type: "BODY",
-        text: "¡Bienvenido a Peptides Costa Rica! Gracias por registrarte. Como regalo especial, aquí tienes un código promocional de un solo uso para obtener un 15% de descuento en tu primera compra: {{1}}\n\nPuedes aplicar este código durante el proceso de pago. Válido únicamente para una compra.",
+        text: "¡Bienvenido a Peptides Panama! Gracias por registrarte. Como regalo especial, aquí tienes un código promocional de un solo uso para obtener un 15% de descuento en tu primera compra: {{1}}\n\nPuedes aplicar este código durante el proceso de pago. Válido únicamente para una compra.",
         example: {
           body_text: [["WELCOME-A9F3X2"]]
         }
@@ -24,7 +24,7 @@ async function run() {
           {
             type: "URL",
             text: "Visit Catalog",
-            url: "https://catalog.peptidescostarica.net/catalog"
+            url: "https://catalog.peptidespanama.net/catalog"
           }
         ]
       }

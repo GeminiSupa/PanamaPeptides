@@ -8,7 +8,7 @@ function readEnv(name) {
 }
 
 const CAMPAIGN_FROM_EMAIL = readEnv('CAMPAIGN_SMTP_FROM_EMAIL')
-  || 'info@peptidescostarica.net';
+  || 'info@peptidespanama.net';
 
 function resolveSecureMode(port) {
   const raw = readEnv('CAMPAIGN_SMTP_SECURE');
@@ -31,7 +31,7 @@ export function getCampaignSmtpConfig() {
   const secure = resolveSecureMode(port);
   const user = readEnv('CAMPAIGN_SMTP_USER');
   const pass = readEnv('CAMPAIGN_SMTP_PASS');
-  const from = readEnv('CAMPAIGN_FROM') || `Peptides Costa Rica <${CAMPAIGN_FROM_EMAIL}>`;
+  const from = readEnv('CAMPAIGN_FROM') || `Peptides Panama <${CAMPAIGN_FROM_EMAIL}>`;
   const replyTo = readEnv('CAMPAIGN_REPLY_TO') || CAMPAIGN_FROM_EMAIL;
 
   return {

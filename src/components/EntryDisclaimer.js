@@ -64,7 +64,7 @@ export default function EntryDisclaimer() {
           <li>Products are supplied strictly for laboratory research and are not intended for human or animal consumption, treatment, or personal use.</li>
           <li>You understand that research materials require appropriate knowledge, facilities, and handling precautions.</li>
           <li>You agree to follow applicable laws and the product-specific handling and safety information.</li>
-          <li>Peptides Costa Rica reserves the right to decline or cancel orders where human or animal use is suspected.</li>
+          <li>Peptides Panama reserves the right to decline or cancel orders where human or animal use is suspected.</li>
         </ul>
 
         <div className="entry-disclaimer-actions">

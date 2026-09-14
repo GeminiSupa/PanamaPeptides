@@ -39,7 +39,7 @@ export default function ReturnPolicyPage() {
       <header className={`lp-header${scrolled ? ' lp-header--scrolled' : ''}`}>
         <div className="lp-header-inner">
           <Link href="/" className="lp-logo">
-            <img src="/logo.png" alt="Peptides Costa Rica" className="logo-img-custom" style={{ maxHeight: '40px', width: 'auto', borderRadius: '8px' }} />
+            <img src="/logo.png" alt="Peptides Panama" className="logo-img-custom" style={{ maxHeight: '40px', width: 'auto', borderRadius: '8px' }} />
           </Link>
 
           <nav className="lp-nav">
@@ -111,10 +111,10 @@ export default function ReturnPolicyPage() {
           <img src="/logo.png" alt="Logo" style={{ height: '36px', marginBottom: '16px', opacity: 0.95, borderRadius: '8px' }} />
           <div className="footer-links" style={{ marginBottom: '24px' }}>
             <Link href={`/catalog?lang=${lang}`}>{lang === 'en' ? 'Shop Catalog' : 'Catálogo'}</Link>
-            <a href="mailto:info@peptidescostarica.net">info@peptidescostarica.net</a>
+            <a href="mailto:info@peptidespanama.net">info@peptidespanama.net</a>
           </div>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', borderTop: '1px solid var(--border-color)', paddingTop: '16px' }}>
-            <strong>Legal Notice:</strong> Products offered by Peptides Costa Rica are intended strictly for laboratory research use only. Not for human or veterinary use.
+            <strong>Legal Notice:</strong> Products offered by Peptides Panama are intended strictly for laboratory research use only. Not for human or veterinary use.
           </div>
         </div>
       </footer>

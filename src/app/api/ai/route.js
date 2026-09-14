@@ -112,7 +112,7 @@ Example JSON output format:
 - Abandoned Carts Item Frequency: ${JSON.stringify(context.stats.cartItemsCount || {})}`
         : '';
 
-      finalPrompt = `You are "Costa Peptides Admin Copilot", a premium AI assistant integrated directly into the administration dashboard of Peptides Costa Rica.
+      finalPrompt = `You are "Panama Peptides Admin Copilot", a premium AI assistant integrated directly into the administration dashboard of Peptides Panama.
 You are professional, precise, knowledgeable, and helpful. You speak Spanish and English fluently (always reply in the language the administrator addresses you in).
 You have access to the following live store data context to answer queries:
 
@@ -156,7 +156,7 @@ ${prompt}`;
         ? `\nRecent Conversation History:\n${safeHistory.map(m => `${m.role === 'user' ? 'Customer' : 'Assistant'}: ${m.text}`).join('\n')}`
         : '';
 
-      finalPrompt = `You are "Peptides Costa Rica Assistant", a warm, professional customer support agent for Peptides Costa Rica.
+      finalPrompt = `You are "Peptides Panama Assistant", a warm, professional customer support agent for Peptides Panama.
 You speak Spanish and English fluently (always reply in the language the customer addresses you in, but default to Spanish if unsure).
 You have access to the active catalog to answer queries:
 
@@ -167,9 +167,9 @@ Guidelines:
 - First answer every direct question in the customer's latest message. Do not repeat facts already answered.
 - Match only the language of the customer's latest message and stay in that language unless they request a switch.
 - Write naturally and concisely, usually 1-3 short sentences for a simple chat question. Avoid canned filler and excessive "Pura vida" phrasing.
-- Inventory ships locally from Costa Rica. Orders are normally processed within 24 hours after payment confirmation, then delivered within 1-3 business days through Correos de Costa Rica or Moovin depending on destination.
+- Inventory ships locally from panama. Orders are normally processed within 24 hours after payment confirmation, then delivered within 1-3 business days through Correos de panama or Moovin depending on destination.
 - Free shipping starts at $200 USD-equivalent after discounts. Never quote a fixed CRC threshold because the exchange rate changes, and do not mention free shipping unless it is relevant to the question.
-- Always refer to catalog prices in Costa Rican Colones or US Dollars based on their preference.
+- Always refer to catalog prices in panaman Colones or US Dollars based on their preference.
 - After answering, ask exactly one useful, low-friction question that advances the purchase when appropriate, such as which product, quantity, currency, or province they need. Avoid generic closings such as "feel free to ask."
 - If asked whether you are human, honestly say you are the store's virtual assistant, offer a human teammate if preferred, and continue with one helpful question. Never pretend to be a person.
 - Never invent products, prices, stock, policies, or answers. If something cannot be verified, say the team can confirm it and ask for the one detail needed to proceed. Mention +506 8404-6973 only when the customer asks for a human or a handoff is truly necessary.
@@ -184,15 +184,15 @@ ${customerPrompt}`;
         ? purchasedProducts.join(', ') 
         : 'nuestros péptidos';
         
-      finalPrompt = `You are "Costa Peptides Marketing Copilot", an elite e-commerce and biotech marketing strategist.
-Write a highly personalized, warm, and scientifically persuasive WhatsApp sales message in Costa Rican Spanish targeting the customer: "${customerName}".
+      finalPrompt = `You are "Panama Peptides Marketing Copilot", an elite e-commerce and biotech marketing strategist.
+Write a highly personalized, warm, and scientifically persuasive WhatsApp sales message in panaman Spanish targeting the customer: "${customerName}".
 
 Customer Context:
 - Past purchased compound(s) or cart compound(s): "${purchasedStr}"
 - Highly synergistic product recommended for their next research phase: "${recommendation}"
 
 Instructions:
-1. Greet them warmly and professionally in Costa Rican style (friendly yet highly respectful, e.g. "Estimado/a", "Espero que se encuentre muy bien").
+1. Greet them warmly and professionally in panaman style (friendly yet highly respectful, e.g. "Estimado/a", "Espero que se encuentre muy bien").
 2. Follow up on their research with the previous compound ("${purchasedStr}").
 3. Explain the scientific, synergistic reasons why introducing "${recommendation}" is the perfect next phase or addition for their research. Focus on technical benefits (joint repair, tissue regeneration, fat metabolism, anti-aging cellular repair) depending on the products.
 4. Keep the message professional, research-focused, and exciting. Do not use hyper-salesy or cheesy marketing buzzwords. Keep it scientifically grounded.
@@ -207,7 +207,7 @@ Output ONLY the clean Spanish message text ready to be sent.`;
         ? `Active Catalog Context:\n${context.products.map(p => `- ${p.product} (Category: ${p.category}, Price: ${p.priceUsd || p.priceCrc}, Status: ${p.status})`).join('\n')}`
         : '';
         
-      finalPrompt = `You are "Peptides Costa Rica Customer Support", an elite customer service agent.
+      finalPrompt = `You are "Peptides Panama Customer Support", an elite customer service agent.
 Write a highly professional, polite, and scientifically accurate email reply to the customer: "${customerName}".
 
 Customer Inquiry Subject: "${subject}"
@@ -218,12 +218,12 @@ ${productsContext}
 
 Instructions:
 1. Auto-detect the language the customer used in their message, and write your reply in that exact same language.
-2. If Spanish, use warm Costa Rican phrasing (e.g. "Estimado/a", "Pura vida", "Con gusto"). If English, be highly professional and polite.
+2. If Spanish, use warm panaman phrasing (e.g. "Estimado/a", "Pura vida", "Con gusto"). If English, be highly professional and polite.
 3. Directly answer their specific questions based on the "Active Catalog Context" provided above.
 4. If they ask about something not in the catalog, politely inform them we do not currently carry it.
-5. If they ask about shipping, mention we ship across Costa Rica via Correos de Costa Rica (1-3 days).
+5. If they ask about shipping, mention we ship across panama via Correos de panama (1-3 days).
 6. Format your email cleanly with paragraphs. Do not include placeholders for things you don't know, just answer what you can.
-7. End the email warmly from "El equipo de Peptides Costa Rica" or "The Peptides Costa Rica Team".
+7. End the email warmly from "El equipo de Peptides Panama" or "The Peptides Panama Team".
 
 Output ONLY the clean email reply text ready to be sent to the customer.`;
     } else if (mode === 'draft_live_chat_reply') {
@@ -233,7 +233,7 @@ Output ONLY the clean email reply text ready to be sent to the customer.`;
         .map((message) => `${message.senderType === 'agent' ? 'Agent' : 'Visitor'}: ${message.message}`)
         .join('\n');
 
-      finalPrompt = `You are "Peptides Costa Rica Live Support", a warm, precise website chat support agent.
+      finalPrompt = `You are "Peptides Panama Live Support", a warm, precise website chat support agent.
 Draft a concise reply to this live chat visitor: "${visitorName}".
 
 Recent chat transcript:
@@ -268,7 +268,7 @@ Do NOT wrap the output in markdown code blocks like \`\`\`json or add any preamb
       const { prompt: userPrompt } = context;
       finalPrompt = `You are an elite biotech e-commerce copywriter.
 Write a highly engaging, persuasive, and professional broadcast message.
-Target Audience: Costa Rican researchers and customers. Language: Spanish (unless specified otherwise).
+Target Audience: panaman researchers and customers. Language: Spanish (unless specified otherwise).
 
 Instructions provided by the user for this broadcast:
 "${userPrompt}"
@@ -288,7 +288,7 @@ Output ONLY the final drafted message text.`;
     } else if (mode === 'generate_journey') {
       const goal = String(context.goal || prompt || '').trim().slice(0, 1500);
       if (!goal) return NextResponse.json({ error: 'Describe the journey goal' }, { status: 400 });
-      finalPrompt = `You are the lifecycle automation strategist for Costa Peptides, a research-products e-commerce business in Costa Rica.
+      finalPrompt = `You are the lifecycle automation strategist for Panama Peptides, a research-products e-commerce business in panama.
 Create a practical customer journey for this administrator goal:
 "${goal}"
 
@@ -333,7 +333,7 @@ Rules:
       if (!metric || !figures) {
         return NextResponse.json({ error: 'Missing metric context' }, { status: 400 });
       }
-      finalPrompt = `You are an e-commerce analyst reading one figure on a dashboard for Peptides Costa Rica, a research-peptide store.
+      finalPrompt = `You are an e-commerce analyst reading one figure on a dashboard for Peptides Panama, a research-peptide store.
 
 The card is: ${metric}
 Its current numbers:
@@ -378,7 +378,7 @@ Rules:
         accessContext = `AGENT ROLE: Staff Agent — ONLY has access to these sections: ${allowedTabs.join(', ')}.\nIMPORTANT: If the agent asks about a section NOT in that list, politely explain they do not have access to it and suggest contacting the Super Admin to request permission. Do not explain how to use sections they cannot see.`;
       }
 
-      finalPrompt = `You are "Omer" — a knowledgeable, friendly AI admin assistant built into the Peptides Costa Rica administration dashboard.
+      finalPrompt = `You are "Omer" — a knowledgeable, friendly AI admin assistant built into the Peptides Panama administration dashboard.
 Your job is to help admin agents and sales staff understand exactly how to use every feature of the system that they have permission to access.
 Always introduce yourself as Omer if asked who you are.
 ${langInstruction}

@@ -1,5 +1,5 @@
 /**
- * Deal of the Week — one promotion per week, ending Sunday midnight Costa Rica.
+ * Deal of the Week — one promotion per week, ending Sunday midnight panama.
  *
  * A deal is a SCHEDULED PRICE MARKDOWN, not a promo code. products.price_usd is
  * read by every pricing path there is: the catalog cart, order creation, the
@@ -24,13 +24,13 @@ const HOUR_MS = 60 * 60 * 1000;
 
 /** Free-text label written into products.discount while a deal is live. */
 export const DEAL_DISCOUNT_LABEL = 'Deal of the Week';
-export const DEAL_CATALOG_URL = 'https://catalog.peptidescostarica.net/catalog';
+export const DEAL_CATALOG_URL = 'https://catalog.peptidespanama.net/catalog';
 export const DEAL_REVIEW_THRESHOLD_PCT = 30;
 export const DEAL_HARD_LIMIT_PCT = 50;
 export const DEAL_MAX_STACKED_DISCOUNT_PCT = 55;
 
 /**
- * Costa Rica wall-clock parts for an instant.
+ * panama wall-clock parts for an instant.
  *
  * Shifting the instant back by the fixed CR offset makes the UTC getters read
  * out CR wall time — the same trick crTime.mjs uses, and safe because Costa
@@ -53,7 +53,7 @@ function wallDateString(shifted) {
 
 /**
  * The window for a deal launched at `now`: starts immediately, ends at the last
- * moment of the coming Sunday in Costa Rica.
+ * moment of the coming Sunday in panama.
  *
  * "Sunday at midnight" is read as the END of Sunday (23:59:59.999), so the deal
  * covers the whole of Sunday rather than dying as Sunday begins.

@@ -41,7 +41,7 @@ export default function ShippingPolicyPage() {
       <header className={`lp-header${scrolled ? ' lp-header--scrolled' : ''}`}>
         <div className="lp-header-inner">
           <Link href="/" className="lp-logo">
-            <img src="/logo.png" alt="Peptides Costa Rica" className="logo-img-custom" style={{ maxHeight: '40px', width: 'auto', borderRadius: '8px' }} />
+            <img src="/logo.png" alt="Peptides Panama" className="logo-img-custom" style={{ maxHeight: '40px', width: 'auto', borderRadius: '8px' }} />
           </Link>
 
           <nav className="lp-nav">
@@ -94,8 +94,8 @@ export default function ShippingPolicyPage() {
             </h2>
             <p style={{ marginBottom: '24px' }}>
               {lang === 'en' 
-                ? 'We utilize trusted local couriers (Correos de Costa Rica, Moovin) to ensure your package arrives securely. Standard delivery takes 1-3 business days depending on your location within Costa Rica.' 
-                : 'Utilizamos mensajeros locales de confianza (Correos de Costa Rica, Moovin) para asegurar que su paquete llegue de forma segura. La entrega estándar toma 1-3 días hábiles dependiendo de su ubicación en Costa Rica.'}
+                ? 'We utilize trusted local couriers (Correos de panama, Moovin) to ensure your package arrives securely. Standard delivery takes 1-3 business days depending on your location within panama.' 
+                : 'Utilizamos mensajeros locales de confianza (Correos de panama, Moovin) para asegurar que su paquete llegue de forma segura. La entrega estándar toma 1-3 días hábiles dependiendo de su ubicación en panama.'}
             </p>
 
             <h2 style={{ fontSize: '1.8rem', fontWeight: '700', color: 'var(--text-main)', marginTop: '40px', marginBottom: '16px' }}>
@@ -114,14 +114,14 @@ export default function ShippingPolicyPage() {
       <footer className="footer" style={{ marginTop: 0 }}>
         <div className="container">
           <img src="/logo.png" alt="Logo" style={{ height: '36px', marginBottom: '16px', opacity: 0.95, borderRadius: '8px' }} />
-          <p>{lang === 'en' ? 'Peptides Costa Rica offers premium, research backed peptides with trusted quality.' : 'Peptides Costa Rica ofrece péptidos premium respaldados por ciencia, con calidad garantizada.'}</p>
+          <p>{lang === 'en' ? 'Peptides Panama offers premium, research backed peptides with trusted quality.' : 'Peptides Panama ofrece péptidos premium respaldados por ciencia, con calidad garantizada.'}</p>
           <div className="footer-links" style={{ marginBottom: '24px' }}>
             <Link href={`/catalog?lang=${lang}`}>{lang === 'en' ? 'Shop Catalog' : 'Catálogo'}</Link>
             <a href={`mailto:${links.supportEmail}`}>{links.supportEmail}</a>
             <a href={`tel:+${links.whatsappNumber}`}>CR: {links.whatsappDisplay}</a>
           </div>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', borderTop: '1px solid var(--border-color)', paddingTop: '16px' }}>
-            <strong>Legal Notice:</strong> Products offered by Peptides Costa Rica are intended strictly for laboratory research use only. They are not approved or licensed by the FDA for the prevention, diagnosis, treatment, or cure of any disease. Information on this website is for educational purposes only and should not be considered medical or legal advice. Not for human or veterinary use.
+            <strong>Legal Notice:</strong> Products offered by Peptides Panama are intended strictly for laboratory research use only. They are not approved or licensed by the FDA for the prevention, diagnosis, treatment, or cure of any disease. Information on this website is for educational purposes only and should not be considered medical or legal advice. Not for human or veterinary use.
           </div>
         </div>
       </footer>

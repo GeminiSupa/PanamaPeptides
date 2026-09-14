@@ -233,7 +233,7 @@ export default function InquiriesManager({ adminEmail, products = [], onOpenCust
   const openInquiryWhatsApp = (inquiry) => {
     const phone = extractPhone(inquiry.message);
     if (!phone) return;
-    const text = `Hola ${inquiry.customer_name}, te saluda el equipo de Peptides Costa Rica sobre tu consulta: "${inquiry.subject || 'Contacto'}". ¿Cómo te podemos ayudar?`;
+    const text = `Hola ${inquiry.customer_name}, te saluda el equipo de Peptides Panama sobre tu consulta: "${inquiry.subject || 'Contacto'}". ¿Cómo te podemos ayudar?`;
     if (onWhatsAppClick) {
       onWhatsAppClick({
         name: inquiry.customer_name || 'Cliente',

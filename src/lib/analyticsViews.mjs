@@ -13,8 +13,8 @@
  * something another version of this code wrote.
  */
 
-export const VIEWS_KEY = 'costapeptides.analytics.views';
-export const LAST_VIEW_KEY = 'costapeptides.analytics.lastFilters';
+export const VIEWS_KEY = 'panamapeptides.analytics.views';
+export const LAST_VIEW_KEY = 'panamapeptides.analytics.lastFilters';
 
 const MAX_VIEWS = 12;
 const RANGES = new Set(['24h', '7d', '30d', 'all', 'custom']);

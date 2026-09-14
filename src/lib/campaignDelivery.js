@@ -161,7 +161,7 @@ async function findWelcomeCampaign(supabase, options = {}) {
     if (data) return data;
   }
 
-  const subjectLine = options.subjectLine || 'Peptides Costa Rica: 15% de descuento en tu primer pedido';
+  const subjectLine = options.subjectLine || 'Peptides Panama: 15% de descuento en tu primer pedido';
   const { data, error } = await supabase
     .from('email_campaigns')
     .select('*')

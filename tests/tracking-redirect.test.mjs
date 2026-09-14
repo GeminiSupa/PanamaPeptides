@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 import { resolveTrackingDestination, trackingSafeHosts } from '../src/lib/trackingRedirect.mjs';
 
-const LIVE = 'https://catalog.peptidescostarica.net';
+const LIVE = 'https://catalog.peptidespanama.net';
 const safeHosts = trackingSafeHosts(LIVE, {});
 
 test('a signed destination is followed anywhere', () => {
@@ -15,14 +15,14 @@ test('an unsigned destination on our own site still works', () => {
   // Mail already in inboxes was minted before destinations were signed. Those
   // links must keep working, and they overwhelmingly point back at the shop.
   const target = resolveTrackingDestination(`${LIVE}/catalog?x=1`, { isSigned: false, safeHosts });
-  assert.equal(target?.host, 'catalog.peptidescostarica.net');
+  assert.equal(target?.host, 'catalog.peptidespanama.net');
 });
 
 test('an unsigned destination anywhere else is refused', () => {
   // This is the open redirect: without the signature check, our own domain
   // hands out a link that lands on an attacker's page.
   assert.equal(resolveTrackingDestination('https://evil.example/phish', { isSigned: false, safeHosts }), null);
-  assert.equal(resolveTrackingDestination('https://catalog.peptidescostarica.net.evil.example/', { isSigned: false, safeHosts }), null);
+  assert.equal(resolveTrackingDestination('https://catalog.peptidespanama.net.evil.example/', { isSigned: false, safeHosts }), null);
 });
 
 test('non-http schemes are refused even when signed', () => {
@@ -40,6 +40,6 @@ test('junk and missing destinations are refused', () => {
 test('the safe host list follows the configured origin', () => {
   const hosts = trackingSafeHosts(LIVE, { NEXT_PUBLIC_BASE_URL: 'https://staging.example' });
   assert.equal(hosts.has('staging.example'), true);
-  assert.equal(hosts.has('catalog.peptidescostarica.net'), true);
+  assert.equal(hosts.has('catalog.peptidespanama.net'), true);
   assert.equal(hosts.has('evil.example'), false);
 });

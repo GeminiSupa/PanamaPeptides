@@ -1,6 +1,6 @@
 import re
 
-file_path = '/Users/apple/Desktop/costapeptides/src/components/admin/AnalyticsDashboard.js'
+file_path = '/Users/apple/Desktop/panamapeptides/src/components/admin/AnalyticsDashboard.js'
 
 with open(file_path, 'r') as f:
     content = f.read()

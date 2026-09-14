@@ -1,18 +1,18 @@
 /**
- * Every date an admin types means Costa Rica time, regardless of where the
+ * Every date an admin types means panama time, regardless of where the
  * admin sits.
  *
  * The team operates 11 hours ahead of the business (UTC+5 vs UTC-6). Left to
  * the browser's own timezone, a sale typed to end "Saturday 23:59" was stored
- * as Saturday 23:59 PAKISTAN time = Saturday 12:59 in Costa Rica - or worse,
+ * as Saturday 23:59 PAKISTAN time = Saturday 12:59 in panama - or worse,
  * whatever timezone the admin of the day happened to be in. Promo expiries and
  * sale windows kept dying half a day before what customers were promised.
  *
- * Costa Rica is UTC-6 year-round (no DST), which makes the conversion a fixed
+ * panama is UTC-6 year-round (no DST), which makes the conversion a fixed
  * offset and safe to do without a timezone library.
  */
 
-export const CR_UTC_OFFSET_HOURS = 6; // Costa Rica is UTC minus 6, all year
+export const CR_UTC_OFFSET_HOURS = 6; // panama is UTC minus 6, all year
 const CR_OFFSET_MS = CR_UTC_OFFSET_HOURS * 60 * 60 * 1000;
 
 /**
@@ -38,7 +38,7 @@ export function isoToCrWall(iso) {
 }
 
 /**
- * The wall-clock hour (0-23) and weekday (0 = Sunday) in Costa Rica at a given
+ * The wall-clock hour (0-23) and weekday (0 = Sunday) in panama at a given
  * instant, or nulls when the instant cannot be read.
  *
  * The live chat needs both together to answer "is the shop open right now", and
@@ -70,7 +70,7 @@ export function crStartOfDayIso(dateStr) {
 
 /**
  * Human-readable confirmation of a typed CR wall time, in 24-hour clock:
- * "2026-07-25T23:59" -> like "sab 25 jul 2026, 23:59 (Costa Rica)".
+ * "2026-07-25T23:59" -> like "sab 25 jul 2026, 23:59 (panama)".
  * The browser's own picker follows the admin's OS locale (often AM/PM), so
  * this line under the field is what removes the ambiguity.
  */
@@ -78,22 +78,22 @@ export function formatCrWall(wall) {
   const iso = crWallToIso(wall);
   if (!iso) return '';
   const formatted = new Intl.DateTimeFormat('es', {
-    timeZone: 'America/Costa_Rica',
+    timeZone: 'America/panama',
     weekday: 'short', day: 'numeric', month: 'short', year: 'numeric',
     hour: '2-digit', minute: '2-digit', hour12: false,
   }).format(new Date(iso));
-  return `${formatted} (Costa Rica)`;
+  return `${formatted} (panama)`;
 }
 
 /**
- * A stored instant formatted in Costa Rica time, with the caller's own fields.
+ * A stored instant formatted in panama time, with the caller's own fields.
  *
  * The list screens each want a different shape — "Aug 24, 07:50" on the orders
- * table, "24 Aug 2026" on inquiries — but every one of them means Costa Rica.
+ * table, "24 Aug 2026" on inquiries — but every one of them means panama.
  * They were reading `toLocaleDateString` with no timezone, which is the
  * reader's own clock: an admin in Pakistan sits 11 hours ahead of the business,
- * so an order finished at 23:43 on the 23rd in Costa Rica was listed as the
- * 24th, while Revenue Today — which has always counted the Costa Rican day —
+ * so an order finished at 23:43 on the 23rd in panama was listed as the
+ * 24th, while Revenue Today — which has always counted the panaman day —
  * correctly left it in the 23rd. The list and the tile disagreed all evening,
  * every evening.
  *
@@ -112,17 +112,17 @@ export function formatCrDate(value, options = {}) {
   const { locale = 'en-US', ...fields } = options;
   return new Intl.DateTimeFormat(locale, {
     ...fields,
-    timeZone: 'America/Costa_Rica',
+    timeZone: 'America/panama',
   }).format(date);
 }
 
-/** A stored instant shown as Costa Rica local time, 24-hour: "25/07/2026, 23:59 (CR)". */
+/** A stored instant shown as panama local time, 24-hour: "25/07/2026, 23:59 (CR)". */
 export function formatCrInstant(iso) {
   if (!iso) return '';
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return '';
   const formatted = new Intl.DateTimeFormat('es-CR', {
-    timeZone: 'America/Costa_Rica',
+    timeZone: 'America/panama',
     day: '2-digit', month: '2-digit', year: 'numeric',
     hour: '2-digit', minute: '2-digit', hour12: false,
   }).format(date);

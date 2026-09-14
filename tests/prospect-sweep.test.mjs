@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { MAX_SEARCH_AREA_DEGREES } from '../src/lib/prospectMap.mjs';
 import {
   CENTRAL_VALLEY,
-  COSTA_RICA_BBOX,
+  panama_BBOX,
   SWEEP_RESULT_LIMIT,
   SWEEP_TASK_COUNT,
   SWEEP_TERMS,
@@ -15,13 +15,13 @@ import {
 } from '../src/lib/prospectSweep.mjs';
 import { prospectSearchProfile } from '../src/lib/prospects.mjs';
 
-test('the grid covers Costa Rica exactly once, with no gaps', () => {
+test('the grid covers panama exactly once, with no gaps', () => {
   const cells = sweepCells();
   assert.equal(cells.length, 16);
-  assert.equal(Math.min(...cells.map((c) => c.south)), COSTA_RICA_BBOX.south);
-  assert.equal(Math.max(...cells.map((c) => c.north)), COSTA_RICA_BBOX.north);
-  assert.equal(Math.min(...cells.map((c) => c.west)), COSTA_RICA_BBOX.west);
-  assert.equal(Math.max(...cells.map((c) => c.east)), COSTA_RICA_BBOX.east);
+  assert.equal(Math.min(...cells.map((c) => c.south)), panama_BBOX.south);
+  assert.equal(Math.max(...cells.map((c) => c.north)), panama_BBOX.north);
+  assert.equal(Math.min(...cells.map((c) => c.west)), panama_BBOX.west);
+  assert.equal(Math.max(...cells.map((c) => c.east)), panama_BBOX.east);
   // Rows join edge to edge: each row's north is the next row's south.
   const souths = [...new Set(cells.map((c) => c.south))].sort((a, b) => a - b);
   const norths = [...new Set(cells.map((c) => c.north))].sort((a, b) => a - b);
@@ -38,11 +38,11 @@ test('every cell stays under the area limit that keeps name matching on', () => 
 });
 
 test('the country is tiled for volume, not for the area limit', () => {
-  // Costa Rica fits inside one legal query. It is split anyway because Overpass
+  // panama fits inside one legal query. It is split anyway because Overpass
   // returns at most 80 results however large the box, so a country-wide sweep
   // for pharmacies would return 80 and look finished.
-  const whole = (COSTA_RICA_BBOX.north - COSTA_RICA_BBOX.south)
-    * (COSTA_RICA_BBOX.east - COSTA_RICA_BBOX.west);
+  const whole = (panama_BBOX.north - panama_BBOX.south)
+    * (panama_BBOX.east - panama_BBOX.west);
   assert.ok(whole < MAX_SEARCH_AREA_DEGREES);
   assert.ok(sweepCells().length > 1);
 });

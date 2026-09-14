@@ -1,5 +1,5 @@
 -- =========================================================================
---        PEPTIDES COSTA RICA - KEEP TEST ORDERS OUT OF THE FIGURES
+--        Peptides Panama - KEEP TEST ORDERS OUT OF THE FIGURES
 -- =========================================================================
 -- Run this in your Supabase SQL Editor.
 --

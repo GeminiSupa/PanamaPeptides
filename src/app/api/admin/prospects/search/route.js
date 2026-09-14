@@ -58,7 +58,7 @@ async function nominatimSearch(q, limit = 20, bbox = null) {
     url.searchParams.set('bounded', '1');
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://peptidescostarica.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://peptidespanama.com';
   const run = async () => {
     await new Promise((resolve) => setTimeout(resolve, 1050));
     const response = await fetch(url, {
@@ -67,7 +67,7 @@ async function nominatimSearch(q, limit = 20, bbox = null) {
       headers: {
         Accept: 'application/json',
         'Accept-Language': 'en,es;q=0.8',
-        'User-Agent': `CostaPeptidesProspector/1.0 (${siteUrl})`,
+        'User-Agent': `panamapeptidesProspector/1.0 (${siteUrl})`,
       },
     });
     if (!response.ok) throw new Error(`Nominatim returned HTTP ${response.status}`);
@@ -169,7 +169,7 @@ async function overpassAttempt(endpoint, query, timeoutMs) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-      'User-Agent': 'CostaPeptidesProspector/1.0',
+      'User-Agent': 'panamapeptidesProspector/1.0',
     },
     body: new URLSearchParams({ data: query }),
   });

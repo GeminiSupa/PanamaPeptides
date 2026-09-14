@@ -56,7 +56,7 @@ test('the email carries the direction as a word, not only as a colour', () => {
   const { html, text, subject } = renderAnalyticsDigestEmail(buildAnalyticsDigest(week));
   assert.match(html, /up 17%/);
   assert.match(text, /Revenue: \$4,210\.50 \(up 17%\)/);
-  assert.match(subject, /Costa Peptides weekly/);
+  assert.match(subject, /Panama Peptides weekly/);
 });
 
 test('a campaign name from the database cannot inject markup into the email', () => {

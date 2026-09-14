@@ -48,11 +48,11 @@ const PRODUCT_IMAGE_MAP = [
 // Fallbacks for products that have no named image
 const FALLBACK_MAP = [
   { match: ['glp-1', 'tirzepatide', 'semaglutide', 'tesamorelin', '5-amino', 'slu-pp', 'fat blaster'],
-    file: 'vial_costarica_hero.png' },
+    file: 'vial_panama_hero.png' },
   { match: ['bpc-157', 'tb-4', 'klow', 'super human', 'pt-141', 'selank', 'adamax', 'semax', 'pinealon'],
     file: 'hero_peptide_vial.png' },
   { match: ['nad+', 'super human'],
-    file: 'vials_group_costarica.png' },
+    file: 'vials_group_panama.png' },
 ];
 
 async function restore() {

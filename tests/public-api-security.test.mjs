@@ -25,7 +25,7 @@ test('internal signatures are bound to path, body, and a short time window', () 
   const body = JSON.stringify({ orderNumber: 'TEST-1' });
   const timestamp = 1_800_000_000_000;
   const headers = internalJsonHeaders(body, '/api/order-notification', { timestamp });
-  const request = new Request('https://catalog.peptidescostarica.net/api/order-notification', { headers });
+  const request = new Request('https://catalog.peptidespanama.net/api/order-notification', { headers });
 
   assert.equal(verifyInternalRequest(request, body, '/api/order-notification', { now: timestamp }), true);
   assert.equal(verifyInternalRequest(request, `${body} `, '/api/order-notification', { now: timestamp }), false);
@@ -34,19 +34,19 @@ test('internal signatures are bound to path, body, and a short time window', () 
 });
 
 test('storefront origin checks allow company subdomains, Referer headers, and reject foreign sites', () => {
-  const company = new Request('https://catalog.peptidescostarica.net/api/orders/create', {
-    headers: { Origin: 'https://checkout.peptidescostarica.net' },
+  const company = new Request('https://catalog.peptidespanama.net/api/orders/create', {
+    headers: { Origin: 'https://checkout.peptidespanama.net' },
   });
-  const foreign = new Request('https://catalog.peptidescostarica.net/api/orders/create', {
+  const foreign = new Request('https://catalog.peptidespanama.net/api/orders/create', {
     headers: { Origin: 'https://attacker.example' },
   });
-  const missingOriginWithValidReferer = new Request('https://catalog.peptidescostarica.net/api/orders/create', {
-    headers: { Referer: 'https://peptidescostarica.net/catalog' },
+  const missingOriginWithValidReferer = new Request('https://catalog.peptidespanama.net/api/orders/create', {
+    headers: { Referer: 'https://peptidespanama.net/catalog' },
   });
-  const missingOriginWithForeignReferer = new Request('https://catalog.peptidescostarica.net/api/orders/create', {
+  const missingOriginWithForeignReferer = new Request('https://catalog.peptidespanama.net/api/orders/create', {
     headers: { Referer: 'https://attacker.example/page' },
   });
-  const companyHostNoOrigin = new Request('https://catalog.peptidescostarica.net/api/orders/create');
+  const companyHostNoOrigin = new Request('https://catalog.peptidespanama.net/api/orders/create');
 
   assert.equal(isTrustedStorefrontRequest(company), true);
   assert.equal(isTrustedStorefrontRequest(foreign), false);

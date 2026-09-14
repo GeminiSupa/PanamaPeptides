@@ -17,7 +17,7 @@ def replace_in_file(filepath):
         print(f"Updated {filepath}")
 
 def main():
-    src_dir = '/Users/apple/Desktop/costapeptides/src'
+    src_dir = '/Users/apple/Desktop/panamapeptides/src'
     for root, dirs, files in os.walk(src_dir):
         for file in files:
             if file.endswith('.js') or file.endswith('.jsx') or file.endswith('.tsx'):

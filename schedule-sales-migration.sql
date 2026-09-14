@@ -1,5 +1,5 @@
 -- =========================================================================
---               PEPTIDES COSTA RICA - SALE SCHEDULING MIGRATION
+--               Peptides Panama - SALE SCHEDULING MIGRATION
 -- =========================================================================
 -- Run this script in your Supabase SQL Editor to add sale scheduling to the products table.
 

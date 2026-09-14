@@ -37,7 +37,7 @@ ALTER TABLE notification_recipients ENABLE ROW LEVEL SECURITY;
 INSERT INTO notification_recipients (label, channel, destination, new_order)
 VALUES
   ('Owner inbox', 'email', 'omerforce@gmail.com', true),
-  ('Ops inbox',   'email', 'info@peptidescostarica.net', true)
+  ('Ops inbox',   'email', 'info@peptidespanama.net', true)
 ON CONFLICT (channel, lower(destination)) DO NOTHING;
 
 -- Every team member currently subscribed to order emails.

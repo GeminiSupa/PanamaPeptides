@@ -1,5 +1,5 @@
 /**
- * A Costa Rican address, turned into the codes Correos de Costa Rica needs.
+ * A panaman address, turned into the codes Correos de panama needs.
  *
  * Correos identifies a destination by three numbers, not by names: provincia
  * (1 digit), cantón (2) and distrito (2). Strung together they are also the
@@ -17,11 +17,11 @@
  * than one an agent has to finish by hand, so an unresolved district resolves
  * to the cantón and says so rather than picking the nearest-looking name.
  *
- * The data is src/lib/costarica.json, the same file the checkout dropdowns are
+ * The data is src/lib/panama.json, the same file the checkout dropdowns are
  * built from: 7 provincias, 82 cantones, 479 distritos, keyed by official code.
  */
 
-import territory from './costarica.json' with { type: 'json' };
+import territory from './panama.json' with { type: 'json' };
 
 /**
  * Names compare with accents and case removed.
@@ -44,7 +44,7 @@ export function normalizeName(value) {
 /**
  * Cantón 01 answers to two different names.
  *
- * costarica.json calls it "Central" in six of the seven provinces, which is
+ * panama.json calls it "Central" in six of the seven provinces, which is
  * what the checkout dropdown shows and therefore what lands in the order. INEC
  * and Correos call it after its province — "San José", "Alajuela", "Limón".
  * Both have to resolve to 01 or half the country fails to match.

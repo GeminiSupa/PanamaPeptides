@@ -10,7 +10,7 @@ const TEMPLATES = [
     id: 'welcome', name: 'Welcome & Educate', description: 'Welcome new subscribers and follow up with the catalog.',
     trigger: { type: 'new_subscriber' },
     steps: [
-      { channel: 'email', delay_hours: 0, subject: 'Welcome to Costa Peptides, [FIRST_NAME]', message: 'Hi [FIRST_NAME],\n\nThanks for joining Costa Peptides. Explore our catalog and reply if you need help with availability, ordering, or delivery.\n\nhttps://catalog.peptidescostarica.net/catalog' },
+      { channel: 'email', delay_hours: 0, subject: 'Welcome to Panama Peptides, [FIRST_NAME]', message: 'Hi [FIRST_NAME],\n\nThanks for joining Panama Peptides. Explore our catalog and reply if you need help with availability, ordering, or delivery.\n\nhttps://catalog.peptidespanama.net/catalog' },
       { channel: 'email', delay_hours: 48, subject: 'Can we help with your research order?', message: 'Hi [FIRST_NAME],\n\nIf you have questions about availability, bulk pricing, or delivery, reply here and our team will help.' },
     ],
   },
@@ -19,14 +19,14 @@ const TEMPLATES = [
     trigger: { type: 'abandoned_cart' },
     steps: [
       { channel: 'email', delay_hours: 2, subject: 'Need help finishing your order?', message: 'Hi [FIRST_NAME],\n\nIt looks like your order was not completed. If availability, payment, or delivery caused a problem, reply and we will help.' },
-      { channel: 'whatsapp', delay_hours: 22, message: 'Hi [FIRST_NAME], this is Costa Peptides. We noticed your order was not completed. Reply here if you need help with availability, payment, or delivery.' },
+      { channel: 'whatsapp', delay_hours: 22, message: 'Hi [FIRST_NAME], this is Panama Peptides. We noticed your order was not completed. Reply here if you need help with availability, payment, or delivery.' },
     ],
   },
   {
     id: 'reorder', name: '30-Day Reorder', description: 'Reach customers when they enter their likely reorder window.',
     trigger: { type: 'reorder_due', days: 30 },
     steps: [
-      { channel: 'email', delay_hours: 0, subject: 'Time to restock, [FIRST_NAME]?', message: 'Hi [FIRST_NAME],\n\nIt may be time to restock your research supplies. Browse current availability or reply for direct support.\n\nhttps://catalog.peptidescostarica.net/catalog' },
+      { channel: 'email', delay_hours: 0, subject: 'Time to restock, [FIRST_NAME]?', message: 'Hi [FIRST_NAME],\n\nIt may be time to restock your research supplies. Browse current availability or reply for direct support.\n\nhttps://catalog.peptidespanama.net/catalog' },
     ],
   },
 ];

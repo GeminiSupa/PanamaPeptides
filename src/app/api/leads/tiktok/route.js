@@ -82,7 +82,7 @@ async function recordAssignment(supabase, { leadId, newAgent }) {
     previous_agent: null,
     new_agent: newAgent,
     reason: 'TikTok form leads rotate between Pollita, Dani and Korinne',
-    actor_email: 'tiktok-leads@peptidescostarica.net',
+    actor_email: 'tiktok-leads@peptidespanama.net',
   });
   if (error) console.warn('[leads/tiktok] Assignment audit skipped:', error.message);
 }

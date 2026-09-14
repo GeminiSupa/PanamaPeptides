@@ -7,14 +7,14 @@
 
 ```html
 <script
-  src="https://catalog.peptidescostarica.net/analytics-tracker.js"
-  data-endpoint="https://catalog.peptidescostarica.net/api/analytics/track"
+  src="https://catalog.peptidespanama.net/analytics-tracker.js"
+  data-endpoint="https://catalog.peptidespanama.net/api/analytics/track"
   defer
 ></script>
 ```
 
 The collector accepts the HTTPS apex and any legitimate
-`*.peptidescostarica.net` origin, so new subdomains do not require an API code
+`*.peptidespanama.net` origin, so new subdomains do not require an API code
 change. The script shares a `pcr_visitor_id` first-party cookie across the whole
 domain family. It records page views and a 15-second live heartbeat without
 exposing the Supabase anonymous key or allowing public reads of visitor sessions.

@@ -1,5 +1,5 @@
 /**
- * Correos de Costa Rica is where a customer actually follows their parcel.
+ * Correos de panama is where a customer actually follows their parcel.
  *
  * The shipped email has always printed the tracking number and left the
  * customer to work out where to type it. The site takes the number on its own
@@ -25,9 +25,9 @@ export function correosTrackingStrings(lang) {
   return {
     heading: isEn ? 'Follow your parcel' : 'Siga su paquete',
     body: isEn
-      ? 'Enter the tracking number above on the Correos de Costa Rica website to see where your parcel is.'
-      : 'Ingrese el número de rastreo de arriba en el sitio de Correos de Costa Rica para ver dónde está su paquete.',
-    button: isEn ? 'Track on Correos de Costa Rica' : 'Rastrear en Correos de Costa Rica',
+      ? 'Enter the tracking number above on the Correos de panama website to see where your parcel is.'
+      : 'Ingrese el número de rastreo de arriba en el sitio de Correos de panama para ver dónde está su paquete.',
+    button: isEn ? 'Track on Correos de panama' : 'Rastrear en Correos de panama',
     // Repeated in the plain-text part, where there is no button to click.
     textLine: isEn
       ? `Track your parcel: ${CORREOS_TRACKING_URL} (enter the tracking number above)`

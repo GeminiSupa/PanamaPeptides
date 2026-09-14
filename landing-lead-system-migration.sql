@@ -126,6 +126,6 @@ ON CONFLICT (id) DO NOTHING;
 UPDATE public.notification_recipients
 SET new_lead = true
 WHERE channel = 'email'
-  AND LOWER(destination) IN ('omerforce@gmail.com', 'info@peptidescostarica.net');
+  AND LOWER(destination) IN ('omerforce@gmail.com', 'info@peptidespanama.net');
 
 NOTIFY pgrst, 'reload schema';

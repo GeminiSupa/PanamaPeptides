@@ -6,7 +6,7 @@ import {
   validateCustomerName,
 } from '../src/lib/checkoutIdentity.mjs';
 
-test('a Costa Rican company named after its cédula jurídica still checks out', () => {
+test('a panaman company named after its cédula jurídica still checks out', () => {
   // Order WPCR-MT0H7T8K: a real clinic whose company has no trade name.
   const result = validateCustomerName('3102736108 SRL ');
   assert.equal(result.ok, true);

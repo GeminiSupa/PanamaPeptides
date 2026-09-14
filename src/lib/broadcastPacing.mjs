@@ -153,7 +153,7 @@ export function canChainImmediately(scheduledAt, now = Date.now()) {
 }
 
 /**
- * The hours a broadcast is allowed to send, in Costa Rica time.
+ * The hours a broadcast is allowed to send, in panama time.
  *
  * A slow drip is the right way to send to 1,500 people and the wrong way to
  * spend a night: paced over thirteen hours, a send started in the afternoon

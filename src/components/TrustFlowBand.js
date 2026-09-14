@@ -6,26 +6,26 @@ import { ArrowRight, ClipboardList, FileCheck2, MessageCircle, Truck } from 'luc
 const COPY = {
   en: {
     eyebrow: 'LOCAL ORDER FLOW',
-    title: 'A simpler way to order in Costa Rica.',
+    title: 'A simpler way to order in panama.',
     intro: 'Start with live stock and batch details, then coordinate directly with our team.',
     steps: [
       ['Choose', 'Browse current local stock with live CRC pricing.'],
       ['Verify', 'Review COA and batch details before you order.'],
       ['Confirm', 'Ask questions and confirm through WhatsApp.'],
-      ['Receive', 'Coordinate Costa Rica delivery without customs delays.'],
+      ['Receive', 'Coordinate panama delivery without customs delays.'],
     ],
     catalog: 'Open catalog',
     coa: 'COA database',
   },
   es: {
     eyebrow: 'FLUJO LOCAL',
-    title: 'Ordenar en Costa Rica, sin vueltas.',
+    title: 'Ordenar en panama, sin vueltas.',
     intro: 'Empieza con inventario real y detalles de lote, luego coordina directo con nuestro equipo.',
     steps: [
       ['Elige', 'Revisa stock local y precios CRC actualizados.'],
       ['Verifica', 'Consulta COA y detalles del lote antes de ordenar.'],
       ['Confirma', 'Haz preguntas y confirma por WhatsApp.'],
-      ['Recibe', 'Coordina entrega en Costa Rica sin aduana.'],
+      ['Recibe', 'Coordina entrega en panama sin aduana.'],
     ],
     catalog: 'Abrir catálogo',
     coa: 'Base COA',

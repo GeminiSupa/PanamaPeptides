@@ -120,7 +120,7 @@ export async function createTrustpilotServiceInvitation(order) {
   const templateId = readEnv('TRUSTPILOT_SERVICE_TEMPLATE_ID');
   const senderEmail = readEnv('TRUSTPILOT_SENDER_EMAIL') || readEnv('SMTP_USER');
   const replyTo = readEnv('TRUSTPILOT_REPLY_TO') || senderEmail;
-  const senderName = readEnv('TRUSTPILOT_SENDER_NAME') || 'Peptides Costa Rica';
+  const senderName = readEnv('TRUSTPILOT_SENDER_NAME') || 'Peptides Panama';
   const currencyTag = slugTag(order?.currency || 'unknown_currency');
   const paymentTag = slugTag(order?.payment_method || 'unknown_payment');
 
@@ -142,7 +142,7 @@ export async function createTrustpilotServiceInvitation(order) {
     senderEmail,
     locationId: readEnv('TRUSTPILOT_LOCATION_ID'),
     referenceNumber,
-    consumerName: String(order?.customer_name || '').trim() || 'Peptides Costa Rica customer',
+    consumerName: String(order?.customer_name || '').trim() || 'Peptides Panama customer',
     consumerEmail,
     type: 'email',
     serviceReviewInvitation: {

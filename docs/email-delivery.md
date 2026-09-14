@@ -27,7 +27,7 @@ still used rather than silently dropping critical mail.
 ## Accounting copies
 
 The PBAG mailbox is hosted by Rackspace. A message submitted through Elastic
-with `From: info@peptidescostarica.net` can be accepted by Elastic and then
+with `From: info@peptidespanama.net` can be accepted by Elastic and then
 rejected by Rackspace as an external sender impersonating its local domain.
 
 Accounting copies use a dedicated Rackspace/accounting SMTP mailbox as their
@@ -47,8 +47,8 @@ TAX_RECORDS_SMTP_PORT=465
 TAX_RECORDS_SMTP_SECURE=true
 TAX_RECORDS_SMTP_USER=<authenticated Rackspace mailbox>
 TAX_RECORDS_SMTP_PASS=<Rackspace mailbox password>
-TAX_RECORDS_SMTP_FROM=Peptides Costa Rica Records <authenticated Rackspace mailbox>
-TAX_RECORDS_CC_EMAIL=pbagcr@peptidescostarica.net
+TAX_RECORDS_SMTP_FROM=Peptides Panama Records <authenticated Rackspace mailbox>
+TAX_RECORDS_CC_EMAIL=pbagcr@peptidespanama.net
 ```
 
 `TAX_RECORDS_CC_EMAIL` may contain a comma-separated backup address. The live
@@ -85,4 +85,4 @@ Host: bounces
 Value: bounces.elasticemail.net
 ```
 
-The resulting hostname is `bounces.peptidescostarica.net`.
+The resulting hostname is `bounces.peptidespanama.net`.

@@ -30,9 +30,9 @@ new_admin = """
       
       <!-- Premium Admin Header Banner -->
       <div style="background-color:#0f172a;padding:40px 32px;text-align:center;">
-        <img src="https://catalog.peptidescostarica.net/logo.png?v=2" alt="Peptides Costa Rica" width="140" height="118" style="display:block;width:140px;height:118px;margin:0 auto 16px auto;border-radius:12px;">
+        <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="140" height="118" style="display:block;width:140px;height:118px;margin:0 auto 16px auto;border-radius:12px;">
         <h1 style="color:#ffffff !important;font-size:28px;font-weight:800;margin:0 0 10px;letter-spacing:-0.5px;">New Order Received!</h1>
-        <p style="color:#e0e7ff !important;font-size:15px;margin:0;max-width:500px;margin:0 auto;line-height:1.5;">A new order has been placed on the Peptides Costa Rica catalog.</p>
+        <p style="color:#e0e7ff !important;font-size:15px;margin:0;max-width:500px;margin:0 auto;line-height:1.5;">A new order has been placed on the Peptides Panama catalog.</p>
       </div>
 
       <div style="padding:32px;background-color:#f8fafc;">
@@ -137,7 +137,7 @@ new_admin = """
         </div>
 
         <div style="text-align:center;padding-top:20px;color:#94a3b8;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">
-          Peptides Costa Rica Admin Notification System
+          Peptides Panama Admin Notification System
         </div>
       </div>
     </div>
@@ -172,7 +172,7 @@ new_customer = """
     supportText: isEn ? 'Our scientific support desk is ready to answer any questions about reconstitution, supplies, or shipping details.' : 'Nuestra mesa de soporte científico está lista para responder cualquier consulta sobre reconstitución, suministros o logística de envío.',
     whatsappBtn: isEn ? 'Chat with Support on WhatsApp' : 'Chatear con Soporte por WhatsApp',
     payNowBtn: isEn ? 'Pay Now via WhatsApp' : 'Pagar Ahora vía WhatsApp',
-    footer: isEn ? 'High-Purity Research Peptides · Base in Costa Rica' : 'Péptidos de Alta Pureza para Investigación · Con base en Costa Rica',
+    footer: isEn ? 'High-Purity Research Peptides · Base in panama' : 'Péptidos de Alta Pureza para Investigación · Con base en panama',
   };
 
   const whatsappPayLink = `https://api.whatsapp.com/send?phone=${links.whatsappNumber}&text=${encodeURIComponent(
@@ -189,7 +189,7 @@ new_customer = """
       
       <!-- Premium Science Theme Header Banner -->
       <div style="background-color:#0f172a;padding:40px 32px;text-align:center;">
-        <img src="https://catalog.peptidescostarica.net/logo.png?v=2" alt="Peptides Costa Rica" width="140" height="118" style="display:block;width:140px;height:118px;margin:0 auto 16px auto;border-radius:12px;">
+        <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="140" height="118" style="display:block;width:140px;height:118px;margin:0 auto 16px auto;border-radius:12px;">
         <h1 style="color:#ffffff !important;font-size:28px;font-weight:800;margin:0 0 10px;letter-spacing:-0.5px;">${strings.title}</h1>
         <p style="color:#e2e8f0 !important;font-size:15px;margin:0;max-width:500px;margin:0 auto;line-height:1.5;">${strings.subtitle}</p>
       </div>
@@ -316,7 +316,7 @@ new_customer = """
           <h4 style="margin:0 0 8px;color:#047857;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;">🔬 ${strings.supportTitle}</h4>
           <p style="margin:0 0 16px;color:#475569;font-size:14px;line-height:1.5;font-weight:500;">${strings.supportText}</p>
           <p style="margin:0 0 20px;color:#0f172a;font-size:14.5px;line-height:1.6;font-weight:600;">
-            <strong>Costa Rica:</strong> +506 8404-6973<br/>
+            <strong>panama:</strong> +506 8404-6973<br/>
             <strong>USA / Int'l:</strong> +1 (831) 471-5559
           </p>
           <a href="https://api.whatsapp.com/send?phone=${links.whatsappNumber}" style="display:inline-block;background-color:#0f172a;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:12px;font-weight:700;font-size:14px;">

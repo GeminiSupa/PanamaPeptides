@@ -697,7 +697,7 @@ export default function OrderDetailPanel({
                   : '—'}
               </span>
             </div>
-            {/* Both dates, in Costa Rica time. The team is spread across
+            {/* Both dates, in panama time. The team is spread across
                 timezones, and the accounting copy goes out on the completed
                 date, not the placed one — reading the reader's own clock here
                 is what made an order look a day out from the mailbox. */}

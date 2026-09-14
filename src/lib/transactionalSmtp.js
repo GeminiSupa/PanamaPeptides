@@ -58,6 +58,6 @@ export function getOrderMailSettings() {
   return {
     smtp,
     from: process.env.ORDER_NOTIFICATION_FROM
-      || `Peptides Costa Rica <${smtp.user || 'omerforce@gmail.com'}>`,
+      || `Peptides Panama <${smtp.user || 'omerforce@gmail.com'}>`,
   };
 }

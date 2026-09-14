@@ -89,7 +89,7 @@ async function sendLandingLeadAlert({
     `Phone: ${phone || 'Not provided'}`,
     ...details,
     assignedAgent ? `Assigned agent: ${assignedAgent}` : 'Assigned agent: Unassigned — operations follow-up required',
-    dueAt ? `Response due: ${new Date(dueAt).toLocaleString('en-US', { timeZone: 'America/Costa_Rica' })} Costa Rica time` : null,
+    dueAt ? `Response due: ${new Date(dueAt).toLocaleString('en-US', { timeZone: 'America/panama' })} panama time` : null,
     `Source: ${source}`,
     campaign ? `Campaign: ${campaign}` : null,
   ].filter(Boolean);
@@ -97,7 +97,7 @@ async function sendLandingLeadAlert({
   const fromEmail = readEnv('ORDER_NOTIFICATION_FROM_EMAIL')
     || readEnv('CAMPAIGN_SMTP_FROM_EMAIL')
     || smtp.user;
-  const from = readEnv('ORDER_NOTIFICATION_FROM') || `Peptides Costa Rica <${fromEmail}>`;
+  const from = readEnv('ORDER_NOTIFICATION_FROM') || `Peptides Panama <${fromEmail}>`;
   const transporter = nodemailer.createTransport({
     host: smtp.host,
     port: smtp.port,
@@ -400,7 +400,7 @@ export async function POST(request) {
           : assignmentSource === 'crm_lead'
             ? 'Already this agent\'s lead in the CRM'
             : 'Returning customer assigned to earliest completed order owner',
-        actor_email: 'landing-system@peptidescostarica.net',
+        actor_email: 'landing-system@peptidespanama.net',
       });
       if (eventError) console.warn('[leads/contact] Assignment audit skipped:', eventError.message);
     }

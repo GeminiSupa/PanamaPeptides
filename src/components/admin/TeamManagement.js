@@ -789,7 +789,7 @@ export default function TeamManagement({ currentUserProfile, currentUserEmail, o
     }
   };
 
-  const isSuperAdmin = currentUserProfile?.is_superadmin || currentUserEmail === 'joe@peptides.com' || currentUserEmail === 'info@peptidescostarica.net';
+  const isSuperAdmin = currentUserProfile?.is_superadmin || currentUserEmail === 'joe@peptides.com' || currentUserEmail === 'info@peptidespanama.net';
 
   if (!isSuperAdmin) {
     return <AgentDashboard currentUserProfile={currentUserProfile} currentUserEmail={currentUserEmail} />;

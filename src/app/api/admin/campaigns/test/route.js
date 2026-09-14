@@ -42,7 +42,7 @@ export async function POST(request) {
     });
 
     await transporter.sendMail({
-      ...marketingCopyHeader('bcc', process.env.BCC_EMAIL || 'info@peptidescostarica.net'),
+      ...marketingCopyHeader('bcc', process.env.BCC_EMAIL || 'info@peptidespanama.net'),
       from: smtp.from,
       replyTo: smtp.replyTo,
       to: email,

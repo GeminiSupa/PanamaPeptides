@@ -14,7 +14,7 @@
  * is the difference between ranking a pharmacy correctly and not ranking it at
  * all.
  *
- * `es` is the term the business uses for itself in Costa Rica, and is here to
+ * `es` is the term the business uses for itself in panama, and is here to
  * be searched, not displayed: nobody scraping this country finds a droguería by
  * looking for "drug distributor".
  */

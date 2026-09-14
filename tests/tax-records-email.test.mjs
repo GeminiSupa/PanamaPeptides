@@ -15,8 +15,8 @@ import {
   withTaxRecordsCc,
 } from '../src/lib/taxRecordsEmail.mjs';
 
-test('uses the established PBAG Costa Rica forwarding address', () => {
-  assert.equal(TAX_RECORDS_CC_EMAIL, 'pbagcr@peptidescostarica.net');
+test('uses the established PBAG panama forwarding address', () => {
+  assert.equal(TAX_RECORDS_CC_EMAIL, 'pbagcr@peptidespanama.net');
   assert.equal(withTaxRecordsCc(), TAX_RECORDS_CC_EMAIL);
 });
 
@@ -70,7 +70,7 @@ test('the accountant copy survives a failed customer send', async () => {
 
   const result = await sendTaxRecordsCopy({
     transporter,
-    from: 'Peptides <info@peptidescostarica.net>',
+    from: 'Peptides <info@peptidespanama.net>',
     order: { status: 'Order Complete', order_number: 'PCR-1042', customer_name: 'Ana Rojas' },
     html: '<p>receipt</p>',
     text: 'receipt',
@@ -162,11 +162,11 @@ test('the accounting copy can reach more than one mailbox', async () => {
   // Elastic carrying its own domain in From. A second address on a provider
   // that does accept the send keeps the tax records flowing meanwhile.
   const previous = process.env.TAX_RECORDS_CC_EMAIL;
-  process.env.TAX_RECORDS_CC_EMAIL = 'pbagcr@peptidescostarica.net, backup@gmail.com';
+  process.env.TAX_RECORDS_CC_EMAIL = 'pbagcr@peptidespanama.net, backup@gmail.com';
 
   try {
     assert.deepEqual(taxRecordsRecipients(), [
-      'pbagcr@peptidescostarica.net',
+      'pbagcr@peptidespanama.net',
       'backup@gmail.com',
     ]);
     // Whitespace and empty entries from a hand-typed dashboard value.
@@ -175,7 +175,7 @@ test('the accounting copy can reach more than one mailbox', async () => {
       ['a@b.com', 'c@d.com'],
     );
     // Never silently sends nowhere.
-    assert.deepEqual(taxRecordsRecipients(''), ['pbagcr@peptidescostarica.net']);
+    assert.deepEqual(taxRecordsRecipients(''), ['pbagcr@peptidespanama.net']);
   } finally {
     if (previous === undefined) delete process.env.TAX_RECORDS_CC_EMAIL;
     else process.env.TAX_RECORDS_CC_EMAIL = previous;
@@ -280,7 +280,7 @@ test('the payout copy goes to accounting even when the payee send fails', async 
 
   const result = await sendTaxRecordsPayoutCopy({
     transporter,
-    from: 'Peptides <info@peptidescostarica.net>',
+    from: 'Peptides <info@peptidespanama.net>',
     payout: { kind: 'afiliado', name: 'Dani' },
     html: '<p>invoice</p>',
     text: 'invoice',
@@ -354,10 +354,10 @@ test('one message, but only the accountant decides whether it counts as sent', a
   // not happen is its acceptance standing in for PBAG's refusal — the server
   // resolves the send and names the refused address in info.rejected.
   const previous = process.env.TAX_RECORDS_CC_EMAIL;
-  process.env.TAX_RECORDS_CC_EMAIL = 'pbagcr@peptidescostarica.net, watcher@gmail.com';
+  process.env.TAX_RECORDS_CC_EMAIL = 'pbagcr@peptidespanama.net, watcher@gmail.com';
 
   try {
-    assert.equal(taxRecordsPrimary(), 'pbagcr@peptidescostarica.net');
+    assert.equal(taxRecordsPrimary(), 'pbagcr@peptidespanama.net');
     assert.deepEqual(taxRecordsMonitors(), ['watcher@gmail.com']);
 
     const sent = [];
@@ -365,7 +365,7 @@ test('one message, but only the accountant decides whether it counts as sent', a
       transporter: {
         sendMail: async (message) => {
           sent.push(message);
-          return { messageId: 'envelope-accepted', rejected: ['pbagcr@peptidescostarica.net'] };
+          return { messageId: 'envelope-accepted', rejected: ['pbagcr@peptidespanama.net'] };
         },
       },
       from: 'Records <records@mail.example.net>',
@@ -373,7 +373,7 @@ test('one message, but only the accountant decides whether it counts as sent', a
     });
 
     assert.equal(sent.length, 1, 'still one message, both addresses on it');
-    assert.equal(sent[0].to, 'pbagcr@peptidescostarica.net, watcher@gmail.com');
+    assert.equal(sent[0].to, 'pbagcr@peptidespanama.net, watcher@gmail.com');
     assert.equal(result.sent, false, 'the accountant decides, not the watcher');
     assert.match(result.error, /refused/);
   } finally {

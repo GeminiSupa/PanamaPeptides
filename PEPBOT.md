@@ -1,5 +1,5 @@
 # PepBot Integration Guide
-# Peptides Costa Rica — feat-pepbot
+# Peptides Panama — feat-pepbot
 
 This document describes the server-side bot API layer built into this Next.js
 app. It is the canonical reference for building features on the external bot.
@@ -61,7 +61,7 @@ Purpose: Full knowledge dump for the bot to index. Pull this on startup or
 periodically to keep the bot's product knowledge current. All data is already
 public on the website.
 
-URL:     GET https://catalog.peptidescostarica.net/api/bot/catalog
+URL:     GET https://catalog.peptidespanama.net/api/bot/catalog
 Auth:    allowlist (see above)
 Caching: none (force-dynamic — always live data)
 
@@ -122,7 +122,7 @@ Caching: none (force-dynamic — always live data)
     }
   ],
   "landing": {
-    "heroTitleEn": "Buy Peptides in Costa Rica",
+    "heroTitleEn": "Buy Peptides in panama",
     "heroSubEn": "Lab-Tested. High Purity. Fast Local Delivery.",
     ...
   }
@@ -137,16 +137,16 @@ Returns a single markdown document with all sections. Good for:
 ### Example Calls
 
 # Full JSON dump
-curl https://catalog.peptidescostarica.net/api/bot/catalog
+curl https://catalog.peptidespanama.net/api/bot/catalog
 
 # LLM-ready text document
-curl "https://catalog.peptidescostarica.net/api/bot/catalog?format=text"
+curl "https://catalog.peptidespanama.net/api/bot/catalog?format=text"
 
 # Only products (faster for checkout lookups)
-curl "https://catalog.peptidescostarica.net/api/bot/catalog?include=products"
+curl "https://catalog.peptidespanama.net/api/bot/catalog?include=products"
 
 # Products + reviews only
-curl "https://catalog.peptidescostarica.net/api/bot/catalog?include=products,reviews"
+curl "https://catalog.peptidespanama.net/api/bot/catalog?include=products,reviews"
 
 ### Recommended Indexing Pattern
 

@@ -8,7 +8,7 @@
  * typing into a box, and nothing was scheduled, so the pipeline held one row.
  *
  * This is the missing part: a fixed list of (map cell x business type) queries
- * covering Costa Rica, walked a couple at a time by a cron so the free Overpass
+ * covering panama, walked a couple at a time by a cron so the free Overpass
  * mirrors are never asked for a country in one breath.
  *
  * There is no queue table. The task list is completely determined by the
@@ -21,13 +21,13 @@
 import { expandAnchoredTagPattern, prospectSearchProfile } from './prospects.mjs';
 
 /**
- * Mainland Costa Rica.
+ * Mainland panama.
  *
  * Isla del Coco is deliberately outside it. Including the island stretches the
  * box some 550km southwest over open ocean, which costs every query real time
  * on a shared mirror to search water nobody sells to.
  */
-export const COSTA_RICA_BBOX = { south: 8.02, west: -85.96, north: 11.22, east: -82.55 };
+export const panama_BBOX = { south: 8.02, west: -85.96, north: 11.22, east: -82.55 };
 
 /**
  * The grid keeps every cell under the area limit, above which name matching is
@@ -100,7 +100,7 @@ export const CENTRAL_VALLEY = { lat: 9.95, lon: -84.10 };
  * deterministic so the cursor means the same thing on every deploy, and it
  * sorts the ocean to the back on its own — the empty cells are the far ones.
  */
-export function sweepCells(bbox = COSTA_RICA_BBOX, rows = SWEEP_ROWS, cols = SWEEP_COLS) {
+export function sweepCells(bbox = panama_BBOX, rows = SWEEP_ROWS, cols = SWEEP_COLS) {
   const latStep = (bbox.north - bbox.south) / rows;
   const lonStep = (bbox.east - bbox.west) / cols;
   const cells = [];
@@ -116,7 +116,7 @@ export function sweepCells(bbox = COSTA_RICA_BBOX, rows = SWEEP_ROWS, cols = SWE
       });
     }
   }
-  // Straight-line distance on the raw degrees. Costa Rica spans three degrees
+  // Straight-line distance on the raw degrees. panama spans three degrees
   // of latitude, so the error from not correcting for longitude convergence is
   // far smaller than the cell size this is ordering.
   return cells.sort((a, b) => distanceFromCentre(a) - distanceFromCentre(b));
@@ -131,7 +131,7 @@ function distanceFromCentre(cell) {
 /**
  * Every (business type, cell) pair, in a fixed order.
  *
- * Business type is the outer loop, so the sweep finishes all of Costa Rica's
+ * Business type is the outer loop, so the sweep finishes all of panama's
  * pharmacies before it starts on distributors. Cell-first ordering would
  * instead finish one corner of the country in every category, which is the
  * less useful half to have when a pass is only part-way through.
@@ -182,7 +182,7 @@ export function sweepOverpassQuery(term, cell) {
 
   // Every cell is small enough for the name clause, which is what finds a
   // business whose mapper never tagged what it is — the common case for a
-  // Costa Rican pharmacy.
+  // panaman pharmacy.
   if (profile.namePattern) clauses.push(`nwr["name"~"${profile.namePattern}",i]${scope};`);
   if (!clauses.length) return null;
 

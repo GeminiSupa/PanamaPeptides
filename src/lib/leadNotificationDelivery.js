@@ -79,7 +79,7 @@ export async function sendLeadEmails({
       ? `Assigned agent: ${details.assignedAgent}`
       : 'Assigned agent: Unassigned — operations follow-up required',
     details.dueAt
-      ? `Response due: ${new Date(details.dueAt).toLocaleString('en-US', { timeZone: 'America/Costa_Rica' })} Costa Rica time`
+      ? `Response due: ${new Date(details.dueAt).toLocaleString('en-US', { timeZone: 'America/panama' })} panama time`
       : null,
     `Source: ${details.source}`,
     details.campaign ? `Campaign: ${details.campaign}` : null,
@@ -87,7 +87,7 @@ export async function sendLeadEmails({
   const fromEmail = readEnv('ORDER_NOTIFICATION_FROM_EMAIL')
     || readEnv('CAMPAIGN_SMTP_FROM_EMAIL')
     || smtp.user;
-  const from = readEnv('ORDER_NOTIFICATION_FROM') || `Peptides Costa Rica <${fromEmail}>`;
+  const from = readEnv('ORDER_NOTIFICATION_FROM') || `Peptides Panama <${fromEmail}>`;
   const transporter = createTransport({
     host: smtp.host,
     port: smtp.port,
@@ -96,7 +96,7 @@ export async function sendLeadEmails({
     ...SMTP_TIMEOUTS,
   });
 
-  // Rackspace hosts peptidescostarica.net and refuses mail claiming to come
+  // Rackspace hosts peptidespanama.net and refuses mail claiming to come
   // from that domain when it arrives from anywhere but Rackspace. Elastic
   // accepts the submission and answers success, so the alert to info@ was
   // recorded as sent and then discarded at Rackspace's boundary — which is

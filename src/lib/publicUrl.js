@@ -12,7 +12,7 @@
  * host to come back to.
  */
 
-export const LIVE_SITE_URL = 'https://catalog.peptidescostarica.net';
+export const LIVE_SITE_URL = 'https://panamapeptides.com';
 
 /**
  * @param {string} [requestUrl] incoming request URL, used only as a local-dev fallback

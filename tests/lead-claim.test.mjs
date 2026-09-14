@@ -7,7 +7,7 @@ import {
   normalizeLeadIdentities,
 } from '../src/lib/leadClaim.mjs';
 
-test('email and Costa Rica phone formats collapse into stable lead identities', () => {
+test('email and panama phone formats collapse into stable lead identities', () => {
   assert.deepEqual(normalizeLeadIdentities({
     email: ' Customer@Example.COM ',
     phone: '+506 8404-6973',

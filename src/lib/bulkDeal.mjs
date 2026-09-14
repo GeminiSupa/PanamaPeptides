@@ -9,7 +9,7 @@
 //
 // Everything that mentions the deal MUST read it from here.
 
-/** Deal ends Sunday 13 Sep 2026, 11:59:59 PM Costa Rica time (UTC-6, no DST). */
+/** Deal ends Sunday 13 Sep 2026, 11:59:59 PM panama time (UTC-6, no DST). */
 export const BULK_DEAL_END_MS = Date.UTC(2026, 8, 14, 5, 59, 59);
 
 /** 10+ vial rate while the deal runs, and the standing rate once it lapses. */

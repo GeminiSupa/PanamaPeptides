@@ -24,7 +24,7 @@ const SETTING_ID = 'prospect_sweep';
  * Two tasks a run, against free public mirrors.
  *
  * Overpass is donated infrastructure with a usage policy, and this job has no
- * deadline — a full pass of Costa Rica finishing in days rather than minutes
+ * deadline — a full pass of panama finishing in days rather than minutes
  * costs nothing. Raising this to hurry it along is how the mirrors start
  * returning 429 and the sweep gets slower.
  */
@@ -47,7 +47,7 @@ async function overpassFetch(query) {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-          'User-Agent': 'CostaPeptidesProspector/1.0',
+          'User-Agent': 'panamapeptidesProspector/1.0',
         },
         body: new URLSearchParams({ data: query }),
       });

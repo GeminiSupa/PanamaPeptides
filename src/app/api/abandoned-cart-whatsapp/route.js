@@ -89,7 +89,7 @@ export async function POST(request) {
     }
 
     // Dynamic checkout URL to allow recovery
-    const origin = request.headers.get('origin') || 'https://catalog.peptidescostarica.net';
+    const origin = request.headers.get('origin') || 'https://catalog.peptidespanama.net';
     const checkoutUrl = `${origin}/catalog?recover_session=${encodeURIComponent(session_id)}`;
 
     // Sanitize customer name to prevent literal 'null', 'undefined', 'n/a', etc.
@@ -102,7 +102,7 @@ export async function POST(request) {
       }
     }
 
-    const message = `Hola ${customerDisplayName}, dejaste algunos productos en tu carrito en Peptides Costa Rica.\n\nTus productos seleccionados aún están disponibles. Puedes completar tu pedido aquí:\n${checkoutUrl}\n\nSi tienes alguna pregunta antes de ordenar, nuestro equipo con gusto te ayuda.`;
+    const message = `Hola ${customerDisplayName}, dejaste algunos productos en tu carrito en Peptides Panama.\n\nTus productos seleccionados aún están disponibles. Puedes completar tu pedido aquí:\n${checkoutUrl}\n\nSi tienes alguna pregunta antes de ordenar, nuestro equipo con gusto te ayuda.`;
 
     console.log(`[Abandoned Cart WhatsApp] Sending automated WhatsApp template recovery to ${cleanPhone}...`);
 

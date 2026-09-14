@@ -36,7 +36,7 @@ export default function CustomerFeedbackPage() {
   const TESTIMONIALS = [
     { name: 'Carlos M.', location: 'San José', text_en: 'They have always delivered high-quality products that have significantly improved our research findings.', text_es: 'Siempre han entregado productos de alta calidad que han mejorado significativamente nuestros resultados de investigación.' },
     { name: 'Ana R.', location: 'Heredia', text_en: 'The level of customer support and technical advice we receive from their team is unmatched.', text_es: 'El nivel de atención al cliente y asesoramiento técnico que recibimos de su equipo es inigualable.' },
-    { name: 'Rodrigo V.', location: 'Cartago', text_en: 'From custom synthesis to tailored solutions, Peptides Costa Rica has been a critical partner in our innovation journey.', text_es: 'Desde la síntesis personalizada hasta soluciones a medida, Peptides Costa Rica ha sido un socio crítico en nuestro viaje de innovación.' },
+    { name: 'Rodrigo V.', location: 'Cartago', text_en: 'From custom synthesis to tailored solutions, Peptides Panama has been a critical partner in our innovation journey.', text_es: 'Desde la síntesis personalizada hasta soluciones a medida, Peptides Panama ha sido un socio crítico en nuestro viaje de innovación.' },
     { name: 'Dr. Mendez', location: 'Alajuela', text_en: 'Timely delivery and seamless ordering experience helped us meet our project deadlines with ease.', text_es: 'La entrega oportuna y la experiencia de pedido sin problemas nos ayudaron a cumplir con los plazos de nuestro proyecto con facilidad.' }
   ];
 
@@ -46,7 +46,7 @@ export default function CustomerFeedbackPage() {
       <header className={`lp-header${scrolled ? ' lp-header--scrolled' : ''}`}>
         <div className="lp-header-inner">
           <Link href="/" className="lp-logo">
-            <img src="/logo.png" alt="Peptides Costa Rica" className="logo-img-custom" style={{ maxHeight: '40px', width: 'auto', borderRadius: '8px' }} />
+            <img src="/logo.png" alt="Peptides Panama" className="logo-img-custom" style={{ maxHeight: '40px', width: 'auto', borderRadius: '8px' }} />
           </Link>
 
           <nav className="lp-nav">
@@ -83,8 +83,8 @@ export default function CustomerFeedbackPage() {
           </h1>
           <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', marginBottom: '48px', lineHeight: '1.6', maxWidth: '800px', margin: '0 auto 48px' }}>
             {lang === 'en' 
-              ? 'We take pride in the trust and loyalty of our customers. Numerous individuals and researchers across Costa Rica have experienced transformative results with our peptide products.' 
-              : 'Nos enorgullecemos de la confianza y lealtad de nuestros clientes. Numerosos individuos e investigadores en Costa Rica han experimentado resultados transformadores.'}
+              ? 'We take pride in the trust and loyalty of our customers. Numerous individuals and researchers across panama have experienced transformative results with our peptide products.' 
+              : 'Nos enorgullecemos de la confianza y lealtad de nuestros clientes. Numerosos individuos e investigadores en panama han experimentado resultados transformadores.'}
           </p>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', textAlign: 'left' }}>
@@ -110,7 +110,7 @@ export default function CustomerFeedbackPage() {
           <img src="/logo.png" alt="Logo" style={{ height: '36px', marginBottom: '16px', opacity: 0.95, borderRadius: '8px' }} />
           <div className="footer-links" style={{ marginBottom: '24px' }}>
             <Link href={`/catalog?lang=${lang}`}>{lang === 'en' ? 'Shop Catalog' : 'Catálogo'}</Link>
-            <a href="mailto:info@peptidescostarica.net">info@peptidescostarica.net</a>
+            <a href="mailto:info@peptidespanama.net">info@peptidespanama.net</a>
           </div>
         </div>
       </footer>

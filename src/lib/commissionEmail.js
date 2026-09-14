@@ -16,7 +16,7 @@ const escapeHtml = (value) => String(value ?? '')
   .replaceAll("'", '&#039;');
 
 const formatCrDate = (value) => new Intl.DateTimeFormat('en-US', {
-  timeZone: 'America/Costa_Rica',
+  timeZone: 'America/panama',
   month: 'short',
   day: 'numeric',
   year: 'numeric',
@@ -87,10 +87,10 @@ export function buildAgentCommissionEmail({
       <tr><td align="center" style="padding:28px 12px;">
         <table role="presentation" width="640" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" style="width:100%;max-width:640px;background-color:#ffffff;border:1px solid #dbe3ee;">
           <tr><td align="center" bgcolor="#10233f" style="padding:28px 24px;background-color:#10233f;color:#ffffff;">
-            <img src="https://catalog.peptidescostarica.net/logo.png?v=2" alt="Peptides Costa Rica" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
-            <div style="font:700 14px Arial,sans-serif;letter-spacing:1.5px;color:#9ee7da;">PEPTIDES COSTA RICA</div>
+            <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+            <div style="font:700 14px Arial,sans-serif;letter-spacing:1.5px;color:#9ee7da;">Peptides Panama</div>
             <div style="font:700 26px Arial,sans-serif;color:#ffffff;margin-top:10px;">Weekly pay report</div>
-            <div style="font:13px Arial,sans-serif;color:#dbeafe;margin-top:8px;">${escapeHtml(periodDisplay)} · Costa Rica time</div>
+            <div style="font:13px Arial,sans-serif;color:#dbeafe;margin-top:8px;">${escapeHtml(periodDisplay)} · panama time</div>
           </td></tr>
           <tr><td style="padding:26px 24px;font-family:Arial,sans-serif;color:#334155;">
             <p style="margin:0 0 20px;font-size:15px;line-height:1.55;color:#334155;">Hi ${escapeHtml(agentName)}, here is your finalized pay report for the previous work week.</p>
@@ -168,7 +168,7 @@ export function buildAgentCommissionEmail({
               ${orderRows || '<tr><td colspan="7" align="center" style="padding:20px;font:13px Arial,sans-serif;color:#64748b;border-top:1px solid #e2e8f0;">No completed orders in this period.</td></tr>'}
             </table>
           </td></tr>
-          <tr><td align="center" bgcolor="#f8fafc" style="padding:16px;border-top:1px solid #dbe3ee;font:11px Arial,sans-serif;color:#64748b;">Automated weekly report · Peptides Costa Rica</td></tr>
+          <tr><td align="center" bgcolor="#f8fafc" style="padding:16px;border-top:1px solid #dbe3ee;font:11px Arial,sans-serif;color:#64748b;">Automated weekly report · Peptides Panama</td></tr>
         </table>
       </td></tr>
     </table>

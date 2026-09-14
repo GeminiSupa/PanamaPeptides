@@ -1,7 +1,7 @@
 import AutomationBuilder from '@/components/automations/AutomationBuilder';
 
 export const metadata = {
-  title: 'Automations Builder | Costa Peptides',
+  title: 'Automations Builder | Panama Peptides',
 };
 
 export default function AutomationsPage() {

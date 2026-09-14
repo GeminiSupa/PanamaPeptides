@@ -1,5 +1,5 @@
 -- =========================================================================
---        PEPTIDES COSTA RICA - DB-BACKED USD/CRC EXCHANGE RATE
+--        Peptides Panama - DB-BACKED USD/CRC EXCHANGE RATE
 -- =========================================================================
 -- Run this in your Supabase SQL Editor.
 --

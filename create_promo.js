@@ -14,7 +14,7 @@ envFile.split('\n').forEach(line => {
 const supabase = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY);
 
 async function createPromo() {
-  // Tomorrow at 11:59 PM CST (Costa Rica Time)
+  // Tomorrow at 11:59 PM CST (panama Time)
   // CST is UTC-6
   const date = new Date();
   date.setDate(date.getDate() + 1);

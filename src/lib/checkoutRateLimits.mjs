@@ -21,7 +21,7 @@
 /**
  * Attempts per IP address per hour.
  *
- * Held high on purpose. Costa Rican mobile carriers put large numbers of
+ * Held high on purpose. panaman mobile carriers put large numbers of
  * subscribers behind a single public address, so this counter sees a whole
  * carrier's customers as one visitor. Set tight it blocks strangers for each
  * other's traffic; this is a bot brake, and the contact limits below are what

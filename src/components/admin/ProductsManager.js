@@ -40,10 +40,10 @@ export default function ProductsManager({
   const [mobileEditProduct, setMobileEditProduct] = useState(null);
   const [mobileProductError, setMobileProductError] = useState('');
 
-  const formatDerivedCrc = (usdPrice) => {
+  const formatDerivedPab = (usdPrice) => {
     const usdNum = parseFloat(String(usdPrice || '').replace(/[^0-9.]/g, '')) || 0;
     if (!usdNum) return 'Auto';
-    return `₡${Math.round(usdNum * exchangeRate).toLocaleString('en-US')}`;
+    return `B/.${usdNum.toLocaleString('en-US')}`;
   };
 
   const exchangeUpdatedLabel = exchangeRateUpdatedAt
@@ -188,7 +188,7 @@ export default function ProductsManager({
         <div>
           <h3>Master Inventory Products</h3>
           <p style={{ fontSize: '0.8rem', color: '#94a3b8', marginTop: '4px' }}>
-            Edit USD prices as the source of truth. CRC is synced from the database rate: 1 USD = ₡{Math.round(exchangeRate).toLocaleString('en-US')} · refreshed {exchangeUpdatedLabel}.
+            Edit USD prices as the source of truth. PAB is pegged 1:1 with USD (1 USD = 1 PAB).
           </p>
         </div>
         <div className="admin-actions-row">
@@ -305,7 +305,7 @@ export default function ProductsManager({
                   <div className="product-mobile-category">{p.category || 'No category'}</div>
                   <div className="product-mobile-meta">
                     <span>{p.priceUsd ? `$${p.priceUsd}` : 'No price'}</span>
-                    <span>{formatDerivedCrc(p.priceUsd)}</span>
+                    <span>{formatDerivedPab(p.priceUsd)}</span>
                     <span>{p.status || 'In Stock'}</span>
                   </div>
                 </div>
@@ -331,11 +331,11 @@ export default function ProductsManager({
                 <th style={{ minWidth: '220px' }}>Product Peptide Name</th>
                 <th style={{ minWidth: '180px' }}>Category</th>
                 <th style={{ width: '100px' }}>Price (USD)</th>
-                <th style={{ width: '100px' }}>CRC Auto</th>
+                <th style={{ width: '100px' }}>PAB Auto</th>
                 <th style={{ width: '110px' }}>Orig. Price (USD)</th>
-                <th style={{ width: '110px' }}>Orig. CRC Auto</th>
-                <th style={{ width: '130px' }}>Sale Start (CR)</th>
-                <th style={{ width: '130px' }}>Sale End (CR)</th>
+                <th style={{ width: '110px' }}>Orig. PAB Auto</th>
+                <th style={{ width: '130px' }}>Sale Start (PA)</th>
+                <th style={{ width: '130px' }}>Sale End (PA)</th>
                 <th style={{ minWidth: '180px' }}>Stock Status</th>
                 <th style={{ width: '100px' }}>Inventory Count</th>
                 <th style={{ width: '100px' }}>Low Stock Alert</th>
@@ -412,13 +412,13 @@ export default function ProductsManager({
                   </td>
 
                   {/* CRC Price */}
-                  <td data-label="Price (CRC)">
+                  <td data-label="Price (PAB)">
                     <div
                       className="cell-editable"
                       title="Auto-calculated from the USD price using the current exchange rate"
                       style={{ background: '#f8fafc', color: '#475569', cursor: 'default' }}
                     >
-                      {formatDerivedCrc(p.priceUsd)}
+                      {formatDerivedPab(p.priceUsd)}
                     </div>
                   </td>
 
@@ -438,13 +438,13 @@ export default function ProductsManager({
                   </td>
 
                   {/* Orig CRC Price */}
-                  <td data-label="Orig. Price (CRC)">
+                  <td data-label="Orig. Price (PAB)">
                     <div
                       className="cell-editable"
                       title="Auto-calculated from the original USD price using the current exchange rate"
                       style={{ background: '#f8fafc', color: '#475569', cursor: 'default' }}
                     >
-                      {formatDerivedCrc(p.originalPriceUsd)}
+                      {formatDerivedPab(p.originalPriceUsd)}
                     </div>
                   </td>
 
@@ -615,9 +615,9 @@ export default function ProductsManager({
                       className="cell-editable"
                       style={{ minWidth: '80px', maxWidth: '150px', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}
                       onBlur={(e) => handleCellChange(p.id, 'coa', e.target.innerText)}
-                      title={p.coa}
+                      title={typeof p.coa === 'object' && p.coa !== null ? JSON.stringify(p.coa) : p.coa}
                     >
-                      {p.coa}
+                      {typeof p.coa === 'object' && p.coa !== null ? 'Structured Data' : p.coa}
                     </div>
                   </td>
 
@@ -788,12 +788,12 @@ export default function ProductsManager({
                 <label>
                   <span>USD price</span>
                   <input inputMode="decimal" value={mobileEditProduct.priceUsd || ''} onChange={(e) => updateMobileDraft('priceUsd', e.target.value)} />
-                  <small>{formatDerivedCrc(mobileEditProduct.priceUsd)}</small>
+                  <small>{formatDerivedPab(mobileEditProduct.priceUsd)}</small>
                 </label>
                 <label>
                   <span>Original USD</span>
                   <input inputMode="decimal" value={mobileEditProduct.originalPriceUsd || ''} onChange={(e) => updateMobileDraft('originalPriceUsd', e.target.value)} />
-                  <small>{formatDerivedCrc(mobileEditProduct.originalPriceUsd)}</small>
+                  <small>{formatDerivedPab(mobileEditProduct.originalPriceUsd)}</small>
                 </label>
               </div>
               <label>

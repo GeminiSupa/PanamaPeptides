@@ -13,7 +13,7 @@ import { PAYOUT_RESERVED_STATUSES } from '@/lib/payoutSettlement.mjs';
 // Email Configuration from Environment variables
 // The owner is BCC'd on this mail, so they are stripped from the visible
 // recipients rather than named twice on the same envelope.
-const ADMIN_CC_EMAILS = stripOwnerAddress('info@peptidescostarica.net, omerforce@gmail.com');
+const ADMIN_CC_EMAILS = stripOwnerAddress('info@peptidespanama.net, omerforce@gmail.com');
 
 const formatMoney = (value, currency) => {
   const amount = Number(value || 0);
@@ -39,7 +39,7 @@ export async function GET(request) {
     const period = searchParams.get('period') || 'previous';
     const targetAffiliateId = searchParams.get('affiliateId');
 
-    // Calculate dates in Costa Rica Time (UTC-6)
+    // Calculate dates in panama Time (UTC-6)
     const CR_OFFSET = -6;
     const nowUTC = new Date();
     const nowCR = new Date(nowUTC.getTime() + (CR_OFFSET * 60 * 60 * 1000));
@@ -205,7 +205,7 @@ export async function GET(request) {
       const emailHtml = `
         <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#e2e8f0;background:#0b0f19;max-width:640px;margin:0 auto;padding:32px 24px;border:1px solid rgba(255,255,255,0.08);border-radius:16px;">
           <div style="text-align:center;margin-bottom:24px;">
-            <img src="https://catalog.peptidescostarica.net/logo.png?v=2" alt="Peptides Costa Rica" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+            <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
             <h1 style="color:#ffffff;font-size:20px;font-weight:800;margin:0 0 6px;letter-spacing:-0.5px;">Weekly Affiliate Commission Invoice</h1>
             <p style="color:#94a3b8;font-size:13px;margin:0;">Invoice Period: ${new Date(startDateStr).toLocaleDateString(undefined, {month: 'short', day: 'numeric'})} to ${new Date(endDateStr).toLocaleDateString(undefined, {month: 'short', day: 'numeric', year: 'numeric'})}</p>
           </div>
@@ -257,7 +257,7 @@ export async function GET(request) {
           </div>
 
           <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:16px;text-align:center;font-size:11px;color:#64748b;">
-            Peptides Costa Rica Affiliate Partners System
+            Peptides Panama Affiliate Partners System
           </div>
         </div>
       `;
@@ -333,7 +333,7 @@ export async function GET(request) {
         const adminEmailHtml = `
           <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#e2e8f0;background:#0b0f19;max-width:640px;margin:0 auto;padding:32px 24px;border:1px solid rgba(255,255,255,0.08);border-radius:16px;">
             <div style="text-align:center;margin-bottom:24px;">
-              <img src="https://catalog.peptidescostarica.net/logo.png?v=2" alt="Peptides Costa Rica" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+              <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
               <h1 style="color:#ffffff;font-size:20px;font-weight:800;margin:0 0 6px;letter-spacing:-0.5px;">Pending Affiliate Payouts Action Required</h1>
               <p style="color:#94a3b8;font-size:13px;margin:0;">Weekly affiliate commission calculations are complete and awaiting admin approval.</p>
             </div>
@@ -364,13 +364,13 @@ export async function GET(request) {
             </div>
 
             <div style="text-align:center;margin-bottom:24px;">
-              <a href="https://peptidescostarica.net/admin?tab=affiliates" style="display:inline-block;background:#38bdf8;color:#0b0f19;font-weight:bold;padding:12px 24px;border-radius:8px;text-decoration:none;font-size:13px;">
+              <a href="https://peptidespanama.net/admin?tab=affiliates" style="display:inline-block;background:#38bdf8;color:#0b0f19;font-weight:bold;padding:12px 24px;border-radius:8px;text-decoration:none;font-size:13px;">
                 Review & Approve Affiliate Payouts
               </a>
             </div>
 
             <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:16px;text-align:center;font-size:11px;color:#64748b;">
-              Peptides Costa Rica Administrative Automated CRM · Affiliate Partners Ledger
+              Peptides Panama Administrative Automated CRM · Affiliate Partners Ledger
             </div>
           </div>
         `;

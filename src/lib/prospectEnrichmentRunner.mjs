@@ -170,7 +170,7 @@ async function downloadHtml(rawUrl, redirectsLeft = MAX_REDIRECTS) {
       headers: {
         Accept: 'text/html,application/xhtml+xml',
         'Accept-Encoding': 'identity',
-        'User-Agent': 'CostaPeptidesProspector/1.0',
+        'User-Agent': 'panamapeptidesProspector/1.0',
       },
       lookup: (_hostname, options, callback) => {
         if (options?.all) return callback(null, addresses);

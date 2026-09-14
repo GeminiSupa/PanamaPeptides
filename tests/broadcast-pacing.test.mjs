@@ -159,7 +159,7 @@ import {
 } from '../src/lib/broadcastPacing.mjs';
 
 /**
- * An instant at a given Costa Rica hour (UTC-6, no DST).
+ * An instant at a given panama hour (UTC-6, no DST).
  * Date.UTC, not string building: CR 19:00 is 25:00 UTC the same day, which is
  * not a time you can write down but is a date Date.UTC rolls over correctly.
  */
@@ -208,8 +208,8 @@ test('a window may wrap midnight', () => {
   assert.equal(crHourOf(nextWindowOpening(w, crAt(9, 12))), 20);
 });
 
-test('the Costa Rica hour is read as CR time, not the reader\'s clock', () => {
-  // 02:00 UTC is 20:00 the previous day in Costa Rica — the difference that
+test('the panama hour is read as CR time, not the reader\'s clock', () => {
+  // 02:00 UTC is 20:00 the previous day in panama — the difference that
   // decides whether a message lands at dinner or at 2am.
   assert.equal(crHourOf(Date.parse('2026-09-09T02:00:00Z')), 20);
   assert.equal(crHourOf(Date.parse('2026-09-09T06:00:00Z')), 0);

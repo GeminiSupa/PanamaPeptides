@@ -1,5 +1,5 @@
 -- =========================================================================
---                     PEPTIDES COSTA RICA - TEAM DIRECT MESSAGES
+--                     Peptides Panama - TEAM DIRECT MESSAGES
 -- =========================================================================
 -- Run this SQL script in your Supabase Project SQL Editor to update the 
 -- team_messages table for Direct Messaging.

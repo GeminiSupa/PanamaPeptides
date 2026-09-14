@@ -186,8 +186,8 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
 
         <div className="clone-nav-wrap">
           <div className="clone-shell clone-nav">
-            <Link href="/" className="clone-logo" aria-label="Peptides Costa Rica home">
-              <img src="/logo.webp" alt="Peptides Costa Rica" className="logo-img-custom" />
+            <Link href="/" className="clone-logo" aria-label="Panama Peptides home">
+              <img src="/logo.webp" alt="Panama Peptides" className="logo-img-custom" />
             </Link>
 
             <button
@@ -339,8 +339,8 @@ export function StorefrontFooter({ lang, settings, categories = [] }) {
   ];
 
   const openWhatsApp = () => {
-    logWhatsAppSource('footer_cr', lang);
-    localStorage.setItem('whatsapp_source', 'footer_cr');
+    logWhatsAppSource('footer_panama', lang);
+    localStorage.setItem('whatsapp_source', 'footer_panama');
     window.open(buildWhatsAppLink(links.whatsappNumber, null, lang), '_blank');
   };
 
@@ -348,7 +348,7 @@ export function StorefrontFooter({ lang, settings, categories = [] }) {
     <footer className="clone-footer">
       <div className="clone-shell clone-footer-grid">
         <div>
-          <img src="/logo.webp" alt="Peptides Costa Rica" className="logo-img-custom" />
+          <img src="/logo.webp" alt="Panama Peptides" className="logo-img-custom" />
           <p>{settings?.[`footerDescription${suffix}`]}</p>
           <strong>{lang === 'en' ? 'Legal Notice:' : 'Aviso legal:'}</strong>
           <p>{settings?.[`legalNotice${suffix}`]}</p>
@@ -374,7 +374,7 @@ export function StorefrontFooter({ lang, settings, categories = [] }) {
         <div>
           <h3>{lang === 'en' ? 'Contact Us' : 'Contáctenos'}</h3>
           <a href={`mailto:${links.supportEmail}`}>{links.supportEmail}</a>
-          <button type="button" onClick={openWhatsApp}>CR {links.whatsappDisplay}</button>
+          <button type="button" onClick={openWhatsApp}>PA {links.whatsappDisplay}</button>
           <a href={`tel:+${links.apiWhatsAppNumber || '18314715559'}`}>US {links.apiWhatsAppDisplay || '+1 (831) 471-5559'}</a>
           {links.googleMapsUrl && <a href={links.googleMapsUrl} target="_blank" rel="noopener noreferrer">Open in Maps</a>}
         </div>
@@ -406,7 +406,7 @@ export function StorefrontFooter({ lang, settings, categories = [] }) {
         </div>
       </div>
       <div className="clone-copyright">
-        Copyright © {new Date().getFullYear()} Peptides Costa Rica, All Rights Reserved.
+        Copyright © {new Date().getFullYear()} Panama Peptides, All Rights Reserved.
         {/* The policy pages were previously linked only from a dead component,
             leaving them unreachable from anywhere on the site. */}
         <span className="clone-legal-links">

@@ -9,62 +9,57 @@ import EntryDisclaimer from "@/components/EntryDisclaimer";
 import { LIVE_SITE_URL } from "@/lib/publicUrl";
 import { getTikTokPixelBootstrapScript } from "@/lib/tiktokPixel.mjs";
 
-// Served from this repo, not next/font/google. Google's font CDN 404'd twice
-// in one day mid-build (Inter, then Montserrat), and each failure took the
-// whole deploy down while leaving production on stale code — an outage we
-// could neither predict nor fix. These are the same latin subsets Google
-// serves, and both are variable fonts, so one file per family covers every
-// weight the CSS asks for.
-const montserrat = localFont({
-  src: "./fonts/montserrat-latin-variable.woff2",
-  variable: "--font-montserrat",
-  weight: "100 900",
-  style: "normal",
-  display: "swap",
-  preload: true,
+import { Manrope, Rubik, Poppins } from 'next/font/google';
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-manrope',
+  display: 'swap',
 });
 
-const inter = localFont({
-  src: "./fonts/inter-latin-variable.woff2",
-  variable: "--font-inter",
-  weight: "100 900",
-  style: "normal",
-  display: "swap",
-  preload: false,
+const rubik = Rubik({
+  subsets: ['latin'],
+  variable: '--font-rubik',
+  display: 'swap',
+});
+
+const poppins = Poppins({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  display: 'swap',
 });
 
 export const metadata = {
   // This app IS the catalog site, so every canonical, hreflang and og:url it
-  // emits has to resolve to its own origin. Pointing metadataBase at the main
-  // WordPress domain made each page tell Google "the real version of me lives
-  // somewhere else", which is exactly the instruction not to rank this site.
+  // emits has to resolve to its own origin.
   metadataBase: new URL(LIVE_SITE_URL),
   title: {
-    default: "Péptidos de Investigación en Costa Rica | Peptides Costa Rica",
-    template: "%s | Peptides Costa Rica",
+    default: "Péptidos de Investigación en Panamá | Panama Peptides",
+    template: "%s | Panama Peptides",
   },
-  description: "Péptidos para investigación disponibles localmente en Costa Rica, con documentación de lote, precios claros y entrega coordinada dentro del país.",
+  description: "Péptidos para investigación de laboratorio disponibles en Panamá, con documentación HPLC por lote, precios claros y entrega coordinada localmente.",
   keywords: [
-    "péptidos Costa Rica",
-    "research peptides Costa Rica",
-    "peptide catalog Costa Rica",
-    "COA peptides",
+    "péptidos Panamá",
+    "research peptides Panama",
+    "peptide catalog Panama",
+    "COA peptides Panama",
     "laboratory research peptides",
-    "Peptides Costa Rica",
+    "Panama Peptides",
   ],
   alternates: {
     canonical: '/',
     languages: {
-      'es-CR': '/?lang=es',
+      'es-PA': '/?lang=es',
       'en-US': '/?lang=en',
     },
   },
   openGraph: {
-    title: "Péptidos de Investigación en Costa Rica",
-    description: "Inventario local, documentación de lote y entrega dentro de Costa Rica.",
+    title: "Péptidos de Investigación en Panamá",
+    description: "Inventario local, documentación de lote por HPLC y entrega coordinada dentro de Panamá.",
     url: '/',
-    siteName: 'Peptides Costa Rica',
-    locale: 'es_CR',
+    siteName: 'Panama Peptides',
+    locale: 'es_PA',
     alternateLocale: ['en_US'],
     type: 'website',
     images: [
@@ -72,14 +67,14 @@ export const metadata = {
         url: '/catalog-promo-banner.webp',
         width: 1200,
         height: 630,
-        alt: 'Peptides Costa Rica catalog preview',
+        alt: 'Panama Peptides catalog preview',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Péptidos de Investigación en Costa Rica',
-    description: 'Inventario local, documentación de lote y entrega dentro de Costa Rica.',
+    title: 'Péptidos de Investigación en Panamá',
+    description: 'Inventario local, documentación de lote por HPLC y entrega dentro de Panamá.',
     images: ['/catalog-promo-banner.webp'],
   },
   robots: { index: true, follow: true },
@@ -102,7 +97,7 @@ export default async function RootLayout({ children }) {
   const businessLinks = await getBusinessLinks();
   
   return (
-    <html lang="es" className={`${montserrat.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="es" className={`${manrope.variable} ${rubik.variable} ${poppins.variable}`} suppressHydrationWarning>
       <head suppressHydrationWarning>
         <Script id="tiktok-pixel" strategy="beforeInteractive">
           {getTikTokPixelBootstrapScript()}
@@ -162,14 +157,14 @@ export default async function RootLayout({ children }) {
                 {
                   "@type": "Organization",
                   "@id": `${LIVE_SITE_URL}/#organization`,
-                  "name": "Peptides Costa Rica",
+                  "name": "Panama Peptides",
                   "url": LIVE_SITE_URL,
                   "logo": `${LIVE_SITE_URL}/logo.png`,
                   "contactPoint": {
                     "@type": "ContactPoint",
                     "telephone": businessLinks.whatsappDisplay,
                     "contactType": "customer service",
-                    "areaServed": "CR",
+                    "areaServed": "PA",
                     "availableLanguage": ["es", "en"]
                   }
                 },
@@ -177,22 +172,22 @@ export default async function RootLayout({ children }) {
                   "@type": "WebSite",
                   "@id": `${LIVE_SITE_URL}/#website`,
                   "url": LIVE_SITE_URL,
-                  "name": "Peptides Costa Rica",
+                  "name": "Panama Peptides",
                   "publisher": {
                     "@id": `${LIVE_SITE_URL}/#organization`
                   },
-                  "inLanguage": ["es-CR", "en-US"]
+                  "inLanguage": ["es-PA", "en-US"]
                 },
                 {
                   "@type": "Store",
                   "@id": `${LIVE_SITE_URL}/#store`,
-                  "name": "Peptides Costa Rica",
+                  "name": "Panama Peptides",
                   "url": `${LIVE_SITE_URL}/catalog`,
                   "image": `${LIVE_SITE_URL}/catalog-promo-banner.webp`,
                   "telephone": businessLinks.whatsappDisplay,
                   "areaServed": {
                     "@type": "Country",
-                    "name": "Costa Rica"
+                    "name": "Panama"
                   },
                   "availableLanguage": ["Spanish", "English"],
                   "parentOrganization": {

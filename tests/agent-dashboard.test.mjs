@@ -14,7 +14,7 @@ import {
   preferredAgentMoney,
 } from '../src/lib/agentDashboard.mjs';
 
-test('agent analytics boundaries use Costa Rica calendar dates', () => {
+test('agent analytics boundaries use panama calendar dates', () => {
   const range = agentAnalyticsRange('2026-08-21T05:30:00.000Z', 0);
 
   assert.equal(range.nowUtc, '2026-08-21T05:30:00.000Z');

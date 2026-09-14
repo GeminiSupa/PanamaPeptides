@@ -1,5 +1,5 @@
 -- =========================================================================
---                     PEPTIDES COSTA RICA - RBAC MIGRATION
+--                     Peptides Panama - RBAC MIGRATION
 -- =========================================================================
 -- Run this script in your Supabase SQL Editor to create the admin roles system.
 
@@ -41,6 +41,6 @@ USING (true);
 INSERT INTO public.admin_profiles (user_id, email, name, is_superadmin, permissions)
 SELECT id, email, 'Super Admin', true, '[]'::jsonb
 FROM auth.users
-WHERE email IN ('joe@peptides.com', 'info@peptidescostarica.net')
+WHERE email IN ('joe@peptides.com', 'info@peptidespanama.net')
 ON CONFLICT (email) DO UPDATE 
 SET is_superadmin = true;

@@ -29,7 +29,7 @@ test('landing payload joins the optional surname and preserves campaign attribut
     },
     answers: {
       category: { id: 'recovery', label: 'Recovery and healing' },
-      location: { id: 'cr', label: 'Costa Rica' },
+      location: { id: 'cr', label: 'panama' },
       volume: { id: '5-9', label: '5–9 vials' },
       language: { id: 'en', label: 'English' },
     },
@@ -49,12 +49,12 @@ test('landing payload joins the optional surname and preserves campaign attribut
     language: 'es',
     preferred_reply_language: 'en',
     category: 'Recovery and healing',
-    location: 'Costa Rica',
+    location: 'panama',
     volume: '5–9 vials',
     qualification_data: {
       answers: [
         { questionId: 'category', question: '¿Qué está investigando?', optionId: 'recovery', answer: 'Recovery and healing' },
-        { questionId: 'location', question: '¿Dónde necesita entrega?', optionId: 'cr', answer: 'Costa Rica' },
+        { questionId: 'location', question: '¿Dónde necesita entrega?', optionId: 'cr', answer: 'panama' },
         { questionId: 'volume', question: '¿Qué volumen está considerando?', optionId: '5-9', answer: '5–9 vials' },
         { questionId: 'language', question: '¿En qué idioma debemos responder?', optionId: 'en', answer: 'English' },
       ],

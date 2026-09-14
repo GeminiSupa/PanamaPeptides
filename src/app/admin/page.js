@@ -203,7 +203,7 @@ function getAdminPageSubtitle(tabId, { orders, abandonedCarts, leads, reviews, i
         ? `${newLeads} new lead${newLeads !== 1 ? 's' : ''} · ${leads.length} total`
         : `${leads.length} lead${leads.length !== 1 ? 's' : ''}`;
     case 'prospects':
-      return 'Discover and qualify potential Costa Rica business partners';
+      return 'Discover and qualify potential panama business partners';
     case 'live_chat':
       return 'Website chat inbox · reply without WhatsApp';
     case 'reviews':
@@ -597,7 +597,7 @@ export default function AdminPage() {
 
   // AI Copilot States
   const [aiChatMessages, setAiChatMessages] = useState([
-    { role: 'assistant', text: '¡Hola! Soy tu Copiloto de Inteligencia Artificial para Costa Peptides. 🧬 ¿En qué te puedo asistir hoy?\n\nPuedo redactar boletines de marketing, traducir descripciones científicas, formular resúmenes de investigación para tus blogs, o estructurar plantillas de mensajes de WhatsApp altamente personalizadas.' }
+    { role: 'assistant', text: '¡Hola! Soy tu Copiloto de Inteligencia Artificial para Panama Peptides. 🧬 ¿En qué te puedo asistir hoy?\n\nPuedo redactar boletines de marketing, traducir descripciones científicas, formular resúmenes de investigación para tus blogs, o estructurar plantillas de mensajes de WhatsApp altamente personalizadas.' }
   ]);
   const [aiInputText, setAiInputText] = useState('');
   const [aiLoading, setAiLoading] = useState(false);
@@ -761,7 +761,7 @@ export default function AdminPage() {
       }
       if (matchedCarts.length) {
         crmContext += 'Active abandoned carts:\n' + matchedCarts.map((c) =>
-          `- ${c.cart_data.map((i) => `${i.product} x${i.qty}`).join(', ')} | https://catalog.peptidescostarica.net/catalog?recover_session=${c.session_id}`
+          `- ${c.cart_data.map((i) => `${i.product} x${i.qty}`).join(', ')} | https://catalog.peptidespanama.net/catalog?recover_session=${c.session_id}`
         ).join('\n');
       }
 
@@ -867,7 +867,7 @@ Please draft a perfect next response to this customer. Match their language (Spa
     const optimisticMessage = {
       id: tempId,
       wa_id: activeChatWaId,
-      display_name: 'Peptides Costa Rica',
+      display_name: 'Peptides Panama',
       message_text: textToSend,
       media_url: mediaUrl,
       message_type: mediaUrl ? 'image' : 'text',
@@ -956,7 +956,7 @@ Please draft a perfect next response to this customer. Match their language (Spa
     const optimisticMessage = {
       id: tempId,
       wa_id: baileysActiveChatWaId,
-      display_name: 'Peptides Costa Rica',
+      display_name: 'Peptides Panama',
       message_text: textToSend,
       message_type: 'text',
       direction: 'outbound',
@@ -1055,7 +1055,7 @@ Please draft a perfect next response to this customer. Match their language (Spa
         }
       });
 
-      const prompt = `You are the chief cart recovery optimizer at Peptides Costa Rica.
+      const prompt = `You are the chief cart recovery optimizer at Peptides Panama.
 Analyze the following active abandoned carts statistics:
 - Total Active Abandoned Carts: ${activeAbandoned.length}
 - Total Potential Recoverable Value: $${totalPotentialVal.toFixed(2)} USD (CRC ${(totalPotentialVal * exchangeRate).toLocaleString()})
@@ -1117,7 +1117,7 @@ Keep your tone highly professional, precise, data-driven, and empowering. Format
         cities[city] = (cities[city] || 0) + 1;
       });
 
-      const prompt = `You are the lead marketing director at Peptides Costa Rica.
+      const prompt = `You are the lead marketing director at Peptides Panama.
 Analyze the following catalog access leads pipeline statistics:
 - Total Leads Captured: ${totalLeads}
 - Traffic Source Breakdown: ${Object.entries(referralSources).map(([source, count]) => `${source} (${count} leads)`).join(', ') || 'No source data'}
@@ -1282,7 +1282,7 @@ Keep your tone highly professional, precise, data-driven, and empowering. Format
         method: 'POST',
         body: JSON.stringify({
           to: lead.contact_value,
-          subject: lead.language === 'es' ? 'Acceso Exclusivo al Catálogo - Peptides Costa Rica' : 'Exclusive Catalog Access - Peptides Costa Rica',
+          subject: lead.language === 'es' ? 'Acceso Exclusivo al Catálogo - Peptides Panama' : 'Exclusive Catalog Access - Peptides Panama',
           message: message
         })
       });
@@ -1294,17 +1294,17 @@ Keep your tone highly professional, precise, data-driven, and empowering. Format
         await handleMarkAsContacted(lead.id);
       } else {
         alert('❌ Failed to send email through server: ' + (data.error || 'Unknown error') + '\n\nOpening your personal email client as fallback instead...');
-        const subject = encodeURIComponent(lead.language === 'es' ? 'Información sobre Péptidos de Costa Rica' : 'Peptides Costa Rica Inquiry');
+        const subject = encodeURIComponent(lead.language === 'es' ? 'Información sobre Péptidos de panama' : 'Peptides Panama Inquiry');
         window.location.href = `mailto:${lead.contact_value}?subject=${subject}&body=${encodeURIComponent(message)}`;
-        await logOutreachToNotes(lead, 'email', `(Fallback Client)\nSubject: ${lead.language === 'es' ? 'Información sobre Péptidos de Costa Rica' : 'Peptides Costa Rica Inquiry'}\n\n${message}`);
+        await logOutreachToNotes(lead, 'email', `(Fallback Client)\nSubject: ${lead.language === 'es' ? 'Información sobre Péptidos de panama' : 'Peptides Panama Inquiry'}\n\n${message}`);
         await handleMarkAsContacted(lead.id);
       }
     } catch (err) {
       console.error(err);
       alert('❌ Connection failed: ' + err.message + '\n\nOpening your personal email client as fallback instead...');
-      const subject = encodeURIComponent(lead.language === 'es' ? 'Información sobre Péptidos de Costa Rica' : 'Peptides Costa Rica Inquiry');
+      const subject = encodeURIComponent(lead.language === 'es' ? 'Información sobre Péptidos de panama' : 'Peptides Panama Inquiry');
       window.location.href = `mailto:${lead.contact_value}?subject=${subject}&body=${encodeURIComponent(message)}`;
-      await logOutreachToNotes(lead, 'email', `(Fallback Client Connection Error)\nSubject: ${lead.language === 'es' ? 'Información sobre Péptidos de Costa Rica' : 'Peptides Costa Rica Inquiry'}\n\n${message}`);
+      await logOutreachToNotes(lead, 'email', `(Fallback Client Connection Error)\nSubject: ${lead.language === 'es' ? 'Información sobre Péptidos de panama' : 'Peptides Panama Inquiry'}\n\n${message}`);
       await handleMarkAsContacted(lead.id);
     } finally {
       setEmailSending(false);
@@ -1333,34 +1333,34 @@ Keep your tone highly professional, precise, data-driven, and empowering. Format
 
 Vimos que estuviste revisando nuestro catálogo de péptidos y te interesaste en ${productsStr}. 🧪
 
-¿Tienes alguna duda sobre la reconstitución, dosis o envíos express en Costa Rica? 
+¿Tienes alguna duda sobre la reconstitución, dosis o envíos express en panama? 
 
-Puedes volver al catálogo para completar tu orden en https://catalog.peptidescostarica.net/catalog (¡usa el cupón *COSTA10* para un 10% de descuento!). 
+Puedes volver al catálogo para completar tu orden en https://catalog.peptidespanama.net/catalog (¡usa el cupón *COSTA10* para un 10% de descuento!). 
 
 Si prefieres coordinar o realizar tus consultas por WhatsApp, puedes escribirnos directamente a nuestros WhatsApp de la compañía +506 8404-6973 haciendo clic en este enlace: https://wa.me/50684046973
 
 ¡Pura vida!
-Peptides Costa Rica`;
+Peptides Panama`;
         } else {
           defaultMsg = `¡Hola! 👋
 
-Vimos que estuviste revisando nuestro catálogo de péptidos en https://catalog.peptidescostarica.net/catalog. 🧪
+Vimos que estuviste revisando nuestro catálogo de péptidos en https://catalog.peptidespanama.net/catalog. 🧪
 
 ¿Tienes alguna consulta técnica o sobre stock en la que te podamos ayudar hoy?
 
-Puedes volver al catálogo para completar tu orden en https://catalog.peptidescostarica.net/catalog (¡usa el cupón *COSTA10* para un 10% de descuento!).
+Puedes volver al catálogo para completar tu orden en https://catalog.peptidespanama.net/catalog (¡usa el cupón *COSTA10* para un 10% de descuento!).
 
 Si prefieres coordinar o realizar tus consultas por WhatsApp, puedes escribirnos directamente a nuestros WhatsApp de la compañía +506 8404-6973 haciendo clic en este enlace: https://wa.me/50684046973
 
 ¡Pura vida!
-Peptides Costa Rica`;
+Peptides Panama`;
         }
       } else {
         // WhatsApp method
         if (productsStr) {
-          defaultMsg = `¡Hola! 👋 Vimos que estuviste revisando nuestro catálogo de péptidos y te interesaste en *${productsStr}*. 🧪\n\n¿Tienes alguna duda sobre la reconstitución, dosis o envíos express en Costa Rica? \n\nPuedes volver al catálogo en catalog.peptidescostarica.net/catalog (usa el cupón *COSTA10* para un 10% de descuento) o responder a este WhatsApp de la compañía al +506 8404-6973 para coordinar de inmediato.`;
+          defaultMsg = `¡Hola! 👋 Vimos que estuviste revisando nuestro catálogo de péptidos y te interesaste en *${productsStr}*. 🧪\n\n¿Tienes alguna duda sobre la reconstitución, dosis o envíos express en panama? \n\nPuedes volver al catálogo en catalog.peptidespanama.net/catalog (usa el cupón *COSTA10* para un 10% de descuento) o responder a este WhatsApp de la compañía al +506 8404-6973 para coordinar de inmediato.`;
         } else {
-          defaultMsg = `¡Hola! 👋 Vimos que estuviste revisando nuestro catálogo de péptidos en catalog.peptidescostarica.net/catalog. 🧪\n\n¿Tienes alguna consulta técnica o sobre stock en la que te podamos ayudar hoy?\n\nPuedes volver al catálogo para completar tu orden con un 10% de descuento usando el cupón: *COSTA10* o responder directamente a este WhatsApp de la compañía al +506 8404-6973.`;
+          defaultMsg = `¡Hola! 👋 Vimos que estuviste revisando nuestro catálogo de péptidos en catalog.peptidespanama.net/catalog. 🧪\n\n¿Tienes alguna consulta técnica o sobre stock en la que te podamos ayudar hoy?\n\nPuedes volver al catálogo para completar tu orden con un 10% de descuento usando el cupón: *COSTA10* o responder directamente a este WhatsApp de la compañía al +506 8404-6973.`;
         }
       }
     } else {
@@ -1370,34 +1370,34 @@ Peptides Costa Rica`;
 
 We noticed you were browsing our peptide catalog and were interested in ${productsStr}. 🧪
 
-Do you have any research questions regarding reconstitution, dosages, or express shipping in Costa Rica?
+Do you have any research questions regarding reconstitution, dosages, or express shipping in panama?
 
-You can return to our catalog to complete your order at https://catalog.peptidescostarica.net/catalog (use coupon *COSTA10* for 10% off!).
+You can return to our catalog to complete your order at https://catalog.peptidespanama.net/catalog (use coupon *COSTA10* for 10% off!).
 
 If you prefer to coordinate or ask questions via WhatsApp, you can chat with us directly at our company WhatsApp numbers +506 8404-6973 by clicking here: https://wa.me/50684046973
 
 Best regards,
-Peptides Costa Rica`;
+Peptides Panama`;
         } else {
           defaultMsg = `Hi there! 👋
 
-We noticed you were browsing our peptide catalog at https://catalog.peptidescostarica.net/catalog. 🧪
+We noticed you were browsing our peptide catalog at https://catalog.peptidespanama.net/catalog. 🧪
 
 Do you have any research questions or stock inquiries we can help you with today?
 
-You can return to our catalog to complete your purchase at https://catalog.peptidescostarica.net/catalog (use coupon *COSTA10* for 10% off!).
+You can return to our catalog to complete your purchase at https://catalog.peptidespanama.net/catalog (use coupon *COSTA10* for 10% off!).
 
 If you prefer to coordinate or ask questions via WhatsApp, you can chat with us directly at our company WhatsApp numbers +506 8404-6973 by clicking here: https://wa.me/50684046973
 
 Best regards,
-Peptides Costa Rica`;
+Peptides Panama`;
         }
       } else {
         // WhatsApp method
         if (productsStr) {
-          defaultMsg = `Hi there! 👋 We noticed you were browsing our peptide catalog and were interested in *${productsStr}*. 🧪\n\nDo you have any research questions regarding reconstitution, dosages, or express shipping in Costa Rica?\n\nYou can return to catalog.peptidescostarica.net/catalog (use coupon *COSTA10* for 10% off) or reply directly to this company WhatsApp number (+506 8404-6973) to coordinate.`;
+          defaultMsg = `Hi there! 👋 We noticed you were browsing our peptide catalog and were interested in *${productsStr}*. 🧪\n\nDo you have any research questions regarding reconstitution, dosages, or express shipping in panama?\n\nYou can return to catalog.peptidespanama.net/catalog (use coupon *COSTA10* for 10% off) or reply directly to this company WhatsApp number (+506 8404-6973) to coordinate.`;
         } else {
-          defaultMsg = `Hi there! 👋 We noticed you were browsing our peptide catalog at catalog.peptidescostarica.net/catalog. 🧪\n\nDo you have any research questions or stock inquiries we can help you with today?\n\nYou can return to our catalog to complete your purchase with 10% off using coupon: *COSTA10* or reply directly to this company WhatsApp number (+506 8404-6973).`;
+          defaultMsg = `Hi there! 👋 We noticed you were browsing our peptide catalog at catalog.peptidespanama.net/catalog. 🧪\n\nDo you have any research questions or stock inquiries we can help you with today?\n\nYou can return to our catalog to complete your purchase with 10% off using coupon: *COSTA10* or reply directly to this company WhatsApp number (+506 8404-6973).`;
         }
       }
     }
@@ -1421,14 +1421,14 @@ Peptides Costa Rica`;
 
 Core Rules:
 1. Keep the message extremely short and sweet (MAX 3-4 sentences total).
-2. For WhatsApp outreach, include the catalog link (catalog.peptidescostarica.net/catalog) and mention the company WhatsApp numbers +506 8404-6973.
-3. For Email outreach, you MUST explicitly include both the catalog link (https://catalog.peptidescostarica.net/catalog) and a clickable direct link to WhatsApp (https://wa.me/50684046973) along with the company WhatsApp numbers (+506 8404-6973).
+2. For WhatsApp outreach, include the catalog link (catalog.peptidespanama.net/catalog) and mention the company WhatsApp numbers +506 8404-6973.
+3. For Email outreach, you MUST explicitly include both the catalog link (https://catalog.peptidespanama.net/catalog) and a clickable direct link to WhatsApp (https://wa.me/50684046973) along with the company WhatsApp numbers (+506 8404-6973).
 4. Be professional and friendly. Avoid lengthy chemical explanations or overly dense medical details. Keep it focused on helping them finalize their research compounds.`;
       
       if (productsStr) {
-        prompt += `\n- The user was interested in: "${productsStr}". Mention we have certified 99%+ pure stocks ready for rapid shipment via Correos de Costa Rica.`;
+        prompt += `\n- The user was interested in: "${productsStr}". Mention we have certified 99%+ pure stocks ready for rapid shipment via Correos de panama.`;
       } else {
-        prompt += `\n- Invite them to ask about our research-grade catalog of 99%+ lab-tested high-purity peptides, and coordinate safe dispatch in Costa Rica.`;
+        prompt += `\n- Invite them to ask about our research-grade catalog of 99%+ lab-tested high-purity peptides, and coordinate safe dispatch in panama.`;
       }
       
       if (leadOutreachActive.city || leadOutreachActive.country) {
@@ -1488,7 +1488,7 @@ Core Rules:
             method: 'POST',
             body: JSON.stringify({
               to: leadOutreachActive.contact_value,
-              subject: leadOutreachActive.language === 'es' ? 'Acceso Exclusivo al Catálogo - Peptides Costa Rica' : 'Exclusive Catalog Access - Peptides Costa Rica',
+              subject: leadOutreachActive.language === 'es' ? 'Acceso Exclusivo al Catálogo - Peptides Panama' : 'Exclusive Catalog Access - Peptides Panama',
               message: leadOutreachMessage
             })
           });
@@ -1501,18 +1501,18 @@ Core Rules:
             setLeadOutreachModalOpen(false);
           } else {
             alert('❌ Failed to send email through server: ' + (data.error || 'Unknown error') + '\n\nOpening your personal email client as fallback instead...');
-            const subject = encodeURIComponent(leadOutreachActive.language === 'es' ? 'Información sobre Péptidos de Costa Rica' : 'Peptides Costa Rica Inquiry');
+            const subject = encodeURIComponent(leadOutreachActive.language === 'es' ? 'Información sobre Péptidos de panama' : 'Peptides Panama Inquiry');
             window.location.href = `mailto:${leadOutreachActive.contact_value}?subject=${subject}&body=${encodeURIComponent(leadOutreachMessage)}`;
-            await logOutreachToNotes(leadOutreachActive, 'email', `(Fallback Client)\nSubject: ${leadOutreachActive.language === 'es' ? 'Información sobre Péptidos de Costa Rica' : 'Peptides Costa Rica Inquiry'}\n\n${leadOutreachMessage}`);
+            await logOutreachToNotes(leadOutreachActive, 'email', `(Fallback Client)\nSubject: ${leadOutreachActive.language === 'es' ? 'Información sobre Péptidos de panama' : 'Peptides Panama Inquiry'}\n\n${leadOutreachMessage}`);
             await handleMarkAsContacted(leadOutreachActive.id);
             setLeadOutreachModalOpen(false);
           }
         } catch (err) {
           console.error(err);
           alert('❌ Connection failed: ' + err.message + '\n\nOpening your personal email client as fallback instead...');
-          const subject = encodeURIComponent(leadOutreachActive.language === 'es' ? 'Información sobre Péptidos de Costa Rica' : 'Peptides Costa Rica Inquiry');
+          const subject = encodeURIComponent(leadOutreachActive.language === 'es' ? 'Información sobre Péptidos de panama' : 'Peptides Panama Inquiry');
           window.location.href = `mailto:${leadOutreachActive.contact_value}?subject=${subject}&body=${encodeURIComponent(leadOutreachMessage)}`;
-          await logOutreachToNotes(leadOutreachActive, 'email', `(Fallback Client Connection Error)\nSubject: ${leadOutreachActive.language === 'es' ? 'Información sobre Péptidos de Costa Rica' : 'Peptides Costa Rica Inquiry'}\n\n${leadOutreachMessage}`);
+          await logOutreachToNotes(leadOutreachActive, 'email', `(Fallback Client Connection Error)\nSubject: ${leadOutreachActive.language === 'es' ? 'Información sobre Péptidos de panama' : 'Peptides Panama Inquiry'}\n\n${leadOutreachMessage}`);
           await handleMarkAsContacted(leadOutreachActive.id);
           setLeadOutreachModalOpen(false);
         }
@@ -1535,41 +1535,41 @@ Core Rules:
       if (isEs) {
         return `¡Hola! 👋 Vimos que estuviste revisando nuestro catálogo de péptidos y te interesaste en *${firstProduct || 'nuestros compuestos'}*. 🧪
 
-¿Tienes alguna duda sobre la reconstitución, dosis o envíos express en Costa Rica? 
+¿Tienes alguna duda sobre la reconstitución, dosis o envíos express en panama? 
 
-Puedes volver al catálogo en catalog.peptidescostarica.net/catalog o respondernos directamente aquí para coordinar por WhatsApp. ¡Usa el cupón *COSTA10* para un 10% de descuento!`;
+Puedes volver al catálogo en catalog.peptidespanama.net/catalog o respondernos directamente aquí para coordinar por WhatsApp. ¡Usa el cupón *COSTA10* para un 10% de descuento!`;
       } else {
         return `Hi there! 👋 We noticed you were browsing our peptide catalog and were interested in *${firstProduct || 'our compounds'}*. 🧪
 
-Do you have any research questions regarding reconstitution, dosages, or express shipping in Costa Rica?
+Do you have any research questions regarding reconstitution, dosages, or express shipping in panama?
 
-You can return to our catalog at catalog.peptidescostarica.net/catalog or reply directly here to coordinate via WhatsApp. Use coupon *COSTA10* for 10% off!`;
+You can return to our catalog at catalog.peptidespanama.net/catalog or reply directly here to coordinate via WhatsApp. Use coupon *COSTA10* for 10% off!`;
       }
     } else {
       if (isEs) {
         return `¡Hola! 👋
 
-Vimos que estuviste consultando información sobre *${viewedProducts}* en nuestro catálogo catalog.peptidescostarica.net/catalog. 🧪
+Vimos que estuviste consultando información sobre *${viewedProducts}* en nuestro catálogo catalog.peptidespanama.net/catalog. 🧪
 
-Queríamos ponernos a tu disposición por si tienes alguna duda técnica o consulta sobre stock. Realizamos envíos rápidos a todo el país vía Correos de Costa Rica.
+Queríamos ponernos a tu disposición por si tienes alguna duda técnica o consulta sobre stock. Realizamos envíos rápidos a todo el país vía Correos de panama.
 
 Puedes completar tu pedido en el catálogo o chatear directamente con nosotros por WhatsApp al +506 8404-6973. ¡Aprovecha un 10% de descuento usando el cupón **COSTA10**!
 
 Quedamos a tu entera disposición,
 
-Soporte - Peptides Costa Rica`;
+Soporte - Peptides Panama`;
       } else {
         return `Hi there! 👋
 
-We noticed you were browsing *${viewedProducts}* in our research catalog at catalog.peptidescostarica.net/catalog. 🧪
+We noticed you were browsing *${viewedProducts}* in our research catalog at catalog.peptidespanama.net/catalog. 🧪
 
-We wanted to reach out in case you have any technical questions or stock inquiries. We offer certified purity >99% and fast shipping across Costa Rica.
+We wanted to reach out in case you have any technical questions or stock inquiries. We offer certified purity >99% and fast shipping across panama.
 
 You can complete your purchase directly on our site or chat with us on WhatsApp at +506 8404-6973. Use coupon **COSTA10** for a 10% discount on your order!
 
 Best regards,
 
-Support - Peptides Costa Rica`;
+Support - Peptides Panama`;
       }
     }
   };
@@ -1589,7 +1589,7 @@ Support - Peptides Costa Rica`;
       const views = productViews.filter(v => v.contact_value === lead.contact_value);
       viewedProducts = views.map(v => v.product_name).join(', ') || 'our scientific peptide catalog';
 
-      const prompt = `You are a professional, warm product specialist advisor at Peptides Costa Rica.
+      const prompt = `You are a professional, warm product specialist advisor at Peptides Panama.
 Draft a very short, sweet, and highly converting outbound outreach message to a prospect who browsed our site but hasn't completed checkout yet.
 
 Prospect Details:
@@ -1599,7 +1599,7 @@ Prospect Details:
 
 Core Rules:
 1. Keep the message extremely short and simple (MAX 3-4 sentences total). No verbose fluff.
-2. Direct them to return to the catalog at catalog.peptidescostarica.net/catalog or chat with us on WhatsApp at +506 8404-6973.
+2. Direct them to return to the catalog at catalog.peptidespanama.net/catalog or chat with us on WhatsApp at +506 8404-6973.
 3. Offer a 10% coupon code: COSTA10 to finalize their purchase.
 4. Keep the tone warm, consultative, and supportive.
 5. Write the response ENTIRELY in ${langLabel}. Do NOT write subject lines, placeholders, or preambles. Just output the final outreach text.`;
@@ -2188,7 +2188,7 @@ Core Rules:
   // Auth session — bootstrap once per login, not on every token refresh
   useEffect(() => {
     setMounted(true);
-    const savedEmail = localStorage.getItem('admin_email') || 'info@peptidescostarica.net';
+    const savedEmail = localStorage.getItem('admin_email') || 'info@peptidespanama.net';
     loggedInEmail.current = savedEmail;
 
     if (!isSupabaseConfigured || !supabase) {
@@ -2405,17 +2405,17 @@ Core Rules:
         
         if (!agentError && agentData) {
           const loadedAgents = agentData.map(a => a.name || a.email).filter(Boolean);
-          setAgents(loadedAgents.length > 0 ? loadedAgents : ['Joe', 'info@peptidescostarica.net']);
+          setAgents(loadedAgents.length > 0 ? loadedAgents : ['Joe', 'info@peptidespanama.net']);
           setAgentProfiles(agentData);
         } else {
-          setAgents(['Joe', 'info@peptidescostarica.net']);
+          setAgents(['Joe', 'info@peptidespanama.net']);
         }
       } catch (err) {
         console.error("Failed to load agents:", err);
-        setAgents(['Joe', 'info@peptidescostarica.net']);
+        setAgents(['Joe', 'info@peptidespanama.net']);
       }
     } else {
-      setAgents(['Joe', 'info@peptidescostarica.net']);
+      setAgents(['Joe', 'info@peptidespanama.net']);
     }
   };
 
@@ -3033,7 +3033,7 @@ Core Rules:
 
     try {
       // Step 1: Verify current password by signing in using the email that was used to log in
-      const adminEmail = loggedInEmail.current || localStorage.getItem('admin_email') || 'info@peptidescostarica.net';
+      const adminEmail = loggedInEmail.current || localStorage.getItem('admin_email') || 'info@peptidespanama.net';
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email: adminEmail,
         password: currentPassword
@@ -4070,21 +4070,21 @@ Core Rules:
     }
 
     const recoveryLink = recipient.session_id
-      ? `https://catalog.peptidescostarica.net/catalog?recover_session=${encodeURIComponent(recipient.session_id)}${agentName ? `&sales_agent=${encodeURIComponent(agentName)}` : ''}`
-      : 'https://catalog.peptidescostarica.net/catalog';
+      ? `https://catalog.peptidespanama.net/catalog?recover_session=${encodeURIComponent(recipient.session_id)}${agentName ? `&sales_agent=${encodeURIComponent(agentName)}` : ''}`
+      : 'https://catalog.peptidespanama.net/catalog';
 
     // 1. Check if recovering abandoned cart
     if (recipient.cartItems) {
       switch (templateType) {
         case 'purity':
-          return `${hola} Te saluda ${agentSig} de Peptides Costa Rica. 🇨🇷 
+          return `${hola} Te saluda ${agentSig} de Peptides Panama. 🇨🇷 
 
 Te contacto porque notamos tu interés en ${itemsStr}. Quería recordarte que todos nuestros péptidos cuentan con pureza certificada de laboratorio ≥98% HPLC para garantizar la máxima seguridad en tu investigación.
 
 Realizamos envíos rápidos a todo el país vía Correos de CR y coordinamos pagos seguros vía SINPE Móvil o tarjeta. ¿Te gustaría que te ayude a coordinar tu envío hoy?`;
 
         case 'discount':
-          return `${hola} Te saluda ${agentSig} de Peptides Costa Rica. 🇨🇷
+          return `${hola} Te saluda ${agentSig} de Peptides Panama. 🇨🇷
 
 Queremos apoyarte en tus metas de salud y rendimiento. Por eso, si completas tu orden de ${itemsStr} hoy, puedes aplicar un 10% de descuento adicional utilizando el cupón especial COSTA10.
 
@@ -4094,7 +4094,7 @@ Puedes recuperar tu carrito y aplicar tu cupón directamente ingresando aquí:
 Avísame si deseas que agilice tu orden directamente por este chat. ¡Quedo a tu total disposición!`;
 
         case 'dosing':
-          return `${hola} Te habla ${agentSig} de Peptides Costa Rica. 🇨🇷
+          return `${hola} Te habla ${agentSig} de Peptides Panama. 🇨🇷
 
 Vimos que estabas consultando por ${itemsStr}. Al adquirir péptidos en polvo, sabemos que la matemática de la reconstitución con agua bacteriostática y la dosificación correcta con jeringas de insulina puede ser confusa.
 
@@ -4102,9 +4102,9 @@ Te ofrezco asesoría gratuita y directa sobre cómo prepararlos y administrarlos
 
         case 'standard':
         default:
-          return `${hola} Te saluda ${agentSig} de Peptides Costa Rica. 🇨🇷
+          return `${hola} Te saluda ${agentSig} de Peptides Panama. 🇨🇷
 
-Notamos que dejaste algunos artículos en tu carrito (${itemsStr}). Quería ponerme a tu entera disposición por si tienes alguna consulta sobre la calidad del laboratorio, las formas de pago en Costa Rica, o si gustas que te coordine la entrega vía Correos de CR.
+Notamos que dejaste algunos artículos en tu carrito (${itemsStr}). Quería ponerme a tu entera disposición por si tienes alguna consulta sobre la calidad del laboratorio, las formas de pago en panama, o si gustas que te coordine la entrega vía Correos de CR.
 
 Puedes finalizar tu orden de forma segura en este link:
 👉 ${recoveryLink}
@@ -4116,29 +4116,29 @@ Puedes finalizar tu orden de forma segura en este link:
     else if (recipient.orderNumber) {
       switch (templateType) {
         case 'payment':
-          return `${hola} Te saluda ${agentSig} de Peptides Costa Rica. 🇨🇷
+          return `${hola} Te saluda ${agentSig} de Peptides Panama. 🇨🇷
 
 Recibimos tu orden #${recipient.orderNumber} por ${itemsStr}. Quería verificar si tuviste algún inconveniente al realizar tu pago SINPE Móvil o con Tarjeta.
 
 Quedamos atentos a la confirmación o comprobante de pago por este medio para procesar y despachar tus productos de inmediato. ¡Muchas gracias!`;
 
         case 'purity':
-          return `${hola} Te saluda ${agentSig} de Peptides Costa Rica. 🇨🇷
+          return `${hola} Te saluda ${agentSig} de Peptides Panama. 🇨🇷
 
 Muchas gracias por tu compra de ${itemsStr} (Orden #${recipient.orderNumber}). Quería compartirte de forma directa nuestra guía digital de reconstitución, almacenamiento y uso seguro para que comiences tu protocolo de la mejor manera.
 
 ¿Hay algo más en lo que te pueda asesorar o apoyar en este momento? ¡Un gusto atenderte!`;
 
         case 'discount':
-          return `${hola} Te saluda ${agentSig} de Peptides Costa Rica. 🇨🇷
+          return `${hola} Te saluda ${agentSig} de Peptides Panama. 🇨🇷
 
-Te escribo para confirmarte que estamos preparando tu orden #${recipient.orderNumber} conteniendo ${itemsStr}. En las próximas horas te estaremos compartiendo el número de guía de Correos de Costa Rica para que puedas rastrear tu paquete.
+Te escribo para confirmarte que estamos preparando tu orden #${recipient.orderNumber} conteniendo ${itemsStr}. En las próximas horas te estaremos compartiendo el número de guía de Correos de panama para que puedas rastrear tu paquete.
 
 ¡Muchas gracias por tu confianza en nosotros para tu investigación!`;
 
         case 'standard':
         default:
-          return `${hola} Te saluda ${agentSig} de Peptides Costa Rica. 🇨🇷
+          return `${hola} Te saluda ${agentSig} de Peptides Panama. 🇨🇷
 
 Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Queríamos verificar si todo marcha bien y si tienes alguna duda respecto al envío, las instrucciones de almacenamiento de los viales, o la dosificación.
 
@@ -4146,7 +4146,7 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
       }
     }
 
-    return `${cleanName ? `Hola ${cleanName},` : 'Hola,'} te saluda ${agentSig} de Peptides Costa Rica. ¿Cómo te podemos ayudar hoy?`;
+    return `${cleanName ? `Hola ${cleanName},` : 'Hola,'} te saluda ${agentSig} de Peptides Panama. ¿Cómo te podemos ayudar hoy?`;
   };
 
   // 3. Open Custom WhatsApp Composer Modal
@@ -4184,7 +4184,7 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
       } else if (waRecipient.cartItems) {
         prompt += `has an active abandoned cart containing: ${waRecipient.cartItems.map(i => `${i.product} (x${i.qty || i.quantity})`).join(', ')}. Politely remind them that we saved their items, offer support, and include a brief call to action.`;
       } else {
-        prompt += `is in our CRM database. Highlight our premium lab-tested peptides, fast local shipping in Costa Rica, and invite them to ask any questions.`;
+        prompt += `is in our CRM database. Highlight our premium lab-tested peptides, fast local shipping in panama, and invite them to ask any questions.`;
       }
       
       prompt += ` Keep it brief, conversational, and split with natural line breaks. Write the message in Spanish, as that is our primary language. Do not include subject lines, greetings placeholders, or quotes. Just give the exact chat body ready to send.`;
@@ -4356,16 +4356,16 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
           dataRows = orders.map(order => {
              const items = Array.isArray(order.items) ? order.items : [];
              const itemsSummary = items.map(i => `${i.product} x${i.qty}`).join(' | ');
-             const orderDate = new Date(order.created_at).toLocaleString('es-CR', { timeZone: 'America/Costa_Rica' });
+             const orderDate = new Date(order.created_at).toLocaleString('es-CR', { timeZone: 'America/panama' });
              return [ order.id, order.order_number || 'N/A', orderDate, order.customer_name || 'N/A', order.customer_id_number || '', formatCustomerIdType(order.customer_id_type) || '', order.customer_phone || '', order.shipping_address || 'N/A', order.status || 'Pending', order.payment_method || 'whatsapp', itemsSummary, order.total_crc || '', order.total_usd || '' ];
           });
           filename = `peptidescr-orders-${new Date().toISOString().slice(0, 10)}`;
-          title = 'Costa Rica Peptides - Orders Export';
+          title = 'panama Peptides - Orders Export';
         } else if (exportModalType === 'products') {
           headers = [ 'Product Name', 'Category', 'Price (USD)', 'Price (CRC)', 'Status', 'Bulk Discount' ];
           dataRows = products.map(p => [ p.product, p.category, p.priceUsd, p.priceCrc, p.status, p.discount ]);
           filename = `peptidescr-products-${new Date().toISOString().slice(0, 10)}`;
-          title = 'Costa Rica Peptides - Products Export';
+          title = 'panama Peptides - Products Export';
         } else if (exportModalType === 'carts') {
           headers = [ 
             'Session ID', 'Date', 'Customer Name', 'Phone', 'Email', 'Cart Items', 'Status',
@@ -4374,9 +4374,9 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
           ];
           dataRows = abandonedCarts.map(c => {
              const itemsSummary = c.cart_data ? c.cart_data.map(i => `${i.product} x${i.qty}`).join(' | ') : '';
-             const date = new Date(c.last_updated).toLocaleString('es-CR', { timeZone: 'America/Costa_Rica' });
-             const emailSentAt = c.recovery_email_sent_at ? new Date(c.recovery_email_sent_at).toLocaleString('es-CR', { timeZone: 'America/Costa_Rica' }) : '';
-             const waSentAt = c.recovery_whatsapp_sent_at ? new Date(c.recovery_whatsapp_sent_at).toLocaleString('es-CR', { timeZone: 'America/Costa_Rica' }) : '';
+             const date = new Date(c.last_updated).toLocaleString('es-CR', { timeZone: 'America/panama' });
+             const emailSentAt = c.recovery_email_sent_at ? new Date(c.recovery_email_sent_at).toLocaleString('es-CR', { timeZone: 'America/panama' }) : '';
+             const waSentAt = c.recovery_whatsapp_sent_at ? new Date(c.recovery_whatsapp_sent_at).toLocaleString('es-CR', { timeZone: 'America/panama' }) : '';
              return [ 
                c.session_id, date, c.customer_name || '', c.customer_phone || '', c.customer_email || '', itemsSummary, c.status,
                c.recovery_email_sent ? 'Yes' : 'No', emailSentAt,
@@ -4384,12 +4384,12 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
              ];
           });
           filename = `peptidescr-carts-${new Date().toISOString().slice(0, 10)}`;
-          title = 'Costa Rica Peptides - Abandoned Carts Export';
+          title = 'panama Peptides - Abandoned Carts Export';
         } else if (exportModalType === 'leads') {
           headers = [ 'Lead ID', 'Date Captured', 'Method', 'Contact Info', 'IP Address', 'City', 'Region', 'Country', 'Referrer', 'UTM Source', 'UTM Medium', 'UTM Campaign', 'Language' ];
           dataRows = leads.map(l => [
             l.id,
-            new Date(l.created_at).toLocaleString('es-CR', { timeZone: 'America/Costa_Rica' }),
+            new Date(l.created_at).toLocaleString('es-CR', { timeZone: 'America/panama' }),
             l.contact_method,
             l.contact_value,
             l.ip_address || '',
@@ -4403,7 +4403,7 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
             l.language
           ]);
           filename = `peptidescr-leads-${new Date().toISOString().slice(0, 10)}`;
-          title = 'Costa Rica Peptides - Catalog Leads Export';
+          title = 'panama Peptides - Catalog Leads Export';
         }
 
         if (format === 'csv') {
@@ -4832,7 +4832,7 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
 
   // Copy shareable link
   const getShareUrl = () => {
-    const domain = typeof window !== 'undefined' ? window.location.origin : 'https://costapeptides.vercel.app';
+    const domain = typeof window !== 'undefined' ? window.location.origin : 'https://panamapeptides.vercel.app';
     let url = `${domain}/catalog?lang=${shareLang}&currency=${shareCurrency}`;
     if (shareProduct !== 'all') {
       url += `&product=${encodeURIComponent(shareProduct)}`;
@@ -5203,7 +5203,7 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
         <div className="admin-login-container">
           <div className="admin-login-card">
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
-              <img src="/logo.png" alt="Peptides Costa Rica Admin" style={{ maxHeight: '60px', width: 'auto', objectFit: 'contain', borderRadius: '12px', boxShadow: '0 2px 16px rgba(0,0,0,0.25)' }} />
+              <img src="/logo.png" alt="Peptides Panama Admin" style={{ maxHeight: '60px', width: 'auto', objectFit: 'contain', borderRadius: '12px', boxShadow: '0 2px 16px rgba(0,0,0,0.25)' }} />
             </div>
             <p>Admin Security Dashboard</p>
             
@@ -5281,7 +5281,7 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
       <nav className="admin-navbar">
         <div className="admin-nav-top-row">
           <div className="admin-nav-logo-container">
-            <img src="/logo.png" alt="Peptides Costa Rica Admin Logo" className="admin-logo-img" />
+            <img src="/logo.png" alt="Peptides Panama Admin Logo" className="admin-logo-img" />
             <div className="db-status-indicator">
               <span className={`status-dot ${isDbConnected ? 'connected' : 'simulation'}`}></span>
               <span className="status-text">{isDbConnected ? 'Live Connection' : 'Simulation Mode'}</span>
@@ -5664,8 +5664,8 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
                     <p style={{ margin: '0 0 8px 0', color: '#38bdf8', fontWeight: 'bold' }}>🧪 Live Testing Links (No analytics logged):</p>
                     <ul style={{ margin: 0, paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                       <li>
-                        <a href="https://catalog.peptidescostarica.net/catalog?admin_preview=true" target="_blank" rel="noopener noreferrer" style={{ color: '#34d399', textDecoration: 'none' }}>
-                          https://catalog.peptidescostarica.net/catalog?admin_preview=true
+                        <a href="https://catalog.peptidespanama.net/catalog?admin_preview=true" target="_blank" rel="noopener noreferrer" style={{ color: '#34d399', textDecoration: 'none' }}>
+                          https://catalog.peptidespanama.net/catalog?admin_preview=true
                         </a>
                       </li>
                       <li>
@@ -7228,7 +7228,7 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
                     }}
                   >
                     <div style={{ fontSize: '0.65rem', color: msg.role === 'user' ? '#93c5fd' : '#38bdf8', fontWeight: 'bold', marginBottom: '4px', textTransform: 'uppercase' }}>
-                      {msg.role === 'user' ? 'You (Administrator)' : '🧬 Costa Peptides Copilot'}
+                      {msg.role === 'user' ? 'You (Administrator)' : '🧬 Panama Peptides Copilot'}
                     </div>
                     {msg.text}
                   </div>

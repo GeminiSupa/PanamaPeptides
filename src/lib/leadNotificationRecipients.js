@@ -99,7 +99,7 @@ export async function getLeadAlertAudience(supabase = null, { source = '', owner
 
   const fallback = managedAvailable
     ? []
-    : splitList(process.env.LEAD_NOTIFICATION_TO || 'omerforce@gmail.com, info@peptidescostarica.net');
+    : splitList(process.env.LEAD_NOTIFICATION_TO || 'omerforce@gmail.com, info@peptidespanama.net');
 
   return leadAlertAudience({ rows, profiles, owner, fallback });
 }

@@ -53,7 +53,7 @@ test('accepts connector aliases and safely ignores object-shaped scalar fields',
     campaignName: { unexpected: true },
     formId: 'form-2',
     customFields: [
-      { name: 'location', label: 'Delivery location', values: ['Costa Rica'] },
+      { name: 'location', label: 'Delivery location', values: ['panama'] },
     ],
   });
 
@@ -63,7 +63,7 @@ test('accepts connector aliases and safely ignores object-shaped scalar fields',
   assert.deepEqual(lead.answers[0], {
     questionId: 'location',
     question: 'Delivery location',
-    answer: 'Costa Rica',
+    answer: 'panama',
   });
 });
 
@@ -119,7 +119,7 @@ test('posting instructions name the endpoint, authentication and retry contract'
     new URL('../docs/tiktok-lead-posting.md', import.meta.url),
     'utf8',
   );
-  assert.match(docs, /POST https:\/\/catalog\.peptidescostarica\.net\/api\/leads\/tiktok/);
+  assert.match(docs, /POST https:\/\/catalog\.peptidespanama\.net\/api\/leads\/tiktok/);
   assert.match(docs, /Authorization: Bearer <TIKTOK_LEAD_POSTING_SECRET>/);
   assert.match(docs, /New Lead From TikTok Forms/);
   // The docs must describe the rotation that actually runs, not the single

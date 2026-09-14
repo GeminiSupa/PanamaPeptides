@@ -47,11 +47,11 @@ export async function POST(request) {
       return NextResponse.json({ success: false, skipped: true, reason: gate.reason });
     }
 
-    const origin = request.headers.get('origin') || 'https://catalog.peptidescostarica.net';
+    const origin = request.headers.get('origin') || 'https://catalog.peptidespanama.net';
     const catalogUrl = `${origin}/catalog`;
     
     // Fallback message text for DB logging
-    const message = `¡Bienvenido a Péptidos Costa Rica! Accede al catálogo aquí: ${catalogUrl}. Para consultas 24/7 contáctanos al +506 8404-6973.`;
+    const message = `¡Bienvenido a Péptidos panama! Accede al catálogo aquí: ${catalogUrl}. Para consultas 24/7 contáctanos al +506 8404-6973.`;
 
     console.log(`[Welcome WhatsApp] Sending automated WhatsApp template welcome to ${cleanPhone}...`);
 

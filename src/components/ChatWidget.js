@@ -221,13 +221,13 @@ export default function ChatWidget() {
     offlineNote: (() => {
       if (!closedToday) {
         return lang === 'en'
-          ? `We are offline right now. Today our team replies ${hours}, Costa Rica time.`
-          : `Estamos fuera de horario. Hoy nuestro equipo responde de ${hours}, hora de Costa Rica.`;
+          ? `We are offline right now. Today our team replies ${hours}, panama time.`
+          : `Estamos fuera de horario. Hoy nuestro equipo responde de ${hours}, hora de panama.`;
       }
       if (reopensText) {
         return lang === 'en'
-          ? `We are closed today. Our team is back ${reopensText}, Costa Rica time.`
-          : `Hoy estamos cerrados. Nuestro equipo vuelve el ${reopensText}, hora de Costa Rica.`;
+          ? `We are closed today. Our team is back ${reopensText}, panama time.`
+          : `Hoy estamos cerrados. Nuestro equipo vuelve el ${reopensText}, hora de panama.`;
       }
       return lang === 'en'
         ? 'We are offline right now. Leave a message and our team will reply here.'
@@ -707,7 +707,7 @@ export default function ChatWidget() {
                 <input value={profile.name} onChange={(e) => updateProfile('name', e.target.value)} placeholder={copy.name} style={inputStyle} autoComplete="name" />
                 <input value={profile.email} onChange={(e) => updateProfile('email', e.target.value)} placeholder={copy.email} style={inputStyle} type="email" inputMode="email" autoComplete="email" />
                 {/* The country sits beside the number rather than being typed
-                    into it, so a Costa Rican number arrives dialable without
+                    into it, so a panaman number arrives dialable without
                     the visitor having to know to write +506. */}
                 <div style={{ display: 'flex', gap: '6px' }}>
                   <select
@@ -720,7 +720,7 @@ export default function ChatWidget() {
                     {/* A closed select can only show its selected option's own
                         text, so that one row carries just the code and the rest
                         carry the country name — which is what keeps "+506" in
-                        the form and "+506 Costa Rica" in the list. Staying with
+                        the form and "+506 panama" in the list. Staying with
                         a native select also keeps the OS picker on phones,
                         which beats any custom list on a small screen. */}
                     {LIVE_CHAT_DIAL_CODES.map((entry) => (

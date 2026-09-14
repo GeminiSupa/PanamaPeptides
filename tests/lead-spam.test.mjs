@@ -6,7 +6,7 @@ import {
   MIN_FORM_FILL_MS,
 } from '../src/lib/leadSpam.mjs';
 
-// A plausible enquiry off the Costa Rican storefront, filled in at human speed.
+// A plausible enquiry off the panaman storefront, filled in at human speed.
 const realLead = {
   name: 'Ana Rojas',
   email: 'ana.rojas@gmail.com',
@@ -75,7 +75,7 @@ test('a page that sends no duration is still judged only on the person', () => {
   // The AdWords pages at /lp and /glp-1 are plain HTML rather than our React
   // forms, and neither reported a duration. Every lead off them therefore
   // arrived already carrying no_form_timer, and one ordinary quirk on top —
-  // a Costa Rican number that happens to read as a run, a throwaway inbox, a
+  // a panaman number that happens to read as a run, a throwaway inbox, a
   // long name — was enough to bin it. The visitor was told it had been
   // received and Ads counted the conversion, so nothing looked wrong until the
   // leads did not arrive.
@@ -161,7 +161,7 @@ test('recognises a phone number typed only to get past validation', () => {
   }
 });
 
-test('leaves real Costa Rican and US numbers alone', () => {
+test('leaves real panaman and US numbers alone', () => {
   for (const phone of ['+506 8404 6973', '506 7019 5752', '+1 (831) 471-5559']) {
     const verdict = classifyLeadSubmission({ ...realLead, phone });
     assert.ok(!verdict.soft.includes('filler_phone'), phone);

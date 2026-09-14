@@ -33,7 +33,7 @@ const supabase = createClient(
 );
 
 async function createFlashSale() {
-  // 48 hours from right now (Costa Rica = UTC-6, but we store in UTC)
+  // 48 hours from right now (panama = UTC-6, but we store in UTC)
   const now = new Date();
   const expiresAt = new Date(now.getTime() + 48 * 60 * 60 * 1000);
 

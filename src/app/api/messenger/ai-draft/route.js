@@ -44,7 +44,7 @@ export async function POST(request) {
       .join('\n');
     const latest = [...(messages || [])].reverse().find((m) => m.direction === 'inbound')?.text || '';
 
-    const prompt = `You are the customer support agent for "Peptides Costa Rica" replying on Facebook Messenger.
+    const prompt = `You are the customer support agent for "Peptides Panama" replying on Facebook Messenger.
 Reply in the same language the customer used (Spanish or English; default to Spanish if unsure).
 Be warm, professional, and helpful. Keep it concise and natural for chat.
 

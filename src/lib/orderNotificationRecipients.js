@@ -24,7 +24,7 @@ const splitList = (value = '') => String(value || '')
 
 export function getBaseOrderNotificationRecipients() {
   return splitList(
-    process.env.ORDER_NOTIFICATION_TO || 'omerforce@gmail.com, info@peptidescostarica.net'
+    process.env.ORDER_NOTIFICATION_TO || 'omerforce@gmail.com, info@peptidespanama.net'
   );
 }
 

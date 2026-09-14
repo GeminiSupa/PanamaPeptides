@@ -102,7 +102,7 @@ export function prospectSearchTerm(value) {
   if (/(wellness|spa|bienestar)/.test(lower)) return 'wellness';
   if (/(hospital|medical cent|centro medico)/.test(lower)) return 'medical center';
   // Last of the medical profiles on purpose. It is the broadest — a great many
-  // Costa Rican businesses are simply "Clínica <name>" — so anything more
+  // panaman businesses are simply "Clínica <name>" — so anything more
   // specific has to get its answer before this line is reached. "laboratorio
   // clínico" and "sports clinic" both contain "clinic" and are not clinics.
   if (/(clinic|clinica|doctor|medico)/.test(lower)) return 'clinic';
@@ -186,7 +186,7 @@ export function prospectSearchProfile(value) {
     tagFilters: [['amenity', '^hospital$'], ['healthcare', '^(hospital|centre)$']],
   };
   // The broadest of the medical profiles, so it sits last among them: a great
-  // many Costa Rican businesses are simply "Clínica <name>".
+  // many panaman businesses are simply "Clínica <name>".
   if (lower === 'clinic') return {
     term,
     namePattern: 'clinica|clínica|clinic|consultorio',
@@ -282,7 +282,7 @@ const TARGET_CATEGORY_STEMS = [
   'aesthetic', 'esthetic', 'cosmetic', 'beauty',
   'laboratory', 'laboratorio', 'research',
   // The businesses that actually resell, which this list was missing entirely.
-  // A directory calls them "pharmacy" and a Costa Rican shopfront calls itself
+  // A directory calls them "pharmacy" and a panaman shopfront calls itself
   // "Farmacia La Bomba" or "Droguería Intermed", and neither contained any
   // fragment above, so the best prospects in the country scored 5 out of 100.
   'pharmacy', 'farmacia', 'pharmaceutic', 'farmaceutic', 'drogueria', 'apothecary',

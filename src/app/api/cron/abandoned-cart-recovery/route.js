@@ -129,8 +129,8 @@ export async function GET(request) {
     const recoveryLink = `${baseUrl}/checkout?session_id=${cart.session_id}&recover=true`;
 
     const msg = isSpanish
-      ? `¡Hola! Notamos que dejaste algunos artículos en tu carrito en Peptides Costa Rica 🧪:\n\n${cartItemsText}\n\n¿Tuviste algún problema al completar tu pedido? Usa este enlace para finalizar tu compra y obtén un 5% de descuento extra en tu orden:\n${recoveryLink}`
-      : `Hi! We noticed you left some items in your cart at Peptides Costa Rica 🧪:\n\n${cartItemsText}\n\nDid you have any issues completing your order? Use this link to complete your checkout and get an extra 5% off your order:\n${recoveryLink}`;
+      ? `¡Hola! Notamos que dejaste algunos artículos en tu carrito en Peptides Panama 🧪:\n\n${cartItemsText}\n\n¿Tuviste algún problema al completar tu pedido? Usa este enlace para finalizar tu compra y obtén un 5% de descuento extra en tu orden:\n${recoveryLink}`
+      : `Hi! We noticed you left some items in your cart at Peptides Panama 🧪:\n\n${cartItemsText}\n\nDid you have any issues completing your order? Use this link to complete your checkout and get an extra 5% off your order:\n${recoveryLink}`;
 
     // Send in-process. Posting to /api/whatsapp/send returned 401 on every run:
     // that route requires an admin session and a cron has none, so no recovery

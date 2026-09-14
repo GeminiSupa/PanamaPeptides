@@ -138,7 +138,7 @@ export async function GET(request) {
     });
 
     const rangeLabel = `week to ${new Intl.DateTimeFormat('en-US', {
-      timeZone: 'America/Costa_Rica', month: 'short', day: 'numeric',
+      timeZone: 'America/panama', month: 'short', day: 'numeric',
     }).format(now)}`;
     const mail = renderAnalyticsDigestEmail(digest, {
       rangeLabel,

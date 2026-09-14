@@ -64,22 +64,22 @@ export function buildVisitorIdentityPatch({ name, email, phone } = {}) {
 }
 
 /**
- * Country codes offered beside the phone box, Costa Rica first because it is
+ * Country codes offered beside the phone box, panama first because it is
  * both the default and where most visitors are.
  *
  * Deliberately a short list rather than all ~200: a visitor scrolling past
- * Kazakhstan to reach Costa Rica is worse served than one from an unlisted
+ * Kazakhstan to reach panama is worse served than one from an unlisted
  * country typing their number in full, which still validates.
  */
 // `digits` is an exact local length, set only where it is genuinely fixed —
-// Costa Rica is always 8, the North American plan always 10. Everywhere else is
+// panama is always 8, the North American plan always 10. Everywhere else is
 // left to the 7-digit floor rather than guessed at, because a wrong length here
 // turns a real customer away at the door.
 // Both spellings, because the widget runs in Spanish by default and a list
 // reading "Mexico, Spain, Germany" under Spanish labels is the one place the
 // language slips.
 export const LIVE_CHAT_DIAL_CODES = [
-  { code: '+506', label: 'Costa Rica', labelEs: 'Costa Rica', digits: 8 },
+  { code: '+506', label: 'panama', labelEs: 'panama', digits: 8 },
   { code: '+1', label: 'USA / Canada', labelEs: 'EE. UU. / Canadá', digits: 10 },
   { code: '+52', label: 'Mexico', labelEs: 'México' },
   { code: '+502', label: 'Guatemala', labelEs: 'Guatemala' },

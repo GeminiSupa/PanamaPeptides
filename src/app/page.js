@@ -57,7 +57,7 @@ const FALLBACK_PRODUCTS = [
     price_usd: '$115.00',
     price_crc: '₡58,000',
     status: 'In Stock',
-    image_url: '/vial_costarica_hero.png',
+    image_url: '/vial_panama_hero.png',
   },
   {
     product: 'Semaglutide 5mg',
@@ -260,7 +260,7 @@ export default function LandingPage() {
             </label>
           </div>
           <div className="clone-hero-media">
-            <img src={settings.heroImageUrl || '/catalog-promo-banner.webp'} alt="Peptides Costa Rica products" />
+            <img src={settings.heroImageUrl || '/catalog-promo-banner.webp'} alt="Panama Peptides products" />
           </div>
         </section>
 
@@ -362,7 +362,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="clone-audience-images">
-              <img src="/vials_group_costarica.png" alt="Peptides Costa Rica vial group" />
+              <img src="/vials_group_panama.png" alt="Panama Peptides vial group" />
               <img src="/modern_3d_vials_group.png" alt="Peptide vial collection" />
             </div>
           </div>
@@ -386,8 +386,8 @@ export default function LandingPage() {
           </div>
           <div className="clone-quality-cards">
             {(lang === 'en'
-              ? ['Lab-tested product access', 'Local Costa Rica support', 'Transparent product information']
-              : ['Acceso a productos verificados', 'Soporte local en Costa Rica', 'Información transparente']
+              ? ['Lab-tested product access', 'Local Panama support', 'Transparent product information']
+              : ['Acceso a productos verificados', 'Soporte local en Panamá', 'Información transparente']
             ).map((item) => (
               <article key={item}><Check size={17} /> {item}</article>
             ))}

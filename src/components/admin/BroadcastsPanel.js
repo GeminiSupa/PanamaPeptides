@@ -60,12 +60,12 @@ export default function BroadcastsPanel({ products = [], draft = null, onDraftAp
   const [emailDelaySeconds, setEmailDelaySeconds] = useState(0);
   const [whatsappBatchSize, setWhatsappBatchSize] = useState(10);
   const [whatsappDelaySeconds, setWhatsappDelaySeconds] = useState(0);
-  // Quiet hours in Costa Rica time. A paced send otherwise runs through the
+  // Quiet hours in panama time. A paced send otherwise runs through the
   // night; 8am-8pm is the sane default for a customer's phone.
   const [windowStartHour, setWindowStartHour] = useState(8);
   const [windowEndHour, setWindowEndHour] = useState(20);
   const [windowEnabled, setWindowEnabled] = useState(true);
-  // Costa Rica's clock, ticking, so the "outside your hours" warning below
+  // panama's clock, ticking, so the "outside your hours" warning below
   // cannot go stale while the operator fills the form in.
   const [crNow, setCrNow] = useState(() => Date.now());
   useEffect(() => {
@@ -779,7 +779,7 @@ export default function BroadcastsPanel({ products = [], draft = null, onDraftAp
 
             <div style={{ marginTop: '12px', paddingTop: '12px', borderTop: '1px solid rgba(148,163,184,0.15)' }}>
               <div style={{ color: '#e2e8f0', fontSize: '0.8rem', fontWeight: 700, marginBottom: '8px' }}>
-                When to send <span style={{ color: '#94a3b8', fontWeight: 400 }}>(Costa Rica time — {String(currentCrHour).padStart(2, '0')}:00 there now)</span>
+                When to send <span style={{ color: '#94a3b8', fontWeight: 400 }}>(panama time — {String(currentCrHour).padStart(2, '0')}:00 there now)</span>
               </div>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', marginBottom: '6px' }}>
                 <input
@@ -821,7 +821,7 @@ export default function BroadcastsPanel({ products = [], draft = null, onDraftAp
                   </div>
                   {heldByWindow ? (
                     <div style={{ marginTop: '6px', padding: '8px 10px', borderRadius: '8px', background: 'rgba(251,191,36,0.1)', border: '1px solid rgba(251,191,36,0.3)', color: '#fbbf24', fontSize: '0.74rem', lineHeight: 1.45 }}>
-                      ⏸️ It is {String(currentCrHour).padStart(2, '0')}:00 in Costa Rica, outside these hours. Nothing will send until {HOUR_OPTIONS[windowStartHour]?.label}. Pick “Send now” above to go immediately.
+                      ⏸️ It is {String(currentCrHour).padStart(2, '0')}:00 in panama, outside these hours. Nothing will send until {HOUR_OPTIONS[windowStartHour]?.label}. Pick “Send now” above to go immediately.
                     </div>
                   ) : (
                     <div style={{ marginTop: '6px', color: '#94a3b8', fontSize: '0.72rem', lineHeight: 1.45 }}>
@@ -831,7 +831,7 @@ export default function BroadcastsPanel({ products = [], draft = null, onDraftAp
                 </>
               ) : (
                 <div style={{ color: '#94a3b8', fontSize: '0.72rem', lineHeight: 1.45 }}>
-                  Starts immediately and keeps going through the night in Costa Rica. Fine for a test; think twice for a large marketing send.
+                  Starts immediately and keeps going through the night in panama. Fine for a test; think twice for a large marketing send.
                 </div>
               )}
             </div>

@@ -1,5 +1,5 @@
 -- =========================================================================
---            PEPTIDES COSTA RICA - SUB-USER TIER MIGRATION
+--            Peptides Panama - SUB-USER TIER MIGRATION
 -- =========================================================================
 -- Run this in your Supabase SQL Editor. Safe to re-run.
 --

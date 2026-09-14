@@ -89,7 +89,7 @@ const tableLayout = `
                       <div style={{ display: 'flex', gap: '6px', justifyContent: 'flex-end' }}>
                         {(cart.user_phone || cart.customer_phone) && (
                           <button 
-                            onClick={() => window.open(\`https://wa.me/\${(cart.user_phone || cart.customer_phone).replace(/\\D/g, '')}?text=Hi! We noticed you left some items in your Costa Peptides cart. Can we help you complete your order?\`, '_blank')}
+                            onClick={() => window.open(\`https://wa.me/\${(cart.user_phone || cart.customer_phone).replace(/\\D/g, '')}?text=Hi! We noticed you left some items in your Panama Peptides cart. Can we help you complete your order?\`, '_blank')}
                             style={{ width: '28px', height: '28px', borderRadius: '6px', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', border: '1px solid rgba(16, 185, 129, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.2s' }}
                             title="Quick WhatsApp"
                           >

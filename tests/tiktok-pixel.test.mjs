@@ -8,9 +8,9 @@ import {
 } from '../src/lib/tiktokPixel.mjs';
 
 test('each production hostname receives only its assigned TikTok pixel', () => {
-  assert.equal(getTikTokPixelId('peptidescostarica.net'), MAIN_SITE_TIKTOK_PIXEL_ID);
-  assert.equal(getTikTokPixelId('www.peptidescostarica.net'), MAIN_SITE_TIKTOK_PIXEL_ID);
-  assert.equal(getTikTokPixelId('catalog.peptidescostarica.net'), CATALOG_TIKTOK_PIXEL_ID);
+  assert.equal(getTikTokPixelId('peptidespanama.net'), MAIN_SITE_TIKTOK_PIXEL_ID);
+  assert.equal(getTikTokPixelId('www.peptidespanama.net'), MAIN_SITE_TIKTOK_PIXEL_ID);
+  assert.equal(getTikTokPixelId('catalog.peptidespanama.net'), CATALOG_TIKTOK_PIXEL_ID);
 });
 
 test('previews and local development do not send TikTok pixel traffic', () => {

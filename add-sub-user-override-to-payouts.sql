@@ -1,5 +1,5 @@
 -- =========================================================================
---        PEPTIDES COSTA RICA - SUB-USER OVERRIDE ON COMMISSION PAYOUTS
+--        Peptides Panama - SUB-USER OVERRIDE ON COMMISSION PAYOUTS
 -- =========================================================================
 -- Run this in your Supabase SQL Editor after add-sub-user-tier.sql.
 -- Safe to re-run.

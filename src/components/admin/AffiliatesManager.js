@@ -10,7 +10,7 @@ import ReferralAnalytics from '@/components/admin/ReferralAnalytics';
 import { isSalesAgentAffiliate } from '@/lib/salesAgentAffiliate.mjs';
 import PayoutSettlementDialog from './PayoutSettlementDialog';
 
-const CATALOG_BASE_URL = process.env.NEXT_PUBLIC_AFFILIATE_CATALOG_URL || 'https://catalog.peptidescostarica.net/catalog?lang=es';
+const CATALOG_BASE_URL = process.env.NEXT_PUBLIC_AFFILIATE_CATALOG_URL || 'https://catalog.peptidespanama.net/catalog?lang=es';
 
 const EMPTY_PROMO = {
   code: '', affiliate_id: '', discount_pct: 0.10, is_active: true, valid_until: '',
@@ -328,7 +328,7 @@ export default function AffiliatesManager({ products = [] }) {
     }
   };
 
-  // Costa Rica is UTC−6 year-round: turn a YYYY-MM-DD into that day's last
+  // panama is UTC−6 year-round: turn a YYYY-MM-DD into that day's last
   // moment in CR time, so "valid until Sunday" means Sunday night in CR
   // regardless of which timezone the admin creating the code sits in.
 
@@ -617,14 +617,14 @@ export default function AffiliatesManager({ products = [] }) {
                   />
                   <input
                     type="date"
-                    title="Optional: last day the code works, Costa Rica time. Leave empty for no expiry."
+                    title="Optional: last day the code works, panama time. Leave empty for no expiry."
                     value={newPromo.valid_until}
                     onChange={e => setNewPromo({...newPromo, valid_until: e.target.value})}
                     style={{...inputStyle, color: newPromo.valid_until ? '#f8fafc' : '#94a3b8'}}
                   />
                   <input
                     type="time"
-                    title="Time of day the code expires, Costa Rica time. Defaults to 23:59 (midnight)."
+                    title="Time of day the code expires, panama time. Defaults to 23:59 (midnight)."
                     value={newPromo.valid_until_time || '23:59'}
                     onChange={e => setNewPromo({...newPromo, valid_until_time: e.target.value})}
                     disabled={!newPromo.valid_until}
@@ -1143,13 +1143,13 @@ export default function AffiliatesManager({ products = [] }) {
               )}
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '6px' }}>Valid From (Costa Rica time)</label>
+                <label style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '6px' }}>Valid From (panama time)</label>
                 <input type="datetime-local" className="admin-input" style={{ width: '100%' }} value={editingPromo.valid_from} onChange={e => setEditingPromo({...editingPromo, valid_from: e.target.value})} />
                 {editingPromo.valid_from && <div style={{ marginTop: '4px', fontSize: '0.78rem', color: '#38bdf8' }}>= {formatCrWall(editingPromo.valid_from)}</div>}
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '6px' }}>Valid Until (Costa Rica time)</label>
+                <label style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '6px' }}>Valid Until (panama time)</label>
                 <input type="datetime-local" className="admin-input" style={{ width: '100%' }} value={editingPromo.valid_until} onChange={e => setEditingPromo({...editingPromo, valid_until: e.target.value})} />
                 {editingPromo.valid_until && <div style={{ marginTop: '4px', fontSize: '0.78rem', color: '#38bdf8' }}>= {formatCrWall(editingPromo.valid_until)}</div>}
               </div>

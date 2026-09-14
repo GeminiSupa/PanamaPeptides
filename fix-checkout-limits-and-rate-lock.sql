@@ -1,5 +1,5 @@
 -- =========================================================================
---   PEPTIDES COSTA RICA - CHECKOUT LOCKOUT FIX + EXCHANGE RATE LOCK
+--   Peptides Panama - CHECKOUT LOCKOUT FIX + EXCHANGE RATE LOCK
 -- =========================================================================
 -- Run this in the Supabase SQL Editor BEFORE the matching code is deployed.
 --

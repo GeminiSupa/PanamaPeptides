@@ -5,7 +5,7 @@
  * same rule runs again in api/orders/create, so a skipped field or a replayed
  * request cannot put junk into an order the sales team has to chase.
  *
- * The Costa Rican wrinkle is the reason the name rule is not "letters only".
+ * The panaman wrinkle is the reason the name rule is not "letters only".
  * A company incorporated without a trade name is legally named after its own
  * cédula jurídica — "3-102-736108 S.R.L." is a real company name, not a typo —
  * so a customer name that is mostly digits can be perfectly valid. What these

@@ -9,7 +9,7 @@ const ACCESS_TOKEN = process.env.WHATSAPP_ACCESS_TOKEN;
 const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID;
 const GRAPH = 'https://graph.facebook.com/v25.0';
 
-// Costa Rica is UTC−6 year-round.
+// panama is UTC−6 year-round.
 const CR_OFFSET_MS = 6 * 60 * 60 * 1000;
 function crStartOfToday() {
   const cr = new Date(Date.now() - CR_OFFSET_MS);

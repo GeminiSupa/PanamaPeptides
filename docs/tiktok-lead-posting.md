@@ -1,13 +1,13 @@
 # TikTok Form Lead Posting
 
 Use this server-to-server endpoint to send TikTok Instant Form leads into the
-Peptides Costa Rica CRM. Do **not** give a connector the Supabase URL, anon key,
+Peptides Panama CRM. Do **not** give a connector the Supabase URL, anon key,
 or service-role key.
 
 ## Endpoint
 
 ```text
-POST https://catalog.peptidescostarica.net/api/leads/tiktok
+POST https://catalog.peptidespanama.net/api/leads/tiktok
 Content-Type: application/json
 Authorization: Bearer <TIKTOK_LEAD_POSTING_SECRET>
 ```
@@ -48,7 +48,7 @@ At least one valid `email` or `phone` is required.
 
 ```bash
 curl --request POST \
-  'https://catalog.peptidescostarica.net/api/leads/tiktok' \
+  'https://catalog.peptidespanama.net/api/leads/tiktok' \
   --header 'Authorization: Bearer REPLACE_WITH_POSTING_SECRET' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -58,7 +58,7 @@ curl --request POST \
     "phone": "+506 8888-1234",
     "language": "es",
     "campaign_id": "183746281",
-    "campaign_name": "Costa Rica Research Leads",
+    "campaign_name": "panama Research Leads",
     "form_id": "74920133",
     "form_name": "Catalog Enquiry",
     "ad_id": "183746299",

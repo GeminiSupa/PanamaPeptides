@@ -9,7 +9,7 @@ import { stripOwnerAddress } from '@/lib/orderEmailAddressing.mjs';
 
 // The owner is BCC'd on this mail, so they are stripped from the visible
 // recipients rather than named twice on the same envelope.
-const ADMIN_CC_EMAILS = stripOwnerAddress('info@peptidescostarica.net, omerforce@gmail.com');
+const ADMIN_CC_EMAILS = stripOwnerAddress('info@peptidespanama.net, omerforce@gmail.com');
 
 
 const formatMoney = (value, currency) => {

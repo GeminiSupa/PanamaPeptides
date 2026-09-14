@@ -1,11 +1,11 @@
 /** Shared helpers for cart recovery links and WhatsApp outreach. */
 
-export const CATALOG_ORIGIN = 'https://catalog.peptidescostarica.net';
+export const CATALOG_ORIGIN = 'https://catalog.peptidespanama.net';
 export const WHATSAPP_COMPLIANCE_BLOCK_REASON =
   'WhatsApp cart recovery, sales outreach, and marketing broadcasts are disabled while the account is in support-only compliance mode.';
 
 export const DEFAULT_WHATSAPP_AI_PROMPT =
-  "You are the Peptides Costa Rica virtual store assistant. Write like a capable, friendly member of the sales and customer service team: direct, natural, concise, and never scripted. Help inbound customers buy laboratory-research products using only verified catalog, inventory, price, and promotion data supplied in the conversation context. You may highlight a current offer, explain verified product format or documentation, quote verified prices, and collect the product, quantity, currency, and province needed for a human specialist to complete the sale. Never invent details or make medical or human-use claims.";
+  "You are the Peptides Panama virtual store assistant. Write like a capable, friendly member of the sales and customer service team: direct, natural, concise, and never scripted. Help inbound customers buy laboratory-research products using only verified catalog, inventory, price, and promotion data supplied in the conversation context. You may highlight a current offer, explain verified product format or documentation, quote verified prices, and collect the product, quantity, currency, and province needed for a human specialist to complete the sale. Never invent details or make medical or human-use claims.";
 
 // This policy is appended after the editable admin prompt so old or overly
 // broad settings cannot reintroduce incorrect shipping facts, robotic replies,
@@ -24,9 +24,9 @@ export const WHATSAPP_AI_REPLY_POLICY = `Mandatory reply policy (this takes prio
 - Products are for laboratory research only. Never give medical advice, treatment claims, dosage, injection, or human/veterinary-use guidance.
 
 Authoritative business facts:
-- Inventory is stocked in Costa Rica and orders ship locally within Costa Rica; do not imply international fulfillment.
+- Inventory is stocked in panama and orders ship locally within panama; do not imply international fulfillment.
 - Orders are normally processed within 24 hours after payment confirmation. Weekend or holiday orders are processed the next business day.
-- Standard delivery is 1-3 business days depending on the destination, using Correos de Costa Rica or Moovin.
+- Standard delivery is 1-3 business days depending on the destination, using Correos de panama or Moovin.
 - Free shipping starts at $200 USD-equivalent after discounts. Do not state a fixed CRC threshold because the exchange rate changes. Do not mention the threshold unless it answers the customer's question.`;
 
 export function buildWhatsAppAiPrompts({
@@ -147,8 +147,8 @@ export function buildWhatsAppFallbackReply({ displayName = '', matchedOrderId = 
   const asksAboutShipping = /\b(ship|shipping|delivery|lead time|env[ií]o|entrega|tiempo de entrega)\b/.test(normalizedMessage);
   if (asksAboutShipping) {
     return lang === 'en'
-      ? `${greeting} — we stock and ship locally from Costa Rica. Orders are processed within 24 hours after payment confirmation, and delivery normally takes 1-3 business days. Which product are you looking for?`
-      : `${greeting}, tenemos inventario y enviamos localmente desde Costa Rica. Procesamos los pedidos dentro de 24 horas tras confirmar el pago y la entrega normalmente toma de 1 a 3 días hábiles. ¿Qué producto buscas?`;
+      ? `${greeting} — we stock and ship locally from panama. Orders are processed within 24 hours after payment confirmation, and delivery normally takes 1-3 business days. Which product are you looking for?`
+      : `${greeting}, tenemos inventario y enviamos localmente desde panama. Procesamos los pedidos dentro de 24 horas tras confirmar el pago y la entrega normalmente toma de 1 a 3 días hábiles. ¿Qué producto buscas?`;
   }
 
   if (matchedOrderId) {
@@ -158,8 +158,8 @@ export function buildWhatsAppFallbackReply({ displayName = '', matchedOrderId = 
   }
 
   return lang === 'en'
-    ? `${greeting} — thanks for reaching out. We stock locally in Costa Rica and deliver nationwide. Which product are you looking for?`
-    : `${greeting}, gracias por escribirnos. Tenemos inventario local en Costa Rica y entregamos en todo el país. ¿Qué producto buscas?`;
+    ? `${greeting} — thanks for reaching out. We stock locally in panama and deliver nationwide. Which product are you looking for?`
+    : `${greeting}, gracias por escribirnos. Tenemos inventario local en panama y entregamos en todo el país. ¿Qué producto buscas?`;
 }
 
 export function formatPhoneForWhatsApp(phone) {
@@ -197,7 +197,7 @@ export function buildCartRecoveryWhatsAppMessage({ name, items, recoveryLink, up
   void recoveryLink;
   void updated;
 
-  return `¡Hola ${cleanName}! Gracias por escribirnos a Peptides Costa Rica.
+  return `¡Hola ${cleanName}! Gracias por escribirnos a Peptides Panama.
 
 En este momento nuestro canal de WhatsApp está disponible solo para soporte general. Un miembro del equipo puede ayudarte por los canales aprobados si necesitas seguimiento adicional.
 

@@ -3,7 +3,7 @@
  *
  * WHY THIS EXISTS
  *
- * peptidescostarica.net receives mail at Rackspace (MX: mx1.emailsrvr.com).
+ * peptidespanama.net receives mail at Rackspace (MX: mx1.emailsrvr.com).
  * Everything the app sends goes out through Elastic Email. Rackspace treats
  * inbound mail that claims to be from its own hosted domain, arriving from
  * anywhere other than Rackspace, as spoofing and refuses it at its boundary —
@@ -13,7 +13,7 @@
  * The failure is silent, which is what made it expensive. Elastic accepts the
  * submission and returns success, so the app logs "sent" and moves on. The
  * rejection happens later, at Rackspace, with nothing in the app to record it.
- * From 12 Aug 2026 every new-order alert to info@peptidescostarica.net was
+ * From 12 Aug 2026 every new-order alert to info@peptidespanama.net was
  * lost this way while the dashboard reported delivery, and the workaround was
  * a personal address CC'd onto the recipient list ("Joe (temp CC until info@
  * fixed)").
@@ -41,12 +41,12 @@
  * today, never broken.
  *
  * TO ENABLE: set OWN_DOMAIN_SMTP_HOST / _PORT / _USER / _PASS to a Rackspace
- * mailbox on peptidescostarica.net (secure.emailsrvr.com:465). Optionally
+ * mailbox on peptidespanama.net (secure.emailsrvr.com:465). Optionally
  * OWN_DOMAIN_SMTP_FROM; it defaults to the mailbox's own address, which is
  * the point — Rackspace accepts its own user sending as itself.
  */
 
-export const OWN_MAIL_DOMAIN = 'peptidescostarica.net';
+export const OWN_MAIL_DOMAIN = 'peptidespanama.net';
 
 const read = (env, name) => {
   const raw = env?.[name];
@@ -76,7 +76,7 @@ export function getOwnDomainSmtpConfig(env = process.env) {
   const user = read(env, 'OWN_DOMAIN_SMTP_USER');
   const pass = read(env, 'OWN_DOMAIN_SMTP_PASS');
   const from = read(env, 'OWN_DOMAIN_SMTP_FROM')
-    || (user ? `Peptides Costa Rica <${user}>` : '');
+    || (user ? `Peptides Panama <${user}>` : '');
 
   return {
     host,

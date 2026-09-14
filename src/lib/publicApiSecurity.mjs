@@ -33,7 +33,7 @@ export function getRequestIp(request) {
 
 function isCompanyHost(hostname) {
   const host = String(hostname || '').toLowerCase().replace(/\.$/, '');
-  return host === 'peptidescostarica.net' || host.endsWith('.peptidescostarica.net');
+  return host === 'peptidespanama.net' || host.endsWith('.peptidespanama.net');
 }
 
 /**

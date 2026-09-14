@@ -335,7 +335,7 @@ export async function POST(request) {
     const teamMail = buildTeamRefundEmail({ order: updated, plan, clawback: paidPayout ? clawback : null, actor });
     await send(transporter, {
       from,
-      to: stripOwnerAddress('info@peptidescostarica.net'),
+      to: stripOwnerAddress('info@peptidespanama.net'),
       cc: agentEmail && agentEmail.toLowerCase() !== ORDER_NOTIFICATION_OWNER_BCC ? agentEmail : undefined,
       bcc: ORDER_NOTIFICATION_OWNER_BCC,
       ...teamMail,

@@ -15,7 +15,7 @@ import {
 const WHATSAPP_ADDRESS = [
   'Coco gym fitness ',
   'Juan ml Ramírez Madrigal ',
-  '250 mts norte de la oficina de correos de Costa Rica ',
+  '250 mts norte de la oficina de correos de panama ',
   'Guanacaste Carrillo el coco ',
   '88474216',
 ].join('\n');

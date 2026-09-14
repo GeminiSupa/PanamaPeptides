@@ -40,7 +40,7 @@ export function findAgentProfile(profiles, agent) {
  * fixed)" are the team's. Exact, not a substring, so that last one keeps firing.
  *
  * The address is deliberately NOT enough on its own, because a shared inbox can
- * also be somebody's login: info@peptidescostarica.net is the ops inbox AND the
+ * also be somebody's login: info@peptidespanama.net is the ops inbox AND the
  * superadmin's account. Matching on the address alone quietly took the ops inbox
  * off every lead that was not his — a shared destination going silent, which is
  * the worst way for this to be wrong. It is only consulted for a row with no

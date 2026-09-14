@@ -9,14 +9,14 @@ import {
 } from '../src/lib/analyticsDashboard.mjs';
 
 const links = [
-  { campaign_id: 'a', target_url: 'https://costapeptides.com/catalog?utm_source=email', clicks: 8, unique_clicks: 6 },
+  { campaign_id: 'a', target_url: 'https://panamapeptides.com/catalog?utm_source=email', clicks: 8, unique_clicks: 6 },
   { campaign_id: 'a', target_url: 'https://wa.me/50688881234', clicks: 2, unique_clicks: 2 },
   { campaign_id: 'b', target_url: 'https://example.com/other', clicks: 99, unique_clicks: 40 },
 ];
 
 test('link rows belong to their own campaign only', () => {
   const rows = campaignLinkRows(links, 'a');
-  assert.deepEqual(rows.map((row) => row.label), ['costapeptides.com/catalog', 'wa.me/50688881234']);
+  assert.deepEqual(rows.map((row) => row.label), ['panamapeptides.com/catalog', 'wa.me/50688881234']);
 });
 
 test('share is of the campaign, not of every campaign on screen', () => {
@@ -34,18 +34,18 @@ test('a campaign with no recorded clicks returns nothing rather than dividing by
 
 test('only the top links are shown, most clicked first', () => {
   const many = Array.from({ length: 9 }, (_, index) => ({
-    campaign_id: 'a', target_url: `https://costapeptides.com/p${index}`, clicks: index, unique_clicks: index,
+    campaign_id: 'a', target_url: `https://panamapeptides.com/p${index}`, clicks: index, unique_clicks: index,
   }));
   const rows = campaignLinkRows(many, 'a', 3);
   assert.deepEqual(rows.map((row) => row.clicks), [8, 7, 6]);
 });
 
 test('a link label keeps its host and drops the tracking query', () => {
-  assert.equal(linkLabel('https://costapeptides.com/catalog?utm_source=email&x=1'), 'costapeptides.com/catalog');
-  assert.equal(linkLabel('https://costapeptides.com/'), 'costapeptides.com');
+  assert.equal(linkLabel('https://panamapeptides.com/catalog?utm_source=email&x=1'), 'panamapeptides.com/catalog');
+  assert.equal(linkLabel('https://panamapeptides.com/'), 'panamapeptides.com');
   assert.equal(linkLabel(''), '—');
   assert.equal(linkLabel('not a url at all'), 'not a url at all');
-  assert.equal(linkLabel(`https://costapeptides.com/${'x'.repeat(80)}`).length, 46);
+  assert.equal(linkLabel(`https://panamapeptides.com/${'x'.repeat(80)}`).length, 46);
 });
 
 test('the trend fills the days nobody joined or left', () => {

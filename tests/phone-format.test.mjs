@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 import { toE164, splitE164, isValidE164, findPhoneCountry } from '../src/lib/phoneFormat.mjs';
 
-test('a Costa Rica national number gets the 506 prefix', () => {
+test('a panama national number gets the 506 prefix', () => {
   assert.equal(toE164('83449162', 'CR'), '50683449162');
   assert.equal(toE164('8344 9162', 'CR'), '50683449162');
   assert.equal(toE164('8344-9162', 'CR'), '50683449162');
@@ -27,7 +27,7 @@ test('a number already carrying its country code is not doubled', () => {
 });
 
 test('a foreign international number is respected, not double-prefixed', () => {
-  // 923279940377 typed with Costa Rica selected produced 506923279940377 in
+  // 923279940377 typed with panama selected produced 506923279940377 in
   // production: fifteen digits, accepted by Meta, delivered nowhere.
   assert.equal(toE164('923279940377', 'CR'), '923279940377');
   assert.equal(toE164('+92 327 994 0377', 'CR'), '923279940377');
@@ -36,7 +36,7 @@ test('a foreign international number is respected, not double-prefixed', () => {
 });
 
 test('an ordinary national number is never mistaken for an international one', () => {
-  // These 8-digit Costa Rica numbers open with other countries' dial codes.
+  // These 8-digit panama numbers open with other countries' dial codes.
   assert.equal(toE164('44123456', 'CR'), '50644123456');
   assert.equal(toE164('52123456', 'CR'), '50652123456');
   assert.equal(toE164('12345678', 'CR'), '50612345678');
@@ -49,7 +49,7 @@ test('a result past 15 digits is refused outright', () => {
 
 test('a short number is prefixed rather than mistaken for a country code', () => {
   // '5065060' starts with '506' but the remainder is far too short to be a
-  // Costa Rica number, so it is a typo in the national field.
+  // panama number, so it is a typo in the national field.
   assert.equal(toE164('5065060', 'CR'), '5065065060');
 });
 
@@ -65,7 +65,7 @@ test('splitE164 reopens a stored number on the right country', () => {
   assert.deepEqual(splitE164('18314715559'), { countryCode: 'US', nationalNumber: '8314715559' });
 });
 
-test('legacy bare 8-digit orders are read as Costa Rica', () => {
+test('legacy bare 8-digit orders are read as panama', () => {
   assert.deepEqual(splitE164('83449162'), { countryCode: 'CR', nationalNumber: '83449162' });
 });
 
@@ -98,7 +98,7 @@ test('a country with no fixed length still passes on length alone', () => {
   assert.equal(isValidE164('919876543210'), true);
 });
 
-test('isValidE164 catches a short Costa Rica number', () => {
+test('isValidE164 catches a short panama number', () => {
   // 6484164 is a real 7-digit value sitting in the orders table.
   assert.equal(isValidE164(toE164('6484164', 'CR'), 'CR'), false);
   assert.equal(isValidE164(toE164('83449162', 'CR'), 'CR'), true);
@@ -109,6 +109,6 @@ test('countries without a fixed national length only get the length check', () =
   assert.equal(isValidE164('4917621429442', 'DE'), true);
 });
 
-test('an unknown country code falls back to Costa Rica', () => {
+test('an unknown country code falls back to panama', () => {
   assert.equal(findPhoneCountry('ZZ').code, 'CR');
 });

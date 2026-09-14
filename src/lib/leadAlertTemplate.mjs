@@ -19,7 +19,7 @@ export function buildLeadAlertParameters({ name, qualification = {}, phone, dueA
   // the alert is urgent. Without one, say so rather than printing a bare dash.
   const due = dueAt
     ? new Date(dueAt).toLocaleTimeString('en-US', {
-      timeZone: 'America/Costa_Rica', hour: 'numeric', minute: '2-digit',
+      timeZone: 'America/panama', hour: 'numeric', minute: '2-digit',
     })
     : 'lo antes posible';
 

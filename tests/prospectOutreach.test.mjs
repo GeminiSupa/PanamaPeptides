@@ -161,13 +161,13 @@ test('prompt carries the real business context and forbids invented claims', () 
   const prompt = buildOutreachPrompt({
     ...contactableProspect,
     city: 'Escazú',
-    country: 'Costa Rica',
+    country: 'panama',
     people: [{ full_name: 'Ana Rojas', job_title: 'Owner' }],
   }, { channel: 'email', bookingUrl: 'https://cal.com/x?metadata[prospectToken]=pr_1' });
 
   assert.match(prompt, /Gimnasio Escazú/);
   assert.match(prompt, /Ana Rojas/);
-  assert.match(prompt, /Escazú, Costa Rica/);
+  assert.match(prompt, /Escazú, panama/);
   assert.match(prompt, /https:\/\/cal\.com\/x\?metadata\[prospectToken\]=pr_1/);
   assert.match(prompt, /Never make medical, dosage, therapeutic, or human-use claims/);
 });
@@ -205,7 +205,7 @@ test('supplies a subject for email and never one for whatsapp', () => {
   const email = sanitizeOutreachDraft({ subject: '', body: 'Hola equipo, hablemos.' }, {
     channel: 'email', bookingUrl: 'https://cal.com/x', organizationName: 'Gimnasio Escazú',
   });
-  assert.equal(email.subject, 'Quick intro — Peptides Costa Rica x Gimnasio Escazú');
+  assert.equal(email.subject, 'Quick intro — Peptides Panama x Gimnasio Escazú');
 
   const whatsapp = sanitizeOutreachDraft({ subject: 'Ignored', body: 'Hola, hablemos.' }, {
     channel: 'whatsapp', bookingUrl: 'https://cal.com/x',

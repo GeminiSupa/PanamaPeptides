@@ -1,7 +1,7 @@
 /**
  * Whether the website live chat presents itself as online.
  *
- * The widget used to hard-code 07:00–19:00 Costa Rica time, so the only way to
+ * The widget used to hard-code 07:00–19:00 panama time, so the only way to
  * close the chat early — or keep it open late — was a code change and a deploy.
  * A superadmin now sets this from the dashboard:
  *
@@ -20,7 +20,7 @@
  * closed over lunch, open again) then costs a picker rather than a migration
  * of a live setting.
  *
- * Every hour here is Costa Rica time — the caller converts before asking, see
+ * Every hour here is panama time — the caller converts before asking, see
  * crTime.mjs. Kept dependency-free so the API routes and the tests can import
  * it.
  */
@@ -178,7 +178,7 @@ export function isWithinSchedule(hour, schedule) {
 /**
  * The one place that decides online vs offline.
  *
- * `hour` and `day` are the current hour and weekday in Costa Rica. Pass null
+ * `hour` and `day` are the current hour and weekday in panama. Pass null
  * for either when it could not be worked out: an unknown hour keeps the chat
  * online, and an unknown day falls back to the base hours rather than to one
  * particular day's.

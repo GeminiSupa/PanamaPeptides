@@ -86,7 +86,7 @@ test('the Trustpilot quota keeps its own month', () => {
 });
 
 test('hovering says which days, and whose', () => {
-  assert.match(home, /Costa Rica time\./);
+  assert.match(home, /panama time\./);
   assert.match(home, /const kpiRangeHint = kpiRangeTooltip\(activeKpiRange, kpiRangeStart, new Date\(\)\);/);
   assert.match(home, /'Everything on record, with no date limit\.'/);
   // On the dropdown and on each tile, so it is found from either.

@@ -18,7 +18,7 @@ test('names resolve to the codes Correos actually addresses by', () => {
 });
 
 test('cantón 01 answers to both of its names', () => {
-  // costarica.json (and so the checkout dropdown) calls it "Central"; INEC and
+  // panama.json (and so the checkout dropdown) calls it "Central"; INEC and
   // Correos call it after the province. Orders arrive carrying either.
   const central = resolveTerritory({ province: 'Alajuela', canton: 'Central', district: 'San Antonio' });
   const named = resolveTerritory({ province: 'Alajuela', canton: 'Alajuela', district: 'San Antonio' });
@@ -91,7 +91,7 @@ test('a postal code written into the text is used only if it is real', () => {
 });
 
 test('a trailing postal code does not stop the name beside it matching', () => {
-  const r = parseShippingAddress('Oficinas Correo de Costa Rica, San Marcos, Tarrazu, San Jose 10501');
+  const r = parseShippingAddress('Oficinas Correo de panama, San Marcos, Tarrazu, San Jose 10501');
   assert.equal(r.postalCode, '10501');
 });
 

@@ -1,5 +1,5 @@
 -- =========================================================================
---               PEPTIDES COSTA RICA - AFFILIATE PAYOUTS SCHEMAS
+--               Peptides Panama - AFFILIATE PAYOUTS SCHEMAS
 -- =========================================================================
 -- Run this script in your Supabase SQL Editor to support the Affiliate Payouts flow.
 

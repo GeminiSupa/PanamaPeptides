@@ -43,7 +43,7 @@ test('a staff address claims nothing', () => {
   // names. Verifying it must not hand over two dozen strangers' addresses.
   const blocklist = buildClaimBlocklist([
     { email: 'KorinneDA@icloud.com' },
-    { email: 'info@peptidescostarica.net' },
+    { email: 'info@peptidespanama.net' },
   ]);
 
   const orders = [

@@ -107,7 +107,7 @@ const buildRecoveryHtml = (customerName, cartData, checkoutUrl, currency, lang, 
       ? 'Our support desk is ready to answer any questions about reconstitution, supplies, or shipping details. Reply directly to this email or reach us on WhatsApp.' 
       : 'Nuestra mesa de soporte está lista para responder cualquier consulta sobre reconstitución, suministros o logística de envío. Responde directamente a este correo o contáctanos por WhatsApp.',
     whatsappBtn: isEn ? 'Chat on WhatsApp' : 'Chatear por WhatsApp',
-    footer: isEn ? 'High-Purity Research Peptides · Base in Costa Rica' : 'Péptidos de Alta Pureza para Investigación · Con base en Costa Rica',
+    footer: isEn ? 'High-Purity Research Peptides · Base in panama' : 'Péptidos de Alta Pureza para Investigación · Con base en panama',
   };
 
   return `
@@ -115,7 +115,7 @@ const buildRecoveryHtml = (customerName, cartData, checkoutUrl, currency, lang, 
       
       <!-- Premium Science Theme Header Banner -->
       <div style="background-color:#0f172a;background:linear-gradient(135deg, #0f172a, #022c22);padding:32px 24px;text-align:center;">
-        <img src="https://catalog.peptidescostarica.net/logo.png?v=2" alt="Peptides Costa Rica" width="140" height="118" style="display:block;width:140px;height:118px;margin:0 auto 16px auto;border-radius:12px;">
+        <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="140" height="118" style="display:block;width:140px;height:118px;margin:0 auto 16px auto;border-radius:12px;">
         <h1 style="color:#ffffff !important;font-size:24px;font-weight:800;margin:0 0 8px;letter-spacing:-0.5px;">${strings.title}</h1>
       </div>
 
@@ -236,8 +236,8 @@ export async function POST(request) {
 
     const isEn = lang === 'en';
     const customerSubject = isEn
-      ? `Forgot something? 🧪 Your Peptides Costa Rica cart is waiting!`
-      : `¿Olvidaste algo? 🧪 ¡Tu carrito de Péptidos Costa Rica te espera!`;
+      ? `Forgot something? 🧪 Your Peptides Panama cart is waiting!`
+      : `¿Olvidaste algo? 🧪 ¡Tu carrito de Péptidos panama te espera!`;
 
     // Dynamic checkout URL
     const origin = getPublicSiteUrl(request.url);

@@ -1,5 +1,5 @@
 -- =========================================================================
---            PEPTIDES COSTA RICA - SUB-USER REASSIGNMENT
+--            Peptides Panama - SUB-USER REASSIGNMENT
 -- =========================================================================
 -- Run this in your Supabase SQL Editor after add-sub-user-tier.sql.
 -- Safe to re-run.

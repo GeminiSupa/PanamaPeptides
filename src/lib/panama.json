@@ -1,0 +1,96 @@
+{
+  "provincias": {
+    "1": {
+      "nombre": "Panamá",
+      "cantones": {
+        "01": {
+          "nombre": "Panamá",
+          "distritos": {
+            "01": "San Francisco",
+            "02": "Bella Vista",
+            "03": "Ancón",
+            "04": "Betania",
+            "05": "Juan Díaz"
+          }
+        },
+        "02": {
+          "nombre": "San Miguelito",
+          "distritos": {
+            "01": "Amelia Denis de Icaza",
+            "02": "Belisario Porras"
+          }
+        }
+      }
+    },
+    "2": {
+      "nombre": "Colón",
+      "cantones": {
+        "01": {
+          "nombre": "Colón",
+          "distritos": {
+            "01": "Barrio Norte",
+            "02": "Barrio Sur"
+          }
+        }
+      }
+    },
+    "3": {
+      "nombre": "Chiriquí",
+      "cantones": {
+        "01": {
+          "nombre": "David",
+          "distritos": {
+            "01": "David",
+            "02": "Boquete"
+          }
+        }
+      }
+    },
+    "4": {
+      "nombre": "Bocas del Toro",
+      "cantones": {
+        "01": {
+          "nombre": "Bocas del Toro",
+          "distritos": {
+            "01": "Bocas del Toro",
+            "02": "Changuinola"
+          }
+        }
+      }
+    },
+    "5": {
+      "nombre": "Coclé",
+      "cantones": {
+        "01": {
+          "nombre": "Penonomé",
+          "distritos": {
+            "01": "Penonomé",
+            "02": "Aguadulce"
+          }
+        }
+      }
+    },
+    "6": {
+      "nombre": "Veraguas",
+      "cantones": {
+        "01": {
+          "nombre": "Santiago",
+          "distritos": {
+            "01": "Santiago"
+          }
+        }
+      }
+    },
+    "7": {
+      "nombre": "Los Santos",
+      "cantones": {
+        "01": {
+          "nombre": "Las Tablas",
+          "distritos": {
+            "01": "Las Tablas"
+          }
+        }
+      }
+    }
+  }
+}

@@ -27,7 +27,7 @@ const DIALS_BY_LENGTH = [...PHONE_COUNTRIES].sort((a, b) => b.dial.length - a.di
  * the local spelling have to resolve. Accents are folded before lookup.
  */
 const COUNTRY_ALIASES = {
-  CR: ['costa rica'],
+  CR: ['panama'],
   US: ['united states', 'united states of america', 'usa', 'us', 'estados unidos', 'canada'],
   MX: ['mexico'],
   PA: ['panama'],

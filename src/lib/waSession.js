@@ -83,7 +83,7 @@ const DAILY_SEND_CAP = Number(process.env.WA_DAILY_SEND_CAP || 150);
 // Direct replies to a just-received inbound (opt-out confirmations) bypass this.
 const SEND_WINDOW_START = Number(process.env.WA_SEND_WINDOW_START || 7);  // 7 am
 const SEND_WINDOW_END   = Number(process.env.WA_SEND_WINDOW_END   || 21); // 9 pm
-const SEND_TIMEZONE     = process.env.WA_TIMEZONE || 'America/Costa_Rica';
+const SEND_TIMEZONE     = process.env.WA_TIMEZONE || 'America/panama';
 
 function currentLocalHour() {
   try {
@@ -672,7 +672,7 @@ export function sendWAMessage(to, text, opts = {}) {
     if (supabase) {
       const { error: logErr } = await insertWhatsAppMessage(supabase, {
         wa_id: digits,
-        display_name: 'Peptides Costa Rica',
+        display_name: 'Peptides Panama',
         message_text: text,
         message_type: 'text',
         direction: 'outbound',

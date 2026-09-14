@@ -1,45 +1,44 @@
 :root {
-    --primary: #0b101d; /* Deep Battle Born Slate/Navy */
-    --primary-alt: #131c2e;
-    --accent: #38bdf8;  /* Vibrant HPLC Sky Blue/Cyan */
-    --cta: #ffffff;     /* Solid crisp white primary CTA button */
-    --cta-hover: #e2e8f0;
-    --accent-on-dark: #38bdf8;
-    --radius-md: 8px;   /* Clean modern rounded corners matching Battleborn */
-    --radius-lg: 14px;
-    --container-width: 1140px;
+    --primary: #0a0a0a;       /* Deep Black */
+    --primary-alt: #111111;   /* Dark Charcoal */
+    --accent: #a30000;        /* Deep Blood Red */
+    --cta: #a30000;           
+    --cta-hover: #ff1a1a;     /* Bright Red Hover */
+    --accent-on-dark: #cc0000;
+    --radius-md: 4px;         /* Slight edge for tactical feel */
+    --radius-lg: 6px;
+    --container-width: 1200px;
     
-    /* Battle Born Dark Theme (Default) */
-    --bg-main: #080c14; /* Deep lab dark graphite/slate background */
-    --bg-card: #111827; /* Elevated card slate */
-    --bg-secondary: #172236; /* Dark slate blue-grey */
-    --text-main: #f8fafc; /* Crisp white body text */
-    --text-muted: #94a3b8; /* Muted slate grey */
-    --text-primary: #38bdf8; /* Vibrant HPLC cyan */
-    --border: rgba(255, 255, 255, 0.09);
-    --border-highlight: rgba(56, 189, 248, 0.25);
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.08);
-    --danger: #f43f5e;
-    --danger-border: #e11d48;
-    --danger-ring: rgba(244, 63, 94, 0.25);
-    --danger-bg: rgba(244, 63, 94, 0.1);
+    --bg-main: #000000;       /* Pitch Black */
+    --bg-card: #0a0a0a;       /* Almost Black */
+    --bg-secondary: #141414;  /* Dark Grey */
+    --text-main: #f5f5f5;     /* Stark White */
+    --text-muted: #888888;    /* Medium Grey */
+    --text-primary: #ffffff;  
+    --border: #333333;        /* Dark Grey Border */
+    --border-highlight: #a30000; /* Red Border Highlights */
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(163, 0, 0, 0.2);
+    --danger: #ff0000;
+    --danger-border: #cc0000;
+    --danger-ring: rgba(204, 0, 0, 0.25);
+    --danger-bg: rgba(204, 0, 0, 0.1);
 }
 
 [data-theme="dark"] {
-    --bg-main: #080c14;
-    --bg-card: #111827;
-    --bg-secondary: #172236;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --text-primary: #38bdf8;
-    --border: rgba(255, 255, 255, 0.09);
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 20px 30px rgba(0, 0, 0, 0.7);
-    --danger: #f43f5e;
-    --danger-border: #e11d48;
-    --danger-ring: rgba(244, 63, 94, 0.25);
-    --danger-bg: rgba(244, 63, 94, 0.1);
+    --bg-main: #000000;
+    --bg-card: #0a0a0a;
+    --bg-secondary: #141414;
+    --text-main: #f5f5f5;
+    --text-muted: #888888;
+    --text-primary: #ffffff;
+    --border: #333333;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(163, 0, 0, 0.2);
+    --danger: #ff0000;
+    --danger-border: #cc0000;
+    --danger-ring: rgba(204, 0, 0, 0.25);
+    --danger-bg: rgba(204, 0, 0, 0.1);
 }
 
 * {
@@ -83,7 +82,7 @@ html, body {
 }
 
 body {
-    font-family: var(--font-montserrat), var(--font-inter), sans-serif;
+    font-family: var(--font-rubik), var(--font-manrope), sans-serif;
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.5;
@@ -438,7 +437,7 @@ body {
 }
 
 .logo h1 {
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
     font-size: 1.4rem;
     font-weight: 900;
     color: var(--text-primary);
@@ -2526,7 +2525,7 @@ body {
     background: #f6f8fb;
     color: #17234d;
     padding: 18px;
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
 }
 
 .card-pay-shell {
@@ -3785,7 +3784,7 @@ body {
     font-weight: 900;
     line-height: 1.12;
     color: var(--text-primary);
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
     letter-spacing: -1px;
     margin-bottom: 8px;
     overflow-wrap: break-word;
@@ -4117,7 +4116,7 @@ body {
     font-weight: 800;
     line-height: 1.25;
     color: var(--text-primary);
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
     letter-spacing: -0.4px;
 }
 
@@ -4208,7 +4207,7 @@ body {
 .lp-about-card-overlay h3 {
     font-size: 1.3rem;
     font-weight: 800;
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
 }
 
 .lp-about-card-overlay p {
@@ -4234,7 +4233,7 @@ body {
     font-weight: 800;
     color: var(--text-main);
     margin-bottom: 12px;
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
 }
 
 .lp-about-card-content p {
@@ -4353,7 +4352,7 @@ body {
     margin-bottom: 12px;
     line-height: 1.2;
     letter-spacing: -0.4px;
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -4382,7 +4381,7 @@ body {
     color: var(--text-primary);
     margin-bottom: 12px;
     line-height: 1.2;
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -4437,7 +4436,7 @@ body {
     font-weight: 800;
     color: var(--text-main);
     margin-bottom: 12px;
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
 }
 
 .lp-feature-card p {
@@ -4739,7 +4738,7 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
     min-height: 2.6rem;
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -4994,7 +4993,7 @@ body {
 .lp-faq-help-card h2 {
     font-size: 2rem;
     font-weight: 800;
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
     line-height: 1.25;
 }
 
@@ -5177,7 +5176,7 @@ body {
     color: white;
     margin-bottom: 14px;
     letter-spacing: -0.5px;
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-rubik), sans-serif;
     line-height: 1.2;
 }
 
@@ -5991,7 +5990,7 @@ body:has(.product-grid.grid-view) {
     max-width: none;
 }
 
-/* Press feature band: full-width "As seen in The Costa Rica News" strip below the
+/* Press feature band: full-width "As seen in The panama News" strip below the
    header controls, above the catalog. Kept out of the rating-badge flex row so it
    has room to be legible and can't collide with those badges on mobile. */
 .press-band {
@@ -6056,7 +6055,7 @@ body:has(.product-grid.grid-view) {
     padding-left: 9px;
     border-left: 1px solid var(--border);
     color: var(--text-main);
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: var(--font-rubik), sans-serif;
     font-size: 0.68rem;
     line-height: 1.12;
     white-space: nowrap;
@@ -6156,7 +6155,7 @@ body:has(.product-grid.grid-view) {
     display: inline-flex;
     align-items: center;
     height: 26px;
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: var(--font-rubik), sans-serif;
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.02em;
@@ -6744,7 +6743,7 @@ body:has(.product-grid.grid-view) {
 .landing-layout .lp-hero-text-block { align-items: flex-start; }
 .landing-layout .hero-badge { align-self: flex-start; margin-bottom: 18px; padding: 7px 15px; border: 0; border-radius: 999px; background: var(--cta); color: #fff; }
 .landing-layout .hero-title { color: #17234d; font-size: clamp(2.55rem, 5vw, 4.6rem); line-height: 1.04; letter-spacing: -.045em; }
-.landing-layout .hero-sub { color: #31394b; font-family: var(--font-inter), sans-serif; font-size: 1.06rem; line-height: 1.7; }
+.landing-layout .hero-sub { color: #31394b; font-family: var(--font-manrope), sans-serif; font-size: 1.06rem; line-height: 1.7; }
 .landing-layout .btn-hero-primary {
     border-radius: 4px;
     background: var(--cta);
@@ -7230,4 +7229,246 @@ body:has(.cart-drawer.active) #google-merchantwidget-iframe-wrapper {
   .catalog-proof-section .header-content {
     padding: 9px 14px 11px;
   }
+}
+
+/* =========================================
+   TRUE BBR TACTICAL THEME OVERRIDES
+   ========================================= */
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+.clone-hero {
+    background: radial-gradient(circle at center, #2a0000 0%, #000000 70%) !important;
+    position: relative;
+    border-bottom: 2px solid #a30000;
+}
+
+/* Texture overlay for hero */
+.clone-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.05"/></svg>');
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.clone-hero-copy, .clone-hero-media {
+    position: relative;
+    z-index: 2;
+}
+
+.clone-hero-copy h2 {
+    color: #ffffff !important;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.clone-hero-copy p {
+    color: #cccccc !important;
+}
+
+.product-card {
+    background: linear-gradient(145deg, #111111, #080808) !important;
+    border: 1px solid #222222 !important;
+    border-radius: var(--radius-md) !important;
+}
+
+.product-card:hover {
+    border-color: #a30000 !important;
+    box-shadow: 0 0 15px rgba(163, 0, 0, 0.4) !important;
+}
+
+.add-to-cart-btn {
+    background: transparent !important;
+    color: #ffffff !important;
+    border: 1px solid #a30000 !important;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+}
+
+.add-to-cart-btn:hover:not(:disabled) {
+    background: #a30000 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(163, 0, 0, 0.6) !important;
+}
+
+.catalog-brand-sticky, .header-top-section {
+    background: rgba(5, 5, 5, 0.95) !important;
+    border-bottom: 1px solid #333333 !important;
+}
+
+.catalog-seo-title, .clone-section h2 {
+    text-transform: uppercase;
+    color: #ffffff !important;
+}
+
+.clone-footer {
+    background: #050505 !important;
+    border-top: 2px solid #a30000 !important;
+}
+
+/* =========================================
+   GLOBAL TRUE BBR TACTICAL THEME OVERRIDES (ALL PAGES)
+   ========================================= */
+
+/* Force all major layout wrappers to be pitch black or dark grey */
+.catalog-page-shell, .about-page, .blog-page, .faq-page, .contact-page, .landing-layout,
+main, .main, .container, section, article {
+    background-color: transparent !important;
+}
+
+body {
+    background-color: var(--bg-main) !important;
+}
+
+/* Force text on all structural elements */
+h1, h2, h3, h4, h5, h6, .catalog-seo-title, .section-title, .about-hero h1 {
+    color: #ffffff !important;
+    text-transform: uppercase !important;
+}
+
+p, span, div, li {
+    color: #f5f5f5;
+}
+
+/* Specific component overrides that typically had white backgrounds */
+.header-top, .catalog-brand-row, .lp-header, .clone-nav-wrap, .clone-nav-dropdown {
+    background-color: #050505 !important;
+    border-color: #333333 !important;
+}
+
+.modal-content, .cart-body, .card-payment-panel, .checkout-form {
+    background-color: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Update text in modals/inputs */
+.modal-content *, .cart-body *, .checkout-form * {
+    color: #ffffff !important;
+}
+
+input, textarea, select {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+    border: 1px solid #333333 !important;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #a30000 !important;
+}
+
+/* Update any stray buttons */
+button, .btn-hero-primary {
+    background: transparent;
+    color: #ffffff;
+    border-color: #a30000;
+}
+
+/* Sidebar filter links */
+.category-nav a {
+    color: #cccccc !important;
+}
+.category-nav a:hover, .category-nav a.active {
+    color: #a30000 !important;
+    font-weight: 700;
+}
+
+/* Override the white landing page hero */
+.lp-hero, .about-hero {
+    background: radial-gradient(circle at center, #2a0000 0%, #000000 70%) !important;
+    border-bottom: 2px solid #a30000 !important;
+}
+
+.lp-hero::after, .about-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.05"/></svg>');
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Any white borders or backgrounds */
+* {
+    /* If there are inline backgrounds, this will NOT override, but it overrides css rules */
+}
+
+/* =========================================
+   KILL LANDING-LAYOUT LIGHT MODE VARIABLES
+   ========================================= */
+
+.landing-layout {
+    --primary: #0a0a0a !important;
+    --primary-alt: #111111 !important;
+    --accent: #a30000 !important;
+    --bg-main: #000000 !important;
+    --bg-card: #0a0a0a !important;
+    --bg-secondary: #141414 !important;
+    --text-main: #ffffff !important;
+    --text-muted: #888888 !important;
+    --text-primary: #ffffff !important;
+    --border: #333333 !important;
+    --cta: #a30000 !important;
+    --cta-hover: #ff1a1a !important;
+    background: #000000 !important;
+}
+
+.landing-layout .lp-header,
+.landing-layout .lp-header--scrolled .lp-header-inner,
+.landing-layout .lang-selector,
+.landing-layout .lp-hero,
+.landing-layout .lp-nav {
+    background: #050505 !important;
+    border-color: #333333 !important;
+}
+
+.landing-layout .site-shipping-bar { background: #0a0a0a !important; color: #ffffff !important; }
+
+/* Force WhatsApp button to be red */
+.whatsapp-btn, .product-detail-cart-button, #catalog-whatsapp-btn {
+    background: #a30000 !important;
+    border-color: #ff1a1a !important;
+    color: #ffffff !important;
+}
+
+/* Force Product Cards to be dark */
+.product-card {
+    background: linear-gradient(145deg, #111111, #080808) !important;
+    border: 1px solid #222222 !important;
+}
+
+.product-grid.grid-view .product-card,
+.product-grid.compact-view .product-card {
+    background: linear-gradient(145deg, #111111, #080808) !important;
+}
+
+.product-grid.compact-view .product-image {
+    background: #0a0a0a !important;
+}
+
+/* Force Stock badges to match red theme */
+.stock-badge, .stock-soon {
+    background: rgba(204, 0, 0, 0.2) !important;
+    color: #ff1a1a !important;
+    border-color: rgba(204, 0, 0, 0.4) !important;
+}
+
+.cart-free-shipping-badge {
+    background: #a30000 !important;
+    color: #ffffff !important;
+}
+
+/* Fix text colors */
+.landing-layout *, .landing-layout p, .landing-layout span, .landing-layout h1, .landing-layout h2, .landing-layout h3 {
+    /* Don't use * for text color, let variables handle it */
 }

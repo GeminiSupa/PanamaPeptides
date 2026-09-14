@@ -75,27 +75,27 @@ const COPY = {
     subject: '¿Cómo va tu investigación? 🧪',
     heading: '¡Nos encantaría saber tu opinión!',
     greeting: (name) => (name ? `Hola ${name},` : '¡Hola!'),
-    intro: 'Han pasado unos días desde que se completó tu pedido de Peptides Costa Rica. ¡Esperamos que tu investigación vaya de maravilla!',
+    intro: 'Han pasado unos días desde que se completó tu pedido de Peptides Panama. ¡Esperamos que tu investigación vaya de maravilla!',
     ask: 'Si tienes un momento, nos ayudaría muchísimo que nos dejaras una reseña. Elige donde te resulte más cómodo:',
     google: 'Reseñar en Google',
     facebook: 'Reseñar en Facebook',
     trustpilot: 'O deja tu reseña en Trustpilot',
-    signoff: 'Gracias,<br/>El equipo de Peptides Costa Rica',
+    signoff: 'Gracias,<br/>El equipo de Peptides Panama',
   },
   en: {
     subject: 'How is your research going? 🧪',
     heading: "We'd love to hear from you!",
     greeting: (name) => (name ? `Hi ${name},` : 'Hi there,'),
-    intro: "It's been a few days since your Peptides Costa Rica order was completed. We hope your research is going perfectly!",
+    intro: "It's been a few days since your Peptides Panama order was completed. We hope your research is going perfectly!",
     ask: "If you have a moment, a review would help us enormously. Pick whichever is easiest for you:",
     google: 'Review us on Google',
     facebook: 'Review us on Facebook',
     trustpilot: 'Or leave your review on Trustpilot',
-    signoff: 'Thank you,<br/>The Peptides Costa Rica Team',
+    signoff: 'Thank you,<br/>The Peptides Panama Team',
   },
 };
 
-const LOGO_URL = 'https://catalog.peptidescostarica.net/logo.png?v=2';
+const LOGO_URL = 'https://catalog.peptidespanama.net/logo.png?v=2';
 
 /**
  * The one placeholder a custom body must contain.
@@ -162,7 +162,7 @@ export function buildReviewRequestEmail({
 
   const builtIn = `
         <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#333;">
-          <img src="${LOGO_URL}" alt="Peptides Costa Rica" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+          <img src="${LOGO_URL}" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
           <h2>${copy.heading}</h2>
           <p>${copy.greeting(name)}</p>
           <p>${copy.intro}</p>

@@ -1,5 +1,5 @@
 -- =========================================================================
---                     PEPTIDES COSTA RICA - TEAM CHAT
+--                     Peptides Panama - TEAM CHAT
 -- =========================================================================
 -- Run this SQL script in your Supabase Project SQL Editor to prepare the 
 -- team_messages table and set up Row Level Security (RLS) policies.

@@ -6,7 +6,7 @@ import { buildTemplateParam, buildTemplateParameters } from '../src/lib/broadcas
 
 test('a greeting-variable template never leaves English in a Spanish message', () => {
   // The bug this replaces: the send-now route used `firstName || 'Customer'`, so
-  // every nameless Costa Rican contact read "Customer" mid-Spanish.
+  // every nameless panaman contact read "Customer" mid-Spanish.
   assert.equal(buildTemplateParam('María', 'es', true), 'Hola María');
   assert.equal(buildTemplateParam('', 'es', true), '¡Buenas!');
   assert.equal(buildTemplateParam(null, 'es', true), '¡Buenas!');
@@ -62,13 +62,13 @@ test('an approved multi-field template preserves every value in Meta order', () 
       'BPC-157 + TB-500 20mg (Wolverine Stack)',
       'Semana de recuperación: 15% de descuento. Ahora $127.50 / ₡57.513, ya aplicado y sin código',
       'domingo 30 de agosto a las 11:59 p. m.',
-      'https://catalog.peptidescostarica.net/catalog?deal_id=123',
+      'https://catalog.peptidespanama.net/catalog?deal_id=123',
     ]),
     [
       'BPC-157 + TB-500 20mg (Wolverine Stack)',
       'Semana de recuperación: 15% de descuento. Ahora $127.50 / ₡57.513, ya aplicado y sin código',
       'domingo 30 de agosto a las 11:59 p. m.',
-      'https://catalog.peptidescostarica.net/catalog?deal_id=123',
+      'https://catalog.peptidespanama.net/catalog?deal_id=123',
     ],
   );
 });

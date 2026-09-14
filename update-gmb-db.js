@@ -17,9 +17,9 @@ async function run() {
       ...current.value,
       googleMapsUrl: 'https://maps.app.goo.gl/b9YaeUXyuvBuj8vo8',
       googleReviewUrl: 'https://maps.app.goo.gl/b9YaeUXyuvBuj8vo8',
-      trustpilotUrl: 'https://www.trustpilot.com/review/peptidescostarica.net',
-      trustpilotUrlEn: 'https://www.trustpilot.com/review/peptidescostarica.net',
-      trustpilotUrlEs: 'https://es.trustpilot.com/review/peptidescostarica.net'
+      trustpilotUrl: 'https://www.trustpilot.com/review/peptidespanama.net',
+      trustpilotUrlEn: 'https://www.trustpilot.com/review/peptidespanama.net',
+      trustpilotUrlEs: 'https://es.trustpilot.com/review/peptidespanama.net'
     };
     const { error } = await supabase.from('site_settings').update({ value: newVal }).eq('id', 'business_links');
     if (error) throw error;

@@ -1,5 +1,5 @@
 -- =========================================================================
---        PEPTIDES COSTA RICA - PER-MEMBER NOTIFICATION PREFERENCES
+--        Peptides Panama - PER-MEMBER NOTIFICATION PREFERENCES
 -- =========================================================================
 -- Run this in your Supabase SQL Editor.
 --

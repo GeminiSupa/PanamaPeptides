@@ -44,7 +44,7 @@ export const DEFAULT_LANDING_LEAD_SETTINGS = {
       subtitleEn: 'We will confirm the options available for that location.',
       subtitleEs: 'Confirmaremos las opciones disponibles para esa ubicación.',
       options: [
-        { id: 'cr', labelEn: 'Costa Rica', labelEs: 'Costa Rica' },
+        { id: 'cr', labelEn: 'panama', labelEs: 'panama' },
         { id: 'us', labelEn: 'United States', labelEs: 'Estados Unidos' },
         { id: 'other', labelEn: 'Another location', labelEs: 'Otra ubicación' },
       ],

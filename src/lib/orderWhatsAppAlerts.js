@@ -268,7 +268,7 @@ export async function sendCustomerOrderConfirmation(supabase, order, orderNumber
   }
 
   // Checkout now sends a full international number. Older orders (and the
-  // in-app order forms) can still carry a bare Costa Rica number, so it is
+  // in-app order forms) can still carry a bare panama number, so it is
   // normalised here rather than assumed. The previous rule only knew how to
   // prefix exactly 8 digits and handed everything else to Meta untouched,
   // which came back "(#131009) the phone number is malformed".

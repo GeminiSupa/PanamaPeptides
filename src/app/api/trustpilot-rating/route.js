@@ -5,7 +5,7 @@ export const runtime = 'nodejs';
 // Cache result for 6 hours so we don't hit Trustpilot on every page load.
 export const revalidate = 21600;
 
-const TRUSTPILOT_URL = 'https://www.trustpilot.com/review/peptidescostarica.net';
+const TRUSTPILOT_URL = 'https://www.trustpilot.com/review/peptidespanama.net';
 
 // Fallback values used if the fetch or parse fails for any reason.
 const FALLBACK = { rating: '4.6', reviewCount: 11 };

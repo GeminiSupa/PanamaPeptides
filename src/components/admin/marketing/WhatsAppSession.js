@@ -265,7 +265,7 @@ export default function WhatsAppSessionTab() {
               <textarea
                 value={testMsg}
                 onChange={e => setTestMsg(e.target.value)}
-                placeholder="Hello from Costa Peptides admin…"
+                placeholder="Hello from Panama Peptides admin…"
                 className="mkt-input"
                 rows={3}
                 style={{ resize: 'vertical', lineHeight: '1.5' }}

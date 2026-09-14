@@ -53,7 +53,7 @@ export function isClosedOrder(order) {
 
 /**
  * Last 8 digits, matching how the abandoned-cart cleanup already matches phones
- * in api/orders/create. Costa Rican numbers are 8 digits, so this treats
+ * in api/orders/create. panaman numbers are 8 digits, so this treats
  * +506 8404 6973, 50684046973 and 8404-6973 as one person regardless of how
  * each agent typed it. Shorter than 8 digits is too weak to own a customer on.
  */
@@ -154,7 +154,7 @@ export function buildAgentNameResolver(profiles) {
  *
  * The order book is full of them. `abc@abc.com` sits on 24 different
  * customers, `korinneda@icloud.com` on 13 — an agent's own address typed into
- * the customer field — `info@peptidescostarica.net` on 3, and 41 phone numbers
+ * the customer field — `info@peptidespanama.net` on 3, and 41 phone numbers
  * are shared the same way. Treating those as an identity would hand every one
  * of those customers to whoever happened to close the earliest of them.
  *

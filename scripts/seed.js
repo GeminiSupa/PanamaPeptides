@@ -53,8 +53,8 @@ async function seed() {
   try {
     console.log('🔑 Authenticating as admin user...');
     const { error: authError } = await supabase.auth.signInWithPassword({
-      email: 'info@peptidescostarica.net',
-      password: 'CostaPeptides2026!'
+      email: 'info@peptidespanama.net',
+      password: 'panamapeptides2026!'
     });
     if (authError) {
       console.log(`⚠️ Warning: Authentication failed (${authError.message}). Attempting unauthenticated seed...`);

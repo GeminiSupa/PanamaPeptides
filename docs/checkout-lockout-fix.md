@@ -23,7 +23,7 @@ Two bugs, stacked.
 
 `api_rate_limits` shows **12 attempts** against that customer's contact key on
 8 Sep against a limit of **5 per 24 hours**. Last attempt 16:39:09 UTC; her
-screenshot is timestamped 10:40 a.m. Costa Rica, which is 16:40 UTC. No order of
+screenshot is timestamped 10:40 a.m. panama, which is 16:40 UTC. No order of
 hers reached the database that day, and `admin_notifications` logged no
 `order_save_failed` row, so nothing ever got as far as an insert.
 
@@ -82,7 +82,7 @@ successful insert (`src/app/api/orders/create/route.js`). Every `return` above
 the insert leaves the customer's allowance untouched.
 
 The IP limit stays attempt-based on purpose — catching a machine hammering the
-endpoint is the one job it has. It was raised because Costa Rican mobile
+endpoint is the one job it has. It was raised because panaman mobile
 carriers put many subscribers behind one public address, so 6/hour could block
 strangers for each other's traffic.
 

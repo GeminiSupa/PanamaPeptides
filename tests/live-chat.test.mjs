@@ -31,7 +31,7 @@ test('a chat cannot start without a name and a way to reply', () => {
   assert.equal(canStartLiveChat({ name: 'Ana', phone: '60626224' }), true);
   assert.equal(canStartLiveChat({ name: '   ', email: 'ana@example.com' }), false, 'spaces are not a name');
   // A country code typed into the number box without a "+" is not stripped:
-  // Costa Rican local numbers can themselves begin 506, so guessing would eat
+  // panaman local numbers can themselves begin 506, so guessing would eat
   // real digits. Eleven digits is not a CR number, and is rejected.
   assert.equal(canStartLiveChat({ name: 'Ana', phone: '50660626224' }), false);
 });
@@ -65,7 +65,7 @@ test('the country code is not counted as part of the number', () => {
   assert.equal(isUsablePhone('+506'), false, 'a country on its own is not a number');
 });
 
-test('a Costa Rican number has to be all eight digits', () => {
+test('a panaman number has to be all eight digits', () => {
   assert.equal(isUsablePhone('+506 6062 6224'), true);
   assert.equal(isUsablePhone('+506 606 6224'), false, 'seven digits is a typo, not a CR number');
   assert.equal(isUsablePhone('+506 6062 62240'), false, 'nine digits is a typo too');
@@ -81,7 +81,7 @@ test('a Costa Rican number has to be all eight digits', () => {
 test('the country picker and the stored number agree on where the code ends', () => {
   assert.deepEqual(splitLiveChatPhone('+506 6062 6224'), { dialCode: '+506', localNumber: '6062 6224' });
   // +506 must win over +5 and +50, which is why the codes are matched longest
-  // first — otherwise Costa Rican numbers would keep an orphan "06" up front.
+  // first — otherwise panaman numbers would keep an orphan "06" up front.
   assert.deepEqual(splitLiveChatPhone('+50660626224').dialCode, '+506');
   assert.deepEqual(splitLiveChatPhone('+1 3055550143'), { dialCode: '+1', localNumber: '3055550143' });
   // A number saved before the picker existed is a bare local one, and belongs
@@ -129,7 +129,7 @@ test('the country list speaks the language the widget is in', () => {
   assert.equal(dialCodeLabel(undefined, 'es'), '');
 });
 
-test('Costa Rica is the country a visitor starts on', () => {
+test('panama is the country a visitor starts on', () => {
   assert.equal(DEFAULT_LIVE_CHAT_DIAL_CODE, '+506');
   assert.equal(LIVE_CHAT_DIAL_CODES[0].code, '+506', 'and the first one in the list');
   // Two countries sharing a code would make the picker ambiguous.

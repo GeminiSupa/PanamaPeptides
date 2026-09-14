@@ -2,9 +2,9 @@
  * Turning what a customer types into something WhatsApp will accept.
  *
  * Checkout used to be a single free-text box, and the country was guessed from
- * the digit count — 8 digits meant Costa Rica, 10 meant the US, anything else
+ * the digit count — 8 digits meant panama, 10 meant the US, anything else
  * was passed to Meta untouched and rejected with "the phone number is
- * malformed". A German customer typing 0176 21429442, or a Costa Rican typing
+ * malformed". A German customer typing 0176 21429442, or a panaman typing
  * a 7-digit typo, got no order confirmation and no error either.
  *
  * The checkout form now asks for the country explicitly, so the country code
@@ -13,9 +13,9 @@
  * `splitE164`.
  */
 
-/** Costa Rica first — it is the default and the overwhelming majority of orders. */
+/** panama first — it is the default and the overwhelming majority of orders. */
 export const PHONE_COUNTRIES = [
-  { code: 'CR', dial: '506', flag: '🇨🇷', name: 'Costa Rica', nationalDigits: 8 },
+  { code: 'CR', dial: '506', flag: '🇨🇷', name: 'panama', nationalDigits: 8 },
   { code: 'US', dial: '1', flag: '🇺🇸', name: 'USA / Canada', nationalDigits: 10 },
   { code: 'MX', dial: '52', flag: '🇲🇽', name: 'México', nationalDigits: 10 },
   { code: 'PA', dial: '507', flag: '🇵🇦', name: 'Panamá', nationalDigits: 8 },
@@ -60,7 +60,7 @@ export function toE164(nationalNumber, countryCode = DEFAULT_PHONE_COUNTRY) {
   if (digits.startsWith(country.dial)) {
     const remainder = digits.slice(country.dial.length);
     // Only treat it as already-prefixed when what follows is a plausible
-    // national number. '5065060' in a Costa Rica field is a typo, not
+    // national number. '5065060' in a panama field is a typo, not
     // '+506 5060'.
     if (remainder.length >= 7) return digits;
     if (country.nationalDigits && remainder.length === country.nationalDigits) return digits;
@@ -68,7 +68,7 @@ export function toE164(nationalNumber, countryCode = DEFAULT_PHONE_COUNTRY) {
 
   // A number that already carries a *different* country's code. Browsers
   // autofill full international numbers, and people paste them: a customer put
-  // 923279940377 in the box with Costa Rica selected and got 506923279940377
+  // 923279940377 in the box with panama selected and got 506923279940377
   // sent to Meta — fifteen digits, accepted, delivered nowhere.
   //
   // The chosen country wins whenever the input is a plausible national number
@@ -100,8 +100,8 @@ export function toE164(nationalNumber, countryCode = DEFAULT_PHONE_COUNTRY) {
 /**
  * E.164 digits -> { countryCode, nationalNumber } for re-filling the form.
  *
- * Legacy orders stored bare 8-digit Costa Rica numbers, so a number with no
- * recognisable country code is read as Costa Rica rather than discarded.
+ * Legacy orders stored bare 8-digit panama numbers, so a number with no
+ * recognisable country code is read as panama rather than discarded.
  */
 export function splitE164(stored) {
   const digits = digitsOnly(stored);
@@ -128,7 +128,7 @@ export function splitE164(stored) {
  *
  * Meta accepts 8–15 digits including the country code. Countries with a known
  * fixed national length are checked against it too, which is what catches the
- * 7-digit Costa Rica typos that used to reach the API and fail there.
+ * 7-digit panama typos that used to reach the API and fail there.
  */
 export function isValidE164(value, countryCode = null) {
   const digits = digitsOnly(value);

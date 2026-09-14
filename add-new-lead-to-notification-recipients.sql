@@ -11,7 +11,7 @@
 -- falls back to the LEAD_NOTIFICATION_TO environment variable. The moment the
 -- column exists the table becomes the whole answer and that variable is no
 -- longer read. The seed below therefore reproduces the current env list
--- (omerforce@gmail.com, info@peptidescostarica.net) so nobody who is being
+-- (omerforce@gmail.com, info@peptidespanama.net) so nobody who is being
 -- alerted today stops being alerted the second this runs. The variable itself is
 -- left in place, untouched; it simply stops being consulted.
 ALTER TABLE public.notification_recipients
@@ -20,7 +20,7 @@ ALTER TABLE public.notification_recipients
 UPDATE public.notification_recipients
 SET new_lead = true
 WHERE channel = 'email'
-  AND lower(destination) IN ('omerforce@gmail.com', 'info@peptidescostarica.net');
+  AND lower(destination) IN ('omerforce@gmail.com', 'info@peptidespanama.net');
 
 CREATE INDEX IF NOT EXISTS notification_recipients_new_lead_idx
   ON public.notification_recipients (channel, new_lead)

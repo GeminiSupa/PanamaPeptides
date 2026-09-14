@@ -109,14 +109,14 @@ async function sendEmail(to, message, subject, imageUrl = null, htmlContent = nu
     const htmlMessage = htmlContent ? clampOutlookButtonSizes(htmlContent) : `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
         <div style="text-align: center; margin-bottom: 24px;">
-          <img src="https://catalog.peptidescostarica.net/logo.png?v=2" alt="Peptides Costa Rica" width="140" height="118" style="display:block;width:140px;height:118px;margin:0 auto 16px auto;border-radius:12px;">
+          <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="140" height="118" style="display:block;width:140px;height:118px;margin:0 auto 16px auto;border-radius:12px;">
         </div>
 ${productImage ? `<div style="text-align: center; margin: 0 0 24px;"><img src="${productImage}" alt="" width="220" style="max-width: 220px; width: 220px; height: auto; border: 0;" /></div>` : ''}
         <div style="color: #334155; line-height: 1.6; font-size: 16px; margin-bottom: 32px; white-space: pre-wrap;">
           ${message.replace(/\n/g, '<br>')}
         </div>
         <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0;">
-          <a href="https://catalog.peptidescostarica.net/catalog" style="display: inline-block; background-color: #059669; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(5, 150, 105, 0.2);">
+          <a href="https://catalog.peptidespanama.net/catalog" style="display: inline-block; background-color: #059669; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(5, 150, 105, 0.2);">
             View Catalog / Ver Catálogo
           </a>
         </div>
@@ -136,7 +136,7 @@ ${productImage ? `<div style="text-align: center; margin: 0 0 24px;"><img src="$
     });
 
     const res = await globalTransporter.sendMail({
-      ...marketingCopyHeader('bcc', process.env.BCC_EMAIL || 'info@peptidescostarica.net'),
+      ...marketingCopyHeader('bcc', process.env.BCC_EMAIL || 'info@peptidespanama.net'),
       from: smtp.from,
       replyTo: smtp.replyTo,
       to: to.trim(),
@@ -330,7 +330,7 @@ export async function POST(request) {
       email_batch_delay_seconds: clampPacing(pacing?.emailDelaySeconds, DEFAULT_DELAY_SECONDS, 0, MAX_DELAY_SECONDS),
       whatsapp_batch_size: clampPacing(pacing?.whatsappBatchSize, DEFAULT_BATCH_SIZE, 1, MAX_BATCH_SIZE),
       whatsapp_batch_delay_seconds: clampPacing(pacing?.whatsappDelaySeconds, DEFAULT_DELAY_SECONDS, 0, MAX_DELAY_SECONDS),
-      // Quiet hours, in Costa Rica time. Equal start and end would mean a
+      // Quiet hours, in panama time. Equal start and end would mean a
       // zero-length window that never opens, so it is treated as "no limit".
       send_window_start_hour: clampHour(pacing?.windowStartHour),
       send_window_end_hour: clampHour(pacing?.windowEndHour),

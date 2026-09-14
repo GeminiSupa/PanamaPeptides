@@ -1,5 +1,5 @@
 -- =========================================================================
---               PEPTIDES COSTA RICA - COMMISSION PAYOUTS SCHEMAS
+--               Peptides Panama - COMMISSION PAYOUTS SCHEMAS
 -- =========================================================================
 -- Run this script in your Supabase SQL Editor to support the Admin Approval flow.
 

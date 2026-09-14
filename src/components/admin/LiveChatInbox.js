@@ -32,7 +32,7 @@ const REMINDER_MS = 60000;
 
 const QUICK_REPLIES = [
   'Hola, gracias por escribirnos. ¿En qué le podemos ayudar?',
-  'Puede ver el catálogo actualizado aquí: https://catalog.peptidescostarica.net/catalog',
+  'Puede ver el catálogo actualizado aquí: https://catalog.peptidespanama.net/catalog',
   'Con gusto. ¿Me confirma su nombre y el producto que está revisando?',
   'Gracias. Un agente revisará su consulta y le responderá por aquí.',
 ];
@@ -972,7 +972,7 @@ export default function LiveChatInbox() {
                 // The button says what it does; what is currently set moves to
                 // the tooltip, where it informs without having to be read as an
                 // instruction.
-                title={`Hours the website chat shows as online, Costa Rica time — ${summarizeSchedule(availability)}`}
+                title={`Hours the website chat shows as online, panama time — ${summarizeSchedule(availability)}`}
                 aria-expanded={showHours}
               >
                 <Clock3 size={12} />
@@ -995,7 +995,7 @@ export default function LiveChatInbox() {
               schedule rather than as seven blanks waiting to be filled. */}
           {currentAgent?.isSuperadmin && showHours && (availability?.mode || 'auto') === 'auto' ? (
             <div style={weekPanelStyle}>
-              <div style={weekPanelHintStyle}>Website chat hours · Costa Rica time</div>
+              <div style={weekPanelHintStyle}>Website chat hours · panama time</div>
               {DAY_DISPLAY_ORDER.map((day) => {
                 const schedule = scheduleForDay(availability, day);
                 const range = schedule.ranges[0];

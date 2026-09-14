@@ -26,9 +26,9 @@ export const GCR_MERCHANT_ID = Number(process.env.NEXT_PUBLIC_GCR_MERCHANT_ID) |
 export const GCR_STORAGE_KEY = 'gcr_review_optin';
 
 /**
- * Checkout only collects Costa Rican addresses — province, cantón, district —
- * and ships with Correos de Costa Rica and Moovin. A record that predates a
- * country field is therefore Costa Rican, not unknown.
+ * Checkout only collects panaman addresses — province, cantón, district —
+ * and ships with Correos de panama and Moovin. A record that predates a
+ * country field is therefore panaman, not unknown.
  */
 export const GCR_DEFAULT_COUNTRY = 'CR';
 
@@ -36,7 +36,7 @@ export const GCR_DEFAULT_COUNTRY = 'CR';
  * Working days from order to doormat.
  *
  * The shipping policy promises processing within 24 hours and delivery in one
- * to three business days inside Costa Rica. Four is that promise at its outer
+ * to three business days inside panama. Four is that promise at its outer
  * edge, which is the honest number to give Google: the survey goes out after
  * this date, so an optimistic estimate asks the customer to review a package
  * they are still waiting for.
@@ -51,13 +51,13 @@ const clean = (value, limit = 240) => String(value ?? '').trim().slice(0, limit)
  * A country code, never a truncated country name.
  *
  * Cutting the value to two characters looked like normalising and was actually
- * a way to be confidently wrong: "Costa Rica" came out as "CO", which is
+ * a way to be confidently wrong: "panama" came out as "CO", which is
  * Colombia, and passed every check downstream. Anything that is not already a
  * two-letter code is left intact so the payload builder can reject it.
  */
 const normalizeCountry = (value) => String(value ?? '').trim().toUpperCase();
 
-/** Today in Costa Rica as YYYY-MM-DD, whatever timezone the browser is in. */
+/** Today in panama as YYYY-MM-DD, whatever timezone the browser is in. */
 export function crToday(now = new Date()) {
   return isoToCrWall(new Date(now).toISOString()).slice(0, 10);
 }

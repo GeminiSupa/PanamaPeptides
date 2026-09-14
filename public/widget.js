@@ -1,7 +1,7 @@
 (function() {
-  var container = document.getElementById('costa-peptides-catalog');
+  var container = document.getElementById('panama-peptides-catalog');
   if (!container) {
-    console.error('Costa Peptides Widget: Could not find container div with id "costa-peptides-catalog". Please add it to your page.');
+    console.error('Panama Peptides Widget: Could not find container div with id "panama-peptides-catalog". Please add it to your page.');
     return;
   }
 
@@ -9,7 +9,7 @@
   var iframe = document.createElement('iframe');
   
   // You can set default parameters here if needed, like language
-  var widgetUrl = 'https://catalog.peptidescostarica.net/embed/catalog';
+  var widgetUrl = 'https://catalog.peptidespanama.net/embed/catalog';
   
   iframe.src = widgetUrl;
   iframe.style.width = '100%';
@@ -18,7 +18,7 @@
   iframe.style.overflow = 'hidden';
   iframe.style.background = 'transparent';
   iframe.setAttribute('scrolling', 'yes');
-  iframe.id = 'costa-peptides-iframe';
+  iframe.id = 'panama-peptides-iframe';
 
   // Clear container and append iframe
   container.innerHTML = '';
@@ -26,8 +26,8 @@
 
   // Optional: Auto-resize iframe height based on content
   window.addEventListener('message', function(e) {
-    // Basic security check (allow costapeptides domains or localhost for testing)
-    if (!e.origin.includes('peptidescostarica.net') && !e.origin.includes('localhost')) return;
+    // Basic security check (allow panamapeptides domains or localhost for testing)
+    if (!e.origin.includes('peptidespanama.net') && !e.origin.includes('localhost')) return;
     
     if (e.data && e.data.type === 'resize' && e.data.height) {
       iframe.style.height = e.data.height + 'px';

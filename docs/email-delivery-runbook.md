@@ -8,7 +8,7 @@ each one starting from zero and each one derailed by the same false comfort:
 ## The one thing to understand first
 
 Mail leaves this application through **Elastic Email**. Mailboxes on
-`@peptidescostarica.net` are hosted at **Rackspace**.
+`@peptidespanama.net` are hosted at **Rackspace**.
 
 ```
 app  ->  Elastic Email  ->  recipient's mail host  ->  inbox
@@ -32,8 +32,8 @@ arrives from anywhere but Rackspace. It reads as spoofing. SPF authorising
 Elastic does not help; this is a separate own-domain rule and it is enforced
 regardless.
 
-So any message with `From: ...@peptidescostarica.net` **to**
-`...@peptidescostarica.net` that is submitted through Elastic gets accepted by
+So any message with `From: ...@peptidespanama.net` **to**
+`...@peptidespanama.net` that is submitted through Elastic gets accepted by
 Elastic, logged by us as `sent`, and then binned at Rackspace's boundary. The
 sender never hears about it.
 
@@ -107,7 +107,7 @@ Vercel does not read encrypted values back, so the dashboard cannot answer
 this. Ask the process:
 
 ```
-https://catalog.peptidescostarica.net/api/admin/email-diagnostics?verify=1
+https://catalog.peptidespanama.net/api/admin/email-diagnostics?verify=1
 ```
 
 Admin login required. Returns hosts, masked logins, the exact `From` header

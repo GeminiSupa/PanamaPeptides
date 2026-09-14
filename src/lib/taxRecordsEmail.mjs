@@ -16,7 +16,7 @@
 // receipt carries no CC at all.
 
 export const TAX_RECORDS_CC_EMAIL =
-  process.env.TAX_RECORDS_CC_EMAIL || 'pbagcr@peptidescostarica.net';
+  process.env.TAX_RECORDS_CC_EMAIL || 'pbagcr@peptidespanama.net';
 
 /**
  * Every address that should receive the accounting copy.
@@ -31,7 +31,7 @@ export function taxRecordsRecipients(value = process.env.TAX_RECORDS_CC_EMAIL) {
     .map((entry) => entry.trim())
     .filter(Boolean);
 
-  return configured.length > 0 ? configured : ['pbagcr@peptidescostarica.net'];
+  return configured.length > 0 ? configured : ['pbagcr@peptidespanama.net'];
 }
 
 /**

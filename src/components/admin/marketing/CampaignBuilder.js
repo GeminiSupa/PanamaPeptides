@@ -80,7 +80,7 @@ const AUDIENCE_CHOICES = [
     hint: 'subscribers and leads, deduplicated',
   },
 ];
-const ACTUAL_SMTP_SENDER = 'info@peptidescostarica.net';
+const ACTUAL_SMTP_SENDER = 'info@peptidespanama.net';
 const EMAIL_TEMPLATE_WIDTH = 600;
 const MOBILE_PREVIEW_WIDTH = 375;
 const MOBILE_PREVIEW_HEIGHT = 667;
@@ -179,7 +179,7 @@ const createTemplateDesign = ({ headline, eyebrow, body, cta, footerNote, accent
         columns: [
           {
             contents: [
-              textBlock('Costa Peptides', {
+              textBlock('Panama Peptides', {
                 containerPadding: '26px 20px 6px',
                 textAlign: 'center',
                 color: accent,
@@ -277,11 +277,11 @@ const TEMPLATES = [
     icon: '📰',
     name: 'Newsletter',
     desc: 'Regular content digest',
-    subject: 'Costa Peptides update for [FIRST_NAME]',
+    subject: 'Panama Peptides update for [FIRST_NAME]',
     design: createTemplateDesign({
-      headline: 'This week from Costa Peptides',
+      headline: 'This week from Panama Peptides',
       eyebrow: 'A quick digest of product updates, education, and customer support notes.',
-      body: '<p>Hi [FIRST_NAME],</p><p>Here is your latest Costa Peptides digest. Add your featured article, product note, or customer story here, then keep the message focused on one clear next step.</p><ul><li>New educational resource or protocol reminder</li><li>Featured peptide category or restock note</li><li>Customer service update or ordering tip</li></ul>',
+      body: '<p>Hi [FIRST_NAME],</p><p>Here is your latest Panama Peptides digest. Add your featured article, product note, or customer story here, then keep the message focused on one clear next step.</p><ul><li>New educational resource or protocol reminder</li><li>Featured peptide category or restock note</li><li>Customer service update or ordering tip</li></ul>',
       cta: 'Browse the catalog',
       footerNote: '<p>Have a question before ordering? Reply to this email and our team will help.</p>',
     }),
@@ -291,7 +291,7 @@ const TEMPLATES = [
     icon: '🏷️',
     name: 'Promotion',
     desc: 'Sale or discount offer',
-    subject: 'A Costa Peptides offer for [FIRST_NAME]',
+    subject: 'A Panama Peptides offer for [FIRST_NAME]',
     design: createTemplateDesign({
       headline: 'Limited-time peptide offer',
       eyebrow: 'Highlight your promotion, discount code, or bundle here.',
@@ -306,11 +306,11 @@ const TEMPLATES = [
     icon: '👋',
     name: 'Welcome',
     desc: 'Greet new subscribers',
-    subject: 'Welcome to Costa Peptides, [FIRST_NAME]',
+    subject: 'Welcome to Panama Peptides, [FIRST_NAME]',
     design: createTemplateDesign({
-      headline: 'Welcome to Costa Peptides',
+      headline: 'Welcome to Panama Peptides',
       eyebrow: 'A warm first email for new subscribers and leads.',
-      body: '<p>Hi [FIRST_NAME],</p><p>Thanks for joining Costa Peptides. We are glad you are here.</p><p>Use this email to introduce your standards, ordering process, support channels, and the easiest first action for a new subscriber.</p>',
+      body: '<p>Hi [FIRST_NAME],</p><p>Thanks for joining Panama Peptides. We are glad you are here.</p><p>Use this email to introduce your standards, ordering process, support channels, and the easiest first action for a new subscriber.</p>',
       cta: 'Explore products',
       footerNote: '<p>Need help finding the right product information? Reply to this email and our team will point you in the right direction.</p>',
     }),
@@ -340,7 +340,7 @@ const TEMPLATES = [
       headline: 'Still thinking it over?',
       eyebrow: 'A re-engagement email for inactive leads or older subscribers.',
       body: '<p>Hi [FIRST_NAME],</p><p>It has been a little while, so we wanted to check in. If you are still comparing options or waiting on a restock, our team can help you find current availability.</p><p>You can update this section with a reason to return, such as a new product, improved shipping, or a personal support offer.</p>',
-      cta: 'Return to Costa Peptides',
+      cta: 'Return to Panama Peptides',
       footerNote: '<p>If now is not the right time, no worries. You can keep receiving useful updates or unsubscribe below.</p>',
       accent: '#8b5cf6',
     }),
@@ -370,7 +370,7 @@ const TEMPLATES = [
   <tr><td style="padding: 10px 16px; background: #ffffff; border-radius: 0 0 8px 8px;"><strong style="color: #059669;">✅ NAD+ 1000mg</strong></td></tr>
 </table>
 
-<p>All products are <strong>third-party tested</strong> and ship directly from Costa Rica. Stock is limited on first batches — grab yours before they run out!</p>
+<p>All products are <strong>third-party tested</strong> and ship directly from panama. Stock is limited on first batches — grab yours before they run out!</p>
 
 <p>You can view all our products and place your order directly on our <a href="${LIVE_SITE_URL}/catalog" style="color: #059669; font-weight: bold; text-decoration: underline;">online catalog here</a>.</p>`,
       cta: 'Shop New Arrivals →',
@@ -445,7 +445,7 @@ export default function CampaignBuilder({ editingCampaignId, onDirtyChange, noti
   const [previewHtml, setPreviewHtml] = useState(null);
 
   // Sender settings (Mailchimp-style)
-  const [fromName,    setFromName]    = useState('Costa Peptides');
+  const [fromName,    setFromName]    = useState('Panama Peptides');
   const [fromEmail,   setFromEmail]   = useState('');
   const [replyTo,     setReplyTo]     = useState('');
 
@@ -645,7 +645,7 @@ export default function CampaignBuilder({ editingCampaignId, onDirtyChange, noti
     setAudienceScope(normalizeAudienceScope(snapshot.audienceScope, snapshot.includeLeads));
     setBehaviorFilter(normalizeBehaviorFilter(snapshot.behaviorFilter));
     setPreviewText(snapshot.previewText || '');
-    setFromName(snapshot.fromName || 'Costa Peptides');
+    setFromName(snapshot.fromName || 'Panama Peptides');
     setFromEmail(snapshot.fromEmail || '');
     setReplyTo(snapshot.replyTo || '');
     setScheduleMode(snapshot.scheduleMode || 'now');
@@ -826,7 +826,7 @@ export default function CampaignBuilder({ editingCampaignId, onDirtyChange, noti
     setTargetSegment(selectedCampaign.target_tags?.[0] || '');
     setAudienceScope(normalizeAudienceScope(selectedCampaign.audience_scope, selectedCampaign.include_leads));
     setBehaviorFilter(normalizeBehaviorFilter(selectedCampaign.behavior_filter));
-    setFromName(selectedCampaign.from_name || 'Costa Peptides');
+    setFromName(selectedCampaign.from_name || 'Panama Peptides');
     setFromEmail(selectedCampaign.from_email || '');
     setReplyTo(selectedCampaign.reply_to || '');
     setPreviewText(selectedCampaign.preview_text || '');
@@ -1617,7 +1617,7 @@ export default function CampaignBuilder({ editingCampaignId, onDirtyChange, noti
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
             <div className="mkt-input-group mkt-flex-1" style={{ minWidth: '180px' }}>
               <label className="mkt-label">Display name <span style={{ fontWeight: 'normal', opacity: 0.5, textTransform: 'none', letterSpacing: 0 }}>(shown to subscribers)</span></label>
-              <input type="text" value={fromName} onChange={e => updateDraftField(setFromName, e.target.value)} placeholder="Costa Peptides" className="mkt-input" />
+              <input type="text" value={fromName} onChange={e => updateDraftField(setFromName, e.target.value)} placeholder="Panama Peptides" className="mkt-input" />
             </div>
             <div className="mkt-input-group mkt-flex-1" style={{ minWidth: '180px' }}>
               <label className="mkt-label">Actual SMTP sender <span style={{ fontWeight: 'normal', opacity: 0.5, textTransform: 'none', letterSpacing: 0 }}>(verified)</span></label>
@@ -1635,7 +1635,7 @@ export default function CampaignBuilder({ editingCampaignId, onDirtyChange, noti
             </div>
           </div>
           <div className="mkt-sender-clarity" style={{ marginTop: '12px', padding: '12px 14px', border: '1px solid rgba(56,189,248,0.18)', borderRadius: '8px', background: 'rgba(56,189,248,0.06)', color: '#cbd5e1', fontSize: '12px', lineHeight: 1.6 }}>
-            <div><strong style={{ color: '#fff' }}>Display name:</strong> {fromName || 'Costa Peptides'}</div>
+            <div><strong style={{ color: '#fff' }}>Display name:</strong> {fromName || 'Panama Peptides'}</div>
             <div><strong style={{ color: '#fff' }}>Reply-to:</strong> {replyTo || ACTUAL_SMTP_SENDER}</div>
             <div><strong style={{ color: '#fff' }}>Actual SMTP sender:</strong> {ACTUAL_SMTP_SENDER}</div>
           </div>

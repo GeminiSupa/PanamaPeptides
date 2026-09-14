@@ -62,9 +62,9 @@ test('email chart uses unique recipient engagement and sent campaigns only', () 
 
 test('acquisition channels deduplicate visitors and exclude preview traffic', () => {
   const rows = acquisitionChannelRows([
-    { id: '1', visitor_id: 'visitor-a', utm_source: 'facebook', hostname: 'peptidescostarica.net' },
-    { id: '2', visitor_id: 'visitor-a', utm_source: 'ig', hostname: 'peptidescostarica.net' },
-    { id: '3', session_id: 'session-b', utm_source: 'email', hostname: 'catalog.peptidescostarica.net' },
+    { id: '1', visitor_id: 'visitor-a', utm_source: 'facebook', hostname: 'peptidespanama.net' },
+    { id: '2', visitor_id: 'visitor-a', utm_source: 'ig', hostname: 'peptidespanama.net' },
+    { id: '3', session_id: 'session-b', utm_source: 'email', hostname: 'catalog.peptidespanama.net' },
     { id: '4', visitor_id: 'preview', utm_source: 'facebook', hostname: 'branch.vercel.app' },
   ]);
 
@@ -76,20 +76,20 @@ test('acquisition channels deduplicate visitors and exclude preview traffic', ()
 
 test('domain and page analytics aggregate production page views without splitting UTM URLs', () => {
   const events = [
-    { id: '1', event_type: 'page_view', visitor_id: 'visitor-a', hostname: 'catalog.peptidescostarica.net', path: '/lp?utm_source=google', gclid: 'click-1' },
-    { id: '2', event_type: 'page_view', visitor_id: 'visitor-a', hostname: 'catalog.peptidescostarica.net', path: '/lp?utm_source=email' },
-    { id: '3', event_type: 'page_view', visitor_id: 'visitor-b', hostname: 'peptidescostarica.net', path: '/catalog' },
-    { id: '4', event_type: 'heartbeat', visitor_id: 'visitor-a', hostname: 'catalog.peptidescostarica.net', path: '/lp' },
+    { id: '1', event_type: 'page_view', visitor_id: 'visitor-a', hostname: 'catalog.peptidespanama.net', path: '/lp?utm_source=google', gclid: 'click-1' },
+    { id: '2', event_type: 'page_view', visitor_id: 'visitor-a', hostname: 'catalog.peptidespanama.net', path: '/lp?utm_source=email' },
+    { id: '3', event_type: 'page_view', visitor_id: 'visitor-b', hostname: 'peptidespanama.net', path: '/catalog' },
+    { id: '4', event_type: 'heartbeat', visitor_id: 'visitor-a', hostname: 'catalog.peptidespanama.net', path: '/lp' },
     { id: '5', event_type: 'page_view', visitor_id: 'preview', hostname: 'branch.vercel.app', path: '/lp' },
   ];
 
   assert.deepEqual(domainTrafficRows(events), [
-    { key: 'catalog.peptidescostarica.net', hostname: 'catalog.peptidescostarica.net', pageViews: 2, visitors: 1, paidVisitors: 1 },
-    { key: 'peptidescostarica.net', hostname: 'peptidescostarica.net', pageViews: 1, visitors: 1, paidVisitors: 0 },
+    { key: 'catalog.peptidespanama.net', hostname: 'catalog.peptidespanama.net', pageViews: 2, visitors: 1, paidVisitors: 1 },
+    { key: 'peptidespanama.net', hostname: 'peptidespanama.net', pageViews: 1, visitors: 1, paidVisitors: 0 },
   ]);
   assert.deepEqual(pageTrafficRows(events), [
-    { key: 'catalog.peptidescostarica.net/lp', hostname: 'catalog.peptidescostarica.net', path: '/lp', pageViews: 2, visitors: 1, paidVisitors: 1 },
-    { key: 'peptidescostarica.net/catalog', hostname: 'peptidescostarica.net', path: '/catalog', pageViews: 1, visitors: 1, paidVisitors: 0 },
+    { key: 'catalog.peptidespanama.net/lp', hostname: 'catalog.peptidespanama.net', path: '/lp', pageViews: 2, visitors: 1, paidVisitors: 1 },
+    { key: 'peptidespanama.net/catalog', hostname: 'peptidespanama.net', path: '/catalog', pageViews: 1, visitors: 1, paidVisitors: 0 },
   ]);
   assert.equal(uniquePageVisitorCount(events, '/lp'), 1);
 });
@@ -205,8 +205,8 @@ test('the overview is used when Postgres has grouped it, and ignored when it has
     sessions: { total: 127199, mobile: 80000, withDuration: 900, avgCatalogSeconds: 74.5 },
     cities: [{ city: 'Heredia', sessions: 120 }, { city: 'San José', sessions: 400 }],
     productViews: [{ name: 'BPC-157 5mg', views: 900, viewers: 600 }],
-    domains: [{ hostname: 'costapeptides.com', pageViews: 5, visitors: 3, paidVisitors: 1 }],
-    pages: [{ hostname: 'costapeptides.com', path: '/lp', pageViews: 5, visitors: 3, paidVisitors: 1 }],
+    domains: [{ hostname: 'panamapeptides.com', pageViews: 5, visitors: 3, paidVisitors: 1 }],
+    pages: [{ hostname: 'panamapeptides.com', path: '/lp', pageViews: 5, visitors: 3, paidVisitors: 1 }],
     channels: [{ utmSource: 'fb', visitors: 10 }, { utmSource: 'facebook', visitors: 5 }, { utmSource: '', visitors: 7 }],
     landingVisitors: 3,
   };

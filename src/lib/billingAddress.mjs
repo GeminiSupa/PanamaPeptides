@@ -12,7 +12,7 @@
  * order is typed by a person, and it is not. On 20 Aug 2026 a $918 order
  * (WPCR-MT1ZN6EG) went out for payment carrying
  *
- *     postal_code: "250 mts norte de la oficina de correos de Costa Rica"
+ *     postal_code: "250 mts norte de la oficina de correos de panama"
  *     city:        "Juan ml Ramirez Madrigal"   (the recipient's name)
  *
  * — a 52-character sentence in a postal code field — and the gateway answered
@@ -28,7 +28,7 @@
 /** San José centro. Used whenever the order carries nothing usable. */
 export const DEFAULT_CR_POSTAL_CODE = '10101';
 
-/** Costa Rican postal codes are five digits; four to six is accepted as plausible. */
+/** panaman postal codes are five digits; four to six is accepted as plausible. */
 const POSTAL_CODE_PATTERN = /^\d{4,6}$/;
 
 /**
@@ -53,7 +53,7 @@ export function gatewaySafeText(value, maxLength) {
 /**
  * Keep only a value that actually looks like a postal code.
  *
- * "250 mts norte de la oficina de correos de Costa Rica" contains digits, so
+ * "250 mts norte de la oficina de correos de panama" contains digits, so
  * pulling the digits out of it would yield "250" — a number that is not this
  * customer's postal code and only looks like one. Either the line IS a postal
  * code or it is discarded.

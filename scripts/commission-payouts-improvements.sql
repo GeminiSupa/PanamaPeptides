@@ -1,5 +1,5 @@
 -- ============================================================
--- Peptides Costa Rica — Supabase SQL Migrations
+-- Peptides Panama — Supabase SQL Migrations
 -- Run this in the Supabase SQL Editor (safe to run multiple times)
 -- ============================================================
 

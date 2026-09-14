@@ -26,6 +26,6 @@ test('both order messages attach the embedded logo and retain a text brand fallb
   const templates = fs.readFileSync('src/lib/orderEmailTemplates.mjs', 'utf8');
 
   assert.equal((route.match(/attachments: \[getOrderEmailLogoAttachment\(\)\]/g) || []).length, 2);
-  assert.equal((templates.match(/PEPTIDES COSTA RICA<\/div>/g) || []).length, 2);
-  assert.doesNotMatch(templates, /<img src="https:\/\/catalog\.peptidescostarica\.net\/logo\.png/);
+  assert.equal((templates.match(/Peptides Panama<\/div>/g) || []).length, 2);
+  assert.doesNotMatch(templates, /<img src="https:\/\/catalog\.peptidespanama\.net\/logo\.png/);
 });

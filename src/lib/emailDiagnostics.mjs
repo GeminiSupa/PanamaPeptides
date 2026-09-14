@@ -49,20 +49,20 @@ export function whitespaceWarning(env, names) {
  */
 export function resolveFromHeaders(env, transactionalUser) {
   const orderShipped = env.ORDER_NOTIFICATION_FROM
-    || `Peptides Costa Rica <${transactionalUser || 'omerforce@gmail.com'}>`;
+    || `Peptides Panama <${transactionalUser || 'omerforce@gmail.com'}>`;
 
   const leadFromEmail = read(env, 'ORDER_NOTIFICATION_FROM_EMAIL')
     || read(env, 'CAMPAIGN_SMTP_FROM_EMAIL')
     || transactionalUser;
   const leadAlert = read(env, 'ORDER_NOTIFICATION_FROM')
-    || `Peptides Costa Rica <${leadFromEmail}>`;
+    || `Peptides Panama <${leadFromEmail}>`;
 
-  const campaignFromEmail = read(env, 'CAMPAIGN_SMTP_FROM_EMAIL') || 'info@peptidescostarica.net';
-  const campaign = read(env, 'CAMPAIGN_FROM') || `Peptides Costa Rica <${campaignFromEmail}>`;
+  const campaignFromEmail = read(env, 'CAMPAIGN_SMTP_FROM_EMAIL') || 'info@peptidespanama.net';
+  const campaign = read(env, 'CAMPAIGN_FROM') || `Peptides Panama <${campaignFromEmail}>`;
 
   return {
     orderCompleteReceipt: orderShipped,
-    newOrderNotification: 'Peptides Costa Rica <info@peptidescostarica.net>',
+    newOrderNotification: 'Peptides Panama <info@peptidespanama.net>',
     leadAlert,
     campaign,
   };
@@ -153,7 +153,7 @@ export function buildEmailDiagnostics({ env = process.env, transactional, campai
       primaryFrom: accounting.from || '(unset)',
     },
     fromHeaders: from,
-    accountingCc: read(env, 'TAX_RECORDS_CC_EMAIL') || 'pbagcr@peptidescostarica.net (default)',
+    accountingCc: read(env, 'TAX_RECORDS_CC_EMAIL') || 'pbagcr@peptidespanama.net (default)',
     envPresence: envReport,
     problems,
     healthy: problems.length === 0,

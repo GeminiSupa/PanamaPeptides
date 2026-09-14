@@ -74,13 +74,13 @@ test('the same number listed twice only gets one alert', async () => {
 test('addresses dedupe case-insensitively', async () => {
   const supabase = fakeSupabase({
     data: [
-      { label: 'Ops', channel: 'email', destination: 'Info@peptidescostarica.net' },
-      { label: 'Webster', channel: 'email', destination: 'info@peptidescostarica.net' },
+      { label: 'Ops', channel: 'email', destination: 'Info@peptidespanama.net' },
+      { label: 'Webster', channel: 'email', destination: 'info@peptidespanama.net' },
     ],
     error: null,
   });
   const { recipients } = await getNotificationRecipients(supabase, { channel: 'email' });
-  assert.deepEqual(recipients, [{ label: 'Ops', destination: 'Info@peptidescostarica.net' }]);
+  assert.deepEqual(recipients, [{ label: 'Ops', destination: 'Info@peptidespanama.net' }]);
 });
 
 test('an unknown notification type is a programming error', async () => {

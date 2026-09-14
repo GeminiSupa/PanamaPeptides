@@ -33,7 +33,7 @@ test('does not depend on the machine timezone it runs on', () => {
   // a fixed offset, so the same input gives the same instant everywhere.
   const before = process.env.TZ;
   try {
-    for (const tz of ['Asia/Karachi', 'America/Costa_Rica', 'UTC']) {
+    for (const tz of ['Asia/Karachi', 'America/panama', 'UTC']) {
       process.env.TZ = tz;
       assert.equal(crWallToIso('2026-07-25T23:59'), '2026-07-26T05:59:00.000Z', `TZ=${tz}`);
     }
@@ -43,7 +43,7 @@ test('does not depend on the machine timezone it runs on', () => {
 });
 
 test('the live chat reads the CR hour and weekday off the same instant', () => {
-  // 05:59 UTC Sunday is still 23:59 Saturday in Costa Rica. Reading the day
+  // 05:59 UTC Sunday is still 23:59 Saturday in panama. Reading the day
   // from the UTC date would put the chat on Sunday's schedule an hour early.
   assert.deepEqual(crHourAndDay('2026-07-26T05:59:00.000Z'), { hour: 23, day: 6 });
   // One minute later it really is Sunday in CR.
@@ -81,7 +81,7 @@ test('preview line confirms the CR meaning in 24-hour clock', async () => {
   const text = formatCrWall('2026-07-25T23:59');
   assert.match(text, /23:59/, 'must be 24-hour, never 11:59 PM');
   assert.match(text, /25/);
-  assert.match(text, /Costa Rica/);
+  assert.match(text, /panama/);
   assert.equal(formatCrWall(''), '');
 });
 
@@ -89,9 +89,9 @@ test('preview line confirms the CR meaning in 24-hour clock', async () => {
 
 test('a late-evening CR order is not dated tomorrow for an admin who is ahead', () => {
   // The real one: order WPCR-MT6T71IR was completed 2026-08-24T05:42Z, which is
-  // 23:42 on the 23rd in Costa Rica. The orders list read the browser clock, so
+  // 23:42 on the 23rd in panama. The orders list read the browser clock, so
   // an admin in Pakistan (UTC+5) saw "Aug 24, 10:42" while Revenue Today - which
-  // has always counted the Costa Rican day - correctly left it in the 23rd.
+  // has always counted the panaman day - correctly left it in the 23rd.
   const instant = '2026-08-24T05:42:00Z';
 
   const label = formatCrDate(instant, { month: 'short', day: 'numeric' });

@@ -80,7 +80,7 @@ function OrderReceivedContent() {
       }}>
         <img
           src="/logo.png"
-          alt="Peptides Costa Rica"
+          alt="Peptides Panama"
           style={{ height: '52px', width: 'auto', margin: '0 auto 24px', display: 'block' }}
         />
 
@@ -152,7 +152,7 @@ function OrderReceivedContent() {
         </p>
 
         <p style={{ fontSize: '0.75rem', color: '#cbd5e1', fontWeight: 600, letterSpacing: '0.3px', margin: '28px 0 0' }}>
-          Peptides Costa Rica
+          Peptides Panama
         </p>
       </div>
     </div>

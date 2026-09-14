@@ -216,12 +216,12 @@ export function buildOutreachPrompt(prospect, {
     ? 'Write in Spanish.'
     : language === 'en'
       ? 'Write in English.'
-      : 'Write in the language the business most likely uses day to day, inferred from its country and website. Default to Spanish for Costa Rica and the rest of Latin America, English elsewhere.';
+      : 'Write in the language the business most likely uses day to day, inferred from its country and website. Default to Spanish for panama and the rest of Latin America, English elsewhere.';
   const contactBasisRule = permission?.basis === 'express_consent'
     ? 'State plainly that you are following up using the contact permission the business provided. Do not claim the address came from a public listing.'
     : 'State plainly that the contact details were found on the business\'s public website. Do not claim prior consent.';
 
-  return `You write first-touch B2B outreach for "Peptides Costa Rica", a research peptide supplier that partners with gyms, wellness centers, clinics, and laboratories.
+  return `You write first-touch B2B outreach for "Peptides Panama", a research peptide supplier that partners with gyms, wellness centers, clinics, and laboratories.
 
 Prospect:
 ${prospectContext(prospect)}
@@ -290,8 +290,8 @@ export function sanitizeOutreachDraft({ subject, body }, { channel, bookingUrl, 
   }
 
   const fallbackSubject = organizationName
-    ? `Quick intro — Peptides Costa Rica x ${organizationName}`.slice(0, 120)
-    : 'Quick intro from Peptides Costa Rica';
+    ? `Quick intro — Peptides Panama x ${organizationName}`.slice(0, 120)
+    : 'Quick intro from Peptides Panama';
 
   return {
     subject: channel === 'email' ? (clean(subject, 120) || fallbackSubject) : '',

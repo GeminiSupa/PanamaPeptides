@@ -5,11 +5,11 @@ const splitList = (value = '') => String(value || '')
 
 const emailKey = (value) => String(value || '').trim().toLowerCase();
 
-export const ORDER_NOTIFICATION_INBOX = 'info@peptidescostarica.net';
+export const ORDER_NOTIFICATION_INBOX = 'info@peptidespanama.net';
 export const ORDER_NOTIFICATION_OWNER_BCC = 'omerforce@gmail.com';
 export const ORDER_NOTIFICATION_EXCLUDED_AGENTS = new Set([
-  'aziza@peptidescostarica.net',
-  'sean@peptidescostarica.net',
+  'aziza@peptidespanama.net',
+  'sean@peptidespanama.net',
 ]);
 
 /**

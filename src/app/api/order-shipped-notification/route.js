@@ -31,14 +31,14 @@ function getMailSettings() {
   return {
     smtp,
     from: process.env.ORDER_NOTIFICATION_FROM
-      || `Peptides Costa Rica <${smtp.user || 'omerforce@gmail.com'}>`,
+      || `Peptides Panama <${smtp.user || 'omerforce@gmail.com'}>`,
   };
 }
 
 // Trustpilot Automatic Feedback Service (AFS): BCC this address on the
 // order-complete email and Trustpilot sends the customer a verified review
 // invitation (default 7-day delay, configured in the Trustpilot dashboard).
-const TRUSTPILOT_AFS_BCC = process.env.TRUSTPILOT_AFS_BCC || 'peptidescostarica.net+7777886f21@invite.trustpilot.com';
+const TRUSTPILOT_AFS_BCC = process.env.TRUSTPILOT_AFS_BCC || 'peptidespanama.net+7777886f21@invite.trustpilot.com';
 
 /**
  * How many Trustpilot invitations have gone out this calendar month.
@@ -132,7 +132,7 @@ const buildCustomerShippedHtml = (order, totalPrimary, totalUsd, totalCrc, lang,
     supportTitle: isEn ? 'Need Assistance?' : '¿Necesita Ayuda?',
     supportText: isEn ? 'Our scientific support desk is ready to answer any questions about reconstitution, supplies, or shipping details.' : 'Nuestra mesa de soporte científico está lista para responder cualquier consulta sobre reconstitución, suministros o logística de envío.',
     whatsappBtn: isEn ? 'Chat with Support on WhatsApp' : 'Chatear con Soporte por WhatsApp',
-    footer: isEn ? 'High-Purity Research Peptides · Base in Costa Rica' : 'Péptidos de Alta Pureza para Investigación · Con base en Costa Rica',
+    footer: isEn ? 'High-Purity Research Peptides · Base in panama' : 'Péptidos de Alta Pureza para Investigación · Con base en panama',
   };
 
   return `
@@ -140,7 +140,7 @@ const buildCustomerShippedHtml = (order, totalPrimary, totalUsd, totalCrc, lang,
       
       <!-- Premium Science Theme Header Banner -->
       <div style="background-color:#0f172a;background:linear-gradient(135deg, #0f172a, #022c22);padding:32px 24px;text-align:center;">
-        <img src="https://catalog.peptidescostarica.net/logo.png?v=2" alt="Peptides Costa Rica" width="140" height="118" style="display:block;width:140px;height:118px;margin:0 auto 16px auto;border-radius:12px;">
+        <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="140" height="118" style="display:block;width:140px;height:118px;margin:0 auto 16px auto;border-radius:12px;">
         <h1 style="color:#ffffff !important;font-size:24px;font-weight:800;margin:0 0 8px;letter-spacing:-0.5px;">${strings.title}</h1>
         <p style="color:#a7f3d0 !important;font-size:14px;margin:0;max-width:440px;margin:0 auto;line-height:1.4;">${strings.subtitle}</p>
       </div>
@@ -295,8 +295,8 @@ export async function POST(request) {
     const accountingMailer = resolveTaxRecordsMailer();
 
     const customerSubject = orderLang === 'en'
-      ? `Your Order ${order.order_number || ''} has Shipped! - Peptides Costa Rica`
-      : `¡Su pedido ${order.order_number || ''} ha sido enviado! - Péptidos Costa Rica`;
+      ? `Your Order ${order.order_number || ''} has Shipped! - Peptides Panama`
+      : `¡Su pedido ${order.order_number || ''} ha sido enviado! - Péptidos panama`;
       
     // The free vials, whether or not the stored order lists them.
     //

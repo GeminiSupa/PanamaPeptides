@@ -5,8 +5,8 @@ import { ExternalLink, Globe, FileText, Languages, ImageIcon, AlertTriangle } fr
 /**
  * Marketing Website panel.
  *
- * The marketing site at peptidescostarica.net is being rebuilt in a separate
- * repo (peptidecostarica-website). This panel is the seat that rebuild occupies
+ * The marketing site at peptidespanama.net is being rebuilt in a separate
+ * repo (peptidepanama-website). This panel is the seat that rebuild occupies
  * inside the dashboard.
  *
  * Deliberately READ-ONLY and self-contained:
@@ -20,8 +20,8 @@ import { ExternalLink, Globe, FileText, Languages, ImageIcon, AlertTriangle } fr
  * stay exactly as they are.
  */
 
-const SITE_URL = 'https://peptidescostarica.net';
-const CATALOG_URL = 'https://catalog.peptidescostarica.net';
+const SITE_URL = 'https://peptidespanama.net';
+const CATALOG_URL = 'https://catalog.peptidespanama.net';
 
 const INVENTORY = [
   { label: 'Core pages', en: 15, note: 'home, about, contact, FAQ, shop index' },

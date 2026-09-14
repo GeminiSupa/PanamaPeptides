@@ -1,7 +1,7 @@
 "use client";
 
 import { safeLocalStorage as localStorage, safeSessionStorage } from '@/lib/storage';
-import costaricaData from '@/lib/costarica.json';
+import panamaData from '@/lib/panama.json';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
@@ -174,7 +174,7 @@ const translateDiscount = (str, targetLang) => {
   return s;
 };
 
-// Get high-quality, category/product-specific Costa Rica peptide vial image fallback
+// Get high-quality, category/product-specific Panama peptide vial image fallback
 const getProductFallbackImage = (productName, category) => {
   const nameLower = (productName || '').toLowerCase();
   const catLower = (category || '').toLowerCase();
@@ -192,12 +192,12 @@ const getProductFallbackImage = (productName, category) => {
     nameLower.includes('wolverine') ||
     nameLower.includes('group')
   ) {
-    return productName.length % 2 === 0 ? '/vials_group_costarica.png' : '/modern_3d_vials_group.png';
+    return productName.length % 2 === 0 ? '/vials_group_panama.png' : '/modern_3d_vials_group.png';
   }
 
   // Categories mapping
   if (catLower.includes('weight') || catLower.includes('peso') || catLower.includes('metabol')) {
-    return '/vial_costarica_hero.png';
+    return '/vial_panama_hero.png';
   }
   if (catLower.includes('recovery') || catLower.includes('healing') || catLower.includes('curación')) {
     return '/hero_peptide_vial.png';
@@ -206,7 +206,7 @@ const getProductFallbackImage = (productName, category) => {
     return '/modern_3d_vial_hero.png';
   }
   if (catLower.includes('aging') || catLower.includes('longevity') || catLower.includes('longevidad')) {
-    return '/vial_costarica_hero.png';
+    return '/vial_panama_hero.png';
   }
   if (catLower.includes('cognitive') || catLower.includes('mood') || catLower.includes('cognitivo')) {
     return '/hero_peptide_vial.png';
@@ -216,17 +216,18 @@ const getProductFallbackImage = (productName, category) => {
   }
 
   // Fallbacks
-  if (productName.length % 3 === 0) {
-    return '/vial_costarica_hero.png';
-  } else if (productName.length % 3 === 1) {
+  const safeName = productName || '';
+  if (safeName.length % 3 === 0) {
+    return '/vial_panama_hero.png';
+  } else if (safeName.length % 3 === 1) {
     return '/modern_3d_vial_hero.png';
   } else {
     return '/hero_peptide_vial.png';
   }
 };
 
-// Costa Rica Provinces and Cantons dataset
-const COSTA_RICA_TERRITORY = {
+// Panama Provinces and Cantons dataset
+const PANAMA_TERRITORY = {
   'San José': [
     'San José', 'Escazú', 'Desamparados', 'Puriscal', 'Tarrazú', 'Aserrí', 'Mora', 
     'Goicoechea', 'Santa Ana', 'Alajuelita', 'Vázquez de Coronado', 'Acosta', 
@@ -499,7 +500,7 @@ export default function CatalogPage() {
 
   /**
    * Load a stored or recovered number back into the two controls. Numbers saved
-   * before the country picker existed are bare Costa Rica digits, which
+   * before the country picker existed are bare Panama digits, which
    * `splitE164` reads as such.
    */
   const applyStoredPhone = useCallback((stored) => {
@@ -2589,7 +2590,7 @@ export default function CatalogPage() {
     // Presence alone let real junk through — a single letter, a held-down key,
     // a phone number in the name box — and every one of those becomes a sales
     // rep chasing an order they cannot address. The shared rules still allow a
-    // Costa Rican company named after its own cédula jurídica.
+    // Panaman company named after its own cédula jurídica.
     const nameCheck = validateCustomerName(customerName);
     if (!nameCheck.ok) errors.customerName = identityMessage(nameCheck.reason, lang);
     
@@ -2927,8 +2928,8 @@ export default function CatalogPage() {
 
     // 2. Open WhatsApp Receipt
     const receiptHeader = lang === 'en' 
-      ? `*PEPTIDES COSTA RICA — NEW ORDER*`
-      : `*PÉPTIDOS COSTA RICA — NUEVA ORDEN*`;
+      ? `*Peptides Panama — NEW ORDER*`
+      : `*PÉPTIDOS panama — NUEVA ORDEN*`;
       
     const idTypeName = customerIdType === '1' ? 'National ID' : customerIdType === '6' ? 'DIMEX' : customerIdType === '5' ? 'Passport' : customerIdType === '2' ? 'Corporate ID' : customerIdType;
     const idTypeNameEs = customerIdType === '1' ? 'Cédula física' : customerIdType === '6' ? 'DIMEX' : customerIdType === '5' ? 'Pasaporte' : customerIdType === '2' ? 'Cédula jurídica' : customerIdType;
@@ -3334,7 +3335,7 @@ export default function CatalogPage() {
           <Link href="/" className="logo logo--emblem">
             <img
               src="/logo.webp"
-              alt="Peptides Costa Rica Logo"
+              alt="Peptides Panama Logo"
               className="logo-emblem"
             />
           </Link>
@@ -3654,7 +3655,7 @@ export default function CatalogPage() {
       <main className="main container" style={{ position: 'relative', minHeight: '60vh' }}>
         <div className="catalog-seo-header">
           <h1 className="catalog-seo-title">
-            {lang === 'en' ? 'Peptide Catalog Costa Rica' : 'Catálogo de Péptidos en Costa Rica'}
+            {lang === 'en' ? 'Peptide Catalog Panama' : 'Catálogo de Péptidos en Panama'}
           </h1>
           <p className="catalog-seo-sub">
             {lang === 'en'
@@ -3664,12 +3665,12 @@ export default function CatalogPage() {
           <button
             type="button"
             className="catalog-hero-promo"
-            onClick={() => window.open('https://peptidescostarica.net', '_blank', 'noopener,noreferrer')}
-            aria-label={lang === 'en' ? 'Open Peptides Costa Rica website' : 'Abrir sitio de Peptides Costa Rica'}
+            onClick={() => window.open('https://peptidespanama.net', '_blank', 'noopener,noreferrer')}
+            aria-label={lang === 'en' ? 'Open Peptides Panama website' : 'Abrir sitio de Peptides Panama'}
           >
             <img
               src="/catalog-promo-banner.webp"
-              alt={lang === 'en' ? 'Peptides Costa Rica product vials' : 'Viales de Peptides Costa Rica'}
+              alt={lang === 'en' ? 'Peptides Panama product vials' : 'Viales de Peptides Panama'}
             />
           </button>
         </div>
@@ -3719,7 +3720,7 @@ export default function CatalogPage() {
               )}
 
               <div style={{ padding: '24px 24px 32px 24px' }}>
-              <img src="/logo.png" alt="Peptides Costa Rica Logo" style={{ height: '40px', margin: '0 auto 16px auto', display: 'block', borderRadius: '8px' }} />
+              <img src="/logo.png" alt="Peptides Panama Logo" style={{ height: '40px', margin: '0 auto 16px auto', display: 'block', borderRadius: '8px' }} />
               <h2 style={{ fontSize: '1.4rem', fontWeight: '900', color: 'var(--text-main)', marginBottom: '8px' }}>
                 {lang === 'en' ? 'Exclusive Catalog Access' : 'Acceso Exclusivo al Catálogo'}
               </h2>
@@ -3769,8 +3770,8 @@ export default function CatalogPage() {
                     </span>
                     <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                       {lang === 'en'
-                        ? 'By checking this box, you consent to receive marketing updates by WhatsApp or email from Peptides Costa Rica. Reply STOP or unsubscribe anytime.'
-                        : 'Al marcar esta casilla, acepta recibir novedades de marketing por WhatsApp o correo de Peptides Costa Rica. Responda BAJA o cancele la suscripción cuando quiera.'}
+                        ? 'By checking this box, you consent to receive marketing updates by WhatsApp or email from Peptides Panama. Reply STOP or unsubscribe anytime.'
+                        : 'Al marcar esta casilla, acepta recibir novedades de marketing por WhatsApp o correo de Peptides Panama. Responda BAJA o cancele la suscripción cuando quiera.'}
                     </span>
                   </span>
                 </label>
@@ -4047,15 +4048,15 @@ export default function CatalogPage() {
                 margin: '0 auto'
               }}>
                 {lang === 'en'
-                  ? 'Feedback shared by our research community in Costa Rica.'
-                  : 'Comentarios compartidos por nuestra comunidad de investigación en Costa Rica.'}
+                  ? 'Feedback shared by our research community in Panama.'
+                  : 'Comentarios compartidos por nuestra comunidad de investigación en Panama.'}
               </p>
             </div>
 
             <div style={{ borderRadius: '20px', overflow: 'hidden', boxShadow: '0 8px 40px rgba(0,0,0,0.12)', position: 'relative' }}>
               <img
                 src="/customer_transformation.png"
-                alt={lang === 'en' ? 'Customer experience with Peptides Costa Rica' : 'Experiencias de clientes con Péptidos Costa Rica'}
+                alt={lang === 'en' ? 'Customer experience with Peptides Panama' : 'Experiencias de clientes con Péptidos Panama'}
                 style={{ width: '100%', display: 'block', height: 'auto', maxHeight: '440px', objectFit: 'cover', objectPosition: 'center top' }}
                 onError={(e) => { e.target.parentElement.parentElement.parentElement.style.display = 'none'; }}
               />
@@ -4640,7 +4641,7 @@ export default function CatalogPage() {
                 </div>
               </div>
 
-              {/* Structured Address Builder for Costa Rica */}
+              {/* Structured Address Builder for Panama */}
               {/* tabIndex -1 so validateForm's focus() actually lands here — a
                   plain div is not focusable and the call would be a no-op. */}
               <div
@@ -4671,7 +4672,7 @@ export default function CatalogPage() {
                       {...invalidProps('shippingAddress', formErrors)}
                     >
                       <option value="">-- {lang === 'en' ? 'Select Province' : 'Seleccionar Provincia'} --</option>
-                      {Object.values(costaricaData.provincias).map((prov) => (
+                      {Object.values(panamaData.provincias).map((prov) => (
                         <option key={prov.nombre} value={prov.nombre}>{prov.nombre}</option>
                       ))}
                     </select>
@@ -4698,7 +4699,7 @@ export default function CatalogPage() {
                     >
                       <option value="">-- {lang === 'en' ? 'Select Canton' : 'Seleccionar Cantón'} --</option>
                       {shippingProvince && Object.values(
-                        Object.values(costaricaData.provincias).find(p => p.nombre === shippingProvince)?.cantones || {}
+                        Object.values(panamaData.provincias).find(p => p.nombre === shippingProvince)?.cantones || {}
                       ).map((cant) => (
                         <option key={cant.nombre} value={cant.nombre}>{cant.nombre}</option>
                       ))}
@@ -4728,7 +4729,7 @@ export default function CatalogPage() {
                       <option value="">-- {lang === 'en' ? 'Select District' : 'Seleccionar Distrito'} --</option>
                       {shippingCanton && Object.values(
                         Object.values(
-                          Object.values(costaricaData.provincias).find(p => p.nombre === shippingProvince)?.cantones || {}
+                          Object.values(panamaData.provincias).find(p => p.nombre === shippingProvince)?.cantones || {}
                         ).find(c => c.nombre === shippingCanton)?.distritos || {}
                       ).map((dist) => (
                         <option key={dist} value={dist}>{dist}</option>
@@ -4962,8 +4963,8 @@ export default function CatalogPage() {
                     </div>
                     <p className="card-payment-security-note">
                       {lang === 'en'
-                        ? 'Card details are sent securely to Shield Hub Pay and are not stored by Costa Peptides.'
-                        : 'Los datos de la tarjeta se envían de forma segura a Shield Hub Pay y no se almacenan en Costa Peptides.'}
+                        ? 'Card details are sent securely to Shield Hub Pay and are not stored by Panama Peptides.'
+                        : 'Los datos de la tarjeta se envían de forma segura a Shield Hub Pay y no se almacenan en Panama Peptides.'}
                     </p>
                   </div>
                   <p className="card-payment-fee-note">
@@ -5323,7 +5324,7 @@ export default function CatalogPage() {
                     <li style={{ marginBottom: '8px' }}>Open your cart, enter your Name and WhatsApp phone number.</li>
                     <li style={{ marginBottom: '8px' }}>Submit your order. It automatically formats an invoice receipt and launches WhatsApp to chat directly with our specialists.</li>
                   </ol>
-                  <p>Our Costa Rica coordination desk will coordinate stock confirmation, payment options (Sinpe Móvil or cash-on-delivery), and home dispatch coordinates.</p>
+                  <p>Our Panama coordination desk will coordinate stock confirmation, payment options (Sinpe Móvil or cash-on-delivery), and home dispatch coordinates.</p>
                 </>
               ) : (
                 <>
@@ -5358,7 +5359,7 @@ export default function CatalogPage() {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>&copy; 2026 Peptides Costa Rica. {lang === 'en' ? 'High-quality research peptides.' : 'Péptidos de investigación de alta calidad.'}</p>
+          <p>&copy; 2026 Peptides Panama. {lang === 'en' ? 'High-quality research peptides.' : 'Péptidos de investigación de alta calidad.'}</p>
           <div className="footer-links">
             <a href="#" onClick={(e) => { e.preventDefault(); setHowToOrderOpen(true); }}>
               {lang === 'en' ? 'How to Order' : 'Cómo Ordenar'}

@@ -113,7 +113,7 @@ function statusOptionsFor(status) {
   ];
 }
 
-// Costa Rica time, not the reader's — so this column names the same day the
+// panama time, not the reader's — so this column names the same day the
 // Revenue tiles counted the order on. See formatCrDate.
 function getOrderDateLabel(order) {
   return formatCrDate(order.created_at, {
@@ -347,7 +347,7 @@ export default function OrdersManager({
       const claimEmail = String(email).trim().toLowerCase();
       return value === claimEmail || value === claimEmail.split('@')[0];
     });
-    const claimName = matchedAgent || currentAgentName || email || 'info@peptidescostarica.net';
+    const claimName = matchedAgent || currentAgentName || email || 'info@peptidespanama.net';
     const result = await handleOrderSalesAgentUpdate(orderId, claimName, { onlyIfUnassigned: true });
     if (result?.ok === false && result.takenBy) {
       alert(`This order was just claimed by ${result.takenBy}.`);

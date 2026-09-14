@@ -13,8 +13,8 @@ test('new-order mail goes to info, BCCs Omer, and CCs the other agents', () => {
   const addressing = buildOrderEmailAddressing([
     'Agent.One@example.com',
     'agent.two@example.com',
-    'Aziza@peptidescostarica.net',
-    'Sean@peptidescostarica.net',
+    'Aziza@peptidespanama.net',
+    'Sean@peptidespanama.net',
     ORDER_NOTIFICATION_INBOX,
   ]);
 
@@ -39,13 +39,13 @@ test('Omer is never duplicated into CC', () => {
 
 test('the owner is dropped from a visible recipient list', () => {
   assert.equal(
-    stripOwnerAddress('info@peptidescostarica.net, omerforce@gmail.com'),
-    'info@peptidescostarica.net',
+    stripOwnerAddress('info@peptidespanama.net, omerforce@gmail.com'),
+    'info@peptidespanama.net',
   );
   // Case and padding are not identity.
   assert.equal(
-    stripOwnerAddress(' OmerForce@Gmail.com , info@peptidescostarica.net'),
-    'info@peptidescostarica.net',
+    stripOwnerAddress(' OmerForce@Gmail.com , info@peptidespanama.net'),
+    'info@peptidespanama.net',
   );
   assert.equal(
     stripOwnerAddress(['a@example.com', ORDER_NOTIFICATION_OWNER_BCC, 'b@example.com']),

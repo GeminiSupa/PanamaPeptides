@@ -248,7 +248,7 @@ test('the home dashboard carries no refund tiles', () => {
 
 // ------------------------------------------- the colón-only order (WooCommerce)
 
-// The main site at peptidescostarica.net is still WordPress, and its orders are
+// The main site at peptidespanama.net is still WordPress, and its orders are
 // synced into the same table from outside this repo. That sync writes total_crc
 // and leaves total_usd empty, so four completed sales sat in the Orders list at
 // their colón price while every money screen counted them as $0.00.

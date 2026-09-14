@@ -16,7 +16,7 @@ const GENERIC_CONTACT_NAMES = new Set([
   'ai copilot',
   'catalog lead',
   'customer',
-  'peptides costa rica',
+  'Peptides Panama',
   'peptides customer',
 ]);
 
@@ -177,7 +177,7 @@ function formatMoney(value) {
 
 function getOrderItemsSummary(order) {
   const items = Array.isArray(order?.items) ? order.items : [];
-  if (!items.length) return 'Productos Peptides Costa Rica';
+  if (!items.length) return 'Productos Peptides Panama';
   return items
     .slice(0, 4)
     .map((item) => `${item.product || item.name || 'Producto'} x${item.qty || item.quantity || 1}`)
@@ -969,8 +969,8 @@ export default function WhatsAppInbox({
     const latestOrder = customerContext?.latestOrder;
     const cart = customerContext?.cart;
     const checkoutUrl = cart?.session_id
-      ? `https://catalog.peptidescostarica.net/catalog?recover_session=${encodeURIComponent(cart.session_id)}`
-      : 'https://catalog.peptidescostarica.net/catalog';
+      ? `https://catalog.peptidespanama.net/catalog?recover_session=${encodeURIComponent(cart.session_id)}`
+      : 'https://catalog.peptidespanama.net/catalog';
 
     return {
       customerName: cleanContactName(currentChat?.displayName).split(/\s+/)[0] || '',
@@ -1063,10 +1063,10 @@ export default function WhatsAppInbox({
 
   const quickReplyTemplates = [
     { label: 'Greeting', text: 'Hello! How can I help you today?' },
-    { label: 'Price list', text: 'Here is our full catalog and price list: https://peptidescostarica.net/' },
+    { label: 'Price list', text: 'Here is our full catalog and price list: https://peptidespanama.net/' },
     { label: 'Cart help', text: 'I can help finish your order. Do you want delivery or pickup?' },
     { label: 'Payment', text: 'Once payment is complete, send the receipt here and we will process your order.' },
-    { label: 'Delivery', text: 'We offer fast local delivery in Costa Rica.' },
+    { label: 'Delivery', text: 'We offer fast local delivery in panama.' },
   ];
 
   const appendQuickReply = (text) => {
@@ -1927,7 +1927,7 @@ export default function WhatsAppInbox({
                       <span>Internal name</span>
                       <input
                         required
-                        placeholder="Sales Costa Rica"
+                        placeholder="Sales panama"
                         value={channelForm.name}
                         onChange={(event) => setChannelForm({ ...channelForm, name: event.target.value })}
                       />

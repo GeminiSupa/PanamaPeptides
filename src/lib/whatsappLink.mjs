@@ -11,7 +11,7 @@
  * the catalog's sticky CTA, the footer. Keyed by the site's language toggle.
  *
  * Spanish is the fallback because the storefront itself defaults to Spanish
- * (`useState('es')`); an English default meant a Costa Rican customer reading a
+ * (`useState('es')`); an English default meant a panaman customer reading a
  * Spanish page opened WhatsApp holding an English sentence.
  *
  * Kept ungendered ("me interesa", not "estoy interesado/a") — the customer is

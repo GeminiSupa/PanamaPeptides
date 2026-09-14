@@ -48,7 +48,7 @@ test('only a settled payment is worth mailing about', () => {
 test('an unsettled order sends nothing at all', async () => {
   const { fetchImpl, calls } = makeFetch();
 
-  const result = await sendPaymentResultEmails('https://catalog.peptidescostarica.net',
+  const result = await sendPaymentResultEmails('https://catalog.peptidespanama.net',
     { ...ORDER, status: 'Pending - Card 3DS' }, 'CARD-TEST1', { fetchImpl });
 
   assert.equal(result.sent, false);
@@ -59,10 +59,10 @@ test('an unsettled order sends nothing at all', async () => {
 test('one call mails the customer and the team, so the two cannot disagree', async () => {
   const { fetchImpl, calls } = makeFetch();
 
-  await sendPaymentResultEmails('https://catalog.peptidescostarica.net', ORDER, 'CARD-TEST1', { fetchImpl });
+  await sendPaymentResultEmails('https://catalog.peptidespanama.net', ORDER, 'CARD-TEST1', { fetchImpl });
 
   assert.equal(calls.length, 1);
-  assert.equal(calls[0].url, 'https://catalog.peptidescostarica.net/api/order-notification');
+  assert.equal(calls[0].url, 'https://catalog.peptidespanama.net/api/order-notification');
 
   const body = calls[0].body;
   assert.equal(body.adminNotificationOnly, false);
@@ -77,7 +77,7 @@ test('one call mails the customer and the team, so the two cannot disagree', asy
 test('a refused card carries the gateway wording through to the mail', async () => {
   const { fetchImpl, calls } = makeFetch();
 
-  await sendPaymentResultEmails('https://catalog.peptidescostarica.net',
+  await sendPaymentResultEmails('https://catalog.peptidespanama.net',
     { ...ORDER, status: 'Declined' }, 'CARD-TEST1',
     { fetchImpl, declineReason: 'Card brand not allowed' });
 
@@ -88,7 +88,7 @@ test('a refused card carries the gateway wording through to the mail', async () 
 test('a mail failure is reported, never thrown at a payment that went through', async () => {
   const fetchImpl = async () => { throw new Error('SMTP unreachable'); };
 
-  const result = await sendPaymentResultEmails('https://catalog.peptidescostarica.net', ORDER, 'CARD-TEST1', { fetchImpl });
+  const result = await sendPaymentResultEmails('https://catalog.peptidespanama.net', ORDER, 'CARD-TEST1', { fetchImpl });
 
   assert.equal(result.sent, false);
   assert.equal(result.error, 'SMTP unreachable');
@@ -113,7 +113,7 @@ test('the team new-order alert is unchanged and still admin-only', () => {
 test('a 3DS hand-off still tells the customer their order exists', async () => {
   const { fetchImpl, calls } = makeFetch({ customerReceipt: { sent: true } });
 
-  await sendCardHandoffReceipt('https://catalog.peptidescostarica.net',
+  await sendCardHandoffReceipt('https://catalog.peptidespanama.net',
     { ...ORDER, status: 'Pending - Card 3DS' }, 'CARD-TEST1', { fetchImpl });
 
   const body = calls[0].body;
@@ -128,7 +128,7 @@ test('a 3DS hand-off still tells the customer their order exists', async () => {
 test('a card checkout gets one team email, flagged as the order alert itself', async () => {
   const { fetchImpl, calls } = makeFetch();
 
-  await sendPaymentResultEmails('https://catalog.peptidescostarica.net', ORDER, 'CARD-TEST1',
+  await sendPaymentResultEmails('https://catalog.peptidespanama.net', ORDER, 'CARD-TEST1',
     { fetchImpl, firstTeamAlert: true });
 
   assert.equal(calls[0].body.firstTeamAlert, true);
@@ -138,7 +138,7 @@ test('a card checkout gets one team email, flagged as the order alert itself', a
 test('a later payment on an already-alerted order is not flagged as new', async () => {
   const { fetchImpl, calls } = makeFetch();
 
-  await sendPaymentResultEmails('https://catalog.peptidescostarica.net', ORDER, 'CARD-TEST1', { fetchImpl });
+  await sendPaymentResultEmails('https://catalog.peptidespanama.net', ORDER, 'CARD-TEST1', { fetchImpl });
 
   assert.equal(calls[0].body.firstTeamAlert, false);
 });

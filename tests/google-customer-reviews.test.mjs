@@ -37,8 +37,8 @@ test('a date that cannot be read yields no estimate rather than a wrong one', ()
   assert.equal(addBusinessDays(''), null);
 });
 
-test('the order date is Costa Rica\'s, not the browser\'s', () => {
-  // 03:00 UTC on the 4th is still the evening of the 3rd in Costa Rica (UTC-6),
+test('the order date is panama\'s, not the browser\'s', () => {
+  // 03:00 UTC on the 4th is still the evening of the 3rd in panama (UTC-6),
   // so an order placed then must not be dated a day late.
   assert.equal(crToday(new Date('2026-09-04T03:00:00.000Z')), '2026-09-03');
   assert.equal(crToday(new Date('2026-09-04T12:00:00.000Z')), '2026-09-04');
@@ -52,7 +52,7 @@ test('checkout captures what the confirmation page cannot recover', () => {
   });
   assert.equal(record.orderId, 'PCR-10428');
   assert.equal(record.email, 'ana@example.com');
-  // Checkout only collects Costa Rican addresses, so an absent country is CR.
+  // Checkout only collects panaman addresses, so an absent country is CR.
   assert.equal(record.country, GCR_DEFAULT_COUNTRY);
   assert.equal(record.estimatedDeliveryDate, '2026-09-09');
 });
@@ -76,7 +76,7 @@ test('an incomplete order is not asked at all', () => {
   assert.equal(reviewOptInPayload({ ...validRecord, email: 'not-an-email' }), null);
   assert.equal(reviewOptInPayload({ ...validRecord, estimatedDeliveryDate: '' }), null);
   assert.equal(reviewOptInPayload({ ...validRecord, estimatedDeliveryDate: '04/09/2026' }), null);
-  assert.equal(reviewOptInPayload({ ...validRecord, country: 'Costa Rica' }), null);
+  assert.equal(reviewOptInPayload({ ...validRecord, country: 'panama' }), null);
   assert.equal(reviewOptInPayload({}), null);
   assert.equal(reviewOptInPayload(validRecord, 0), null);
 });
@@ -104,7 +104,7 @@ test('the badge asks for the rating of the country this shop ships to', () => {
 
 test('a region Google could not read is dropped, not forwarded', () => {
   // Better Google's own fallback than a value it has to reject.
-  assert.equal('region' in reviewBadgeConfig({ region: 'Costa Rica' }), false);
+  assert.equal('region' in reviewBadgeConfig({ region: 'panama' }), false);
   assert.equal('region' in reviewBadgeConfig({ region: '' }), false);
   assert.equal(reviewBadgeConfig({ region: 'us' }).region, 'US');
 });

@@ -7,7 +7,7 @@ import {
   slugify,
 } from '../src/lib/referralLink.mjs';
 
-const BASE = 'https://catalog.peptidescostarica.net/catalog?lang=es';
+const BASE = 'https://catalog.peptidespanama.net/catalog?lang=es';
 
 test('a rep link carries the name checkout will write to the order', () => {
   // sales_agent is the whole mechanism: the catalog reads it into localStorage

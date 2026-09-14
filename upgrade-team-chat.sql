@@ -1,5 +1,5 @@
 -- =========================================================================
---               PEPTIDES COSTA RICA - TEAM CHAT UPGRADE
+--               Peptides Panama - TEAM CHAT UPGRADE
 -- =========================================================================
 -- Run this in your Supabase Project SQL Editor ONCE.
 -- It is safe to re-run (uses IF NOT EXISTS / OR REPLACE patterns).

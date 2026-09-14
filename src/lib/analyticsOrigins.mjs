@@ -1,4 +1,4 @@
-export const ANALYTICS_ROOT_DOMAIN = 'peptidescostarica.net';
+export const ANALYTICS_ROOT_DOMAIN = 'peptidespanama.net';
 
 const LOCAL_ANALYTICS_ORIGINS = new Set([
   'http://localhost:3000',
@@ -7,7 +7,7 @@ const LOCAL_ANALYTICS_ORIGINS = new Set([
 
 /**
  * Allow the production apex and every HTTPS subdomain while refusing lookalike
- * domains such as peptidescostarica.net.example.com.
+ * domains such as peptidespanama.net.example.com.
  */
 export function isAllowedAnalyticsOrigin(origin) {
   const candidate = String(origin || '').trim();

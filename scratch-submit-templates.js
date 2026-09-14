@@ -25,11 +25,11 @@ async function submitTemplate(name, category, language, components) {
 async function main() {
   // 3. Cart Recovery - EN
   await submitTemplate('cart_recovery', 'MARKETING', 'en_US', [
-    { type: 'BODY', text: 'Hi! We noticed you left some items in your cart at Peptides Costa Rica 🧪. Did you have any issues completing your order? Use this link to complete your checkout: {{1}} Thanks!', example: { body_text: [['https://catalog.peptidescostarica.net/checkout?session_id=123']] } }
+    { type: 'BODY', text: 'Hi! We noticed you left some items in your cart at Peptides Panama 🧪. Did you have any issues completing your order? Use this link to complete your checkout: {{1}} Thanks!', example: { body_text: [['https://catalog.peptidespanama.net/checkout?session_id=123']] } }
   ]);
   // 4. Cart Recovery - ES
   await submitTemplate('cart_recovery', 'MARKETING', 'es', [
-    { type: 'BODY', text: '¡Hola! Notamos que dejaste algunos artículos en tu carrito en Peptides Costa Rica 🧪. ¿Tuviste algún problema al completar tu pedido? Usa este enlace para finalizar tu compra: {{1}} ¡Gracias!', example: { body_text: [['https://catalog.peptidescostarica.net/checkout?session_id=123']] } }
+    { type: 'BODY', text: '¡Hola! Notamos que dejaste algunos artículos en tu carrito en Peptides Panama 🧪. ¿Tuviste algún problema al completar tu pedido? Usa este enlace para finalizar tu compra: {{1}} ¡Gracias!', example: { body_text: [['https://catalog.peptidespanama.net/checkout?session_id=123']] } }
   ]);
 }
 main();

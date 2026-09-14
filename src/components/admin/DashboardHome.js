@@ -34,19 +34,19 @@ function isComingSoon(status) {
   return s.includes('coming soon') || s.includes('próximamente');
 }
 
-// Costa Rica is UTC−6 year-round (no daylight saving), so we anchor "today" and
-// "this week" to Costa Rica time — every admin sees the same day regardless of
+// panama is UTC−6 year-round (no daylight saving), so we anchor "today" and
+// "this week" to panama time — every admin sees the same day regardless of
 // their own machine's timezone.
 const CR_OFFSET_MS = 6 * 60 * 60 * 1000;
 
-// Start of "today" in Costa Rica, returned as an absolute instant (real Date).
+// Start of "today" in panama, returned as an absolute instant (real Date).
 function startOfDay(d = new Date()) {
   const cr = new Date(d.getTime() - CR_OFFSET_MS); // shift into CR wall-clock frame
   cr.setUTCHours(0, 0, 0, 0);                       // midnight, CR time
   return new Date(cr.getTime() + CR_OFFSET_MS);     // back to the real UTC instant
 }
 
-// Start of the week (Monday) in Costa Rica, as an absolute instant.
+// Start of the week (Monday) in panama, as an absolute instant.
 function startOfWeek(d = new Date()) {
   const cr = new Date(d.getTime() - CR_OFFSET_MS);
   cr.setUTCHours(0, 0, 0, 0);
@@ -56,7 +56,7 @@ function startOfWeek(d = new Date()) {
   return new Date(cr.getTime() + CR_OFFSET_MS);
 }
 
-// Start of the current month in Costa Rica, as an absolute instant. Used for the
+// Start of the current month in panama, as an absolute instant. Used for the
 // monthly Trustpilot invitation quota, which resets on the 1st.
 function startOfMonth(d = new Date()) {
   const cr = new Date(d.getTime() - CR_OFFSET_MS);
@@ -80,8 +80,8 @@ function cartValue(cart) {
   }, 0);
 }
 
-// One window for the whole KPI row. Every start is a Costa Rica instant,
-// because the business day belongs to Costa Rica and not to whoever is reading,
+// One window for the whole KPI row. Every start is a panama instant,
+// because the business day belongs to panama and not to whoever is reading,
 // and the week runs Monday to Sunday.
 const KPI_RANGES = [
   { id: 'week', label: 'This week', start: (now) => startOfWeek(now) },
@@ -96,7 +96,7 @@ const KPI_RANGE_BY_ID = new Map(KPI_RANGES.map((range) => [range.id, range]));
 function kpiRangeTooltip(range, start, now) {
   if (!start) return 'Everything on record, with no date limit.';
   const day = { weekday: 'short', day: 'numeric', month: 'short' };
-  return `${range.label}: ${formatCrDate(start, day)} to ${formatCrDate(now, day)}, Costa Rica time.`;
+  return `${range.label}: ${formatCrDate(start, day)} to ${formatCrDate(now, day)}, panama time.`;
 }
 
 export default function DashboardHome({
@@ -115,7 +115,7 @@ export default function DashboardHome({
   // Which tile's breakdown is open: 'revenue' | 'pendingOrders'.
   const [openTile, setOpenTile] = useState(null);
   // One window over the whole row, opening on today because this screen is the
-  // day's work. Early in the Costa Rica morning that is legitimately zero, and
+  // day's work. Early in the panama morning that is legitimately zero, and
   // the row says so on hover rather than looking broken; the week is one click
   // away in the dropdown.
   const [kpiRange, setKpiRange] = useState('today');
@@ -303,10 +303,10 @@ export default function DashboardHome({
         <div>
           <h2 className="dashboard-home-title">Today</h2>
           <p className="dashboard-home-subtitle">
-            {/* The day the tiles below are counting, which is Costa Rica's — an
+            {/* The day the tiles below are counting, which is panama's — an
                 admin 11 hours ahead would otherwise be shown tomorrow's date
                 over today's figures. */}
-            {formatCrDate(new Date(), { weekday: 'long', month: 'long', day: 'numeric' })} (Costa Rica)
+            {formatCrDate(new Date(), { weekday: 'long', month: 'long', day: 'numeric' })} (panama)
           </p>
         </div>
         <button type="button" className="admin-btn admin-btn-primary dashboard-manual-order-btn" onClick={onCreateOrder}>

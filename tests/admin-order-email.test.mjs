@@ -34,10 +34,10 @@ function makeFetch(response = { ok: true, json: async () => ({ success: true }) 
 test('the admin email is posted to the notification route', async () => {
   const { fetchImpl, calls } = makeFetch();
 
-  await sendAdminOrderEmail('https://catalog.peptidescostarica.net', ORDER, 'TEST-1', { fetchImpl });
+  await sendAdminOrderEmail('https://catalog.peptidespanama.net', ORDER, 'TEST-1', { fetchImpl });
 
   assert.equal(calls.length, 1);
-  assert.equal(calls[0].url, 'https://catalog.peptidescostarica.net/api/order-notification');
+  assert.equal(calls[0].url, 'https://catalog.peptidespanama.net/api/order-notification');
   assert.equal(calls[0].options.method, 'POST');
 });
 

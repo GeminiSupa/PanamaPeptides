@@ -20,10 +20,10 @@ test('both review pages are linked with nothing configured', () => {
 test('the admin CMS drives the links, as it does for the site badges', () => {
   const d = reviewDestinations({
     googleReviewUrl: 'https://maps.app.goo.gl/newlisting',
-    facebookReviewUrl: 'https://www.facebook.com/costaricapeptides/reviews',
+    facebookReviewUrl: 'https://www.facebook.com/panamapeptides/reviews',
   }, {});
   assert.equal(d.google, 'https://maps.app.goo.gl/newlisting');
-  assert.equal(d.facebook, 'https://www.facebook.com/costaricapeptides/reviews');
+  assert.equal(d.facebook, 'https://www.facebook.com/panamapeptides/reviews');
 });
 
 test('a REVIEW_LINK_* already set in Vercel still wins', () => {
@@ -113,7 +113,7 @@ test('the Google half of the split is never also sent to Trustpilot', () => {
   // add a Trustpilot line to this email. The cron drops it: an order only
   // reaches the cron because the completion route assigned it to Google.
   const withLink = reviewDestinations({}, {
-    REVIEW_LINK_TRUSTPILOT: 'https://www.trustpilot.com/evaluate/peptidescostarica.net',
+    REVIEW_LINK_TRUSTPILOT: 'https://www.trustpilot.com/evaluate/peptidespanama.net',
   });
   assert.ok(withLink.trustpilot, 'guard: the builder would otherwise include it');
 

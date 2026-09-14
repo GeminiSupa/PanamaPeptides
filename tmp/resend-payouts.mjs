@@ -40,8 +40,8 @@ async function resendMissing() {
 
     try {
       const info = await transporter.sendMail({
-        from: `Peptides Costa Rica Records <${smtpUser[1].trim()}>`,
-        to: 'pbagcr@peptidescostarica.net',
+        from: `Peptides Panama Records <${smtpUser[1].trim()}>`,
+        to: 'pbagcr@peptidespanama.net',
         subject: `[Resent] ${header}`,
         html: `<p style="font:600 14px/1.5 system-ui,sans-serif;color:#334155;margin:0 0 16px">${header}</p>${payout.email_html || 'No HTML stored.'}`,
         text: `${header}\n\nResent payout copy.`,

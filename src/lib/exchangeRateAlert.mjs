@@ -111,7 +111,7 @@ export async function maybeAlertStaleExchangeRate(supabase, stale, {
     });
 
     await transporter.sendMail({
-      from: readEnv('ORDER_NOTIFICATION_FROM') || `Peptides Costa Rica <${fromEmail}>`,
+      from: readEnv('ORDER_NOTIFICATION_FROM') || `Peptides Panama <${fromEmail}>`,
       to: EXCHANGE_RATE_ALERT_RECIPIENT,
       subject: exchangeRateAlertSubject(stale.ageMs),
       text: exchangeRateAlertBody(stale),

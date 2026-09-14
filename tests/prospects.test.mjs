@@ -148,7 +148,7 @@ test('a well-tagged gym is not filed as a thin record', () => {
       website: 'https://ironhouse.example',
       'contact:phone': '+506 2222 3333',
     },
-  }, { country: 'Costa Rica', city: 'San José' });
+  }, { country: 'panama', city: 'San José' });
 
   assert.equal(gym.category, 'fitness centre');
   assert.ok(gym.fit_reasons.includes('Target business category'));
@@ -160,7 +160,7 @@ test('normalizes Google Places details into the prospect shape', () => {
     id: 'place_123',
     displayName: { text: 'Escazú Performance Lab' },
     primaryType: 'sports_medicine_clinic',
-    formattedAddress: 'Escazú, San José, Costa Rica',
+    formattedAddress: 'Escazú, San José, panama',
     internationalPhoneNumber: '+506 2222 2222',
     websiteUri: 'https://lab.example',
     googleMapsUri: 'https://maps.google.com/?cid=123',
@@ -184,10 +184,10 @@ test('normalizes free OpenStreetMap results with public contact tags', () => {
     osm_id: 123,
     lat: '9.9325',
     lon: '-84.0796',
-    display_name: 'Centro Activo, San José, Costa Rica',
+    display_name: 'Centro Activo, San José, panama',
     namedetails: { name: 'Centro Activo' },
     type: 'fitness_centre',
-    address: { city: 'San José', state: 'San José', country: 'Costa Rica' },
+    address: { city: 'San José', state: 'San José', country: 'panama' },
     extratags: {
       website: 'centroactivo.example',
       'contact:phone': '+506 2222 2222',
@@ -371,7 +371,7 @@ test('re-saving a discovered business keeps the pipeline state it earned', () =>
     email_permission_verified_at: '2026-07-01T15:00:00.000Z',
     people: [{ full_name: 'Ana Rojas', job_title: 'Owner' }],
     linkedin_urls: ['https://linkedin.com/in/ana-rojas'],
-    country: 'Costa Rica',
+    country: 'panama',
   };
   const rediscovered = normalizeProspectInput({
     source_provider: 'openstreetmap',

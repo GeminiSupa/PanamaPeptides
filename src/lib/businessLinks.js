@@ -16,18 +16,18 @@ export const GOOGLE_LOCAL_LISTING_URL = 'https://maps.app.goo.gl/b9YaeUXyuvBuj8v
  */
 export const GOOGLE_REVIEW_URL = 'https://g.page/r/Cda41I2_XToeEBM/review';
 
-export const FACEBOOK_REVIEW_URL = 'https://www.facebook.com/costaricapeptides/reviews';
+export const FACEBOOK_REVIEW_URL = 'https://www.facebook.com/panamapeptides/reviews';
 
 // Retired Facebook profiles, same idea as the Google listings below: a stored
 // value matching one of these is cleared so the current page wins.
 const LEGACY_FACEBOOK_REVIEW_URLS = new Set([
-  'https://www.facebook.com/Peptidescostaricaresearch/reviews',
-  'https://www.facebook.com/Peptidescostaricaresearch',
+  'https://www.facebook.com/Peptidespanamaresearch/reviews',
+  'https://www.facebook.com/Peptidespanamaresearch',
 ]);
 
 export const TRUSTPILOT_REVIEW_URLS = {
-  en: 'https://www.trustpilot.com/review/peptidescostarica.net',
-  es: 'https://es.trustpilot.com/review/peptidescostarica.net',
+  en: 'https://www.trustpilot.com/review/peptidespanama.net',
+  es: 'https://es.trustpilot.com/review/peptidespanama.net',
 };
 
 // Fallback values used when the live /api/trustpilot-rating fetch fails.
@@ -70,7 +70,7 @@ export const DEFAULT_BUSINESS_LINKS = {
   // the CMS could never take effect — the default silently won. The canonical
   // URL is FACEBOOK_REVIEW_URL, applied last by getFacebookReviewUrl.
   facebookReviewUrl: '',
-  supportEmail: 'support@peptidescostarica.net',
+  supportEmail: 'support@panamapeptides.com',
 };
 
 export function normalizeBusinessLinks(value) {

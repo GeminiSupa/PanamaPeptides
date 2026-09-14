@@ -36,11 +36,11 @@ export function buildMarketingEmailFooterHtml(options = {}) {
         <a href="${escapeHtml(values.viewEmailUrl)}" style="color:#000000;text-decoration:underline;">View email in browser</a>
       </p>
       <p style="margin:0 0 14px;color:#4f6f62;">
-        Copyright &copy; ${escapeHtml(values.currentYear)} Peptides Costa Rica. All Rights Reserved.
+        Copyright &copy; ${escapeHtml(values.currentYear)} Peptides Panama. All Rights Reserved.
       </p>
       <p style="margin:0 0 16px;color:#111827;">
-        Peptides Costa Rica<br>
-        San Jose, Costa Rica
+        Peptides Panama<br>
+        San Jose, panama
       </p>
       <p style="margin:0;">
         <a href="${escapeHtml(values.preferencesUrl)}" style="color:#000000;text-decoration:underline;">update your preferences</a>

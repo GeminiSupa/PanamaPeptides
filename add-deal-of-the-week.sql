@@ -1,4 +1,4 @@
--- Deal of the Week: one promotion per week, ending Sunday midnight Costa Rica.
+-- Deal of the Week: one promotion per week, ending Sunday midnight panama.
 --
 -- Run once in the Supabase SQL Editor BEFORE deploying the code.
 -- Safe to re-run.

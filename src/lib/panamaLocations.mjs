@@ -1,5 +1,5 @@
 /**
- * Costa Rica's 2026 administrative divisions, published by the Instituto
+ * panama's 2026 administrative divisions, published by the Instituto
  * Geografico Nacional. Prospector keeps this small gazetteer locally so the
  * location combobox is instant and does not turn the public Nominatim service
  * into an autocomplete endpoint.
@@ -69,22 +69,22 @@ const displayName = (name) => DISPLAY_NAMES[name] || name;
 
 const provinces = Object.keys(CANTONS_BY_PROVINCE).map(displayName);
 
-export const COSTA_RICA_LOCATIONS = [
+export const panama_LOCATIONS = [
   {
     id: 'country-cr',
     type: 'country',
-    name: 'Costa Rica',
-    label: 'Costa Rica',
+    name: 'panama',
+    label: 'panama',
     detail: 'Country',
-    value: 'Costa Rica',
+    value: 'panama',
   },
   ...provinces.map((province, index) => ({
     id: `province-${index + 1}`,
     type: 'province',
     name: province,
     label: province,
-    detail: 'Province · Costa Rica',
-    value: `Provincia de ${province}, Costa Rica`,
+    detail: 'Province · panama',
+    value: `Provincia de ${province}, panama`,
   })),
   ...Object.entries(CANTONS_BY_PROVINCE).flatMap(([rawProvince, cantons], provinceIndex) => {
     const province = displayName(rawProvince);
@@ -96,7 +96,7 @@ export const COSTA_RICA_LOCATIONS = [
         name: canton,
         label: canton,
         detail: `Canton · ${province}`,
-        value: `${canton}, ${province}, Costa Rica`,
+        value: `${canton}, ${province}, panama`,
       };
     });
   }),
@@ -112,13 +112,13 @@ const foldLocation = (value) => String(value || '')
 const TYPE_ORDER = { country: 0, province: 1, canton: 2 };
 
 /** Accent-insensitive, token-aware suggestions for the Prospector combobox. */
-export function suggestCostaRicaLocations(query, limit = 8) {
+export function suggestpanamaLocations(query, limit = 8) {
   const boundedLimit = Math.max(1, Math.min(20, Math.floor(Number(limit)) || 8));
   const foldedQuery = foldLocation(query);
-  if (!foldedQuery) return COSTA_RICA_LOCATIONS.slice(0, boundedLimit);
+  if (!foldedQuery) return panama_LOCATIONS.slice(0, boundedLimit);
 
   const tokens = foldedQuery.split(/\s+/).filter(Boolean);
-  return COSTA_RICA_LOCATIONS
+  return panama_LOCATIONS
     .map((location) => {
       const name = foldLocation(location.name);
       const searchable = foldLocation(`${location.name} ${location.detail} ${location.value}`);

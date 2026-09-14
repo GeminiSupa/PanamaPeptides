@@ -1,5 +1,5 @@
 -- =========================================================================
---               PEPTIDES COSTA RICA - SALES AGENT TAGGING MIGRATION
+--               Peptides Panama - SALES AGENT TAGGING MIGRATION
 -- =========================================================================
 -- Run this in your Supabase SQL Editor to support tagging sales agents to orders.
 

@@ -2,9 +2,9 @@ export const MAIN_SITE_TIKTOK_PIXEL_ID = 'D9RUF4RC77UA78AD50M0';
 export const CATALOG_TIKTOK_PIXEL_ID = 'D9RUIARC77U97D5QFMN0';
 
 const PIXEL_ID_BY_HOSTNAME = Object.freeze({
-  'peptidescostarica.net': MAIN_SITE_TIKTOK_PIXEL_ID,
-  'www.peptidescostarica.net': MAIN_SITE_TIKTOK_PIXEL_ID,
-  'catalog.peptidescostarica.net': CATALOG_TIKTOK_PIXEL_ID,
+  'peptidespanama.net': MAIN_SITE_TIKTOK_PIXEL_ID,
+  'www.peptidespanama.net': MAIN_SITE_TIKTOK_PIXEL_ID,
+  'catalog.peptidespanama.net': CATALOG_TIKTOK_PIXEL_ID,
 });
 
 export function getTikTokPixelId(hostname) {
