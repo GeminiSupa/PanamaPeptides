@@ -9,24 +9,19 @@ import EntryDisclaimer from "@/components/EntryDisclaimer";
 import { LIVE_SITE_URL } from "@/lib/publicUrl";
 import { getTikTokPixelBootstrapScript } from "@/lib/tiktokPixel.mjs";
 
-import { Manrope, Rubik, Poppins } from 'next/font/google';
+import "./storefront-theme.css";
 
-const manrope = Manrope({
-  subsets: ['latin'],
-  variable: '--font-manrope',
+// The reference style uses a sturdy display face with a restrained sans-serif
+// body. These bundled fonts keep that character without a request to Google.
+const inter = localFont({
+  src: './fonts/inter-latin-variable.woff2',
+  variable: '--font-inter',
   display: 'swap',
 });
 
-const rubik = Rubik({
-  subsets: ['latin'],
-  variable: '--font-rubik',
-  display: 'swap',
-});
-
-const poppins = Poppins({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-poppins',
+const montserrat = localFont({
+  src: './fonts/montserrat-latin-variable.woff2',
+  variable: '--font-montserrat',
   display: 'swap',
 });
 
@@ -97,8 +92,15 @@ export default async function RootLayout({ children }) {
   const businessLinks = await getBusinessLinks();
   
   return (
-    <html lang="es" className={`${manrope.variable} ${rubik.variable} ${poppins.variable}`} suppressHydrationWarning>
+    <html lang="es" data-theme="light" className={`${inter.variable} ${montserrat.variable}`} suppressHydrationWarning>
       <head suppressHydrationWarning>
+        <script
+          id="theme-init"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var saved=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',saved==='dark'?'dark':'light');}catch(error){document.documentElement.setAttribute('data-theme','light');}})();`,
+          }}
+        />
         <Script id="tiktok-pixel" strategy="beforeInteractive">
           {getTikTokPixelBootstrapScript()}
         </Script>

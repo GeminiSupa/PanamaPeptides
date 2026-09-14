@@ -1,0 +1,1470 @@
+/* Panama Peptides storefront theme
+   Inspired by the reference's dark research-lab presentation while keeping
+   Panama Peptides' own content, imagery, language controls and commerce flow. */
+
+:root {
+  --bb-black: #000000;
+  --bb-ink: #070506;
+  --bb-panel: #100c0e;
+  --bb-panel-raised: #171013;
+  --bb-panel-soft: #1d1518;
+  --bb-red: #f50000;
+  --bb-red-hot: #ff2a2a;
+  --bb-red-deep: #7d000a;
+  --bb-wine: #31060d;
+  --bb-line: #302428;
+  --bb-line-bright: #4a3035;
+  --bb-copy: #c6bcc0;
+  --bb-dim: #91878b;
+  --bb-white: #f2ecee;
+  --bb-glow: 0 0 0 1px rgba(245, 0, 0, .16),
+    0 0 22px -5px rgba(245, 0, 0, .52),
+    inset 0 0 22px -18px rgba(245, 0, 0, .95);
+}
+
+body {
+  background: var(--bb-black);
+  color: var(--bb-copy);
+  font-family: var(--font-inter), Arial, sans-serif;
+}
+
+.clone-home,
+.catalog-page-shell,
+.landing-layout,
+.editorial-page,
+.account-page {
+  --primary: #0b0809;
+  --primary-alt: #171013;
+  --accent: var(--bb-red);
+  --cta: var(--bb-red);
+  --cta-hover: var(--bb-red-hot);
+  --bg-main: var(--bb-black);
+  --bg-card: var(--bb-panel);
+  --bg-secondary: var(--bb-panel-raised);
+  --text-main: var(--bb-white);
+  --text-primary: #ffffff;
+  --text-muted: var(--bb-copy);
+  --border: var(--bb-line);
+  --border-color: var(--bb-line);
+  --card-bg: var(--bb-panel);
+  --shadow: 0 14px 36px rgba(0, 0, 0, .38);
+  --shadow-lg: 0 26px 70px rgba(0, 0, 0, .58);
+  color: var(--bb-copy);
+  background:
+    radial-gradient(900px 520px at 8% 0%, rgba(125, 0, 10, .28), transparent 64%),
+    radial-gradient(800px 500px at 100% 42%, rgba(68, 0, 8, .18), transparent 64%),
+    repeating-linear-gradient(108deg, rgba(255, 255, 255, .012) 0 1px, transparent 1px 8px),
+    var(--bb-black) !important;
+  font-family: var(--font-inter), Arial, sans-serif !important;
+}
+
+.clone-home h1,
+.clone-home h2,
+.clone-home h3,
+.catalog-page-shell h1,
+.catalog-page-shell h2,
+.catalog-page-shell h3,
+.landing-layout h1,
+.landing-layout h2,
+.landing-layout h3,
+.editorial-page h1,
+.editorial-page h2,
+.editorial-page h3,
+.account-page h1,
+.account-page h2,
+.account-page h3 {
+  color: var(--bb-white) !important;
+  font-family: var(--font-montserrat), Arial, sans-serif !important;
+  letter-spacing: -.025em;
+}
+
+.clone-home p,
+.catalog-page-shell p,
+.landing-layout p,
+.editorial-page p,
+.account-page p {
+  color: var(--bb-copy);
+}
+
+.clone-home ::selection,
+.catalog-page-shell ::selection,
+.landing-layout ::selection,
+.editorial-page ::selection,
+.account-page ::selection {
+  color: #fff;
+  background: var(--bb-red-deep);
+}
+
+/* Shared storefront header */
+.clone-home .clone-site-header {
+  background: rgba(0, 0, 0, .94) !important;
+  border-bottom: 1px solid var(--bb-line) !important;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .52) !important;
+}
+
+.clone-home .clone-topbar {
+  color: #fff !important;
+  background: linear-gradient(90deg, #350006, #8a000b 45%, #350006) !important;
+  border-bottom: 1px solid rgba(245, 0, 0, .3) !important;
+}
+
+.clone-home .clone-topbar .promo-banner-global,
+.clone-home .clone-topbar .promo-banner-ticker,
+.clone-home .clone-topbar .promo-banner-text {
+  color: #fff !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.clone-home .clone-nav-wrap,
+.clone-home .clone-nav-dropdown {
+  background: #030303 !important;
+}
+
+.clone-home .clone-nav {
+  min-height: 84px;
+}
+
+.clone-home .clone-logo .logo-img-custom,
+.clone-home .clone-footer .logo-img-custom {
+  width: 155px !important;
+  height: 52px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  filter: contrast(1.08) brightness(1.08);
+}
+
+.clone-home .clone-nav-links {
+  gap: 14px;
+}
+
+.clone-home .clone-nav-links > a,
+.clone-home .clone-nav-group > button {
+  font-size: .72rem !important;
+}
+
+@media (min-width: 901px) {
+  .clone-home .clone-nav {
+    grid-template-columns: 190px minmax(280px, 520px) auto;
+    grid-template-rows: 80px 46px;
+    justify-content: space-between;
+    gap: 0 22px;
+  }
+
+  .clone-home .clone-logo {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .clone-home .clone-nav-links {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    justify-content: center;
+    gap: clamp(18px, 3vw, 42px);
+    border-top: 1px solid var(--bb-line);
+  }
+
+  .clone-home .clone-search {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+  }
+
+  .clone-home .clone-nav-actions {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .clone-home .clone-nav-links > a,
+  .clone-home .clone-nav-group > button {
+    font-size: .78rem !important;
+  }
+}
+
+.clone-home .clone-nav-links > a,
+.clone-home .clone-nav-group > button,
+.clone-home .clone-nav-lang,
+.clone-home .clone-menu-toggle {
+  color: var(--bb-white) !important;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  letter-spacing: .055em;
+}
+
+.clone-home .clone-nav-links > a:hover,
+.clone-home .clone-nav-links > a.is-active,
+.clone-home .clone-nav-group > button:hover,
+.clone-home .clone-nav-group > button.is-active,
+.clone-home .clone-nav-lang:hover {
+  color: var(--bb-red-hot) !important;
+}
+
+.clone-home .clone-nav-dropdown {
+  border: 1px solid var(--bb-line-bright) !important;
+  border-top: 2px solid var(--bb-red) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, .72) !important;
+}
+
+.clone-home .clone-nav-dropdown a {
+  color: var(--bb-copy) !important;
+}
+
+.clone-home .clone-nav-dropdown a:hover {
+  color: #fff !important;
+  background: linear-gradient(90deg, rgba(245, 0, 0, .14), transparent) !important;
+}
+
+.clone-home .clone-search,
+.clone-home .clone-search input,
+.clone-home .clone-cart-link {
+  color: #fff !important;
+  background: var(--bb-panel) !important;
+  border-color: var(--bb-line-bright) !important;
+  border-radius: 5px !important;
+}
+
+.clone-home .clone-search:focus-within {
+  border-color: var(--bb-red) !important;
+  box-shadow: 0 0 0 3px rgba(245, 0, 0, .12);
+}
+
+.clone-home .clone-cart-link:hover {
+  color: #fff !important;
+  border-color: var(--bb-red) !important;
+  box-shadow: var(--bb-glow);
+}
+
+/* Homepage hero */
+.clone-home .clone-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 610px;
+  border: 1px solid var(--bb-line) !important;
+  border-top: 0 !important;
+  border-radius: 0 !important;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, .96) 0%, rgba(10, 2, 4, .9) 50%, rgba(40, 0, 7, .58) 100%),
+    radial-gradient(circle at 78% 44%, rgba(245, 0, 0, .28), transparent 46%) !important;
+  overflow: hidden;
+}
+
+.clone-home .clone-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .23;
+  background:
+    repeating-linear-gradient(105deg, transparent 0 7px, rgba(255, 255, 255, .035) 7px 8px),
+    linear-gradient(180deg, transparent 65%, rgba(245, 0, 0, .08));
+  pointer-events: none;
+}
+
+.clone-home .clone-hero-copy,
+.clone-home .clone-hero-media {
+  position: relative;
+  z-index: 1;
+}
+
+.clone-home .clone-red-label,
+.clone-home .about-eyebrow,
+.clone-home .contact-kicker,
+.clone-home .editorial-kicker,
+.clone-home .clone-page-hero > span {
+  color: var(--bb-red-hot) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-left: 3px solid var(--bb-red) !important;
+  border-radius: 0 !important;
+  padding: 2px 0 2px 11px !important;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-weight: 800 !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase;
+}
+
+.clone-home .clone-hero h1 {
+  max-width: 760px;
+  font-size: clamp(3.15rem, 6.3vw, 6.1rem) !important;
+  font-weight: 850 !important;
+  line-height: .94 !important;
+  letter-spacing: -.055em !important;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.clone-home .clone-hero-lead {
+  color: #fff !important;
+  font-weight: 700;
+}
+
+.clone-home .clone-hero-copy > p:not(.clone-hero-lead),
+.clone-home .clone-section-head p,
+.clone-home .clone-page-hero > p,
+.clone-home .clone-section-intro {
+  color: var(--bb-copy) !important;
+}
+
+.clone-home .clone-proof-row span {
+  color: var(--bb-white) !important;
+}
+
+.clone-home .clone-proof-row svg,
+.clone-home .bb-feature-icon,
+.clone-home .clone-topic-grid svg {
+  color: var(--bb-red-hot) !important;
+}
+
+.clone-home .clone-hero-media::before {
+  background: radial-gradient(circle, rgba(245, 0, 0, .25), transparent 68%) !important;
+}
+
+.clone-home .clone-hero-media img {
+  filter: drop-shadow(0 30px 44px rgba(0, 0, 0, .76)) saturate(.92) contrast(1.08);
+}
+
+/* Red outline actions are the reference site's strongest visual cue. */
+.clone-home .clone-hero-actions a,
+.clone-home .clone-hero-actions button,
+.clone-home .clone-section-head-row > a,
+.clone-home .clone-product-copy > a,
+.clone-home .clone-help-strip a,
+.clone-home .about-primary,
+.clone-home .about-secondary,
+.clone-home .contact-button,
+.clone-home .btn-hero-primary,
+.clone-home .lp-bulk-banner-btn,
+.landing-layout .lp-nav-cta,
+.landing-layout .btn-hero-primary,
+.editorial-page .editorial-shop,
+.editorial-page .editorial-article-cta a,
+.editorial-page .editorial-footer-cta a,
+.account-page .account-btn-primary {
+  color: #fff !important;
+  background: transparent !important;
+  border: 1px solid var(--bb-red) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--bb-glow) !important;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-weight: 750 !important;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.clone-home .clone-hero-actions a:hover,
+.clone-home .clone-hero-actions button:hover,
+.clone-home .clone-section-head-row > a:hover,
+.clone-home .clone-product-copy > a:hover,
+.clone-home .clone-help-strip a:hover,
+.clone-home .about-primary:hover,
+.clone-home .about-secondary:hover,
+.clone-home .contact-button:hover,
+.clone-home .btn-hero-primary:hover,
+.clone-home .lp-bulk-banner-btn:hover,
+.landing-layout .lp-nav-cta:hover,
+.landing-layout .btn-hero-primary:hover,
+.editorial-page .editorial-article-cta a:hover,
+.editorial-page .editorial-footer-cta a:hover,
+.account-page .account-btn-primary:hover {
+  color: #fff !important;
+  background: var(--bb-red-deep) !important;
+  border-color: var(--bb-red-hot) !important;
+}
+
+.clone-home .clone-hero-dropdown select,
+.clone-home .clone-info-search,
+.clone-home .clone-info-search input,
+.clone-home input,
+.clone-home textarea,
+.clone-home select,
+.landing-layout input,
+.landing-layout textarea,
+.landing-layout select,
+.account-page input,
+.account-page textarea,
+.account-page select {
+  color: var(--bb-white) !important;
+  background: var(--bb-panel) !important;
+  border-color: var(--bb-line-bright) !important;
+}
+
+.clone-home input:focus,
+.clone-home textarea:focus,
+.clone-home select:focus,
+.landing-layout input:focus,
+.landing-layout textarea:focus,
+.landing-layout select:focus,
+.account-page input:focus,
+.account-page textarea:focus,
+.account-page select:focus {
+  outline: 0 !important;
+  border-color: var(--bb-red) !important;
+  box-shadow: 0 0 0 3px rgba(245, 0, 0, .12) !important;
+}
+
+/* Storefront sections and cards */
+.clone-home .clone-section,
+.clone-home .clone-page-section {
+  border-top-color: var(--bb-line) !important;
+}
+
+.clone-home .clone-section h2,
+.clone-home .clone-page-section h2,
+.clone-home .clone-page-hero h1 {
+  text-transform: uppercase;
+}
+
+.clone-home .bb-features-grid,
+.clone-home .clone-difference-grid,
+.clone-home .clone-offer-grid,
+.clone-home .clone-topic-grid,
+.clone-home .clone-start-grid,
+.clone-home .clone-coa-grid,
+.clone-home .clone-products-grid {
+  gap: 14px !important;
+}
+
+.clone-home .bb-feature-card,
+.clone-home .clone-difference-grid article,
+.clone-home .clone-offer-grid article,
+.clone-home .clone-topic-grid article,
+.clone-home .clone-start-card,
+.clone-home .clone-product-card,
+.clone-home .lp-faq-item,
+.clone-home .pp-empty-products,
+.clone-home .contact-form-card,
+.clone-home .contact-method-card {
+  color: var(--bb-copy) !important;
+  background: linear-gradient(145deg, var(--bb-panel-raised), var(--bb-ink)) !important;
+  border: 1px solid var(--bb-line) !important;
+  border-radius: 3px !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .3) !important;
+}
+
+.clone-home .bb-feature-card:hover,
+.clone-home .clone-difference-grid article:hover,
+.clone-home .clone-topic-grid article:hover,
+.clone-home .clone-start-card:hover,
+.clone-home .clone-product-card:hover {
+  border-color: rgba(245, 0, 0, .72) !important;
+  box-shadow: var(--bb-glow) !important;
+}
+
+.clone-home .clone-category-chips a,
+.clone-home .clone-info-pills a,
+.clone-home .editorial-topic-links a,
+.clone-home .contact-hero-points span {
+  color: var(--bb-copy) !important;
+  background: rgba(255, 255, 255, .025) !important;
+  border: 1px solid var(--bb-line-bright) !important;
+  border-radius: 999px !important;
+}
+
+.clone-home .clone-category-chips a:hover,
+.clone-home .clone-info-pills a:hover,
+.clone-home .editorial-topic-links a:hover {
+  color: #fff !important;
+  border-color: var(--bb-red) !important;
+  box-shadow: 0 0 18px -6px rgba(245, 0, 0, .72);
+}
+
+.clone-home .clone-product-media,
+.clone-home .clone-product-media img {
+  background: #050505 !important;
+}
+
+.clone-home .clone-product-media {
+  border-bottom: 1px solid var(--bb-line) !important;
+}
+
+.clone-home .clone-product-copy small,
+.clone-home .clone-product-price span {
+  color: var(--bb-dim) !important;
+}
+
+.clone-home .clone-product-price strong {
+  color: var(--bb-white) !important;
+}
+
+.clone-home .clone-sale-badge,
+.catalog-page-shell .sale-badge {
+  color: #fff !important;
+  background: var(--bb-red-deep) !important;
+  border: 1px solid var(--bb-red) !important;
+  border-radius: 2px !important;
+}
+
+.clone-home .clone-page-hero,
+.clone-home .about-hero,
+.clone-home .contact-main,
+.clone-home .editorial-hero {
+  color: var(--bb-copy) !important;
+  background:
+    radial-gradient(700px 360px at 82% 15%, rgba(245, 0, 0, .18), transparent 62%),
+    linear-gradient(120deg, #030303, #170509 70%, #050304) !important;
+  border-color: var(--bb-line) !important;
+}
+
+.clone-home .clone-help-strip,
+.clone-home .clone-bulk-band,
+.clone-home .lp-bulk-banner,
+.clone-home .about-cta,
+.clone-home .about-proof-band,
+.clone-home .about-process {
+  color: var(--bb-white) !important;
+  background:
+    radial-gradient(600px 240px at 12% 0%, rgba(245, 0, 0, .17), transparent 70%),
+    var(--bb-panel) !important;
+  border: 1px solid var(--bb-line) !important;
+  border-radius: 3px !important;
+}
+
+/* About and contact routes */
+.clone-home.about-page,
+.clone-home.contact-page {
+  color: var(--bb-copy) !important;
+  background: transparent !important;
+}
+
+.clone-home .about-chapters article {
+  background: transparent !important;
+  border-top: 1px solid var(--bb-line-bright) !important;
+}
+
+.clone-home .about-chapters article h2,
+.clone-home .about-chapters article p,
+.clone-home .about-story-copy > p:last-child,
+.clone-home .about-process-grid p,
+.clone-home .about-cta p,
+.clone-home .contact-hero p,
+.clone-home .contact-method-card p {
+  color: var(--bb-copy) !important;
+}
+
+.clone-home .about-founder,
+.clone-home .about-principles > div,
+.clone-home .about-process-grid article {
+  background: var(--bb-panel) !important;
+  border-color: var(--bb-line) !important;
+}
+
+.clone-home .about-quote {
+  color: var(--bb-white) !important;
+  background: #050303 !important;
+  border-color: var(--bb-line) !important;
+}
+
+.clone-home .contact-button--wa {
+  background: transparent !important;
+}
+
+.clone-home .contact-button--secondary {
+  color: #fff !important;
+}
+
+/* Blog index and article pages */
+.editorial-page,
+.clone-home .editorial-page {
+  color: var(--bb-copy) !important;
+  background: var(--bb-black) !important;
+}
+
+.editorial-page .site-shipping-bar,
+.editorial-page .editorial-header,
+.editorial-page .editorial-footer,
+.editorial-page .editorial-footer-cta {
+  color: var(--bb-copy) !important;
+  background: #030303 !important;
+  border-color: var(--bb-line) !important;
+}
+
+.editorial-page .editorial-nav a,
+.editorial-page .editorial-language button,
+.editorial-page .editorial-back,
+.editorial-page .editorial-read {
+  color: var(--bb-copy) !important;
+}
+
+.editorial-page .editorial-nav a:hover,
+.editorial-page .editorial-back:hover,
+.editorial-page .editorial-read:hover,
+.editorial-page .editorial-blog-meta,
+.editorial-page .editorial-article-meta {
+  color: var(--bb-red-hot) !important;
+}
+
+.editorial-page .editorial-language,
+.editorial-page .editorial-language button,
+.editorial-page .editorial-blog-card,
+.editorial-page .editorial-empty,
+.editorial-page .editorial-share button,
+.editorial-page .editorial-topic-links a {
+  color: var(--bb-copy) !important;
+  background: var(--bb-panel) !important;
+  border-color: var(--bb-line) !important;
+  border-radius: 3px !important;
+}
+
+.editorial-page .editorial-language button.active,
+.editorial-page .editorial-topic-links a:first-child {
+  color: #fff !important;
+  background: var(--bb-red-deep) !important;
+  border-color: var(--bb-red) !important;
+}
+
+.editorial-page .editorial-blog-card:hover {
+  border-color: var(--bb-red) !important;
+  box-shadow: var(--bb-glow) !important;
+}
+
+.editorial-page .editorial-blog-placeholder,
+.editorial-page .editorial-blog-image {
+  color: var(--bb-dim) !important;
+  background: #070707 !important;
+}
+
+.editorial-page .editorial-blog-card p,
+.editorial-page .editorial-content,
+.editorial-page .editorial-footer-grid p,
+.editorial-page .editorial-article-cta p {
+  color: var(--bb-copy) !important;
+}
+
+.editorial-page .editorial-share,
+.editorial-page .editorial-topic-links--article,
+.editorial-page .editorial-legal {
+  border-color: var(--bb-line) !important;
+}
+
+/* Catalog */
+.catalog-page-shell {
+  color: var(--bb-copy) !important;
+}
+
+.catalog-page-shell > .promo-banner-global,
+.catalog-page-shell > .promo-banner-global .promo-banner-ticker,
+.catalog-page-shell > .promo-banner-global .promo-banner-text {
+  color: #fff !important;
+  background: linear-gradient(90deg, #350006, #8a000b 45%, #350006) !important;
+  border-color: rgba(245, 0, 0, .32) !important;
+}
+
+.catalog-page-shell .catalog-brand-sticky,
+.catalog-page-shell .header-top-section,
+.catalog-page-shell .header-sticky-section::before,
+.catalog-page-shell .catalog-proof-section {
+  background: rgba(0, 0, 0, .95) !important;
+  border-color: var(--bb-line) !important;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .48) !important;
+}
+
+.catalog-page-shell .catalog-brand-sticky {
+  border-top: 2px solid var(--bb-red-deep) !important;
+}
+
+.catalog-page-shell .logo-emblem {
+  width: 168px !important;
+  height: 58px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 0 !important;
+}
+
+.catalog-page-shell .catalog-header-cart,
+.catalog-page-shell .filter-btn,
+.catalog-page-shell .currency-selector,
+.catalog-page-shell .lang-selector,
+.catalog-page-shell .theme-toggle,
+.catalog-page-shell .search-input-wrapper {
+  color: var(--bb-white) !important;
+  background: var(--bb-panel) !important;
+  border-color: var(--bb-line-bright) !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+}
+
+.catalog-page-shell .catalog-header-cart:hover,
+.catalog-page-shell .filter-btn:hover,
+.catalog-page-shell .filter-btn.active {
+  border-color: var(--bb-red) !important;
+  box-shadow: var(--bb-glow) !important;
+}
+
+.catalog-page-shell .catalog-header-cart-badge,
+.catalog-page-shell .cart-free-shipping-badge,
+.catalog-page-shell .checkout-step-number {
+  color: #fff !important;
+  background: var(--bb-red-deep) !important;
+}
+
+.catalog-page-shell .catalog-seo-title,
+.catalog-page-shell .section-title,
+.catalog-page-shell .product-name {
+  color: var(--bb-white) !important;
+}
+
+.catalog-page-shell .catalog-seo-sub,
+.catalog-page-shell .product-category,
+.catalog-page-shell .price-sub {
+  color: var(--bb-dim) !important;
+}
+
+.catalog-page-shell .category-nav,
+.catalog-page-shell .search-row {
+  border-color: var(--bb-line) !important;
+}
+
+.catalog-page-shell .category-nav a,
+.catalog-page-shell .cat-chip,
+.catalog-page-shell .popular-tag {
+  color: var(--bb-copy) !important;
+  background: transparent !important;
+  border-color: var(--bb-line-bright) !important;
+}
+
+.catalog-page-shell .category-nav a:hover,
+.catalog-page-shell .category-nav a.active,
+.catalog-page-shell .cat-chip:hover,
+.catalog-page-shell .cat-chip.active,
+.catalog-page-shell .popular-tag:hover {
+  color: #fff !important;
+  border-color: var(--bb-red) !important;
+  background: rgba(125, 0, 10, .28) !important;
+  box-shadow: 0 0 18px -8px rgba(245, 0, 0, .7) !important;
+}
+
+.catalog-page-shell .product-card {
+  background: linear-gradient(145deg, var(--bb-panel-raised), var(--bb-ink)) !important;
+  border: 1px solid var(--bb-line) !important;
+  border-radius: 3px !important;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, .34) !important;
+}
+
+.catalog-page-shell .product-card:hover {
+  border-color: var(--bb-red) !important;
+  box-shadow: var(--bb-glow) !important;
+}
+
+.catalog-page-shell .product-image,
+.catalog-page-shell .product-grid.compact-view .product-image {
+  background: #050505 !important;
+  border-color: var(--bb-line) !important;
+}
+
+.catalog-page-shell .price-main {
+  color: var(--bb-white) !important;
+}
+
+.catalog-page-shell .stock-badge,
+.catalog-page-shell .stock-soon {
+  color: #ff6b6b !important;
+  background: rgba(245, 0, 0, .11) !important;
+  border-color: rgba(245, 0, 0, .34) !important;
+}
+
+.catalog-page-shell .add-to-cart-btn,
+.catalog-page-shell .product-detail-cart-button,
+.catalog-page-shell .review-submit-button,
+.catalog-page-shell .card-payment-btn,
+.catalog-page-shell .cart-sticky-submit,
+.catalog-page-shell #catalog-whatsapp-btn {
+  color: #fff !important;
+  background: transparent !important;
+  border: 1px solid var(--bb-red) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--bb-glow) !important;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.catalog-page-shell .add-to-cart-btn:hover:not(:disabled),
+.catalog-page-shell .product-detail-cart-button:hover,
+.catalog-page-shell .review-submit-button:hover,
+.catalog-page-shell .card-payment-btn:hover,
+.catalog-page-shell .cart-sticky-submit:hover,
+.catalog-page-shell #catalog-whatsapp-btn:hover {
+  background: var(--bb-red-deep) !important;
+  border-color: var(--bb-red-hot) !important;
+}
+
+.catalog-page-shell .modal-content,
+.catalog-page-shell .product-detail-modal,
+.catalog-page-shell .cart-body,
+.catalog-page-shell .cart-header,
+.catalog-page-shell .cart-footer,
+.catalog-page-shell .checkout-form,
+.catalog-page-shell .card-payment-panel,
+.catalog-page-shell .review-card,
+.catalog-page-shell .write-review-form,
+.catalog-page-shell .search-suggestions-dropdown,
+.catalog-page-shell .suggestion-card {
+  color: var(--bb-copy) !important;
+  background: var(--bb-panel) !important;
+  border-color: var(--bb-line) !important;
+}
+
+.catalog-page-shell .modal,
+.catalog-page-shell .search-overlay-backdrop,
+.catalog-page-shell .access-gate-overlay {
+  background: rgba(0, 0, 0, .84) !important;
+  backdrop-filter: blur(9px);
+}
+
+.catalog-page-shell .access-gate-card {
+  color: var(--bb-copy) !important;
+  background: linear-gradient(145deg, #1a1013, #0a0708) !important;
+  border: 1px solid var(--bb-line-bright) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .72), 0 0 45px rgba(125, 0, 10, .25) !important;
+}
+
+/* Legacy policy pages */
+.landing-layout {
+  min-height: 100vh;
+}
+
+.landing-layout .lp-header,
+.landing-layout .lp-header-inner,
+.landing-layout .lp-nav,
+.landing-layout .footer {
+  color: var(--bb-copy) !important;
+  background: rgba(0, 0, 0, .95) !important;
+  border-color: var(--bb-line) !important;
+}
+
+.landing-layout .lp-header-inner {
+  min-height: 84px !important;
+  height: auto !important;
+}
+
+.landing-layout .lp-logo {
+  width: 168px !important;
+  height: 58px !important;
+  flex: 0 0 168px !important;
+  overflow: hidden !important;
+}
+
+.landing-layout .lp-logo img {
+  width: 168px !important;
+  height: 58px !important;
+  max-height: 58px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 0 !important;
+}
+
+.landing-layout .lp-nav a,
+.landing-layout .footer a {
+  color: var(--bb-copy) !important;
+}
+
+.landing-layout .lp-nav a:hover,
+.landing-layout .footer a:hover {
+  color: var(--bb-red-hot) !important;
+}
+
+.landing-layout .theme-toggle,
+.landing-layout .lang-selector,
+.landing-layout .theme-toggle button,
+.landing-layout .lang-selector button {
+  color: var(--bb-copy) !important;
+  background: var(--bb-panel) !important;
+  border-color: var(--bb-line) !important;
+}
+
+.landing-layout .theme-toggle button.active,
+.landing-layout .lang-selector button.active {
+  color: #fff !important;
+  background: var(--bb-red-deep) !important;
+}
+
+.landing-layout main > .container > div:first-child > div:first-child {
+  color: var(--bb-red-hot) !important;
+  background: rgba(245, 0, 0, .1) !important;
+  border: 1px solid rgba(245, 0, 0, .28);
+  border-radius: 10px !important;
+}
+
+.landing-layout main > .container > div:last-child,
+.landing-layout main > .container > div:last-child p,
+.landing-layout main > .container > div:last-child li {
+  color: var(--bb-copy) !important;
+}
+
+/* Customer account */
+.account-page {
+  min-height: 100vh;
+}
+
+.account-page .account-nav {
+  border-color: var(--bb-line) !important;
+}
+
+.account-page .account-nav a,
+.account-page .account-btn-secondary,
+.account-page .account-card,
+.account-page .account-auth-card {
+  color: var(--bb-copy) !important;
+  background: var(--bb-panel) !important;
+  border-color: var(--bb-line) !important;
+  border-radius: 4px !important;
+}
+
+.account-page .account-nav a:hover,
+.account-page .account-btn-secondary:hover {
+  color: #fff !important;
+  border-color: var(--bb-red) !important;
+}
+
+.account-page .account-nav a.is-active,
+.account-page .account-auth-langs button.is-active {
+  color: #fff !important;
+  background: var(--bb-red-deep) !important;
+  border-color: var(--bb-red) !important;
+}
+
+/* Shared footer and lead dialog */
+.clone-home .clone-footer,
+.clone-home .footer {
+  color: var(--bb-copy) !important;
+  background:
+    radial-gradient(900px 420px at 12% 0%, rgba(245, 0, 0, .10), transparent 62%),
+    radial-gradient(700px 380px at 92% 100%, rgba(245, 0, 0, .07), transparent 58%),
+    #000 !important;
+  border-top: 1px solid var(--bb-line-bright) !important;
+}
+
+.clone-home .clone-footer a,
+.clone-home .footer a {
+  color: var(--bb-copy) !important;
+}
+
+.clone-home .clone-footer a:hover,
+.clone-home .footer a:hover {
+  color: var(--bb-red-hot) !important;
+}
+
+.clone-lead-backdrop {
+  background: rgba(0, 0, 0, .82) !important;
+  backdrop-filter: blur(8px);
+}
+
+.clone-lead-card {
+  color: var(--bb-copy) !important;
+  background: linear-gradient(145deg, #1a1013, #090607) !important;
+  border: 1px solid var(--bb-line-bright) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .72), 0 0 45px rgba(125, 0, 10, .2) !important;
+}
+
+.clone-lead-card h2,
+.clone-lead-field > span {
+  color: var(--bb-white) !important;
+}
+
+.clone-lead-intro,
+.clone-lead-success p {
+  color: var(--bb-copy) !important;
+}
+
+.clone-lead-close {
+  color: var(--bb-copy) !important;
+  background: var(--bb-panel-raised) !important;
+}
+
+.clone-lead-field > input {
+  color: var(--bb-white) !important;
+  background: #070707 !important;
+  border-color: var(--bb-line-bright) !important;
+  border-radius: 6px !important;
+}
+
+.clone-lead-field > input:focus {
+  border-color: var(--bb-red) !important;
+  box-shadow: 0 0 0 3px rgba(245, 0, 0, .12) !important;
+}
+
+.clone-lead-submit {
+  color: #fff !important;
+  background: transparent !important;
+  border: 1px solid var(--bb-red) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--bb-glow) !important;
+  text-transform: uppercase;
+}
+
+/* Compliance gate lives beside the page in RootLayout, so it needs its own
+   scope. Its content and decisions stay unchanged; only its presentation joins
+   the storefront. */
+.entry-disclaimer-overlay {
+  background:
+    radial-gradient(700px 500px at 25% 0%, rgba(125, 0, 10, .35), transparent 66%),
+    rgba(0, 0, 0, .91) !important;
+  backdrop-filter: blur(11px) !important;
+}
+
+.entry-disclaimer-modal {
+  color: var(--bb-copy) !important;
+  background: linear-gradient(145deg, #1a1013, #090607) !important;
+  border: 1px solid var(--bb-line-bright) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .76), 0 0 50px rgba(125, 0, 10, .24) !important;
+}
+
+.entry-disclaimer-title {
+  color: var(--bb-white) !important;
+  font-family: var(--font-montserrat), Arial, sans-serif !important;
+  letter-spacing: .035em !important;
+}
+
+.entry-disclaimer-text,
+.entry-disclaimer-list {
+  color: var(--bb-copy) !important;
+}
+
+.entry-btn-agree,
+.entry-btn-disagree {
+  color: #fff !important;
+  background: transparent !important;
+  border: 1px solid var(--bb-red) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--bb-glow) !important;
+  text-transform: uppercase;
+}
+
+.entry-btn-agree:hover,
+.entry-btn-disagree:hover {
+  background: var(--bb-red-deep) !important;
+  border-color: var(--bb-red-hot) !important;
+}
+
+@media (max-width: 900px) {
+  .clone-home .clone-nav {
+    min-height: 70px;
+  }
+
+  .clone-home .clone-nav-links {
+    background: #050303 !important;
+    border-top: 1px solid var(--bb-line) !important;
+  }
+
+  .clone-home .clone-hero {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .clone-home .clone-shell {
+    width: min(100% - 24px, 1140px);
+  }
+
+  .clone-home .clone-hero {
+    border-left: 0 !important;
+    border-right: 0 !important;
+  }
+
+  .clone-home .clone-hero h1,
+  .clone-home .about-hero h1,
+  .clone-home .contact-hero h1,
+  .clone-home .clone-page-hero h1,
+  .editorial-page .editorial-hero h1,
+  .editorial-page .editorial-article-header h1,
+  .landing-layout main h1 {
+    font-size: clamp(2.25rem, 12vw, 3.4rem) !important;
+    line-height: .98 !important;
+  }
+
+  .catalog-page-shell .product-grid.grid-view {
+    gap: 10px !important;
+  }
+
+  .catalog-page-shell .product-grid.grid-view .product-card {
+    border-radius: 2px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clone-home *,
+  .catalog-page-shell *,
+  .landing-layout *,
+  .editorial-page *,
+  .account-page * {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Color-mode and interaction hardening
+   The catalog and policy pages expose a saved light/dark preference. Keep the
+   same research-lab character in both modes, while maintaining readable text,
+   controls and hover states against their actual surface. */
+html[data-theme="light"] {
+  color-scheme: light;
+  --bb-black: #f7f3f4;
+  --bb-ink: #ffffff;
+  --bb-panel: #ffffff;
+  --bb-panel-raised: #fbf7f8;
+  --bb-panel-soft: #f1e8eb;
+  --bb-red: #b00018;
+  --bb-red-hot: #8b0013;
+  --bb-red-deep: #790011;
+  --bb-wine: #f4dfe4;
+  --bb-line: #d9cbd0;
+  --bb-line-bright: #bdaab0;
+  --bb-copy: #45373c;
+  --bb-dim: #6c5b61;
+  --bb-white: #211519;
+  --bb-glow: 0 0 0 1px rgba(176, 0, 24, .12),
+    0 10px 28px -18px rgba(121, 0, 17, .58);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html[data-theme="light"] body {
+  background: var(--bb-black);
+  color: var(--bb-copy);
+}
+
+html[data-theme="light"] :is(
+  .clone-home,
+  .catalog-page-shell,
+  .landing-layout,
+  .editorial-page,
+  .account-page
+) {
+  --primary: #2b171e;
+  --primary-alt: #f1e8eb;
+  --accent: var(--bb-red);
+  --cta: var(--bb-red);
+  --cta-hover: var(--bb-red-hot);
+  --bg-main: var(--bb-black);
+  --bg-card: var(--bb-panel);
+  --bg-secondary: var(--bb-panel-soft);
+  --text-main: var(--bb-white);
+  --text-primary: var(--bb-white);
+  --text-muted: var(--bb-copy);
+  --border: var(--bb-line);
+  --border-color: var(--bb-line);
+  --card-bg: var(--bb-panel);
+  --shadow: 0 12px 32px rgba(61, 31, 41, .09);
+  --shadow-lg: 0 22px 56px rgba(61, 31, 41, .14);
+  background:
+    radial-gradient(900px 520px at 8% 0%, rgba(176, 0, 24, .08), transparent 64%),
+    radial-gradient(800px 500px at 100% 42%, rgba(121, 0, 17, .05), transparent 64%),
+    repeating-linear-gradient(108deg, rgba(56, 28, 37, .018) 0 1px, transparent 1px 8px),
+    var(--bb-black) !important;
+}
+
+/* Every interactive element gets an obvious keyboard target in both modes. */
+:is(
+  .clone-home,
+  .catalog-page-shell,
+  .landing-layout,
+  .editorial-page,
+  .account-page
+) :is(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--bb-red-hot) !important;
+  outline-offset: 3px !important;
+}
+
+:is(
+  .clone-home,
+  .catalog-page-shell,
+  .landing-layout,
+  .editorial-page,
+  .account-page
+) button:disabled {
+  cursor: not-allowed !important;
+  opacity: .56;
+}
+
+:is(
+  .clone-home,
+  .catalog-page-shell,
+  .landing-layout,
+  .editorial-page,
+  .account-page
+) :is(input, textarea)::placeholder {
+  color: var(--bb-dim) !important;
+  opacity: 1;
+}
+
+/* Light storefront chrome */
+html[data-theme="light"] .clone-home .clone-site-header,
+html[data-theme="light"] .clone-home .clone-nav-wrap,
+html[data-theme="light"] .clone-home .clone-nav-dropdown,
+html[data-theme="light"] .editorial-page .editorial-header,
+html[data-theme="light"] .editorial-page .editorial-footer,
+html[data-theme="light"] .editorial-page .editorial-footer-cta,
+html[data-theme="light"] .landing-layout .lp-header,
+html[data-theme="light"] .landing-layout .lp-header-inner,
+html[data-theme="light"] .landing-layout .lp-nav,
+html[data-theme="light"] .landing-layout .footer {
+  color: var(--bb-copy) !important;
+  background: rgba(255, 255, 255, .96) !important;
+  border-color: var(--bb-line) !important;
+  box-shadow: 0 10px 28px rgba(61, 31, 41, .08) !important;
+}
+
+html[data-theme="light"] .clone-home :is(
+  .clone-nav-links > a,
+  .clone-nav-group > button,
+  .clone-nav-lang,
+  .clone-menu-toggle,
+  .clone-nav-dropdown a
+) {
+  color: var(--bb-white) !important;
+}
+
+html[data-theme="light"] .clone-home :is(.clone-search, .clone-search input, .clone-cart-link) {
+  color: var(--bb-white) !important;
+  background: #fff !important;
+}
+
+html[data-theme="light"] .clone-home .clone-nav-links {
+  border-color: var(--bb-line) !important;
+}
+
+html[data-theme="light"] .clone-home .clone-hero,
+html[data-theme="light"] .clone-home :is(.clone-page-hero, .about-hero, .contact-main, .editorial-hero) {
+  color: var(--bb-copy) !important;
+  background:
+    radial-gradient(700px 380px at 82% 16%, rgba(176, 0, 24, .13), transparent 62%),
+    linear-gradient(120deg, #fff 0%, #fbf3f5 68%, #f3e4e8 100%) !important;
+  border-color: var(--bb-line) !important;
+}
+
+html[data-theme="light"] .clone-home .clone-hero::before {
+  opacity: .34;
+  background:
+    repeating-linear-gradient(105deg, transparent 0 7px, rgba(84, 45, 57, .035) 7px 8px),
+    linear-gradient(180deg, transparent 65%, rgba(176, 0, 24, .06));
+}
+
+html[data-theme="light"] .clone-home .clone-hero-media img {
+  filter: drop-shadow(0 28px 36px rgba(61, 31, 41, .22)) saturate(.96) contrast(1.03);
+}
+
+html[data-theme="light"] .clone-home :is(
+  .bb-feature-card,
+  .clone-difference-grid article,
+  .clone-offer-grid article,
+  .clone-topic-grid article,
+  .clone-start-card,
+  .clone-product-card,
+  .lp-faq-item,
+  .pp-empty-products,
+  .contact-form-card,
+  .contact-method-card,
+  .about-founder,
+  .about-principles > div,
+  .about-process-grid article
+),
+html[data-theme="light"] .editorial-page :is(
+  .editorial-language,
+  .editorial-language button,
+  .editorial-blog-card,
+  .editorial-empty,
+  .editorial-share button,
+  .editorial-topic-links a
+),
+html[data-theme="light"] .account-page :is(
+  .account-nav a,
+  .account-btn-secondary,
+  .account-card,
+  .account-auth-card
+) {
+  color: var(--bb-copy) !important;
+  background: #fff !important;
+  border-color: var(--bb-line) !important;
+  box-shadow: 0 12px 30px rgba(61, 31, 41, .08) !important;
+}
+
+html[data-theme="light"] .clone-home :is(.clone-product-media, .clone-product-media img),
+html[data-theme="light"] .editorial-page :is(.editorial-blog-placeholder, .editorial-blog-image) {
+  color: var(--bb-dim) !important;
+  background: #f5eef0 !important;
+}
+
+html[data-theme="light"] .clone-home .about-quote {
+  color: var(--bb-white) !important;
+  background: #f5eef0 !important;
+}
+
+/* Outline actions use dark red text at rest and white text only after the red
+   fill appears. This avoids white-on-white and red-on-red hover failures. */
+html[data-theme="light"] :is(
+  .clone-home .clone-hero-actions a,
+  .clone-home .clone-hero-actions button,
+  .clone-home .clone-section-head-row > a,
+  .clone-home .clone-product-copy > a,
+  .clone-home .clone-help-strip a,
+  .clone-home .about-primary,
+  .clone-home .about-secondary,
+  .clone-home .contact-button,
+  .clone-home .btn-hero-primary,
+  .clone-home .lp-bulk-banner-btn,
+  .landing-layout .lp-nav-cta,
+  .landing-layout .btn-hero-primary,
+  .editorial-page .editorial-shop,
+  .editorial-page .editorial-article-cta a,
+  .editorial-page .editorial-footer-cta a,
+  .account-page .account-btn-primary,
+  .catalog-page-shell .add-to-cart-btn,
+  .catalog-page-shell .product-detail-cart-button,
+  .catalog-page-shell .review-submit-button,
+  .catalog-page-shell .card-payment-btn,
+  .catalog-page-shell .cart-sticky-submit,
+  .catalog-page-shell #catalog-whatsapp-btn
+) {
+  color: var(--bb-red-deep) !important;
+  background: #fff !important;
+}
+
+html[data-theme="light"] :is(
+  .clone-home .clone-hero-actions a,
+  .clone-home .clone-hero-actions button,
+  .clone-home .clone-section-head-row > a,
+  .clone-home .clone-product-copy > a,
+  .clone-home .clone-help-strip a,
+  .clone-home .about-primary,
+  .clone-home .about-secondary,
+  .clone-home .contact-button,
+  .clone-home .btn-hero-primary,
+  .clone-home .lp-bulk-banner-btn,
+  .landing-layout .lp-nav-cta,
+  .landing-layout .btn-hero-primary,
+  .editorial-page .editorial-article-cta a,
+  .editorial-page .editorial-footer-cta a,
+  .account-page .account-btn-primary,
+  .catalog-page-shell .add-to-cart-btn:not(:disabled),
+  .catalog-page-shell .product-detail-cart-button,
+  .catalog-page-shell .review-submit-button,
+  .catalog-page-shell .card-payment-btn,
+  .catalog-page-shell .cart-sticky-submit,
+  .catalog-page-shell #catalog-whatsapp-btn
+):hover {
+  color: #fff !important;
+  background: var(--bb-red-deep) !important;
+}
+
+html[data-theme="light"] .clone-home :is(
+  .clone-category-chips a,
+  .clone-info-pills a,
+  .editorial-topic-links a,
+  .contact-hero-points span
+) {
+  color: var(--bb-copy) !important;
+  background: #fff !important;
+}
+
+html[data-theme="light"] .clone-home :is(
+  .clone-category-chips a,
+  .clone-info-pills a,
+  .editorial-topic-links a
+):hover {
+  color: #fff !important;
+  background: var(--bb-red-deep) !important;
+}
+
+/* Catalog controls, cards, dialogs and mode selector */
+.catalog-page-shell :is(.theme-toggle, .lang-selector, .currency-selector) button {
+  color: var(--bb-copy) !important;
+}
+
+.catalog-page-shell :is(.theme-toggle, .lang-selector, .currency-selector) button.active {
+  color: #fff !important;
+  background: var(--bb-red-deep) !important;
+}
+
+.catalog-page-shell :is(.theme-toggle, .lang-selector, .currency-selector) button:hover:not(.active) {
+  color: var(--bb-white) !important;
+  background: rgba(245, 0, 0, .12) !important;
+}
+
+html[data-theme="light"] .catalog-page-shell :is(
+  .catalog-brand-sticky,
+  .header-top-section,
+  .catalog-proof-section
+),
+html[data-theme="light"] .catalog-page-shell .header-sticky-section::before {
+  color: var(--bb-copy) !important;
+  background: rgba(255, 255, 255, .96) !important;
+  border-color: var(--bb-line) !important;
+  box-shadow: 0 10px 28px rgba(61, 31, 41, .08) !important;
+}
+
+html[data-theme="light"] .catalog-page-shell :is(
+  .catalog-header-cart,
+  .filter-btn,
+  .currency-selector,
+  .lang-selector,
+  .theme-toggle,
+  .search-input-wrapper
+) {
+  color: var(--bb-white) !important;
+  background: #fff !important;
+  border-color: var(--bb-line-bright) !important;
+}
+
+html[data-theme="light"] .catalog-page-shell :is(.category-nav a, .cat-chip, .popular-tag) {
+  color: var(--bb-copy) !important;
+  background: #fff !important;
+}
+
+html[data-theme="light"] .catalog-page-shell :is(
+  .category-nav a:hover,
+  .category-nav a.active,
+  .cat-chip:hover,
+  .cat-chip.active,
+  .popular-tag:hover
+) {
+  color: #fff !important;
+  background: var(--bb-red-deep) !important;
+}
+
+html[data-theme="light"] .catalog-page-shell .product-card {
+  color: var(--bb-copy) !important;
+  background: linear-gradient(145deg, #fff, #fbf7f8) !important;
+  box-shadow: 0 12px 30px rgba(61, 31, 41, .09) !important;
+}
+
+html[data-theme="light"] .catalog-page-shell :is(.product-image, .product-grid.compact-view .product-image) {
+  background: #f5eef0 !important;
+}
+
+html[data-theme="light"] .catalog-page-shell :is(
+  .modal-content,
+  .product-detail-modal,
+  .cart-body,
+  .cart-header,
+  .cart-footer,
+  .checkout-form,
+  .card-payment-panel,
+  .review-card,
+  .write-review-form,
+  .search-suggestions-dropdown,
+  .suggestion-card
+) {
+  color: var(--bb-copy) !important;
+  background: #fff !important;
+  border-color: var(--bb-line) !important;
+}
+
+html[data-theme="light"] .catalog-page-shell :is(input, textarea, select),
+html[data-theme="light"] .clone-home :is(input, textarea, select),
+html[data-theme="light"] .landing-layout :is(input, textarea, select),
+html[data-theme="light"] .account-page :is(input, textarea, select) {
+  color: var(--bb-white) !important;
+  background: #fff !important;
+  border-color: var(--bb-line-bright) !important;
+}
+
+@media (max-width: 900px) {
+  html[data-theme="light"] .clone-home .clone-nav-links {
+    background: #fff !important;
+  }
+}
