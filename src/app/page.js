@@ -29,53 +29,20 @@ import './landing.css';
 
 const USER_SELECTED_LANG_KEY = 'lang_user_selected';
 
-// Shown until the live categories load, and used to build ?category= links, so
-// these must match the category values stored on products.
+// Category chips shown until live categories load from DB
 const CATEGORY_FALLBACKS = [
-  'BPC-157',
-  'CJC-1295',
-  'GHK-Cu',
-  'NAD+',
   'GLP-1',
   'Semaglutide',
+  'BPC-157',
+  'NAD+',
   'Sermorelin',
   'TB-500',
+  'GHK-Cu',
+  'CJC-1295',
 ];
 
-const FALLBACK_PRODUCTS = [
-  {
-    product: 'BPC-157 10mg',
-    category: 'Recovery & Healing',
-    price_usd: '$44.97',
-    price_crc: '₡22,500',
-    status: 'In Stock',
-    image_url: '/modern_3d_vial_hero.png',
-  },
-  {
-    product: 'GLP-1 10mg',
-    category: 'Weight Loss & Metabolism',
-    price_usd: '$115.00',
-    price_crc: '₡58,000',
-    status: 'In Stock',
-    image_url: '/vial_panama_hero.png',
-  },
-  {
-    product: 'Semaglutide 5mg',
-    category: 'Weight Loss & Metabolism',
-    price_usd: '$84.50',
-    price_crc: '₡42,500',
-    status: 'In Stock',
-    image_url: '/hero_peptide_vial.png',
-  },
-  {
-    product: 'GHK-Cu 50mg',
-    category: 'Skin & Hair',
-    price_usd: '$64.00',
-    price_crc: '₡32,000',
-    status: 'In Stock',
-    image_url: '/peptide_molecular_3d.png',
-  },
-];
+// No fallback products — catalog is populated via Admin Panel
+const FALLBACK_PRODUCTS = [];
 
 function copy(settings, key, lang) {
   return settings[`${key}${lang === 'en' ? 'En' : 'Es'}`] || settings[`${key}En`] || '';
@@ -162,7 +129,7 @@ export default function LandingPage() {
           .maybeSingle(),
       ]);
 
-      const nextProducts = productRows?.length ? productRows : FALLBACK_PRODUCTS;
+      const nextProducts = productRows?.length ? productRows : [];
       if (nextProducts.length) {
         setProducts(nextProducts);
         setCategories([...new Set(nextProducts.map((p) => p.category).filter(Boolean))]);
@@ -324,11 +291,20 @@ export default function LandingPage() {
               </Link>
             ))}
           </div>
-          <div className="clone-products-grid">
-            {(products.length ? products.slice(0, 4) : FALLBACK_PRODUCTS).map((product) => (
-              <ProductCard key={product.product} product={product} lang={lang} />
-            ))}
-          </div>
+          {products.length > 0 ? (
+            <div className="clone-products-grid">
+              {products.slice(0, 4).map((product) => (
+                <ProductCard key={product.product} product={product} lang={lang} />
+              ))}
+            </div>
+          ) : (
+            <div className="pp-empty-products">
+              <FlaskConical size={48} strokeWidth={1.2} />
+              <h3>{lang === 'en' ? 'Products Coming Soon' : 'Productos próximamente'}</h3>
+              <p>{lang === 'en' ? 'Our catalog is being updated. Check back soon or browse all available products.' : 'Nuestro catálogo está siendo actualizado. Vuelve pronto o explora todos los productos disponibles.'}</p>
+              <Link href={`/catalog?lang=${lang}`}>{lang === 'en' ? 'Browse Catalog' : 'Ver Catálogo'} <ArrowRight size={14} /></Link>
+            </div>
+          )}
         </section>
 
         <section className="clone-section clone-shell">

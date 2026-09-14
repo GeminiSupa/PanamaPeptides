@@ -64,7 +64,7 @@ export function CatalogPromoBanner({ lang = 'es', settings, className = '', forc
     .map(parseBannerText)
     .map(normalizeBannerCopy)
     .filter((item) => item.text);
-  const activeText = activeTextItems.map((item) => item.text).join(' • ');
+  const activeText = activeTextItems.map((item) => item.text).join(' • ').replace(/US order/gi, 'Panama order');
   const activeTextHref = activeTextItems.find((item) => item.href)?.href || '';
 
   const imageUrl = activeImageBanner?.imageUrl

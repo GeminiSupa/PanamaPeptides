@@ -716,7 +716,7 @@ export default function CatalogPage() {
         const decodedParam = decodeURIComponent(productParam);
         const matchingProduct = products.find(p =>
           !hiddenProducts.includes(p.product) &&
-          (p.product.toLowerCase() === decodedParam.toLowerCase() ||
+          (p.product?.toLowerCase() === decodedParam.toLowerCase() ||
           p.id === decodedParam)
         );
         if (matchingProduct) {

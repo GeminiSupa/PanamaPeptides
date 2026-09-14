@@ -9,8 +9,8 @@
 //
 // Everything that mentions the deal MUST read it from here.
 
-/** Deal ends Sunday 13 Sep 2026, 11:59:59 PM panama time (UTC-6, no DST). */
-export const BULK_DEAL_END_MS = Date.UTC(2026, 8, 14, 5, 59, 59);
+/** Deal ends December 31, 2026, 11:59:59 PM panama time (UTC-6, no DST). */
+export const BULK_DEAL_END_MS = Date.UTC(2026, 11, 31, 5, 59, 59);
 
 /** 10+ vial rate while the deal runs, and the standing rate once it lapses. */
 export const BULK_DEAL_TEN_PLUS_PCT = 35;
@@ -40,6 +40,6 @@ export function bulkDealBannerText(lang = 'es', now = Date.now()) {
   if (!isBulkDealActive(now)) return '';
   const pct = tenPlusDiscountPct(now);
   return lang === 'en'
-    ? `Week of BIG bulk discounts! Buy 10 vials or more of ANYTHING, get ${pct}% off. (Excludes Bac water)`
-    : `¡Semana de GRANDES descuentos! Compra 10 viales o más de CUALQUIER producto y obtén ${pct}% de descuento. (Excluye agua bacteriostática)`;
+    ? `Free shipping on every Panama order over $200! Buy 10 vials or more of ANY peptide, get ${pct}% off.`
+    : `¡Envío gratis en pedidos Panama mayores de $200! Compra 10 viales o más de CUALQUIER péptido y obtén ${pct}% de descuento.`;
 }
