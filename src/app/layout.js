@@ -6,10 +6,13 @@ import GlobalContactForm from "@/components/GlobalContactForm";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import GoogleReviewsBadge from "@/components/GoogleReviewsBadge";
 import EntryDisclaimer from "@/components/EntryDisclaimer";
+import PWARegister from "@/components/PWARegister";
+import InstallAppPrompt from "@/components/InstallAppPrompt";
 import { LIVE_SITE_URL } from "@/lib/publicUrl";
 import { getTikTokPixelBootstrapScript } from "@/lib/tiktokPixel.mjs";
 
 import "./storefront-theme.css";
+import "./pwa.css";
 
 // The reference style uses a sturdy display face with a restrained sans-serif
 // body. These bundled fonts keep that character without a request to Google.
@@ -29,6 +32,8 @@ export const metadata = {
   // This app IS the catalog site, so every canonical, hreflang and og:url it
   // emits has to resolve to its own origin.
   metadataBase: new URL(LIVE_SITE_URL),
+  applicationName: "Panama Peptides",
+  manifest: "/manifest.webmanifest",
   title: {
     default: "Péptidos de Investigación en Panamá | Panama Peptides",
     template: "%s | Panama Peptides",
@@ -78,12 +83,21 @@ export const metadata = {
     shortcut: '/favicon.png',
     apple: '/favicon.png',
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Panama Peptides",
+  },
 };
 
 export const viewport = {
   width: "device-width",
   initialScale: 1.0,
   viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f3f4" },
+    { media: "(prefers-color-scheme: dark)", color: "#050505" },
+  ],
 };
 
 import { getBusinessLinks } from "@/lib/settings";
@@ -224,6 +238,8 @@ export default async function RootLayout({ children }) {
           />
         </noscript>
         {children}
+        <PWARegister />
+        <InstallAppPrompt />
         <AnalyticsTracker />
         <UTMTracker />
         <GlobalContactForm />

@@ -1,0 +1,14 @@
+{
+  "appId": "com.panamapeptides.app",
+  "appName": "Panama Peptides",
+  "webDir": "www",
+  "server": {
+    "url": "https://panamapeptides.com",
+    "cleartext": false,
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#050505"
+  }
+}
