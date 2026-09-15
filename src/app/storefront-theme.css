@@ -1463,6 +1463,95 @@ html[data-theme="light"] .account-page :is(input, textarea, select) {
   border-color: var(--bb-line-bright) !important;
 }
 
+/* Panama mobile polish ----------------------------------------------------
+   These rules sit last so pages assembled at different times share the same
+   contrast, touch targets and containment rules. Blue/red carry the Panama
+   identity; WhatsApp stays recognisable as a support action. */
+:root { --panama-blue: #005293; --panama-red: #d21034; --panama-whatsapp: #25d366; }
+
+:is(.clone-home, .catalog-page-shell, .landing-layout, .editorial-page, .account-page),
+:is(.clone-home, .catalog-page-shell, .landing-layout, .editorial-page, .account-page) * {
+  box-sizing: border-box;
+}
+
+:is(.clone-home, .catalog-page-shell, .landing-layout, .editorial-page, .account-page) img,
+:is(.clone-home, .catalog-page-shell, .landing-layout, .editorial-page, .account-page) video {
+  max-width: 100%;
+}
+
+html[data-theme="light"] :is(.clone-home, .catalog-page-shell, .landing-layout, .editorial-page, .account-page) :is(input, textarea, select) {
+  color: #211519 !important;
+  caret-color: #211519;
+  background: #fff !important;
+}
+
+html[data-theme="light"] .catalog-page-shell :is(.catalog-header-cart, .filter-btn, .currency-selector, .lang-selector, .theme-toggle, .search-input-wrapper) {
+  color: #211519 !important;
+  background: #fff !important;
+}
+
+html[data-theme="dark"] :is(.clone-home, .catalog-page-shell, .landing-layout, .editorial-page, .account-page) :is(input, textarea, select) {
+  color: #f7f2f4 !important;
+  background: #151013 !important;
+  border-color: #5b454c !important;
+}
+
+.clone-home .clone-logo .logo-img-custom,
+.clone-home .clone-footer .logo-img-custom {
+  width: min(148px, 42vw) !important;
+  height: 54px !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+}
+
+.clone-home .clone-topbar {
+  background: linear-gradient(90deg, var(--panama-blue), #07396c 44%, var(--panama-red) 100%) !important;
+}
+
+.clone-home .clone-hero-actions a:first-child,
+.clone-home .clone-bulk button,
+.catalog-page-shell #catalog-whatsapp-btn {
+  background: var(--panama-whatsapp) !important;
+  border-color: #1ba855 !important;
+  color: #071c10 !important;
+}
+
+.clone-home .clone-hero-actions a:first-child:hover,
+.clone-home .clone-bulk button:hover,
+.catalog-page-shell #catalog-whatsapp-btn:hover {
+  background: #1fbd60 !important;
+  color: #04160a !important;
+}
+
+@media (max-width: 640px) {
+  html, body { overflow-x: hidden; }
+
+  .clone-home .clone-nav { min-height: 64px; }
+  .clone-home .clone-logo .logo-img-custom { width: min(132px, 43vw) !important; height: 46px !important; }
+  .clone-home .clone-hero { min-height: 0; padding: 28px 0 32px !important; }
+  .clone-home .clone-hero-copy { min-width: 0; }
+  .clone-home .clone-hero-actions,
+  .clone-home .clone-hero-actions a,
+  .clone-home .clone-hero-actions button { width: 100%; }
+  .clone-home .clone-hero-actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .clone-home .clone-hero-actions a,
+  .clone-home .clone-hero-actions button { justify-content: center; min-height: 48px; }
+  .clone-home .clone-proof-row { gap: 7px; }
+  .clone-home .clone-proof-row span { font-size: .72rem; }
+  .clone-home .clone-products-grid,
+  .clone-home .bb-features-grid,
+  .clone-home .clone-difference-grid,
+  .clone-home .clone-offer-grid { grid-template-columns: 1fr !important; }
+  .catalog-page-shell .product-grid.grid-view { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .catalog-page-shell .product-card { min-width: 0 !important; overflow: hidden; }
+  .catalog-page-shell .product-name,
+  .catalog-page-shell .product-category { overflow-wrap: anywhere; }
+  .catalog-page-shell :is(button, a, input, select) { min-height: 44px; }
+  .catalog-page-shell .modal-content,
+  .catalog-page-shell .product-detail-modal,
+  .catalog-page-shell .cart-body { width: min(100% - 20px, 620px) !important; max-height: calc(100dvh - 20px); }
+}
+
 @media (max-width: 900px) {
   html[data-theme="light"] .clone-home .clone-nav-links {
     background: #fff !important;
