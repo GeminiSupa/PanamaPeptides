@@ -13,6 +13,7 @@ const TABS = [
   { href: '/account', es: 'Resumen', en: 'Overview' },
   { href: '/account/orders', es: 'Mis pedidos', en: 'My orders' },
   { href: '/account/addresses', es: 'Direcciones', en: 'Addresses' },
+  { href: '/account/tracker', es: 'Registro', en: 'Tracker' },
   { href: '/account/profile', es: 'Perfil', en: 'Profile' },
 ];
 

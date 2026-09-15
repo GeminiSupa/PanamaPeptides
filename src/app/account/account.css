@@ -241,6 +241,58 @@
 .account-notice.is-error { background: var(--danger-bg); color: var(--danger); }
 .account-notice.is-success { background: rgba(22, 163, 74, 0.1); color: #15803d; }
 
+/* Research tracker ------------------------------------------------------- */
+
+.tracker-disclaimer {
+  margin-bottom: 16px;
+  padding: 13px 15px;
+  border: 1px solid rgba(180, 130, 25, 0.35);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  background: rgba(180, 130, 25, 0.09);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.tracker-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.tracker-stats div { padding: 14px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-card); }
+.tracker-stats strong { display: block; color: var(--text-primary); font-size: 1.3rem; }
+.tracker-stats span { color: var(--text-muted); font-size: 0.8rem; }
+.tracker-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.tracker-grid .account-card { margin-bottom: 16px; }
+.tracker-inline { display: flex; gap: 8px; align-items: stretch; }
+.tracker-inline input { min-width: 0; flex: 1; }
+.tracker-inline .account-btn-primary { width: auto; white-space: nowrap; }
+.tracker-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.tracker-tags .account-muted { margin: 0; }
+.tracker-tag { display: inline-flex; align-items: center; gap: 7px; padding: 5px 9px; border-radius: 999px; color: var(--text-main); background: var(--bg-secondary); font-size: 0.84rem; }
+.tracker-tag button { width: 18px; height: 18px; padding: 0; border: 0; border-radius: 50%; color: var(--text-main); background: transparent; font-size: 1rem; line-height: 1; cursor: pointer; }
+.tracker-tag button:hover { background: var(--border); }
+.tracker-form { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 9px; }
+.tracker-form--compact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.tracker-form .account-btn-primary { align-self: stretch; }
+.tracker-list { margin-top: 14px; }
+.tracker-list > div { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 0.86rem; }
+.tracker-list > div:last-child { border-bottom: 0; }
+.tracker-list strong { color: var(--text-main); }
+.tracker-site { padding: 0; color: var(--text-main); background: transparent; border: 0; font: inherit; text-align: left; cursor: pointer; }
+.tracker-site:hover { text-decoration: underline; }
+.tracker-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 16px; }
+
+@media (max-width: 760px) {
+  .tracker-grid { grid-template-columns: 1fr; gap: 0; }
+  .tracker-form, .tracker-form--compact { grid-template-columns: 1fr 1fr; }
+  .tracker-form .account-btn-primary { grid-column: 1 / -1; }
+}
+
+@media (max-width: 440px) {
+  .tracker-stats { gap: 6px; }
+  .tracker-stats div { padding: 11px; }
+  .tracker-inline { flex-direction: column; }
+  .tracker-inline .account-btn-primary { width: 100%; }
+  .tracker-form, .tracker-form--compact { grid-template-columns: 1fr; }
+}
+
 /* Login ------------------------------------------------------------------ */
 
 .account-auth {
