@@ -3,7 +3,19 @@
 The current website now supports two mobile delivery paths from the same Next.js codebase:
 
 1. **Installable web app (PWA).** Mobile customers can install the website from the browser. It opens in a standalone window, has a home-screen icon, and shows a safe offline page when inventory cannot be refreshed.
-2. **Android APK shell.** Capacitor packages the deployed website in a native Android project. The shell points to `https://panamapeptides.com` because this application depends on Next.js server routes, Supabase, checkout, and other server-side features. A static export would break those features.
+2. **Android APK shell.** Capacitor packages the Next.js website in a native Android project. During local development it loads the computer's Wi-Fi address; once a public HTTPS domain is available, it should load that domain. The app depends on Next.js server routes, Supabase, checkout, and other server-side features, so a static export would break those features.
+
+## Local Android testing
+
+Until a public domain is available, this checkout is configured to load the local development server at `http://192.168.18.65:3000`. Keep the computer and Android device on the same Wi-Fi network, then start the site with:
+
+```powershell
+npm run dev -- --hostname 0.0.0.0 -p 3000
+```
+
+Install `output/PanamaPeptides-local-debug.apk` on the phone. If the computer receives a different Wi-Fi IP address, update `server.url` and `server.allowNavigation` in `capacitor.config.json`, run `npm run mobile:sync`, then rebuild the APK from Android Studio or Gradle.
+
+When a public HTTPS domain is ready, replace the local `server.url` with that domain, set `cleartext` and `allowMixedContent` to `false`, then rebuild. Do not use the local-development APK outside the same Wi-Fi network.
 
 ## What this version includes
 
