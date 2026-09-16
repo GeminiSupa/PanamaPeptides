@@ -2188,8 +2188,7 @@ Core Rules:
   // Auth session — bootstrap once per login, not on every token refresh
   useEffect(() => {
     setMounted(true);
-    const savedEmail = localStorage.getItem('admin_email') || 'info@peptidespanama.net';
-    loggedInEmail.current = savedEmail;
+    loggedInEmail.current = localStorage.getItem('admin_email') || '';
 
     if (!isSupabaseConfigured || !supabase) {
       console.log('Supabase not fully configured. Running in Local Simulation Mode.');
@@ -3033,7 +3032,14 @@ Core Rules:
 
     try {
       // Step 1: Verify current password by signing in using the email that was used to log in
-      const adminEmail = loggedInEmail.current || localStorage.getItem('admin_email') || 'info@peptidespanama.net';
+      // Verify against the signed-in account, never a fixed address.
+      const { data: sessionData } = await supabase.auth.getSession();
+      const adminEmail = sessionData?.session?.user?.email || loggedInEmail.current;
+      if (!adminEmail) {
+        setPasswordStatus('error:Your session has expired. Please log in again.');
+        setPasswordLoading(false);
+        return;
+      }
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email: adminEmail,
         password: currentPassword

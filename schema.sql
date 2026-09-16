@@ -121,7 +121,7 @@ USING (true);
 --     'authenticated',
 --     'authenticated',
 --     'admin@panamapeptides.com',
---     crypt('panamapeptides2026!', gen_salt('bf')),
+--     crypt('<choose-a-strong-password>', gen_salt('bf')),
 --     now(),
 --     NULL,
 --     NULL,

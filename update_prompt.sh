@@ -1,7 +1,10 @@
 #!/bin/bash
-curl -s -X PATCH "https://cbanvzipzfmllexraiei.supabase.co/rest/v1/site_settings?id=eq.whatsapp_settings" \
-  -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNiYW52emlwemZtbGxleHJhaWVpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3ODk5MDYxMCwiZXhwIjoyMDk0NTY2NjEwfQ.vTByaMVMSCZVX2gFfyGwD__3TAJ6H0COJnzWC_MH7sI" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNiYW52emlwemZtbGxleHJhaWVpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3ODk5MDYxMCwiZXhwIjoyMDk0NTY2NjEwfQ.vTByaMVMSCZVX2gFfyGwD__3TAJ6H0COJnzWC_MH7sI" \
+# Needs SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in the environment.
+: "${SUPABASE_URL:?Set SUPABASE_URL}"
+: "${SUPABASE_SERVICE_ROLE_KEY:?Set SUPABASE_SERVICE_ROLE_KEY}"
+curl -s -X PATCH "$SUPABASE_URL/rest/v1/site_settings?id=eq.whatsapp_settings" \
+  -H "apikey: $SUPABASE_SERVICE_ROLE_KEY" \
+  -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "value": {

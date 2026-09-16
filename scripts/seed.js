@@ -51,10 +51,15 @@ async function seed() {
   
   // Try to authenticate so RLS is satisfied
   try {
+    const adminEmail = process.env.SEED_ADMIN_EMAIL;
+    const adminPassword = process.env.SEED_ADMIN_PASSWORD;
+    if (!adminEmail || !adminPassword) {
+      throw new Error('SEED_ADMIN_EMAIL / SEED_ADMIN_PASSWORD not set');
+    }
     console.log('🔑 Authenticating as admin user...');
     const { error: authError } = await supabase.auth.signInWithPassword({
-      email: 'info@peptidespanama.net',
-      password: 'panamapeptides2026!'
+      email: adminEmail,
+      password: adminPassword
     });
     if (authError) {
       console.log(`⚠️ Warning: Authentication failed (${authError.message}). Attempting unauthenticated seed...`);
