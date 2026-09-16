@@ -31,23 +31,23 @@ export default function AboutPage() {
 
         <section className="about-chapters container" style={{ marginTop: '4rem', marginBottom: '4rem' }}>
           <article style={{ marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: '1.75rem', marginBottom: '1rem', color: '#1e293b' }}>{localized(pageSettings, 'backgroundTitle', lang)}</h2>
-            <p style={{ whiteSpace: 'pre-wrap', color: '#475569', fontSize: '1.1rem', lineHeight: '1.7' }}>{localized(pageSettings, 'backgroundText', lang)}</p>
+            <h2 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>{localized(pageSettings, 'backgroundTitle', lang)}</h2>
+            <p style={{ whiteSpace: 'pre-wrap', fontSize: '1.1rem', lineHeight: '1.7' }}>{localized(pageSettings, 'backgroundText', lang)}</p>
           </article>
           
           <article style={{ marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: '1.75rem', marginBottom: '1rem', color: '#1e293b' }}>{localized(pageSettings, 'startedTitle', lang)}</h2>
-            <p style={{ whiteSpace: 'pre-wrap', color: '#475569', fontSize: '1.1rem', lineHeight: '1.7' }}>{localized(pageSettings, 'startedText', lang)}</p>
+            <h2 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>{localized(pageSettings, 'startedTitle', lang)}</h2>
+            <p style={{ whiteSpace: 'pre-wrap', fontSize: '1.1rem', lineHeight: '1.7' }}>{localized(pageSettings, 'startedText', lang)}</p>
           </article>
 
           <article style={{ marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: '1.75rem', marginBottom: '1rem', color: '#1e293b' }}>{localized(pageSettings, 'approachTitle', lang)}</h2>
-            <p style={{ whiteSpace: 'pre-wrap', color: '#475569', fontSize: '1.1rem', lineHeight: '1.7' }}>{localized(pageSettings, 'approachText', lang)}</p>
+            <h2 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>{localized(pageSettings, 'approachTitle', lang)}</h2>
+            <p style={{ whiteSpace: 'pre-wrap', fontSize: '1.1rem', lineHeight: '1.7' }}>{localized(pageSettings, 'approachText', lang)}</p>
           </article>
 
           <article style={{ marginBottom: '2rem' }}>
-            <h2 style={{ fontSize: '1.75rem', marginBottom: '1rem', color: '#1e293b' }}>{localized(pageSettings, 'aheadTitle', lang)}</h2>
-            <p style={{ whiteSpace: 'pre-wrap', color: '#475569', fontSize: '1.1rem', lineHeight: '1.7' }}>{localized(pageSettings, 'aheadText', lang)}</p>
+            <h2 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>{localized(pageSettings, 'aheadTitle', lang)}</h2>
+            <p style={{ whiteSpace: 'pre-wrap', fontSize: '1.1rem', lineHeight: '1.7' }}>{localized(pageSettings, 'aheadText', lang)}</p>
           </article>
         </section>
 
