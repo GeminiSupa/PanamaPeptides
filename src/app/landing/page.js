@@ -537,7 +537,7 @@ export default function LeadGenerationLandingPage() {
     <div className="lead-lp">
       <header className="lead-header">
         <div className="lead-container lead-header-inner">
-          <Link href="/" className="lead-brand" aria-label="Peptides Panama home"><Image src="/logo.webp" alt="Peptides Panama" width={64} height={54} priority /></Link>
+          <Link href="/" className="lead-brand" aria-label="Peptides Panama home"><Image src="/logo-wordmark.webp" alt="Panama Peptides" width={195} height={36} priority /></Link>
           <nav aria-label="Landing page navigation">
             <a href="#why">{c.nav.why}</a><a href="#trust">{c.nav.trust}</a><a href="#faq">{c.nav.faq}</a>
           </nav>
@@ -637,7 +637,7 @@ export default function LeadGenerationLandingPage() {
 
       <footer className="lead-footer">
         <div className="lead-container lead-footer-grid">
-          <div><Link href="/" className="lead-footer-brand" aria-label="Peptides Panama home"><Image src="/logo.webp" alt="Peptides Panama" width={190} height={85} /></Link><p>{c.footerBlurb}</p></div>
+          <div><Link href="/" className="lead-footer-brand" aria-label="Peptides Panama home"><Image src="/logo-wordmark.webp" alt="Panama Peptides" width={216} height={40} /></Link><p>{c.footerBlurb}</p></div>
           <div><strong>{lang === 'en' ? 'Explore' : 'Explorar'}</strong><Link href={`/catalog?lang=${lang}`}>{lang === 'en' ? 'Catalog' : 'Catálogo'}</Link><Link href={`/about?lang=${lang}`}>{lang === 'en' ? 'About us' : 'Nosotros'}</Link><Link href={`/faq?lang=${lang}`}>FAQ</Link></div>
           <div><strong>{lang === 'en' ? 'Policies' : 'Políticas'}</strong><Link href="/privacy-policy">{lang === 'en' ? 'Privacy' : 'Privacidad'}</Link><Link href="/shipping-policy">{lang === 'en' ? 'Shipping' : 'Envíos'}</Link><Link href="/return-refund-policy">{lang === 'en' ? 'Returns' : 'Devoluciones'}</Link></div>
           <div><strong>{lang === 'en' ? 'Contact' : 'Contacto'}</strong><a href="mailto:info@peptidespanama.net">info@peptidespanama.net</a><button type="button" onClick={() => cta('footer')}>{c.footerRequest}</button></div>

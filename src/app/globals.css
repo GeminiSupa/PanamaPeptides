@@ -83,7 +83,7 @@ html, body {
 }
 
 body {
-    font-family: var(--font-rubik), var(--font-manrope), sans-serif;
+    font-family: var(--font-inter), sans-serif;
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.5;
@@ -438,7 +438,7 @@ body {
 }
 
 .logo h1 {
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
     font-size: 1.4rem;
     font-weight: 900;
     color: var(--text-primary);
@@ -2526,7 +2526,7 @@ body {
     background: #f6f8fb;
     color: #17234d;
     padding: 18px;
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-inter), sans-serif;
 }
 
 .card-pay-shell {
@@ -3785,7 +3785,7 @@ body {
     font-weight: 900;
     line-height: 1.12;
     color: var(--text-primary);
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
     letter-spacing: -1px;
     margin-bottom: 8px;
     overflow-wrap: break-word;
@@ -4117,7 +4117,7 @@ body {
     font-weight: 800;
     line-height: 1.25;
     color: var(--text-primary);
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
     letter-spacing: -0.4px;
 }
 
@@ -4208,7 +4208,7 @@ body {
 .lp-about-card-overlay h3 {
     font-size: 1.3rem;
     font-weight: 800;
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 .lp-about-card-overlay p {
@@ -4234,7 +4234,7 @@ body {
     font-weight: 800;
     color: var(--text-main);
     margin-bottom: 12px;
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 .lp-about-card-content p {
@@ -4353,7 +4353,7 @@ body {
     margin-bottom: 12px;
     line-height: 1.2;
     letter-spacing: -0.4px;
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -4382,7 +4382,7 @@ body {
     color: var(--text-primary);
     margin-bottom: 12px;
     line-height: 1.2;
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -4437,7 +4437,7 @@ body {
     font-weight: 800;
     color: var(--text-main);
     margin-bottom: 12px;
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 .lp-feature-card p {
@@ -4739,7 +4739,7 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
     min-height: 2.6rem;
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -4994,7 +4994,7 @@ body {
 .lp-faq-help-card h2 {
     font-size: 2rem;
     font-weight: 800;
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
     line-height: 1.25;
 }
 
@@ -5177,7 +5177,7 @@ body {
     color: white;
     margin-bottom: 14px;
     letter-spacing: -0.5px;
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
     line-height: 1.2;
 }
 
@@ -5370,29 +5370,24 @@ body {
 
 /* Premium Global Promo Banner */
 .promo-banner-global {
-    background: linear-gradient(90deg, #002766 0%, #0040a8 50%, #002766 100%);
+    background: linear-gradient(90deg, #1e0912 0%, #3b0717 50%, #1e0912 100%);
     color: #ffffff;
-    min-height: 44px;
-    padding: 0 112px 0 0;
+    min-height: 38px;
+    padding: 0;
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.3px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 2px 8px rgba(0, 39, 102, 0.15);
+    border-bottom: 1px solid rgba(225, 29, 72, 0.25);
     z-index: 999;
     position: relative;
     overflow: hidden;
 }
 
-[data-theme="dark"] .promo-banner-global {
-    background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
 
 .promo-banner-ticker {
     overflow: hidden;
     width: 100%;
-    min-height: 44px;
+    min-height: 38px;
     display: flex;
     justify-content: flex-start;
 }
@@ -5409,7 +5404,7 @@ body {
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-    min-height: 44px;
+    min-height: 38px;
     gap: 8px;
     padding: 0 10px;
     color: inherit;
@@ -5422,7 +5417,7 @@ body {
 }
 
 .promo-icon {
-    color: #38bdf8;
+    color: #fb7185;
 }
 
 @keyframes promoPulse {
@@ -6056,7 +6051,7 @@ body:has(.product-grid.grid-view) {
     padding-left: 9px;
     border-left: 1px solid var(--border);
     color: var(--text-main);
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-size: 0.68rem;
     line-height: 1.12;
     white-space: nowrap;
@@ -6156,7 +6151,7 @@ body:has(.product-grid.grid-view) {
     display: inline-flex;
     align-items: center;
     height: 26px;
-    font-family: var(--font-rubik), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.02em;
@@ -6744,7 +6739,7 @@ body:has(.product-grid.grid-view) {
 .landing-layout .lp-hero-text-block { align-items: flex-start; }
 .landing-layout .hero-badge { align-self: flex-start; margin-bottom: 18px; padding: 7px 15px; border: 0; border-radius: 999px; background: var(--cta); color: #fff; }
 .landing-layout .hero-title { color: #17234d; font-size: clamp(2.55rem, 5vw, 4.6rem); line-height: 1.04; letter-spacing: -.045em; }
-.landing-layout .hero-sub { color: #31394b; font-family: var(--font-manrope), sans-serif; font-size: 1.06rem; line-height: 1.7; }
+.landing-layout .hero-sub { color: #31394b; font-family: var(--font-inter), sans-serif; font-size: 1.06rem; line-height: 1.7; }
 .landing-layout .btn-hero-primary {
     border-radius: 4px;
     background: var(--cta);

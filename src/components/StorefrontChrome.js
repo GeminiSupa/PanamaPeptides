@@ -126,6 +126,10 @@ function readCartCount() {
   }
 }
 
+function canHover() {
+  return typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches;
+}
+
 export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [categoriesOpen, setCategoriesOpen] = useState(false);
@@ -170,12 +174,12 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
   // state highlight both at once.
   const navItems = [
     { id: 'story', label: lang === 'en' ? 'About' : 'Nosotros', href: `/about?lang=${lang}` },
-    { id: 'catalog', label: lang === 'en' ? 'Shop by Product' : 'Comprar por producto', href: `/catalog?lang=${lang}` },
-    { id: 'categories', label: lang === 'en' ? 'Shop by Category' : 'Comprar por categoría', children: categoryLinks },
-    { id: 'info', label: lang === 'en' ? 'Info Center' : 'Centro de información', href: `/info-center?lang=${lang}` },
+    { id: 'catalog', label: lang === 'en' ? 'Products' : 'Productos', href: `/catalog?lang=${lang}` },
+    { id: 'categories', label: lang === 'en' ? 'Categories' : 'Categorías', children: categoryLinks },
+    { id: 'info', label: lang === 'en' ? 'Info Center' : 'Información', href: `/info-center?lang=${lang}` },
     // Bulk Discounts and FAQ live in the footer: a sixth item overflows the bar
     // and pushes the search box and cart off screen.
-    { id: 'affiliate', label: lang === 'en' ? 'Affiliate Program' : 'Afiliados', href: `/affiliate-program?lang=${lang}` },
+    { id: 'affiliate', label: lang === 'en' ? 'Affiliates' : 'Afiliados', href: `/affiliate-program?lang=${lang}` },
   ];
 
   return (
@@ -187,7 +191,7 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
         <div className="clone-nav-wrap">
           <div className="clone-shell clone-nav">
             <Link href="/" className="clone-logo" aria-label="Panama Peptides home">
-              <img src="/logo.webp" alt="Panama Peptides" className="logo-img-custom" />
+              <img src="/logo-wordmark.webp" alt="Panama Peptides" className="logo-img-custom" />
             </Link>
 
             <button
@@ -207,8 +211,11 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
                 <div
                   key={item.id}
                   className={`clone-nav-group${categoriesOpen ? ' is-open' : ''}`}
-                  onMouseEnter={() => setCategoriesOpen(true)}
-                  onMouseLeave={() => setCategoriesOpen(false)}
+                  // Hover only where a real pointer hovers: a tap fires a
+                  // synthetic mouseenter before the click, so the click's
+                  // toggle closed the menu again and it never opened on phones.
+                  onMouseEnter={() => { if (canHover()) setCategoriesOpen(true); }}
+                  onMouseLeave={() => { if (canHover()) setCategoriesOpen(false); }}
                 >
                   <button
                     type="button"
@@ -348,7 +355,7 @@ export function StorefrontFooter({ lang, settings, categories = [] }) {
     <footer className="clone-footer">
       <div className="clone-shell clone-footer-grid">
         <div>
-          <img src="/logo.webp" alt="Panama Peptides" className="logo-img-custom" />
+          <img src="/logo-wordmark.webp" alt="Panama Peptides" className="logo-img-custom" />
           <p>{settings?.[`footerDescription${suffix}`]}</p>
           <strong>{lang === 'en' ? 'Legal Notice:' : 'Aviso legal:'}</strong>
           <p>{settings?.[`legalNotice${suffix}`]}</p>

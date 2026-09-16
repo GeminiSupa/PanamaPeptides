@@ -25,6 +25,7 @@
   /* Borders & Lines */
   --pp-border-subtle: rgba(255, 255, 255, 0.08);
   --pp-border-default: rgba(255, 255, 255, 0.14);
+  --pp-border-hover: rgba(255, 255, 255, 0.24);
   --pp-border-focus: rgba(225, 29, 72, 0.65);
   
   /* Typography */
@@ -167,13 +168,164 @@ body {
   background: transparent !important;
 }
 
-/* Balanced Desktop Nav */
-.clone-home .clone-nav {
-  min-height: 74px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 20px !important;
+/* Balanced Desktop Nav. Desktop only: forcing flex below 1081px flattened
+   the grid in landing.css that puts search on its own row, so every control
+   was squeezed into one 375px line. */
+.clone-home .clone-nav-wrap {
+  position: relative;
+}
+
+@media (min-width: 1241px) {
+  .clone-home .clone-nav {
+    min-height: 74px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+  }
+
+  /* The search is the only item that can give way; without a floor it was
+     squeezed to an empty 60px pill beside the nav links. */
+  .clone-home .clone-search {
+    flex: 1 1 200px;
+    min-width: 170px;
+  }
+
+  .clone-home .clone-search input {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1241px) and (max-width: 1360px) {
+  .clone-home .clone-nav {
+    gap: 14px !important;
+  }
+
+  .clone-home .clone-nav-links {
+    gap: 16px !important;
+  }
+
+  .clone-home .clone-logo .logo-img-custom {
+    max-width: 160px !important;
+    height: 30px !important;
+  }
+
+  .clone-home .clone-nav-links > a,
+  .clone-home .clone-nav-group > button {
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 1240px) {
+  .clone-home .clone-site-header {
+    background: #080c14 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .clone-home .clone-nav {
+    display: grid !important;
+    grid-template-columns: auto 1fr auto;
+    gap: 10px 12px !important;
+    min-height: 0 !important;
+    padding: 10px 0 12px;
+  }
+
+  .clone-home .clone-menu-toggle {
+    order: 0;
+    display: inline-grid !important;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--pp-border-default);
+    border-radius: var(--pp-radius-md);
+    background: var(--pp-bg-surface);
+    color: var(--pp-text-primary);
+  }
+
+  .clone-home .clone-logo {
+    order: 1;
+    justify-self: start;
+  }
+
+  .clone-home .clone-nav-actions {
+    order: 2;
+    justify-self: end;
+    gap: 8px;
+  }
+
+  .clone-home .clone-search {
+    order: 3;
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none !important;
+    padding: 2px 6px 2px 16px !important;
+  }
+
+  .clone-home .clone-search input {
+    flex: 1;
+    min-width: 0;
+    height: 38px;
+    font-size: 16px !important; /* below 16px iOS zooms the page on focus */
+  }
+
+  /* The drawer carries the language switch, so the header copy is redundant. */
+  .clone-home .clone-nav-actions > button {
+    display: none !important;
+  }
+
+  .clone-home .clone-nav-actions > a {
+    height: 42px;
+    padding: 0 12px;
+  }
+
+  .clone-home .clone-nav-links {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0;
+    right: 0;
+    max-height: calc(100dvh - 140px);
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 0 !important;
+    padding: 8px 20px 16px !important;
+    background: var(--pp-bg-surface) !important;
+    border-bottom: 1px solid var(--pp-border-default);
+    box-shadow: var(--pp-shadow-lg) !important;
+    z-index: 50;
+  }
+
+  .clone-home .clone-nav-links > a,
+  .clone-home .clone-nav-group > button {
+    width: 100%;
+    padding: 14px 2px !important;
+    font-size: 0.95rem !important;
+    text-align: left;
+    border-bottom: 1px solid var(--pp-border-subtle) !important;
+  }
+
+  .clone-home .clone-nav-group > button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: 0;
+  }
+
+  .clone-home .clone-nav-dropdown {
+    position: static !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    background: transparent !important;
+    padding: 0 0 8px 12px !important;
+  }
+
+  .clone-home .clone-nav-links .clone-nav-lang {
+    color: var(--pp-text-primary) !important;
+    border-top: 0 !important;
+  }
 }
 
 /* Fix Logo: Never crop or distort */
@@ -190,12 +342,20 @@ body {
 .catalog-page-shell .logo-emblem,
 .landing-layout .lp-logo img {
   width: auto !important;
-  max-width: 175px !important;
-  height: 44px !important;
+  max-width: 200px !important;
+  height: 34px !important;
   object-fit: contain !important;
   object-position: left center !important;
   filter: none !important;
   border-radius: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .clone-home .clone-logo .logo-img-custom,
+  .catalog-page-shell .logo-emblem {
+    max-width: 150px !important;
+    height: 27px !important;
+  }
 }
 
 /* Navigation Links */
@@ -521,6 +681,7 @@ body {
   flex-direction: column;
   gap: 6px;
   max-width: 360px;
+  margin-top: 22px;
 }
 
 .clone-home .clone-hero-dropdown span {
@@ -539,11 +700,52 @@ body {
   font-size: 0.86rem;
   outline: none;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 14px center !important;
   transition: border-color 0.2s ease;
 }
 
 .clone-home .clone-hero-dropdown select:focus {
   border-color: var(--pp-primary) !important;
+}
+
+@media (max-width: 640px) {
+  .clone-home .clone-hero h1 {
+    font-size: 2.15rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .clone-home .clone-hero-lead {
+    font-size: 1.02rem !important;
+  }
+
+  /* On a phone the supporting line repeats the lead almost word for word. */
+  .clone-home .clone-hero-copy > p:not(.clone-hero-lead) {
+    display: none;
+  }
+
+  .clone-home .clone-proof-row {
+    gap: 8px !important;
+    margin-bottom: 22px !important;
+  }
+
+  .clone-home .clone-hero-actions {
+    display: grid !important;
+    gap: 10px !important;
+  }
+
+  .clone-home .clone-hero-dropdown {
+    max-width: none;
+  }
+
+  .clone-home .clone-hero-dropdown select {
+    font-size: 16px;
+    height: 46px;
+  }
 }
 
 /* Hero Media Showcase */
@@ -662,6 +864,18 @@ body {
   border-top: 1px solid var(--pp-border-subtle) !important;
 }
 
+@media (max-width: 640px) {
+  .clone-home .clone-section {
+    padding: 40px 0 !important;
+  }
+
+  /* Two copies of the same product shot stacked under the list add a full
+     screen of scrolling on a phone and nothing else. */
+  .clone-home .clone-audience-images {
+    display: none !important;
+  }
+}
+
 .clone-home .clone-section-head {
   margin-bottom: 36px;
 }
@@ -686,10 +900,46 @@ body {
   gap: 20px;
 }
 
+/* Card counts come from the admin panel, so a fixed grid cannot promise full
+   rows (auto-fit left one card stranded under three). Wrapping flex with a
+   centered last row keeps any count balanced. */
+.clone-home .bb-features-grid,
 .clone-home .clone-difference-grid,
 .clone-home .clone-offer-grid {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
 }
+
+.clone-home .bb-features-grid > *,
+.clone-home .clone-difference-grid > *,
+.clone-home .clone-offer-grid > * {
+  flex: 0 1 calc((100% - 60px) / 4);
+  min-width: 0;
+}
+
+@media (max-width: 1080px) {
+  .clone-home .bb-features-grid > *,
+  .clone-home .clone-difference-grid > *,
+  .clone-home .clone-offer-grid > * {
+    flex-basis: calc((100% - 20px) / 2);
+  }
+}
+
+@media (max-width: 560px) {
+  .clone-home .bb-features-grid,
+  .clone-home .clone-difference-grid,
+  .clone-home .clone-offer-grid {
+    gap: 12px !important;
+  }
+
+  .clone-home .bb-features-grid > *,
+  .clone-home .clone-difference-grid > *,
+  .clone-home .clone-offer-grid > * {
+    flex-basis: 100%;
+  }
+}
+
 
 /* Category Chips */
 .clone-home .clone-category-chips {

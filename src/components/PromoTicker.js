@@ -28,7 +28,7 @@ export default function PromoTicker({ active = true, text = '', href = '', class
           style={{ animationDuration: `${duration}s`, animationPlayState: 'running' }}
         >
           {[...Array(6)].map((_, i) => (
-            <ItemTag key={i} className="promo-banner-text" style={{ padding: '0 20px' }} {...linkProps}>
+            <ItemTag key={i} className="promo-banner-text" style={{ padding: '0 40px' }} {...linkProps}>
               <Sparkles size={14} className="promo-icon" />
               <span>{cleanText}</span>
             </ItemTag>
