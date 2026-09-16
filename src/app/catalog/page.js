@@ -59,7 +59,6 @@ import { useCustomerSession } from '@/hooks/useCustomerSession';
 import { buildReorderLines, mergeReorderIntoCart, reorderNoticeMessage } from '@/lib/reorderCart.mjs';
 import { takeReorder } from '@/lib/reorderHandoff';
 import PressBand from '@/components/PressBand';
-import { CatalogPromoBanner } from '@/components/StorefrontChrome';
 import ExitIntentOffer from '@/components/catalog/ExitIntentOffer';
 import { mergeLandingPageSettings } from '@/lib/landingContent';
 import {
@@ -3262,7 +3261,6 @@ export default function CatalogPage() {
 
   return (
     <div id="app" className="catalog-page-shell min-h-screen" suppressHydrationWarning>
-      <CatalogPromoBanner lang={lang} settings={landingSettings} forceActive mode="ticker" />
       {/* Utility controls stay in normal flow above the persistent brand row. */}
       <header className="header-top-section">
         <div className="header-top container">

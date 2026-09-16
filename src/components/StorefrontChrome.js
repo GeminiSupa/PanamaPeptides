@@ -184,10 +184,6 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
 
   return (
     <header className="clone-site-header">
-        <div className="clone-topbar">
-          <CatalogPromoBanner lang={lang} settings={settings} className="clone-topbar-ticker" forceActive mode="ticker" />
-        </div>
-
         <div className="clone-nav-wrap">
           <div className="clone-shell clone-nav">
             <Link href="/" className="clone-logo" aria-label="Panama Peptides home">
