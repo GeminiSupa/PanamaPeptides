@@ -7,8 +7,8 @@ export default function manifest() {
     start_url: "/?source=pwa",
     scope: "/",
     display: "standalone",
-    background_color: "#050505",
-    theme_color: "#7d000a",
+    background_color: "#0D0D0D",
+    theme_color: "#0D0D0D",
     orientation: "portrait-primary",
     categories: ["shopping", "business"],
     icons: [
@@ -25,7 +25,7 @@ export default function manifest() {
         purpose: "any",
       },
       {
-        src: "/logo.png",
+        src: "/logo-maskable.png",
         sizes: "1024x1024",
         type: "image/png",
         purpose: "maskable",

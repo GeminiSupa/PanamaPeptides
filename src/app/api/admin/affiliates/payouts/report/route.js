@@ -205,7 +205,7 @@ export async function GET(request) {
       const emailHtml = `
         <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#e2e8f0;background:#0b0f19;max-width:640px;margin:0 auto;padding:32px 24px;border:1px solid rgba(255,255,255,0.08);border-radius:16px;">
           <div style="text-align:center;margin-bottom:24px;">
-            <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+            <img src="https://catalog.peptidespanama.net/logo.png?v=3" alt="Panama Peptide" width="96" height="96" style="display:block;width:96px;height:96px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
             <h1 style="color:#ffffff;font-size:20px;font-weight:800;margin:0 0 6px;letter-spacing:-0.5px;">Weekly Affiliate Commission Invoice</h1>
             <p style="color:#94a3b8;font-size:13px;margin:0;">Invoice Period: ${new Date(startDateStr).toLocaleDateString(undefined, {month: 'short', day: 'numeric'})} to ${new Date(endDateStr).toLocaleDateString(undefined, {month: 'short', day: 'numeric', year: 'numeric'})}</p>
           </div>
@@ -333,7 +333,7 @@ export async function GET(request) {
         const adminEmailHtml = `
           <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#e2e8f0;background:#0b0f19;max-width:640px;margin:0 auto;padding:32px 24px;border:1px solid rgba(255,255,255,0.08);border-radius:16px;">
             <div style="text-align:center;margin-bottom:24px;">
-              <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+              <img src="https://catalog.peptidespanama.net/logo.png?v=3" alt="Panama Peptide" width="96" height="96" style="display:block;width:96px;height:96px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
               <h1 style="color:#ffffff;font-size:20px;font-weight:800;margin:0 0 6px;letter-spacing:-0.5px;">Pending Affiliate Payouts Action Required</h1>
               <p style="color:#94a3b8;font-size:13px;margin:0;">Weekly affiliate commission calculations are complete and awaiting admin approval.</p>
             </div>

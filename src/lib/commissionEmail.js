@@ -87,7 +87,7 @@ export function buildAgentCommissionEmail({
       <tr><td align="center" style="padding:28px 12px;">
         <table role="presentation" width="640" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" style="width:100%;max-width:640px;background-color:#ffffff;border:1px solid #dbe3ee;">
           <tr><td align="center" bgcolor="#10233f" style="padding:28px 24px;background-color:#10233f;color:#ffffff;">
-            <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+            <img src="https://catalog.peptidespanama.net/logo.png?v=3" alt="Panama Peptide" width="96" height="96" style="display:block;width:96px;height:96px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
             <div style="font:700 14px Arial,sans-serif;letter-spacing:1.5px;color:#9ee7da;">Peptides Panama</div>
             <div style="font:700 26px Arial,sans-serif;color:#ffffff;margin-top:10px;">Weekly pay report</div>
             <div style="font:13px Arial,sans-serif;color:#dbeafe;margin-top:8px;">${escapeHtml(periodDisplay)} · panama time</div>

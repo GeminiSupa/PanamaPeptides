@@ -1,4 +1,4 @@
-import localFont from "next/font/local";
+import { Poppins } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import UTMTracker from "@/components/UTMTracker";
@@ -14,17 +14,13 @@ import { getTikTokPixelBootstrapScript } from "@/lib/tiktokPixel.mjs";
 import "./storefront-theme.css";
 import "./pwa.css";
 
-// The reference style uses a sturdy display face with a restrained sans-serif
-// body. These bundled fonts keep that character without a request to Google.
-const inter = localFont({
-  src: './fonts/inter-latin-variable.woff2',
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const montserrat = localFont({
-  src: './fonts/montserrat-latin-variable.woff2',
-  variable: '--font-montserrat',
+// Brand kit: Poppins is the body and headline face (Intro Rust is licensed for
+// the logo wordmark only). next/font self-hosts it, so no request to Google.
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  style: ['normal', 'italic'],
+  variable: '--font-poppins',
   display: 'swap',
 });
 
@@ -95,8 +91,8 @@ export const viewport = {
   initialScale: 1.0,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f3f4" },
-    { media: "(prefers-color-scheme: dark)", color: "#050505" },
+    { media: "(prefers-color-scheme: light)", color: "#F7F5F2" },
+    { media: "(prefers-color-scheme: dark)", color: "#0D0D0D" },
   ],
 };
 
@@ -106,7 +102,7 @@ export default async function RootLayout({ children }) {
   const businessLinks = await getBusinessLinks();
   
   return (
-    <html lang="es" data-theme="light" className={`${inter.variable} ${montserrat.variable}`} suppressHydrationWarning>
+    <html lang="es" data-theme="light" className={poppins.variable} suppressHydrationWarning>
       <head suppressHydrationWarning>
         <script
           id="theme-init"
@@ -221,7 +217,7 @@ export default async function RootLayout({ children }) {
         {/* Preload the logo — it's the LCP element on catalog & home */}
         <link
           rel="preload"
-          href="/logo.webp"
+          href="/pp-mark-paper.webp"
           as="image"
           type="image/webp"
         />

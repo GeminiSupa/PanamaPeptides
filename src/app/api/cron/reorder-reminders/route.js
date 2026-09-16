@@ -61,7 +61,7 @@ export async function GET(request) {
       const subject = `Time to restock ${topItem}? 📦`;
       const html = `
         <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#333;">
-          <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+          <img src="https://catalog.peptidespanama.net/logo.png?v=3" alt="Panama Peptide" width="96" height="96" style="display:block;width:96px;height:96px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
           <h2>Time for a refill?</h2>
           <p>Hi ${order.customer_name || 'there'},</p>
           <p>It's been about a month since you ordered <strong>${topItem}</strong>. If you're running low on supplies, we've got you covered!</p>

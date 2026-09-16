@@ -107,8 +107,8 @@ function ThankYouContent() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: '#94a3b8',
-        fontFamily: 'var(--font-inter), sans-serif'
+        color: '#8A8A86',
+        fontFamily: 'var(--font-poppins), sans-serif'
       }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{
@@ -135,7 +135,7 @@ function ThankYouContent() {
       minHeight: '100vh',
       background: '#070a13',
       color: '#e2e8f0',
-      fontFamily: 'var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif',
+      fontFamily: 'var(--font-poppins), -apple-system, BlinkMacSystemFont, sans-serif',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -238,7 +238,7 @@ function ThankYouContent() {
           letterSpacing: '1.5px',
           marginBottom: '32px'
         }}>
-          <img src="/logo-wordmark.webp" alt="Peptides Panama Logo" style={{ height: '26px', width: 'auto', borderRadius: '5px', verticalAlign: 'middle' }} /> {t.status}
+          <img src="/pp-lockup-paper.webp" alt="Peptides Panama Logo" style={{ height: '26px', width: 'auto', borderRadius: '5px', verticalAlign: 'middle' }} /> {t.status}
         </div>
 
         {/* Dynamic Glowing Success Checkmark */}
@@ -268,7 +268,7 @@ function ThankYouContent() {
 
         {/* Heading */}
         <h1 style={{
-          fontFamily: 'var(--font-montserrat), sans-serif',
+          fontFamily: 'var(--font-poppins), sans-serif',
           fontSize: '2.25rem',
           fontWeight: '900',
           letterSpacing: '-1px',
@@ -292,7 +292,7 @@ function ThankYouContent() {
         <p style={{
           fontSize: '1.05rem',
           lineHeight: '1.6',
-          color: '#cbd5e1',
+          color: '#D9D7D2',
           marginBottom: '32px',
           textAlign: 'center',
           fontWeight: '400'
@@ -359,7 +359,7 @@ function ThankYouContent() {
             margin: '0 0 16px',
             fontSize: '0.85rem',
             lineHeight: '1.55',
-            color: '#94a3b8'
+            color: '#8A8A86'
           }}>
             {t.accountBody}
           </p>
@@ -398,7 +398,7 @@ function ThankYouContent() {
             <p style={{ margin: '0 0 6px', fontSize: '1rem', fontWeight: '800', color: '#fbbf24', letterSpacing: '-0.2px' }}>
               {t.cardStatementTitle}
             </p>
-            <p style={{ margin: '0 0 14px', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
+            <p style={{ margin: '0 0 14px', fontSize: '0.82rem', color: '#8A8A86', lineHeight: 1.5 }}>
               {t.cardStatementBody}
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -406,14 +406,14 @@ function ThankYouContent() {
                 <span style={{ fontSize: '1.1rem', flexShrink: 0, marginTop: '1px' }}>🇲🇽</span>
                 <div>
                   <span style={{ fontWeight: '700', color: '#e2e8f0', fontSize: '0.82rem' }}>{t.cardStatementMexicoLabel}</span>{' '}
-                  <span style={{ color: '#94a3b8', fontSize: '0.82rem', lineHeight: 1.5 }}>{t.cardStatementMexicoDetail}</span>
+                  <span style={{ color: '#8A8A86', fontSize: '0.82rem', lineHeight: 1.5 }}>{t.cardStatementMexicoDetail}</span>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                 <span style={{ fontSize: '1.1rem', flexShrink: 0, marginTop: '1px' }}>💳</span>
                 <div>
                   <span style={{ fontWeight: '700', color: '#e2e8f0', fontSize: '0.82rem' }}>{t.cardStatementNameLabel}</span>{' '}
-                  <span style={{ color: '#94a3b8', fontSize: '0.82rem', lineHeight: 1.5 }}>
+                  <span style={{ color: '#8A8A86', fontSize: '0.82rem', lineHeight: 1.5 }}>
                     {t.cardStatementNameDetail.split('"SOF IA"').map((part, i, arr) =>
                       i < arr.length - 1
                         ? <React.Fragment key={i}>{part}<strong style={{ color: '#fbbf24', background: 'rgba(251,191,36,0.12)', padding: '1px 6px', borderRadius: '4px' }}>&ldquo;SOF IA&rdquo;</strong></React.Fragment>

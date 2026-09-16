@@ -191,7 +191,7 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
         <div className="clone-nav-wrap">
           <div className="clone-shell clone-nav">
             <Link href="/" className="clone-logo" aria-label="Panama Peptides home">
-              <img src="/logo-wordmark.webp" alt="Panama Peptides" className="logo-img-custom" />
+              <img src="/pp-lockup-paper.webp" alt="Panama Peptides" className="logo-img-custom" />
             </Link>
 
             <button
@@ -355,7 +355,7 @@ export function StorefrontFooter({ lang, settings, categories = [] }) {
     <footer className="clone-footer">
       <div className="clone-shell clone-footer-grid">
         <div>
-          <img src="/logo-wordmark.webp" alt="Panama Peptides" className="logo-img-custom" />
+          <img src="/pp-lockup-paper.webp" alt="Panama Peptides" className="logo-img-custom" />
           <p>{settings?.[`footerDescription${suffix}`]}</p>
           <strong>{lang === 'en' ? 'Legal Notice:' : 'Aviso legal:'}</strong>
           <p>{settings?.[`legalNotice${suffix}`]}</p>

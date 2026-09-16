@@ -95,7 +95,7 @@ const COPY = {
   },
 };
 
-const LOGO_URL = 'https://catalog.peptidespanama.net/logo.png?v=2';
+const LOGO_URL = 'https://catalog.peptidespanama.net/logo.png?v=3';
 
 /**
  * The one placeholder a custom body must contain.
@@ -162,7 +162,7 @@ export function buildReviewRequestEmail({
 
   const builtIn = `
         <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#333;">
-          <img src="${LOGO_URL}" alt="Peptides Panama" width="96" height="81" style="display:block;width:96px;height:81px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+          <img src="${LOGO_URL}" alt="Peptides Panama" width="96" height="96" style="display:block;width:96px;height:96px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
           <h2>${copy.heading}</h2>
           <p>${copy.greeting(name)}</p>
           <p>${copy.intro}</p>

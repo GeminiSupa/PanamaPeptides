@@ -122,7 +122,7 @@ async function sendEmail(to, message, subject, tracking = null, htmlContent = nu
     const htmlMessage = htmlContent ? addTrackingToHtml(htmlContent, tracking) : `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
         <div style="text-align: center; margin-bottom: 24px;">
-          <img src="https://catalog.peptidespanama.net/logo.png?v=2" alt="Peptides Panama" width="140" height="118" style="display:block;width:140px;height:118px;margin:0 auto 16px auto;border-radius:12px;">
+          <img src="https://catalog.peptidespanama.net/logo.png?v=3" alt="Panama Peptide" width="120" height="120" style="display:block;width:120px;height:120px;margin:0 auto 16px auto;border-radius:12px;">
         </div>
 ${productImage ? `<div style="text-align: center; margin: 0 0 24px;"><img src="${productImage}" alt="" width="220" style="max-width: 220px; width: 220px; height: auto; border: 0;" /></div>` : ''}
         <div style="color: #334155; line-height: 1.6; font-size: 16px; margin-bottom: 32px; white-space: pre-wrap;">

@@ -1,6 +1,6 @@
 .contact-page .lp-header {
   background: #fff;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #E4E1DB;
 }
 
 .contact-page .lp-nav a.active {
@@ -81,8 +81,8 @@
 .contact-form-card,
 .contact-method-card {
   border-radius: 8px !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 16px 42px rgba(15, 23, 42, .08) !important;
+  border-color: #E4E1DB !important;
+  box-shadow: 0 16px 42px rgba(13, 13, 13, .08) !important;
 }
 
 .contact-form-card {
@@ -165,7 +165,7 @@
 }
 
 .contact-page .footer {
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid #E4E1DB;
 }
 
 @media (max-width: 840px) {

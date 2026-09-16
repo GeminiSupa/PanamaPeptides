@@ -54,6 +54,7 @@ export default function EntryDisclaimer() {
   return (
     <div className="entry-disclaimer-overlay" role="dialog" aria-modal="true" aria-labelledby="disclaimer-title">
       <div className="entry-disclaimer-modal">
+        <img src="/pp-mark-ink.png" alt="" className="entry-disclaimer-mark" width={40} height={39} />
         <h2 id="disclaimer-title" className="entry-disclaimer-title">Research Use Only | 21+ to Enter</h2>
         
         <p className="entry-disclaimer-text">
@@ -97,45 +98,52 @@ export default function EntryDisclaimer() {
         }
 
         .entry-disclaimer-modal {
-          background-color: #ffffff;
+          background-color: #F7F5F2;
           border-radius: 12px;
           max-width: 600px;
           width: 100%;
           padding: 36px 32px;
           margin: auto; /* Centers perfectly when smaller than viewport, scrolls nicely when bigger */
           box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-          border: 2px solid #e2e8f0;
+          border: 1px solid #E4E1DB;
           animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .entry-disclaimer-mark {
+          display: block;
+          height: 40px;
+          width: auto;
+          margin: 0 auto 14px;
         }
 
         .entry-disclaimer-title {
           margin: 0 0 20px 0;
           font-size: 1.5rem;
           font-weight: 800;
-          color: #b91c1c;
+          color: #0D0D0D;
           text-align: center;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          font-family: var(--font-montserrat), sans-serif;
+          font-family: var(--font-poppins), sans-serif;
           word-break: break-word;
         }
 
         .entry-disclaimer-text {
           font-size: 1rem;
-          color: #334155;
+          color: #0D0D0D;
           margin-bottom: 16px;
           line-height: 1.5;
-          font-family: var(--font-inter), sans-serif;
+          font-family: var(--font-poppins), sans-serif;
           word-break: break-word;
         }
 
         .entry-disclaimer-list {
           margin: 0 0 28px 0;
           padding-left: 24px;
-          color: #475569;
+          color: #4A4A47;
           font-size: 0.95rem;
           line-height: 1.6;
-          font-family: var(--font-inter), sans-serif;
+          font-family: var(--font-poppins), sans-serif;
         }
 
         .entry-disclaimer-list li {
@@ -162,32 +170,32 @@ export default function EntryDisclaimer() {
           border: none;
           flex: 1;
           max-width: 200px;
-          font-family: var(--font-montserrat), sans-serif;
+          font-family: var(--font-poppins), sans-serif;
         }
 
         .entry-btn-agree {
-          background-color: #16a34a;
-          color: white;
-          box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.2);
+          background-color: #2B5CFF;
+          color: #FFFFFF;
+          box-shadow: 0 4px 12px -2px rgba(43, 92, 255, 0.35);
         }
 
         .entry-btn-agree:hover {
-          background-color: #15803d;
+          background-color: #1E47D9;
           transform: translateY(-2px);
-          box-shadow: 0 6px 8px -1px rgba(22, 163, 74, 0.3);
+          box-shadow: 0 6px 16px -2px rgba(43, 92, 255, 0.45);
         }
 
         .entry-btn-disagree {
-          background-color: #dc2626;
-          color: white;
-          border: none;
-          box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.2);
+          background-color: transparent;
+          color: #0D0D0D;
+          border: 1px solid #0D0D0D;
+          box-shadow: none;
         }
 
         .entry-btn-disagree:hover {
-          background-color: #b91c1c;
+          background-color: #0D0D0D;
+          color: #F7F5F2;
           transform: translateY(-2px);
-          box-shadow: 0 6px 8px -1px rgba(220, 38, 38, 0.3);
         }
 
         @keyframes slideUpFade {
@@ -210,7 +218,14 @@ export default function EntryDisclaimer() {
             padding: 28px 20px;
           }
           
-          .entry-disclaimer-title {
+          .entry-disclaimer-mark {
+          display: block;
+          height: 40px;
+          width: auto;
+          margin: 0 auto 14px;
+        }
+
+        .entry-disclaimer-title {
             font-size: 1.25rem;
           }
           
