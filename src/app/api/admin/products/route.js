@@ -8,6 +8,8 @@ import {
   preserveLiveDealFields,
 } from '@/lib/dealProductProtection.mjs';
 
+import { writeDroppingMissingColumns, PRODUCT_OPTIONAL_COLUMNS } from '@/lib/optionalColumns.mjs';
+
 export const runtime = 'nodejs';
 
 const UUID_REGEX = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
@@ -134,12 +136,20 @@ export async function PUT(request) {
     const itemsToInsert = rows.filter((row) => !row.id);
 
     if (itemsToUpdate.length > 0) {
-      const { error } = await supabase.from('products').upsert(itemsToUpdate);
+      const { error } = await writeDroppingMissingColumns(
+        itemsToUpdate,
+        PRODUCT_OPTIONAL_COLUMNS,
+        (rowsToWrite) => supabase.from('products').upsert(rowsToWrite)
+      );
       if (error) throw error;
     }
 
     if (itemsToInsert.length > 0) {
-      const { error } = await supabase.from('products').insert(itemsToInsert);
+      const { error } = await writeDroppingMissingColumns(
+        itemsToInsert,
+        PRODUCT_OPTIONAL_COLUMNS,
+        (rowsToWrite) => supabase.from('products').insert(rowsToWrite)
+      );
       if (error) throw error;
     }
 

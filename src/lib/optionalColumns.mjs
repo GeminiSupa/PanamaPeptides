@@ -29,7 +29,8 @@ export { missingColumnFrom };
  */
 export async function writeDroppingMissingColumns(payload, optional, run) {
   const allowed = new Set(optional || []);
-  let current = { ...payload };
+  const isArray = Array.isArray(payload);
+  let current = isArray ? payload.map((row) => ({ ...row })) : { ...payload };
   const dropped = [];
 
   for (let attempt = 0; attempt <= allowed.size; attempt += 1) {
@@ -37,16 +38,35 @@ export async function writeDroppingMissingColumns(payload, optional, run) {
     if (!result?.error) return { ...result, droppedColumns: dropped };
 
     const missing = missingColumnFrom(result.error);
-    if (!missing || !allowed.has(missing) || !(missing in current)) {
+    const hasColumn = isArray
+      ? current.some((row) => missing in row)
+      : missing in current;
+
+    if (!missing || !allowed.has(missing) || !hasColumn) {
       return { ...result, droppedColumns: dropped };
     }
 
-    delete current[missing];
+    if (isArray) {
+      current = current.map((row) => {
+        const next = { ...row };
+        delete next[missing];
+        return next;
+      });
+    } else {
+      delete current[missing];
+    }
     dropped.push(missing);
   }
 
   return { ...(await run(current)), droppedColumns: dropped };
 }
+
+/** Columns added for free Bac water configuration in products. */
+export const PRODUCT_OPTIONAL_COLUMNS = [
+  'free_bac_water',
+  'free_bac_size_ml',
+  'free_bac_vials_per_item',
+];
 
 /**
  * admin_profiles columns that arrive via their own hand-run migration:
