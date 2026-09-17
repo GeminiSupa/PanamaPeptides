@@ -25,6 +25,7 @@
   --pp-shadow-md: 0 8px 24px #12294d12;
   --pp-shadow-lg: 0 16px 40px #12294d20;
   --shop-link: #174c97;
+  --shop-required: #c81e1e;
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
@@ -47,6 +48,7 @@
   --pp-accent-cyan: #94beff;
   --pp-accent-emerald: #6fe4ab;
   --shop-link: #a2c6ff;
+  --shop-required: #fb8a8a;
 }
 :root, :root[data-theme] {
   --bg-main: var(--pp-bg-root);
@@ -85,7 +87,7 @@ body .clone-home, body .catalog-page-shell, body .editorial-page, body .account-
   color: #fff !important;
 }
 .clone-home .clone-logo, .catalog-page-shell .logo--emblem {
-  background: #fff;
+  background: transparent;
   padding: 8px;
   border-radius: 4px;
 }
@@ -134,7 +136,7 @@ body .clone-home, body .catalog-page-shell, body .editorial-page, body .account-
 .clone-home .clone-product-copy > a:hover { background: var(--pp-primary-hover) !important; }
 .clone-home .clone-category-chips a { color: var(--pp-text-primary) !important; background: var(--pp-bg-surface) !important; min-height: 44px; }
 .clone-home .clone-category-chips a:hover { color: #fff !important; background: #174c97 !important; }
-.clone-home .clone-section-head-row > a { color: var(--shop-link) !important; }
+.clone-home .clone-section-head-row > a { color: #fff !important; }
 .clone-home .clone-footer, .clone-home .footer { background: var(--pp-bg-surface) !important; }
 .clone-home .clone-footer a { color: var(--pp-text-secondary) !important; }
 .clone-home .clone-faq-list button { color: var(--pp-text-primary) !important; text-align: left; }
@@ -144,6 +146,9 @@ body .clone-home, body .catalog-page-shell, body .editorial-page, body .account-
 .mobile-action-bar { background: var(--pp-bg-surface) !important; box-shadow: 0 -2px 12px #12294d14 !important; }
 .catalog-page-shell .header-controls { flex-wrap: wrap; justify-content: flex-end; }
 .catalog-page-shell .header-controls button { min-height: 40px; color: var(--pp-text-primary); }
+.catalog-page-shell .cat-chip.active { color: #fff !important; background: #174c97 !important; border-color: #174c97 !important; }
+.catalog-page-shell .admin-link { opacity: 1; color: var(--pp-text-muted); }
+.catalog-page-shell .trust-desc { color: var(--pp-text-muted); }
 .catalog-page-shell .header-controls button.active { color: #fff !important; background: #174c97 !important; }
 .catalog-page-shell .filter-btn:hover, .catalog-page-shell .filter-btn.active { background: #174c97 !important; color: #fff !important; }
 .catalog-page-shell .catalog-seo-header {
@@ -291,6 +296,99 @@ body .clone-home, body .catalog-page-shell, body .editorial-page, body .account-
 .catalog-page-shell .cart-drawer.active {
   transform: translateX(0);
 }
+/* Theme reconciliation for landing.css, which still hardcodes the old
+   all-dark palette (lime accents, white text) and a few light-only cards.
+   Everything here reads the tokens above so it holds in both themes. */
+.clone-home :is(.clone-section-head, .clone-audience, .clone-proof, .clone-quality) p { color: var(--pp-text-muted) !important; }
+.clone-home .clone-bulk-inner { background: var(--pp-bg-elevated) !important; }
+.clone-home .clone-bulk-inner h2 { color: var(--pp-text-primary) !important; }
+.clone-home .clone-bulk-inner p { color: var(--pp-text-secondary) !important; }
+
+/* Content cards */
+.clone-home :is(.clone-start-card, .clone-topic-grid article, .clone-coa-grid a, .clone-affiliate-card-grid article, .clone-affiliate-benefits article, .clone-blog-card) {
+  background: var(--pp-bg-surface) !important;
+  border-color: var(--pp-border-subtle) !important;
+}
+[data-theme="light"] .clone-home .clone-start-card.tone-1 { background: #e6fbf4 !important; }
+[data-theme="light"] .clone-home .clone-start-card.tone-2 { background: #efecff !important; }
+[data-theme="light"] .clone-home .clone-start-card.tone-3 { background: #fff4dc !important; }
+[data-theme="light"] .clone-home .clone-start-card.tone-4 { background: #fff0ec !important; }
+.clone-home .clone-start-card { color: var(--pp-text-primary) !important; }
+.clone-home :is(.clone-start-card, .clone-topic-grid, .clone-affiliate-card-grid, .clone-affiliate-benefits, .clone-blog-card, .clone-affiliate-faq) :is(h2, h3) { color: var(--pp-text-primary) !important; }
+.clone-home :is(.clone-start-card, .clone-topic-grid, .clone-affiliate-card-grid, .clone-affiliate-benefits, .clone-blog-card, .clone-affiliate-faq) p,
+.clone-home .clone-section-intro,
+.clone-home .clone-page-section-head small { color: var(--pp-text-muted) !important; }
+.clone-home :is(.clone-start-card, .clone-affiliate-benefits) span,
+.clone-home .clone-coa-grid a,
+.clone-home .clone-topic-grid a,
+.clone-home .clone-blog-card strong,
+.clone-home .clone-story-stack li,
+.contact-page .contact-kicker,
+.contact-page .contact-direct-label span { color: var(--shop-link) !important; }
+.clone-home .clone-affiliate-faq article { border-color: var(--pp-border-subtle) !important; }
+.clone-home .clone-blog-image { background: var(--pp-bg-elevated) !important; color: var(--pp-text-muted) !important; }
+.clone-home .clone-help-strip { background: var(--pp-bg-elevated) !important; }
+.clone-home .clone-help-strip h2 { color: var(--pp-text-primary) !important; }
+.clone-home .clone-help-strip p { color: var(--pp-text-muted) !important; }
+.clone-home .clone-story-tools { background: var(--pp-bg-subtle) !important; }
+.clone-home :is(.clone-story-stack, .clone-story-tools, .clone-article-cta) p,
+.clone-home .clone-article-content { color: var(--pp-text-secondary) !important; }
+
+.clone-home .clone-blog-body > span { color: var(--pp-text-muted) !important; }
+.clone-home .clone-offer-grid span { color: var(--shop-link) !important; background: var(--pp-bg-elevated) !important; border-color: var(--pp-border-default) !important; }
+
+/* Always-dark hero bands keep light text in both themes. Kept after the card
+   rules: .clone-affiliate-talk sits inside .clone-affiliate-faq. */
+.clone-home :is(.clone-page-hero, .clone-affiliate-hero, .clone-story-hero, .clone-affiliate-talk) :is(h1, h2, h3) { color: #fff !important; }
+.clone-home :is(.clone-page-hero, .clone-affiliate-hero, .clone-story-hero, .clone-affiliate-talk) p { color: rgba(255, 255, 255, .82) !important; }
+.clone-home :is(.clone-page-hero, .clone-affiliate-hero) > div > span,
+.clone-home .clone-page-hero > span { color: rgba(255, 255, 255, .72) !important; }
+
+/* Contact page */
+.contact-page .lp-header { background: var(--pp-bg-surface); border-color: var(--pp-border-subtle); }
+.contact-page .contact-main { background: var(--pp-bg-root) !important; }
+.contact-page :is(.contact-hero h1, .contact-direct-label h2) { color: var(--pp-text-primary) !important; }
+.contact-page .contact-hero p { color: var(--pp-text-secondary) !important; }
+.contact-page .contact-hero-points span { color: var(--pp-accent-emerald); }
+.contact-page :is(.contact-form-card, .contact-method-card) { border-color: var(--pp-border-subtle) !important; }
+
+/* Footer follows the theme surface */
+.clone-home .clone-footer p,
+.clone-home .clone-footer button { color: var(--pp-text-muted) !important; }
+.clone-home .clone-footer button:hover { color: var(--pp-text-primary) !important; }
+.clone-home .clone-footer strong,
+.clone-home .clone-footer h3 { color: var(--pp-text-primary) !important; }
+.clone-home .clone-review-row { border-color: var(--pp-border-subtle); }
+.clone-home .clone-review-row > .clone-review-card { background: var(--pp-bg-elevated) !important; border-color: var(--pp-border-subtle) !important; }
+.clone-home .clone-review-copy strong { color: var(--pp-text-primary) !important; }
+.clone-home .clone-review-copy span { color: var(--shop-link) !important; }
+.clone-copyright { background: var(--pp-bg-elevated) !important; color: var(--pp-text-secondary) !important; border-color: var(--pp-border-subtle) !important; }
+.clone-copyright :is(.clone-legal-links a, .clone-admin-link) { color: var(--pp-text-secondary) !important; opacity: 1 !important; }
+
+/* Mobile action bar secondary button sits on a themed surface */
+.lp-mobile-action--wa { color: var(--pp-text-primary) !important; }
+
+/* Legal pages (.landing-layout) */
+.landing-layout .lp-header,
+.landing-layout .lp-header-inner,
+.landing-layout .lp-header--scrolled .lp-header-inner { background: var(--pp-bg-surface) !important; border-color: var(--pp-border-subtle) !important; }
+.landing-layout .lp-nav a { color: var(--pp-text-primary); }
+.landing-layout .lang-selector { background: var(--pp-bg-surface); border-color: var(--pp-border-default); }
+.landing-layout .lang-selector button { color: var(--pp-text-muted); }
+.landing-layout .lang-selector button.active { background: #1c2f6d; color: #fff; }
+.landing-layout .lp-nav-cta { width: auto !important; min-width: 44px; padding: 0 16px !important; white-space: nowrap; }
+.landing-layout .footer :is(p, a, strong, div) { color: #d1dced !important; }
+.landing-layout .footer a:hover { color: #fff !important; }
+.landing-layout main h1 { overflow-wrap: anywhere; font-size: clamp(2rem, 7vw, 3rem) !important; }
+
+@media (max-width: 480px) {
+  .landing-layout .lp-nav-cta { width: 44px !important; padding: 0 !important; font-size: 0 !important; gap: 0 !important; }
+  .landing-layout .lp-logo { flex: 1 1 auto; min-width: 0; }
+  .landing-layout .lp-logo img { width: auto !important; max-width: 100%; height: 30px !important; object-fit: contain; object-position: left center; }
+  .landing-layout .lp-header-actions { flex-shrink: 0; gap: 6px; }
+  .about-chapters p { overflow-wrap: anywhere; }
+}
+
 @media (min-width: 901px) {
   .catalog-page-shell .filter-panel { display: flex; max-height: none; opacity: 1; visibility: visible; padding: 12px 0; }
 }

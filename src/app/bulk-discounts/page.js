@@ -44,7 +44,7 @@ export default function BulkDiscountsPage() {
                   }}
                 >
                   <h3 style={{ fontSize: '1.5rem', marginBottom: '8px' }}>{localized(tier, 'label', lang)}</h3>
-                  <div style={{ fontSize: '2.5rem', fontWeight: '800', color: isFeatured ? 'var(--text-primary)' : '#C8530C', marginBottom: '16px' }}>
+                  <div style={{ fontSize: String(localized(tier, 'value', lang) || '').length > 6 ? '1.3rem' : '2.5rem', fontWeight: '800', lineHeight: 1.15, overflowWrap: 'anywhere', color: isFeatured ? 'var(--text-primary)' : '#C8530C', marginBottom: '16px' }}>
                     {localized(tier, 'value', lang)}
                   </div>
                   <p style={{ color: 'var(--text-muted)' }}>{localized(tier, 'text', lang)}</p>

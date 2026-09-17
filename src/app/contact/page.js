@@ -136,7 +136,7 @@ export default function ContactPage() {
                   {/* Name Field */}
                   <div>
                     <label htmlFor="contact-name" style={labelStyle}>
-                      {lang === 'en' ? 'Full Name' : 'Nombre Completo'} <span style={{ color: '#ef4444' }}>*</span>
+                      {lang === 'en' ? 'Full Name' : 'Nombre Completo'} <span style={{ color: 'var(--shop-required)' }}>*</span>
                     </label>
                     <div style={{ position: 'relative' }}>
                       <span style={inputIconStyle}><User size={16} /></span>
@@ -154,7 +154,7 @@ export default function ContactPage() {
                   {/* Email Field */}
                   <div>
                     <label htmlFor="contact-email" style={labelStyle}>
-                      {lang === 'en' ? 'Email Address' : 'Correo Electrónico'} <span style={{ color: '#ef4444' }}>*</span>
+                      {lang === 'en' ? 'Email Address' : 'Correo Electrónico'} <span style={{ color: 'var(--shop-required)' }}>*</span>
                     </label>
                     <div style={{ position: 'relative' }}>
                       <span style={inputIconStyle}><AtSign size={16} /></span>
@@ -191,7 +191,7 @@ export default function ContactPage() {
                 {/* Message Field */}
                 <div>
                   <label htmlFor="contact-message" style={labelStyle}>
-                    {lang === 'en' ? 'Your Message' : 'Tu Mensaje'} <span style={{ color: '#ef4444' }}>*</span>
+                    {lang === 'en' ? 'Your Message' : 'Tu Mensaje'} <span style={{ color: 'var(--shop-required)' }}>*</span>
                   </label>
                   <textarea
                     id="contact-message"

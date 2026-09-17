@@ -3330,7 +3330,7 @@ export default function CatalogPage() {
         <div className="catalog-brand-row container">
           <Link href="/" className="logo logo--emblem">
             <img
-              src="/pp-lockup-paper.webp"
+              src={theme === 'dark' ? '/pp-lockup-paper.webp' : '/pp-lockup-ink.webp'}
               alt="Peptides Panama Logo"
               className="logo-emblem"
             />
@@ -3732,7 +3732,7 @@ export default function CatalogPage() {
               )}
 
               <div style={{ padding: '24px 24px 32px 24px' }}>
-              <img src="/pp-lockup-paper.webp" alt="Peptides Panama Logo" style={{ height: '40px', margin: '0 auto 16px auto', display: 'block', borderRadius: '8px' }} />
+              <img src={theme === 'dark' ? '/pp-lockup-paper.webp' : '/pp-lockup-ink.webp'} alt="Peptides Panama Logo" style={{ height: '40px', margin: '0 auto 16px auto', display: 'block', borderRadius: '8px' }} />
               <h2 style={{ fontSize: '1.4rem', fontWeight: '900', color: 'var(--text-main)', marginBottom: '8px' }}>
                 {lang === 'en' ? 'Exclusive Catalog Access' : 'Acceso Exclusivo al Catálogo'}
               </h2>

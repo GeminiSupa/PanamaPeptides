@@ -41,7 +41,7 @@ export default function ShippingPolicyPage() {
       <header className={`lp-header${scrolled ? ' lp-header--scrolled' : ''}`}>
         <div className="lp-header-inner">
           <Link href="/" className="lp-logo">
-            <img src="/pp-lockup-paper.webp" alt="Peptides Panama" className="logo-img-custom" style={{ maxHeight: '40px', width: 'auto', borderRadius: '8px' }} />
+            <img src={theme === 'dark' ? '/pp-lockup-paper.webp' : '/pp-lockup-ink.webp'} alt="Peptides Panama" className="logo-img-custom" style={{ maxHeight: '40px', width: 'auto', borderRadius: '8px' }} />
           </Link>
 
           <nav className="lp-nav">

@@ -459,7 +459,7 @@ function ThankYouContent() {
           
           <span style={{
             fontSize: '0.7rem',
-            color: '#475569',
+            color: '#94a3b8',
             letterSpacing: '0.5px',
             textTransform: 'uppercase',
             fontWeight: '600'
