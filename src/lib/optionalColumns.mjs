@@ -61,8 +61,17 @@ export async function writeDroppingMissingColumns(payload, optional, run) {
   return { ...(await run(current)), droppedColumns: dropped };
 }
 
-/** Columns added for free Bac water configuration in products. */
+/** Columns added via migrations over time to the products table. */
 export const PRODUCT_OPTIONAL_COLUMNS = [
+  'inventory_count',
+  'low_stock_threshold',
+  'original_price_usd',
+  'original_price_crc',
+  'sale_start_time',
+  'sale_end_time',
+  'description_en',
+  'description_es',
+  'emoji',
   'free_bac_water',
   'free_bac_size_ml',
   'free_bac_vials_per_item',
