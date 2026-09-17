@@ -3661,19 +3661,29 @@ export default function CatalogPage() {
       {/* Main Catalog View */}
       <main className="main container" style={{ position: 'relative', minHeight: '60vh' }}>
         <div className="catalog-seo-header">
+          <div className="catalog-hero-eyebrow">
+            <Sparkles size={14} className="hero-eyebrow-icon" />
+            <span>{lang === 'en' ? '100% PURITY TESTED & VERIFIED PEPTIDES' : 'PÉPTIDOS CON 100% PUREZA VERIFICADA'}</span>
+          </div>
           <h1 className="catalog-seo-title">
-            {lang === 'en' ? 'Peptide Catalog Panama' : 'Catálogo de Péptidos en Panama'}
+            {lang === 'en' ? 'Peptide Catalog Panama' : 'Catálogo de Péptidos en Panamá'}
           </h1>
           <p className="catalog-seo-sub">
             {lang === 'en'
-              ? 'Browse available peptides, prices, and real-time availability.'
-              : 'Explora péptidos disponibles, precios y disponibilidad en tiempo real.'}
+              ? 'Browse certified research peptides, live pricing, COAs, and immediate Costa Rica & Panama dispatch.'
+              : 'Explora péptidos de investigación certificados, precios en vivo, COAs y envío inmediato en Costa Rica y Panamá.'}
           </p>
           <div className="shop-results-bar">
-            <span role="status">{loading ? (lang === 'en' ? 'Loading products…' : 'Cargando productos…') : `${filteredProducts.length} ${lang === 'en' ? 'products' : 'productos'}`}</span>
-            <button type="button" onClick={() => { setSearchQuery(''); setActiveCategory('all'); setPriceFilter('all'); setInStockOnly(false); setSortOrder('pop'); }}>
-              {lang === 'en' ? 'Clear filters' : 'Limpiar filtros'}
-            </button>
+            <span className="results-count-pill" role="status">
+              <Sparkles size={14} />
+              {loading ? (lang === 'en' ? 'Loading products…' : 'Cargando productos…') : `${filteredProducts.length} ${lang === 'en' ? 'products available' : 'productos disponibles'}`}
+            </span>
+            {(searchQuery || activeCategory !== 'all' || priceFilter !== 'all' || !inStockOnly || sortOrder !== 'pop') && (
+              <button className="clear-filters-btn" type="button" onClick={() => { setSearchQuery(''); setActiveCategory('all'); setPriceFilter('all'); setInStockOnly(false); setSortOrder('pop'); }}>
+                <Trash2 size={13} />
+                {lang === 'en' ? 'Clear filters' : 'Limpiar filtros'}
+              </button>
+            )}
           </div>
         </div>
         {gateLoading ? (
