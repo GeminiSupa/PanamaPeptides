@@ -1,4 +1,4 @@
-import { Poppins } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
 import UTMTracker from "@/components/UTMTracker";
@@ -12,14 +12,13 @@ import { LIVE_SITE_URL } from "@/lib/publicUrl";
 import { getTikTokPixelBootstrapScript } from "@/lib/tiktokPixel.mjs";
 
 import "./storefront-theme.css";
+import "./shop-layout.css";
 import "./pwa.css";
 
-// Brand kit: Poppins is the body and headline face (Intro Rust is licensed for
-// the logo wordmark only). next/font self-hosts it, so no request to Google.
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  style: ['normal', 'italic'],
+// Brand kit font variable. The CSS still reads --font-poppins, but this is
+// backed by the bundled Montserrat file so builds do not depend on Google.
+const brandFont = localFont({
+  src: './fonts/montserrat-latin-variable.woff2',
   variable: '--font-poppins',
   display: 'swap',
 });
@@ -102,7 +101,7 @@ export default async function RootLayout({ children }) {
   const businessLinks = await getBusinessLinks();
   
   return (
-    <html lang="es" data-theme="light" className={poppins.variable} suppressHydrationWarning>
+    <html lang="es" data-theme="light" className={brandFont.variable} suppressHydrationWarning>
       <head suppressHydrationWarning>
         <script
           id="theme-init"

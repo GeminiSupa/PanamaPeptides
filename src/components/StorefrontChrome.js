@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown, Globe, Menu, Search, ShoppingBag, X } from 'lucide-react';
+import { ChevronDown, Globe, Menu, Search, ShoppingBag, Sun, Moon, User, X } from 'lucide-react';
 import { safeLocalStorage as localStorage } from '@/lib/storage';
 import { buildWhatsAppLink, logWhatsAppSource } from '@/lib/whatsapp';
 import { useBusinessLinks } from '@/hooks/useBusinessLinks';
@@ -135,6 +135,20 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
   const [categoriesOpen, setCategoriesOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [cartCount, setCartCount] = useState(0);
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+    setTheme(saved);
+    document.documentElement.setAttribute('data-theme', saved);
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    localStorage.setItem('theme', next);
+    document.documentElement.setAttribute('data-theme', next);
+  };
 
   // The cart only changes on the catalog page, so re-reading on mount, on focus
   // and on cross-tab writes is enough to keep this honest. Reading in an effect
@@ -173,20 +187,20 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
   // Every entry needs a distinct id — two items sharing one made the active
   // state highlight both at once.
   const navItems = [
-    { id: 'story', label: lang === 'en' ? 'About' : 'Nosotros', href: `/about?lang=${lang}` },
-    { id: 'catalog', label: lang === 'en' ? 'Products' : 'Productos', href: `/catalog?lang=${lang}` },
+    { id: 'catalog', label: lang === 'en' ? 'Shop all' : 'Tienda', href: `/catalog?lang=${lang}` },
     { id: 'categories', label: lang === 'en' ? 'Categories' : 'Categorías', children: categoryLinks },
+    { id: 'story', label: lang === 'en' ? 'About' : 'Nosotros', href: `/about?lang=${lang}` },
     { id: 'info', label: lang === 'en' ? 'Info Center' : 'Información', href: `/info-center?lang=${lang}` },
-    // Bulk Discounts and FAQ live in the footer: a sixth item overflows the bar
-    // and pushes the search box and cart off screen.
     { id: 'affiliate', label: lang === 'en' ? 'Affiliates' : 'Afiliados', href: `/affiliate-program?lang=${lang}` },
+    { id: 'faq', label: 'FAQ', href: `/faq?lang=${lang}` },
+    { id: 'contact', label: lang === 'en' ? 'Contact' : 'Contacto', href: `/contact?lang=${lang}` },
   ];
 
   return (
-    <header className="clone-site-header">
+    <header className="clone-site-header" onKeyDown={(event) => { if (event.key === 'Escape') { setMenuOpen(false); setCategoriesOpen(false); } }}>
         <div className="clone-nav-wrap">
           <div className="clone-shell clone-nav">
-            <Link href="/" className="clone-logo" aria-label="Panama Peptides home">
+            <Link href={`/?lang=${lang}`} className="clone-logo" aria-label="Panama Peptides home">
               <img src="/pp-lockup-paper.webp" alt="Panama Peptides" className="logo-img-custom" />
             </Link>
 
@@ -202,7 +216,7 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
               {menuOpen ? <X size={21} /> : <Menu size={21} />}
             </button>
 
-            <nav className={`clone-nav-links${menuOpen ? ' is-open' : ''}`}>
+            <nav aria-label={lang === 'en' ? 'Main navigation' : 'Navegación principal'} className={`clone-nav-links${menuOpen ? ' is-open' : ''}`}>
               {navItems.map((item) => (item.children ? (
                 <div
                   key={item.id}
@@ -257,6 +271,14 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
                 <Globe size={15} aria-hidden="true" />
                 {lang === 'en' ? 'Ver en español' : 'View in English'}
               </button>
+              <Link
+                href={`/account?lang=${lang}`}
+                className="clone-nav-account"
+                onClick={() => setMenuOpen(false)}
+              >
+                <User size={15} aria-hidden="true" />
+                {lang === 'en' ? 'Account' : 'Cuenta'}
+              </Link>
             </nav>
 
             <form
@@ -278,6 +300,10 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
             </form>
 
             <div className="clone-nav-actions">
+              <button type="button" onClick={toggleTheme} aria-label={theme === 'dark' ? 'Light mode' : 'Dark mode'}>
+                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+              <Link href={`/account?lang=${lang}`} aria-label={lang === 'en' ? 'My account' : 'Mi cuenta'}><User size={18} /></Link>
               <button
                 type="button"
                 onClick={() => onLanguage(lang === 'en' ? 'es' : 'en')}

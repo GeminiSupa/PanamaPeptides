@@ -370,7 +370,7 @@ export default function CatalogPage() {
   const [priceFilter, setPriceFilter] = useState('all');
   const [sortOrder, setSortOrder] = useState('pop');
   const [inStockOnly, setInStockOnly] = useState(true);
-  const [viewMode, setViewMode] = useState('list'); // 'list', 'grid'
+  const [viewMode, setViewMode] = useState('grid'); // 'list', 'grid'
 
   // Cart & Modals States
   const [cart, setCart] = useState([]);
@@ -1030,7 +1030,7 @@ export default function CatalogPage() {
     document.documentElement.setAttribute('data-theme', savedTheme);
 
     // Viewmode loaded from localStorage
-    const savedView = localStorage.getItem('viewMode') || 'list';
+    const savedView = localStorage.getItem('viewMode') || 'grid';
     setViewMode(savedView === 'compact' ? 'list' : savedView);
 
     // Cart loaded from localStorage
@@ -3110,10 +3110,8 @@ export default function CatalogPage() {
       (a, b) => compareBySaleAndStock(a, b, sortPredicates)
     );
   } else {
-    // Price sort, but still banded by sale and stock first
+    // An explicit price sort must reflect actual prices, including sale items.
     filteredProducts = [...baseFilteredProducts].sort((a, b) => {
-      const banded = compareBySaleAndStock(a, b, sortPredicates);
-      if (banded !== 0) return banded;
       const priceA = getPriceAsNumber(a, currency);
       const priceB = getPriceAsNumber(b, currency);
       return sortOrder === 'lowToHigh' ? priceA - priceB : priceB - priceA;
@@ -3543,22 +3541,32 @@ export default function CatalogPage() {
                 </>
               )}
             </div>
-            <button onClick={handleViewToggle} className="filter-btn" title={viewMode === 'list' ? (lang === 'en' ? 'Grid View' : 'Vista Cuadrícula') : (lang === 'en' ? 'List View' : 'Vista Lista')}>
+            <button
+              type="button"
+              onClick={handleViewToggle}
+              className="filter-btn"
+              aria-label={viewMode === 'list' ? (lang === 'en' ? 'Switch to grid view' : 'Cambiar a vista de cuadrícula') : (lang === 'en' ? 'Switch to list view' : 'Cambiar a vista de lista')}
+              title={viewMode === 'list' ? (lang === 'en' ? 'Grid View' : 'Vista Cuadrícula') : (lang === 'en' ? 'List View' : 'Vista Lista')}
+            >
               {viewMode === 'list' ? <Grid size={18} /> : <List size={18} />}
             </button>
             <button 
+              type="button"
               onClick={() => setShowFilters(!showFilters)} 
               className={`filter-btn ${showFilters ? 'active' : ''}`} 
+              aria-expanded={showFilters}
+              aria-controls="catalog-filter-panel"
+              aria-label={lang === 'en' ? 'Toggle filters' : 'Mostrar u ocultar filtros'}
               title={lang === 'en' ? 'Filters' : 'Filtros'}
             >
               <SlidersHorizontal size={18} />
             </button>
           </div>
 
-          <div className={`filter-panel ${showFilters ? 'active' : ''}`}>
+          <div id="catalog-filter-panel" className={`filter-panel ${showFilters ? 'active' : ''}`}>
             <div className="filter-group">
               <label>{lang === 'en' ? 'Price Range' : 'Rango de Precio'}</label>
-              <select value={priceFilter} onChange={(e) => setPriceFilter(e.target.value)}>
+              <select aria-label={lang === 'en' ? 'Price range' : 'Rango de precio'} value={priceFilter} onChange={(e) => setPriceFilter(e.target.value)}>
                 <option value="all">{lang === 'en' ? 'Any Price' : 'Cualquier precio'}</option>
                 <option value="low">{lang === 'en' ? 'Economic' : 'Económicos'}</option>
                 <option value="mid">{lang === 'en' ? 'Mid-Range' : 'Gama Media'}</option>
@@ -3567,8 +3575,8 @@ export default function CatalogPage() {
             </div>
             <div className="filter-group">
               <label>{lang === 'en' ? 'Sort Order' : 'Ordenar Por'}</label>
-              <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-                <option value="pop">{lang === 'en' ? 'Most Popular' : 'Más populares'}</option>
+              <select aria-label={lang === 'en' ? 'Sort order' : 'Ordenar por'} value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                <option value="pop">{lang === 'en' ? 'Featured' : 'Destacados'}</option>
                 <option value="lowToHigh">{lang === 'en' ? 'Price: Low to High' : 'Precio: Bajo a Alto'}</option>
                 <option value="highToLow">{lang === 'en' ? 'Price: High to Low' : 'Precio: Alto a Bajo'}</option>
               </select>
@@ -3577,6 +3585,7 @@ export default function CatalogPage() {
               <label>{lang === 'en' ? 'In Stock Only' : 'Solo disponibles'}</label>
               <input 
                 type="checkbox" 
+                aria-label={lang === 'en' ? 'In stock only' : 'Solo disponibles'}
                 checked={inStockOnly} 
                 onChange={(e) => setInStockOnly(e.target.checked)} 
               />
@@ -3660,17 +3669,12 @@ export default function CatalogPage() {
               ? 'Browse available peptides, prices, and real-time availability.'
               : 'Explora péptidos disponibles, precios y disponibilidad en tiempo real.'}
           </p>
-          <button
-            type="button"
-            className="catalog-hero-promo"
-            onClick={() => window.open('https://peptidespanama.net', '_blank', 'noopener,noreferrer')}
-            aria-label={lang === 'en' ? 'Open Peptides Panama website' : 'Abrir sitio de Peptides Panama'}
-          >
-            <img
-              src="/catalog-promo-banner.webp"
-              alt={lang === 'en' ? 'Peptides Panama product vials' : 'Viales de Peptides Panama'}
-            />
-          </button>
+          <div className="shop-results-bar">
+            <span role="status">{loading ? (lang === 'en' ? 'Loading products…' : 'Cargando productos…') : `${filteredProducts.length} ${lang === 'en' ? 'products' : 'productos'}`}</span>
+            <button type="button" onClick={() => { setSearchQuery(''); setActiveCategory('all'); setPriceFilter('all'); setInStockOnly(false); setSortOrder('pop'); }}>
+              {lang === 'en' ? 'Clear filters' : 'Limpiar filtros'}
+            </button>
+          </div>
         </div>
         {gateLoading ? (
           <div className="loader">

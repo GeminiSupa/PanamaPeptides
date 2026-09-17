@@ -83,7 +83,7 @@ function ProductCard({ product, lang }) {
           <strong>{price}</strong>
         </div>
         <Link href={`/catalog?product=${encodeURIComponent(product.product)}&lang=${lang}`}>
-          {lang === 'en' ? 'Add to Cart' : 'Agregar'} <ArrowRight size={13} />
+          {lang === 'en' ? 'View product' : 'Ver producto'} <ArrowRight size={13} />
         </Link>
       </div>
     </article>
@@ -105,10 +105,13 @@ export default function LandingPage() {
   }, [categories]);
 
   useEffect(() => {
-    const selectedLang = localStorage.getItem(USER_SELECTED_LANG_KEY) === 'true'
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    const savedLang = localStorage.getItem(USER_SELECTED_LANG_KEY) === 'true'
       ? localStorage.getItem('lang') || 'es'
       : 'es';
+    const selectedLang = ['en', 'es'].includes(urlLang) ? urlLang : savedLang;
     setLang(selectedLang);
+    document.documentElement.lang = selectedLang;
   }, []);
 
   useEffect(() => {
@@ -189,13 +192,12 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="clone-home">
+    <div className="clone-home shop-home">
       {/* Shared with every other storefront page — the landing page used to
           carry its own copy of this header, which is how its nav drifted. */}
       <StorefrontHeader lang={lang} onLanguage={setLanguage} settings={settings} />
 
       <main id="main-content">
-        {/* StorefrontHeader already renders the promo banner. */}
         <section className="clone-hero clone-shell">
           <div className="clone-hero-copy">
             <span className="clone-red-label">{copy(settings, 'heroKicker', lang)}</span>
@@ -236,7 +238,7 @@ export default function LandingPage() {
         </div>
 
         {/* Battle Born Feature Highlights Grid */}
-        <section className="clone-section clone-shell">
+        <section className="clone-section clone-shell shop-benefits">
           <div className="bb-features-grid">
             <div className="bb-feature-card">
               <div className="bb-feature-icon"><Truck size={28} /></div>
@@ -261,7 +263,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="clone-section clone-shell">
+        <section className="clone-section clone-shell shop-story">
           <div className="clone-section-head">
             <h2>{copy(settings, 'differenceTitle', lang)}</h2>
             <p>{copy(settings, 'differenceText', lang)}</p>
@@ -276,10 +278,11 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="clone-section clone-shell">
+        <section className="clone-section clone-shell shop-products">
           <div className="clone-section-head clone-section-head-row">
             <div>
-              <h2>{lang === 'en' ? 'Shop By Category' : 'Comprar por categoría'}</h2>
+              <span className="clone-red-label">{lang === 'en' ? 'THE COLLECTION' : 'LA COLECCIÓN'}</span>
+              <h2>{lang === 'en' ? 'Explore research peptides' : 'Explora nuestros péptidos'}</h2>
               <p>{lang === 'en' ? 'Browse by the product areas customers ask about most.' : 'Explora las áreas de producto más consultadas.'}</p>
             </div>
             <Link href={`/catalog?lang=${lang}`}>{lang === 'en' ? 'View all' : 'Ver todo'} <ArrowRight size={15} /></Link>
@@ -293,7 +296,7 @@ export default function LandingPage() {
           </div>
           {products.length > 0 ? (
             <div className="clone-products-grid">
-              {products.slice(0, 4).map((product) => (
+              {products.map((product) => (
                 <ProductCard key={product.product} product={product} lang={lang} />
               ))}
             </div>
@@ -378,11 +381,11 @@ export default function LandingPage() {
           <div className="clone-faq-list">
             {settings.faqItems.map((item, index) => (
               <article key={`${item.qEn}-${index}`} className={openFaq === index ? 'is-open' : ''}>
-                <button type="button" onClick={() => setOpenFaq(openFaq === index ? null : index)}>
+                <button type="button" aria-expanded={openFaq === index} aria-controls={`home-faq-${index}`} onClick={() => setOpenFaq(openFaq === index ? null : index)}>
                   {lang === 'en' ? item.qEn : item.qEs}
                   {openFaq === index ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                 </button>
-                <p>{lang === 'en' ? item.aEn : item.aEs}</p>
+                <p id={`home-faq-${index}`} hidden={openFaq !== index}>{lang === 'en' ? item.aEn : item.aEs}</p>
               </article>
             ))}
           </div>
