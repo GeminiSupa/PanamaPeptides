@@ -672,9 +672,9 @@ body {
 .clone-home .clone-hero-actions button:hover,
 .clone-home .about-secondary:hover,
 .clone-home .contact-button:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: var(--pp-bg-hover) !important;
   border-color: var(--pp-border-hover) !important;
-  color: #fff !important;
+  color: var(--pp-text-primary) !important;
   transform: translateY(-1px);
 }
 
@@ -1446,7 +1446,7 @@ body {
 }
 
 .landing-press-cta {
-  color: #C6FF3D !important;
+  color: var(--shop-link) !important;
   font-size: 0.78rem !important;
   font-weight: 700 !important;
   letter-spacing: 0.04em !important;
@@ -1546,7 +1546,7 @@ body {
   font-size: 0.76rem !important;
   font-weight: 700 !important;
   letter-spacing: 0.08em !important;
-  color: #C6FF3D !important;
+  color: var(--shop-link) !important;
   margin-bottom: 12px;
 }
 
