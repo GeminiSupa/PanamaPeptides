@@ -201,7 +201,11 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
         <div className="clone-nav-wrap">
           <div className="clone-shell clone-nav">
             <Link href={`/?lang=${lang}`} className="clone-logo" aria-label="Panama Peptides home">
-              <img src="/pp-lockup-paper.webp" alt="Panama Peptides" className="logo-img-custom" />
+              <img
+                src={theme === 'dark' ? '/pp-lockup-paper.webp' : '/pp-lockup-ink.webp'}
+                alt="Panama Peptides"
+                className="logo-img-custom"
+              />
             </Link>
 
             <button

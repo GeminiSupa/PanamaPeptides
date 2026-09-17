@@ -3,13 +3,11 @@
   "appName": "Panama Peptides",
   "webDir": "www",
   "server": {
-    "url": "http://192.168.18.65:3000",
-    "cleartext": true,
-    "androidScheme": "http",
-    "allowNavigation": ["192.168.18.65"]
+    "url": "https://www.peptidospty.com",
+    "androidScheme": "https",
+    "allowNavigation": ["www.peptidospty.com", "peptidospty.com"]
   },
   "android": {
-    "allowMixedContent": true,
     "backgroundColor": "#050505"
   }
 }
