@@ -68,8 +68,11 @@
    GLOBAL RESET & BASE APPLICATION
    ========================================================================== */
 
-body {
+html, body {
   background-color: var(--pp-bg-root) !important;
+}
+
+body {
   color: var(--pp-text-secondary) !important;
   font-family: var(--font-poppins), system-ui, -apple-system, sans-serif !important;
   -webkit-font-smoothing: antialiased;

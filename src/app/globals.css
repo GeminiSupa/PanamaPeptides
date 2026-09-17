@@ -80,6 +80,7 @@ html, body {
        still blocks horizontal bleed without changing the sticky containing block. */
     overflow-x: clip;
     width: 100%;
+    background-color: var(--bg-main);
 }
 
 body {
