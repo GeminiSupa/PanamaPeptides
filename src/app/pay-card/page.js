@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { CreditCard, Lock, AlertCircle, CheckCircle2, Wrench } from 'lucide-react';
@@ -41,7 +41,16 @@ function CardPaymentContent() {
     email: '',
   });
 
-  const lang = useMemo(() => (order?.currency === 'CRC' ? 'es' : 'en'), [order?.currency]);
+  // Orders are all USD now, so currency no longer tells us the shopper's
+  // language; use the catalog's saved choice, Spanish by default.
+  const [lang, setLang] = useState('es');
+  useEffect(() => {
+    try {
+      if (localStorage.getItem('lang') === 'en') setLang('en');
+    } catch {
+      // Storage blocked: keep Spanish.
+    }
+  }, []);
   const isEn = lang === 'en';
 
   useEffect(() => {

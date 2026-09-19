@@ -341,7 +341,8 @@ export default function CatalogPage() {
   // Theme, Lang, Currency States
   const [theme, setTheme] = useState('light');
   const [lang, setLang] = useState('es');
-  const [currency, setCurrency] = useState('CRC');
+  // Panama trades in US dollars; colones were inherited from the Costa Rica store.
+  const [currency, setCurrency] = useState('USD');
   
   // Products Data States
   const [products, setProducts] = useState([]);
@@ -995,7 +996,6 @@ export default function CatalogPage() {
     // URL overrides
     const urlParams = new URLSearchParams(window.location.search);
     const langParam = urlParams.get('lang');
-    const currencyParam = urlParams.get('currency');
 
     // Deep links from the site header search box and the category links in the
     // nav, footer and landing page.
@@ -1006,18 +1006,13 @@ export default function CatalogPage() {
     const hasUserSelectedLang = localStorage.getItem(USER_SELECTED_LANG_KEY) === 'true';
     const storedLang = localStorage.getItem('lang');
     let initialLang = hasUserSelectedLang && (storedLang === 'en' || storedLang === 'es') ? storedLang : 'es';
-    let initialCurrency = 'CRC';
+    const initialCurrency = 'USD';
 
     if (langParam === 'en') {
       initialLang = 'en';
-      initialCurrency = 'USD';
     } else if (langParam === 'es') {
       initialLang = 'es';
-      initialCurrency = 'CRC';
     }
-
-    if (currencyParam?.toUpperCase() === 'USD') initialCurrency = 'USD';
-    if (currencyParam?.toUpperCase() === 'CRC') initialCurrency = 'CRC';
 
     setLang(initialLang);
     setCurrency(initialCurrency);
@@ -1562,7 +1557,7 @@ export default function CatalogPage() {
             // headers; this is sent for the geolocation lookup it cannot repeat.
             metadata: customerMetadata || null,
             lang: lang || 'es',
-            currency: currency || 'CRC',
+            currency: currency || 'USD',
           });
         } catch (err) {
           console.error('Failed to sync abandoned cart:', err);
@@ -1893,7 +1888,6 @@ export default function CatalogPage() {
   // Active toggles
   const handleLangToggle = (selectedLang) => {
     setLang(selectedLang);
-    setCurrency(selectedLang === 'en' ? 'USD' : 'CRC');
     localStorage.setItem('lang', selectedLang);
     localStorage.setItem(USER_SELECTED_LANG_KEY, 'true');
   };
@@ -3308,20 +3302,6 @@ export default function CatalogPage() {
                 ES
               </button>
             </div>
-            <div className="currency-selector">
-              <button
-                onClick={() => setCurrency('USD')}
-                className={currency === 'USD' ? 'active' : ''}
-              >
-                USD
-              </button>
-              <button
-                onClick={() => setCurrency('CRC')}
-                className={currency === 'CRC' ? 'active' : ''}
-              >
-                CRC
-              </button>
-            </div>
           </div>
         </div>
 
@@ -3837,7 +3817,7 @@ export default function CatalogPage() {
               const cardClass = inStock ? 'product-card' : 'product-card card-out-of-stock';
               
               const pMain = getPriceLabel(p, currency);
-              const pSub = currency === 'USD' ? getPriceLabel(p, 'CRC') : getPriceLabel(p, 'USD');
+              const pSub = null; // single-currency (USD) store: no converted secondary price
 
               // Promo-driven sale pricing: when an advertised (badged) promo
               // targets this product and there is no genuine product-level
@@ -4168,6 +4148,42 @@ export default function CatalogPage() {
           flex: 0 0 auto;
         }
 
+        .cart-fab-sticky { gap: 12px; }
+        .cart-fab-count,
+        .cart-fab-total {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          white-space: nowrap;
+          min-width: 0;
+        }
+        .cart-fab-count { gap: 10px; }
+        .cart-fab-summary {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 2px;
+          min-width: 0;
+        }
+        .cart-fab-cta { font-size: 0.85rem; opacity: 0.9; font-weight: 600; }
+        .cart-fab-price { font-variant-numeric: tabular-nums; }
+        .cart-fab-shipping { font-size: 0.68rem; opacity: 0.85; font-weight: 600; white-space: nowrap; }
+
+        @media (max-width: 480px) {
+          .cart-container-wrapper { padding: 10px 12px; padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); }
+          .cart-fab-sticky,
+          .catalog-whatsapp-sticky {
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            min-height: 52px;
+          }
+          .cart-fab-cta { font-size: 0.78rem; }
+        }
+        @media (max-width: 360px) {
+          .cart-fab-cta { display: none; }
+        }
+
         .cart-fab-sticky:active,
         .catalog-whatsapp-sticky:active { transform: scale(0.97); }
 
@@ -4187,19 +4203,19 @@ export default function CatalogPage() {
               className="cart-fab-sticky"
               onClick={() => setIsCartOpen(true)}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div className="cart-fab-count">
                 <ShoppingBag size={20} />
                 <span>
                   {cartItemCount} {lang === 'en' ? (cartItemCount === 1 ? 'item' : 'items') : (cartItemCount === 1 ? 'artículo' : 'artículos')}
                 </span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 600 }}>{lang === 'en' ? 'View Cart' : 'Ver Carrito'}</span>
-                  <span>{formatPriceVal(getFinalTotal(), currency)}</span>
+              <div className="cart-fab-summary">
+                <div className="cart-fab-total">
+                  <span className="cart-fab-cta">{lang === 'en' ? 'View Cart' : 'Ver Carrito'}</span>
+                  <span className="cart-fab-price">{formatPriceVal(getFinalTotal(), currency)}</span>
                 </div>
                 {!qualifiesForFreeShipping() && (
-                  <span style={{ fontSize: '0.68rem', opacity: 0.85, fontWeight: 600 }}>
+                  <span className="cart-fab-shipping">
                     {lang === 'en'
                       ? `incl. ${formatPriceVal(getShippingFee(), currency)} shipping`
                       : `incl. ${formatPriceVal(getShippingFee(), currency)} de envío`}

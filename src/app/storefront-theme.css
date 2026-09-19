@@ -1330,7 +1330,7 @@ body {
 .catalog-page-shell .product-detail-cart-button,
 .catalog-page-shell .review-submit-button,
 .catalog-page-shell .card-payment-btn,
-.catalog-page-shell .cart-sticky-submit,
+.catalog-page-shell .cart-sticky-submit .whatsapp-btn,
 .catalog-page-shell #catalog-whatsapp-btn {
   background: var(--pp-primary) !important;
   border: 1px solid var(--pp-primary) !important;
@@ -1346,7 +1346,7 @@ body {
 .catalog-page-shell .product-detail-cart-button:hover,
 .catalog-page-shell .review-submit-button:hover,
 .catalog-page-shell .card-payment-btn:hover,
-.catalog-page-shell .cart-sticky-submit:hover,
+.catalog-page-shell .cart-sticky-submit .whatsapp-btn:hover:not(:disabled),
 .catalog-page-shell #catalog-whatsapp-btn:hover {
   background: var(--pp-primary-hover) !important;
   border-color: var(--pp-primary-hover) !important;
@@ -1361,13 +1361,10 @@ body {
   border-radius: var(--pp-radius-sm) !important;
 }
 
-/* Modal and Drawers */
+/* Modal and Drawers. The cart drawer's sections stay flat (styled in
+   shop-layout.css): carding each one stacked rounded boxes inside the drawer. */
 .catalog-page-shell .modal-content,
 .catalog-page-shell .product-detail-modal,
-.catalog-page-shell .cart-body,
-.catalog-page-shell .cart-header,
-.catalog-page-shell .cart-footer,
-.catalog-page-shell .checkout-form,
 .catalog-page-shell .card-payment-panel,
 .clone-lead-card {
   background: var(--pp-bg-surface) !important;

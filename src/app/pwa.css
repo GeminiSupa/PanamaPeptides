@@ -109,3 +109,14 @@
     width: 100%;
   }
 }
+
+/* Never over checkout: the prompt out-ranks the cart drawer (z-index 1101) and
+   sat on the Submit Order button. With items in the cart it lifts above the
+   floating cart bar instead of covering it. */
+body:has(.cart-drawer.active) .pwa-install {
+  display: none;
+}
+
+body:has(.cart-container-wrapper.has-items) .pwa-install {
+  bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+}
