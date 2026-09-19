@@ -32,7 +32,7 @@ const REMINDER_MS = 60000;
 
 const QUICK_REPLIES = [
   'Hola, gracias por escribirnos. ¿En qué le podemos ayudar?',
-  'Puede ver el catálogo actualizado aquí: https://catalog.peptidespanama.net/catalog',
+  'Puede ver el catálogo actualizado aquí: https://www.peptidospty.com/catalog',
   'Con gusto. ¿Me confirma su nombre y el producto que está revisando?',
   'Gracias. Un agente revisará su consulta y le responderá por aquí.',
 ];

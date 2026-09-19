@@ -325,7 +325,7 @@ function ThankYouContent() {
         {/* GROWTH LOOPS SECTION */}
         {(() => {
           const handleCopyLink = () => {
-            const refLink = `https://catalog.peptidespanama.net/catalog?lang=${lang}&utm_source=referral`;
+            const refLink = `https://www.peptidospty.com/catalog?lang=${lang}&utm_source=referral`;
             if (typeof navigator !== 'undefined' && navigator.clipboard) {
               navigator.clipboard.writeText(refLink);
             }

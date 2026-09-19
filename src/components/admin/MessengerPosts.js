@@ -7,6 +7,7 @@ import {
   Share2, Target, ThumbsUp, UserPlus,
 } from 'lucide-react';
 import { adminFetch } from '@/lib/adminApi';
+import { LIVE_SITE_URL } from '@/lib/publicUrl';
 
 function initials(name) {
   const w = String(name || 'FB').trim().split(/\s+/).filter(Boolean);
@@ -24,21 +25,21 @@ const POST_TEMPLATES = [
     label: 'Inventory Push',
     icon: Megaphone,
     message: 'Inventario local disponible en panama. Consulta el catálogo actualizado, precios CRC en vivo y documentación por lote.',
-    link: 'https://peptidespanama.net/catalog?lang=es',
+    link: `${LIVE_SITE_URL}/catalog?lang=es`,
   },
   {
     id: 'coa',
     label: 'COA Trust',
     icon: CheckCircle2,
     message: 'Antes de ordenar, revisa la documentación disponible por lote. Transparencia, stock local y coordinación directa en panama.',
-    link: 'https://peptidespanama.net/coa-database?lang=es',
+    link: `${LIVE_SITE_URL}/coa-database?lang=es`,
   },
   {
     id: 'whatsapp',
     label: 'Ask Expert',
     icon: MessageSquare,
     message: '¿Tienes preguntas sobre disponibilidad, documentación o entrega local? Escríbenos y te ayudamos en español o inglés.',
-    link: 'https://peptidespanama.net/contact?lang=es',
+    link: `${LIVE_SITE_URL}/contact?lang=es`,
   },
 ];
 
@@ -62,7 +63,7 @@ function addUtm(link, campaign) {
   const clean = String(link || '').trim();
   if (!clean) return '';
   try {
-    const url = new URL(clean, 'https://peptidespanama.net');
+    const url = new URL(clean, LIVE_SITE_URL);
     url.searchParams.set('utm_source', 'facebook');
     url.searchParams.set('utm_medium', 'social');
     url.searchParams.set('utm_campaign', slugify(campaign || defaultCampaign()));

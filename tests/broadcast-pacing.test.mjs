@@ -159,11 +159,11 @@ import {
 } from '../src/lib/broadcastPacing.mjs';
 
 /**
- * An instant at a given panama hour (UTC-6, no DST).
- * Date.UTC, not string building: CR 19:00 is 25:00 UTC the same day, which is
+ * An instant at a given panama hour (UTC-5, no DST).
+ * Date.UTC, not string building: panama 19:00 is 24:00 UTC the same day, which is
  * not a time you can write down but is a date Date.UTC rolls over correctly.
  */
-const crAt = (day, hour) => Date.UTC(2026, 8, day, hour + 6);
+const crAt = (day, hour) => Date.UTC(2026, 8, day, hour + 5);
 
 test('a broadcast with no window set sends around the clock, as before', () => {
   assert.equal(readSendWindow({}), null);
@@ -208,11 +208,11 @@ test('a window may wrap midnight', () => {
   assert.equal(crHourOf(nextWindowOpening(w, crAt(9, 12))), 20);
 });
 
-test('the panama hour is read as CR time, not the reader\'s clock', () => {
-  // 02:00 UTC is 20:00 the previous day in panama — the difference that
+test('the panama hour is read as Panama time, not the reader\'s clock', () => {
+  // 02:00 UTC is 21:00 the previous day in panama — the difference that
   // decides whether a message lands at dinner or at 2am.
-  assert.equal(crHourOf(Date.parse('2026-09-09T02:00:00Z')), 20);
-  assert.equal(crHourOf(Date.parse('2026-09-09T06:00:00Z')), 0);
+  assert.equal(crHourOf(Date.parse('2026-09-09T02:00:00Z')), 21);
+  assert.equal(crHourOf(Date.parse('2026-09-09T05:00:00Z')), 0);
 });
 
 test('24:00 as an end means the end of the day, not a held send', () => {

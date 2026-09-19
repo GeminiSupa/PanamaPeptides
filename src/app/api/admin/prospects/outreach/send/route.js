@@ -29,7 +29,7 @@ function linkify(text, prospectId) {
     /(https?:\/\/[^\s<]+)/g,
     (url) => {
       const trackingUrl = prospectId 
-        ? `${LIVE_SITE_URL || 'https://peptidespanama.net'}/api/tracking/click?url=${encodeURIComponent(url)}&p=${encodeURIComponent(prospectId)}` 
+        ? `${LIVE_SITE_URL || 'https://www.peptidospty.com'}/api/tracking/click?url=${encodeURIComponent(url)}&p=${encodeURIComponent(prospectId)}` 
         : url;
       return `<a href="${trackingUrl}" style="color:#2563eb">${url}</a>`;
     },
@@ -41,7 +41,7 @@ function emailHtml(body, disclosure, prospectId) {
     `<p style="margin:0 0 14px">${linkify(block, prospectId).replaceAll('\n', '<br />')}</p>`
   )).join('');
 
-  const pixel = prospectId ? `<img src="${LIVE_SITE_URL || 'https://peptidespanama.net'}/api/tracking/pixel?p=${encodeURIComponent(prospectId)}" width="1" height="1" alt="" style="display:none;" />` : '';
+  const pixel = prospectId ? `<img src="${LIVE_SITE_URL || 'https://www.peptidospty.com'}/api/tracking/pixel?p=${encodeURIComponent(prospectId)}" width="1" height="1" alt="" style="display:none;" />` : '';
 
   return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#0f172a">
 ${paragraphs}

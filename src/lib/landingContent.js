@@ -45,7 +45,7 @@ export const DEFAULT_LANDING_PAGE_SETTINGS = {
     {
       outlet: 'Panama Research News',
       logoUrl: '/panama-news-logo.png',
-      url: 'https://panamapeptides.com',
+      url: 'https://www.peptidospty.com',
       titleEn: 'Panama Peptides Brings Trusted Research Compounds To Panama.',
       titleEs: 'Panama Peptides trae compuestos de investigación confiables a Panamá.',
       quoteEn: '"the company we wished existed"',

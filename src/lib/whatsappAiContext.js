@@ -46,7 +46,7 @@ export async function buildWhatsAppCustomerContext(supabase, waId) {
         'Active Abandoned Carts:\n' +
           withItems
             .map((c) => {
-              const link = `https://catalog.peptidespanama.net/catalog?recover_session=${c.session_id}`;
+              const link = `https://www.peptidospty.com/catalog?recover_session=${c.session_id}`;
               return `- ${sanitizeCustomerName(c.customer_name)}: ${formatCartItemsSummary(c.cart_data)} | recovery link: ${link}`;
             })
             .join('\n')

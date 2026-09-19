@@ -1,4 +1,6 @@
-const CR_OFFSET_MS = 6 * 60 * 60 * 1000;
+import { CR_UTC_OFFSET_HOURS } from './crTime.mjs';
+
+const CR_OFFSET_MS = CR_UTC_OFFSET_HOURS * 60 * 60 * 1000;
 
 export const AGENT_ANALYTICS_MAX_WEEK_OFFSET = 52;
 
@@ -13,7 +15,7 @@ export function normalizeAgentWeekOffset(value) {
   return Math.min(Math.max(parsed, 0), AGENT_ANALYTICS_MAX_WEEK_OFFSET);
 }
 
-/** Monday-to-Sunday reporting boundaries anchored to panama (UTC-6). */
+/** Monday-to-Sunday reporting boundaries anchored to panama (UTC-5). */
 export function agentAnalyticsRange(nowValue = new Date(), offsetValue = 0) {
   const now = finiteDate(nowValue) || new Date();
   const weekOffset = normalizeAgentWeekOffset(offsetValue);

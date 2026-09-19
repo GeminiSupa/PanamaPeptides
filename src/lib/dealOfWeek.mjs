@@ -18,13 +18,14 @@
 
 import { crWallToIso, CR_UTC_OFFSET_HOURS } from './crTime.mjs';
 import { dealFieldsMatch } from './dealProductProtection.mjs';
+import { LIVE_CATALOG_URL } from './publicUrl.js';
 
 const CR_OFFSET_MS = CR_UTC_OFFSET_HOURS * 60 * 60 * 1000;
 const HOUR_MS = 60 * 60 * 1000;
 
 /** Free-text label written into products.discount while a deal is live. */
 export const DEAL_DISCOUNT_LABEL = 'Deal of the Week';
-export const DEAL_CATALOG_URL = 'https://catalog.peptidespanama.net/catalog';
+export const DEAL_CATALOG_URL = LIVE_CATALOG_URL;
 export const DEAL_REVIEW_THRESHOLD_PCT = 30;
 export const DEAL_HARD_LIMIT_PCT = 50;
 export const DEAL_MAX_STACKED_DISCOUNT_PCT = 55;
@@ -33,8 +34,8 @@ export const DEAL_MAX_STACKED_DISCOUNT_PCT = 55;
  * panama wall-clock parts for an instant.
  *
  * Shifting the instant back by the fixed CR offset makes the UTC getters read
- * out CR wall time — the same trick crTime.mjs uses, and safe because Costa
- * Rica has no DST.
+ * out panama wall time — the same trick crTime.mjs uses, and safe because Panama
+ * has no DST.
  */
 function crWallParts(instant) {
   const shifted = new Date(instant.getTime() - CR_OFFSET_MS);

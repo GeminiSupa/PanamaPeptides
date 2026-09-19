@@ -761,7 +761,7 @@ export default function AdminPage() {
       }
       if (matchedCarts.length) {
         crmContext += 'Active abandoned carts:\n' + matchedCarts.map((c) =>
-          `- ${c.cart_data.map((i) => `${i.product} x${i.qty}`).join(', ')} | https://catalog.peptidespanama.net/catalog?recover_session=${c.session_id}`
+          `- ${c.cart_data.map((i) => `${i.product} x${i.qty}`).join(', ')} | https://www.peptidospty.com/catalog?recover_session=${c.session_id}`
         ).join('\n');
       }
 
@@ -1335,7 +1335,7 @@ Vimos que estuviste revisando nuestro catálogo de péptidos y te interesaste en
 
 ¿Tienes alguna duda sobre la reconstitución, dosis o envíos express en panama? 
 
-Puedes volver al catálogo para completar tu orden en https://catalog.peptidespanama.net/catalog (¡usa el cupón *COSTA10* para un 10% de descuento!). 
+Puedes volver al catálogo para completar tu orden en https://www.peptidospty.com/catalog (¡usa el cupón *COSTA10* para un 10% de descuento!). 
 
 Si prefieres coordinar o realizar tus consultas por WhatsApp, puedes escribirnos directamente a nuestros WhatsApp de la compañía +506 8404-6973 haciendo clic en este enlace: https://wa.me/50684046973
 
@@ -1344,11 +1344,11 @@ Peptides Panama`;
         } else {
           defaultMsg = `¡Hola! 👋
 
-Vimos que estuviste revisando nuestro catálogo de péptidos en https://catalog.peptidespanama.net/catalog. 🧪
+Vimos que estuviste revisando nuestro catálogo de péptidos en https://www.peptidospty.com/catalog. 🧪
 
 ¿Tienes alguna consulta técnica o sobre stock en la que te podamos ayudar hoy?
 
-Puedes volver al catálogo para completar tu orden en https://catalog.peptidespanama.net/catalog (¡usa el cupón *COSTA10* para un 10% de descuento!).
+Puedes volver al catálogo para completar tu orden en https://www.peptidospty.com/catalog (¡usa el cupón *COSTA10* para un 10% de descuento!).
 
 Si prefieres coordinar o realizar tus consultas por WhatsApp, puedes escribirnos directamente a nuestros WhatsApp de la compañía +506 8404-6973 haciendo clic en este enlace: https://wa.me/50684046973
 
@@ -1358,9 +1358,9 @@ Peptides Panama`;
       } else {
         // WhatsApp method
         if (productsStr) {
-          defaultMsg = `¡Hola! 👋 Vimos que estuviste revisando nuestro catálogo de péptidos y te interesaste en *${productsStr}*. 🧪\n\n¿Tienes alguna duda sobre la reconstitución, dosis o envíos express en panama? \n\nPuedes volver al catálogo en catalog.peptidespanama.net/catalog (usa el cupón *COSTA10* para un 10% de descuento) o responder a este WhatsApp de la compañía al +506 8404-6973 para coordinar de inmediato.`;
+          defaultMsg = `¡Hola! 👋 Vimos que estuviste revisando nuestro catálogo de péptidos y te interesaste en *${productsStr}*. 🧪\n\n¿Tienes alguna duda sobre la reconstitución, dosis o envíos express en panama? \n\nPuedes volver al catálogo en www.peptidospty.com/catalog (usa el cupón *COSTA10* para un 10% de descuento) o responder a este WhatsApp de la compañía al +506 8404-6973 para coordinar de inmediato.`;
         } else {
-          defaultMsg = `¡Hola! 👋 Vimos que estuviste revisando nuestro catálogo de péptidos en catalog.peptidespanama.net/catalog. 🧪\n\n¿Tienes alguna consulta técnica o sobre stock en la que te podamos ayudar hoy?\n\nPuedes volver al catálogo para completar tu orden con un 10% de descuento usando el cupón: *COSTA10* o responder directamente a este WhatsApp de la compañía al +506 8404-6973.`;
+          defaultMsg = `¡Hola! 👋 Vimos que estuviste revisando nuestro catálogo de péptidos en www.peptidospty.com/catalog. 🧪\n\n¿Tienes alguna consulta técnica o sobre stock en la que te podamos ayudar hoy?\n\nPuedes volver al catálogo para completar tu orden con un 10% de descuento usando el cupón: *COSTA10* o responder directamente a este WhatsApp de la compañía al +506 8404-6973.`;
         }
       }
     } else {
@@ -1372,7 +1372,7 @@ We noticed you were browsing our peptide catalog and were interested in ${produc
 
 Do you have any research questions regarding reconstitution, dosages, or express shipping in panama?
 
-You can return to our catalog to complete your order at https://catalog.peptidespanama.net/catalog (use coupon *COSTA10* for 10% off!).
+You can return to our catalog to complete your order at https://www.peptidospty.com/catalog (use coupon *COSTA10* for 10% off!).
 
 If you prefer to coordinate or ask questions via WhatsApp, you can chat with us directly at our company WhatsApp numbers +506 8404-6973 by clicking here: https://wa.me/50684046973
 
@@ -1381,11 +1381,11 @@ Peptides Panama`;
         } else {
           defaultMsg = `Hi there! 👋
 
-We noticed you were browsing our peptide catalog at https://catalog.peptidespanama.net/catalog. 🧪
+We noticed you were browsing our peptide catalog at https://www.peptidospty.com/catalog. 🧪
 
 Do you have any research questions or stock inquiries we can help you with today?
 
-You can return to our catalog to complete your purchase at https://catalog.peptidespanama.net/catalog (use coupon *COSTA10* for 10% off!).
+You can return to our catalog to complete your purchase at https://www.peptidospty.com/catalog (use coupon *COSTA10* for 10% off!).
 
 If you prefer to coordinate or ask questions via WhatsApp, you can chat with us directly at our company WhatsApp numbers +506 8404-6973 by clicking here: https://wa.me/50684046973
 
@@ -1395,9 +1395,9 @@ Peptides Panama`;
       } else {
         // WhatsApp method
         if (productsStr) {
-          defaultMsg = `Hi there! 👋 We noticed you were browsing our peptide catalog and were interested in *${productsStr}*. 🧪\n\nDo you have any research questions regarding reconstitution, dosages, or express shipping in panama?\n\nYou can return to catalog.peptidespanama.net/catalog (use coupon *COSTA10* for 10% off) or reply directly to this company WhatsApp number (+506 8404-6973) to coordinate.`;
+          defaultMsg = `Hi there! 👋 We noticed you were browsing our peptide catalog and were interested in *${productsStr}*. 🧪\n\nDo you have any research questions regarding reconstitution, dosages, or express shipping in panama?\n\nYou can return to www.peptidospty.com/catalog (use coupon *COSTA10* for 10% off) or reply directly to this company WhatsApp number (+506 8404-6973) to coordinate.`;
         } else {
-          defaultMsg = `Hi there! 👋 We noticed you were browsing our peptide catalog at catalog.peptidespanama.net/catalog. 🧪\n\nDo you have any research questions or stock inquiries we can help you with today?\n\nYou can return to our catalog to complete your purchase with 10% off using coupon: *COSTA10* or reply directly to this company WhatsApp number (+506 8404-6973).`;
+          defaultMsg = `Hi there! 👋 We noticed you were browsing our peptide catalog at www.peptidospty.com/catalog. 🧪\n\nDo you have any research questions or stock inquiries we can help you with today?\n\nYou can return to our catalog to complete your purchase with 10% off using coupon: *COSTA10* or reply directly to this company WhatsApp number (+506 8404-6973).`;
         }
       }
     }
@@ -1421,8 +1421,8 @@ Peptides Panama`;
 
 Core Rules:
 1. Keep the message extremely short and sweet (MAX 3-4 sentences total).
-2. For WhatsApp outreach, include the catalog link (catalog.peptidespanama.net/catalog) and mention the company WhatsApp numbers +506 8404-6973.
-3. For Email outreach, you MUST explicitly include both the catalog link (https://catalog.peptidespanama.net/catalog) and a clickable direct link to WhatsApp (https://wa.me/50684046973) along with the company WhatsApp numbers (+506 8404-6973).
+2. For WhatsApp outreach, include the catalog link (www.peptidospty.com/catalog) and mention the company WhatsApp numbers +506 8404-6973.
+3. For Email outreach, you MUST explicitly include both the catalog link (https://www.peptidospty.com/catalog) and a clickable direct link to WhatsApp (https://wa.me/50684046973) along with the company WhatsApp numbers (+506 8404-6973).
 4. Be professional and friendly. Avoid lengthy chemical explanations or overly dense medical details. Keep it focused on helping them finalize their research compounds.`;
       
       if (productsStr) {
@@ -1537,19 +1537,19 @@ Core Rules:
 
 ¿Tienes alguna duda sobre la reconstitución, dosis o envíos express en panama? 
 
-Puedes volver al catálogo en catalog.peptidespanama.net/catalog o respondernos directamente aquí para coordinar por WhatsApp. ¡Usa el cupón *COSTA10* para un 10% de descuento!`;
+Puedes volver al catálogo en www.peptidospty.com/catalog o respondernos directamente aquí para coordinar por WhatsApp. ¡Usa el cupón *COSTA10* para un 10% de descuento!`;
       } else {
         return `Hi there! 👋 We noticed you were browsing our peptide catalog and were interested in *${firstProduct || 'our compounds'}*. 🧪
 
 Do you have any research questions regarding reconstitution, dosages, or express shipping in panama?
 
-You can return to our catalog at catalog.peptidespanama.net/catalog or reply directly here to coordinate via WhatsApp. Use coupon *COSTA10* for 10% off!`;
+You can return to our catalog at www.peptidospty.com/catalog or reply directly here to coordinate via WhatsApp. Use coupon *COSTA10* for 10% off!`;
       }
     } else {
       if (isEs) {
         return `¡Hola! 👋
 
-Vimos que estuviste consultando información sobre *${viewedProducts}* en nuestro catálogo catalog.peptidespanama.net/catalog. 🧪
+Vimos que estuviste consultando información sobre *${viewedProducts}* en nuestro catálogo www.peptidospty.com/catalog. 🧪
 
 Queríamos ponernos a tu disposición por si tienes alguna duda técnica o consulta sobre stock. Realizamos envíos rápidos a todo el país vía Correos de panama.
 
@@ -1561,7 +1561,7 @@ Soporte - Peptides Panama`;
       } else {
         return `Hi there! 👋
 
-We noticed you were browsing *${viewedProducts}* in our research catalog at catalog.peptidespanama.net/catalog. 🧪
+We noticed you were browsing *${viewedProducts}* in our research catalog at www.peptidospty.com/catalog. 🧪
 
 We wanted to reach out in case you have any technical questions or stock inquiries. We offer certified purity >99% and fast shipping across panama.
 
@@ -1599,7 +1599,7 @@ Prospect Details:
 
 Core Rules:
 1. Keep the message extremely short and simple (MAX 3-4 sentences total). No verbose fluff.
-2. Direct them to return to the catalog at catalog.peptidespanama.net/catalog or chat with us on WhatsApp at +506 8404-6973.
+2. Direct them to return to the catalog at www.peptidospty.com/catalog or chat with us on WhatsApp at +506 8404-6973.
 3. Offer a 10% coupon code: COSTA10 to finalize their purchase.
 4. Keep the tone warm, consultative, and supportive.
 5. Write the response ENTIRELY in ${langLabel}. Do NOT write subject lines, placeholders, or preambles. Just output the final outreach text.`;
@@ -4076,8 +4076,8 @@ Core Rules:
     }
 
     const recoveryLink = recipient.session_id
-      ? `https://catalog.peptidespanama.net/catalog?recover_session=${encodeURIComponent(recipient.session_id)}${agentName ? `&sales_agent=${encodeURIComponent(agentName)}` : ''}`
-      : 'https://catalog.peptidespanama.net/catalog';
+      ? `https://www.peptidospty.com/catalog?recover_session=${encodeURIComponent(recipient.session_id)}${agentName ? `&sales_agent=${encodeURIComponent(agentName)}` : ''}`
+      : 'https://www.peptidospty.com/catalog';
 
     // 1. Check if recovering abandoned cart
     if (recipient.cartItems) {
@@ -5199,8 +5199,24 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
     }
   };
 
-  // Prevent hydration mismatch by skipping SSR for admin portal entirely
-  if (!mounted) return null;
+  // Keep the admin shell visible while the client-only auth/session checks
+  // hydrate. Returning null made the APK/webview look broken on /admin.
+  if (!mounted) {
+    return (
+      <div className="admin-layout" suppressHydrationWarning>
+        <div className="admin-login-container">
+          <div className="admin-login-card admin-loading-card" role="status" aria-live="polite">
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+              <img src="/logo.png" alt="Panama Peptides Admin" style={{ maxHeight: '60px', width: 'auto', objectFit: 'contain', borderRadius: '12px', boxShadow: '0 2px 16px rgba(0,0,0,0.25)' }} />
+            </div>
+            <div className="sync-spinner" style={{ width: '24px', height: '24px', margin: '0 auto 14px' }} />
+            <h2>Loading Admin</h2>
+            <p>Preparing the mobile dashboard…</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Render Login Card if not logged in
   if (!isAuthenticated) {
@@ -5670,8 +5686,8 @@ Te contacto respecto a tu orden #${recipient.orderNumber} de ${itemsStr}. Querí
                     <p style={{ margin: '0 0 8px 0', color: '#38bdf8', fontWeight: 'bold' }}>🧪 Live Testing Links (No analytics logged):</p>
                     <ul style={{ margin: 0, paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                       <li>
-                        <a href="https://catalog.peptidespanama.net/catalog?admin_preview=true" target="_blank" rel="noopener noreferrer" style={{ color: '#34d399', textDecoration: 'none' }}>
-                          https://catalog.peptidespanama.net/catalog?admin_preview=true
+                        <a href="https://www.peptidospty.com/catalog?admin_preview=true" target="_blank" rel="noopener noreferrer" style={{ color: '#34d399', textDecoration: 'none' }}>
+                          https://www.peptidospty.com/catalog?admin_preview=true
                         </a>
                       </li>
                       <li>

@@ -18,9 +18,9 @@ test('agent analytics boundaries use panama calendar dates', () => {
   const range = agentAnalyticsRange('2026-08-21T05:30:00.000Z', 0);
 
   assert.equal(range.nowUtc, '2026-08-21T05:30:00.000Z');
-  assert.equal(range.todayStartUtc, '2026-08-20T06:00:00.000Z');
-  assert.equal(range.monthStartUtc, '2026-08-01T06:00:00.000Z');
-  assert.equal(range.weekStartUtc, '2026-08-17T06:00:00.000Z');
+  assert.equal(range.todayStartUtc, '2026-08-21T05:00:00.000Z');
+  assert.equal(range.monthStartUtc, '2026-08-01T05:00:00.000Z');
+  assert.equal(range.weekStartUtc, '2026-08-17T05:00:00.000Z');
   assert.equal(range.weekEndUtc, range.nowUtc);
   assert.equal(range.weekStartDate, '2026-08-17');
   assert.equal(range.weekEndDate, '2026-08-23');
@@ -29,8 +29,8 @@ test('agent analytics boundaries use panama calendar dates', () => {
 test('past agent weeks are complete Monday-to-Monday half-open ranges', () => {
   const range = agentAnalyticsRange('2026-08-21T18:00:00.000Z', 1);
 
-  assert.equal(range.weekStartUtc, '2026-08-10T06:00:00.000Z');
-  assert.equal(range.weekEndUtc, '2026-08-17T06:00:00.000Z');
+  assert.equal(range.weekStartUtc, '2026-08-10T05:00:00.000Z');
+  assert.equal(range.weekEndUtc, '2026-08-17T05:00:00.000Z');
   assert.equal(range.weekStartDate, '2026-08-10');
   assert.equal(range.weekEndDate, '2026-08-16');
 });
@@ -85,9 +85,9 @@ test('reporting starts at the first paid or completed transition', () => {
 });
 
 test('completion falls back to creation and excludes the upper boundary', () => {
-  const order = { created_at: '2026-08-10T06:00:00.000Z', activity_log: [] };
-  assert.equal(orderCompletedInRange(order, '2026-08-10T06:00:00.000Z', '2026-08-17T06:00:00.000Z'), true);
-  assert.equal(orderCompletedInRange(order, '2026-08-01T06:00:00.000Z', '2026-08-10T06:00:00.000Z'), false);
+  const order = { created_at: '2026-08-10T05:00:00.000Z', activity_log: [] };
+  assert.equal(orderCompletedInRange(order, '2026-08-10T05:00:00.000Z', '2026-08-17T05:00:00.000Z'), true);
+  assert.equal(orderCompletedInRange(order, '2026-08-01T05:00:00.000Z', '2026-08-10T05:00:00.000Z'), false);
 });
 
 test('date-only labels do not pass through a timezone-shifting ISO parse', () => {

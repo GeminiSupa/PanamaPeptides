@@ -47,7 +47,7 @@ export async function POST(request) {
       return NextResponse.json({ success: false, skipped: true, reason: gate.reason });
     }
 
-    const origin = request.headers.get('origin') || 'https://catalog.peptidespanama.net';
+    const origin = request.headers.get('origin') || 'https://www.peptidospty.com';
     const catalogUrl = `${origin}/catalog`;
     
     // Fallback message text for DB logging

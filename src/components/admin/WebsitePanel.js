@@ -1,11 +1,12 @@
 "use client";
 
 import { ExternalLink, Globe, FileText, Languages, ImageIcon, AlertTriangle } from 'lucide-react';
+import { LIVE_SITE_URL } from '@/lib/publicUrl';
 
 /**
  * Marketing Website panel.
  *
- * The marketing site at peptidespanama.net is being rebuilt in a separate
+ * The marketing site at peptidospty.com is being rebuilt in a separate
  * repo (peptidepanama-website). This panel is the seat that rebuild occupies
  * inside the dashboard.
  *
@@ -20,8 +21,8 @@ import { ExternalLink, Globe, FileText, Languages, ImageIcon, AlertTriangle } fr
  * stay exactly as they are.
  */
 
-const SITE_URL = 'https://peptidespanama.net';
-const CATALOG_URL = 'https://catalog.peptidespanama.net';
+const SITE_URL = LIVE_SITE_URL;
+const CATALOG_URL = LIVE_SITE_URL;
 
 const INVENTORY = [
   { label: 'Core pages', en: 15, note: 'home, about, contact, FAQ, shop index' },

@@ -75,8 +75,14 @@ export function useStorefrontLang() {
     try {
       const fromQuery = new URLSearchParams(window.location.search).get('lang');
       const stored = localStorage.getItem('lang');
-      const resolved = fromQuery || stored || 'es';
+      const resolved = fromQuery === 'en' || fromQuery === 'es'
+        ? fromQuery
+        : stored === 'en' || stored === 'es'
+          ? stored
+          : 'es';
       setLang(resolved === 'en' ? 'en' : 'es');
+      localStorage.setItem('lang', resolved === 'en' ? 'en' : 'es');
+      document.documentElement.lang = resolved === 'en' ? 'en' : 'es';
     } catch {
       setLang('es');
     }
@@ -87,6 +93,7 @@ export function useStorefrontLang() {
     setLang(resolved);
     try {
       localStorage.setItem('lang', resolved);
+      document.documentElement.lang = resolved;
     } catch {
       // Private browsing with storage disabled — the in-memory choice still holds.
     }

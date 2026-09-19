@@ -8,6 +8,8 @@ import {
 } from '../src/lib/tiktokPixel.mjs';
 
 test('each production hostname receives only its assigned TikTok pixel', () => {
+  assert.equal(getTikTokPixelId('peptidospty.com'), CATALOG_TIKTOK_PIXEL_ID);
+  assert.equal(getTikTokPixelId('www.peptidospty.com'), CATALOG_TIKTOK_PIXEL_ID);
   assert.equal(getTikTokPixelId('peptidespanama.net'), MAIN_SITE_TIKTOK_PIXEL_ID);
   assert.equal(getTikTokPixelId('www.peptidespanama.net'), MAIN_SITE_TIKTOK_PIXEL_ID);
   assert.equal(getTikTokPixelId('catalog.peptidespanama.net'), CATALOG_TIKTOK_PIXEL_ID);
@@ -26,5 +28,5 @@ test('the bootstrap loads TikTok once using the hostname-selected pixel', () => 
   assert.match(script, /ttq\.load\(pixelId\)/);
   assert.equal((script.match(/ttq\.page\(\)/g) || []).length, 1);
   assert.equal((script.match(new RegExp(MAIN_SITE_TIKTOK_PIXEL_ID, 'g')) || []).length, 2);
-  assert.equal((script.match(new RegExp(CATALOG_TIKTOK_PIXEL_ID, 'g')) || []).length, 1);
+  assert.equal((script.match(new RegExp(CATALOG_TIKTOK_PIXEL_ID, 'g')) || []).length, 3);
 });

@@ -1004,7 +1004,8 @@ export default function CatalogPage() {
     if (deepLink.category) setPendingCategory(deepLink.category);
 
     const hasUserSelectedLang = localStorage.getItem(USER_SELECTED_LANG_KEY) === 'true';
-    let initialLang = hasUserSelectedLang ? localStorage.getItem('lang') || 'es' : 'es';
+    const storedLang = localStorage.getItem('lang');
+    let initialLang = hasUserSelectedLang && (storedLang === 'en' || storedLang === 'es') ? storedLang : 'es';
     let initialCurrency = 'CRC';
 
     if (langParam === 'en') {
@@ -1020,12 +1021,11 @@ export default function CatalogPage() {
 
     setLang(initialLang);
     setCurrency(initialCurrency);
-    if (!langParam) {
-      localStorage.setItem('lang', initialLang);
-    }
+    localStorage.setItem('lang', initialLang);
+    document.documentElement.lang = initialLang;
 
     // Theme loaded from localStorage
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
     setTheme(savedTheme);
     document.documentElement.setAttribute('data-theme', savedTheme);
 
@@ -1899,9 +1899,10 @@ export default function CatalogPage() {
   };
 
   const handleThemeToggle = (selectedTheme) => {
-    setTheme(selectedTheme);
-    localStorage.setItem('theme', selectedTheme);
-    document.documentElement.setAttribute('data-theme', selectedTheme);
+    const nextTheme = selectedTheme === 'dark' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', nextTheme);
+    localStorage.setItem('theme', nextTheme);
+    setTheme(nextTheme);
   };
 
   const handleViewToggle = () => {

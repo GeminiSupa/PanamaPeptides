@@ -144,8 +144,9 @@ body .clone-home, body .catalog-page-shell, body .editorial-page, body .account-
 .clone-home .about-secondary:hover { color: var(--pp-text-primary) !important; background: var(--pp-bg-hover) !important; }
 .clone-home .clone-bulk, .clone-home .about-cta { background: var(--pp-bg-elevated) !important; }
 .mobile-action-bar { background: var(--pp-bg-surface) !important; box-shadow: 0 -2px 12px #12294d14 !important; }
+.lp-mobile-action--wa { background: #25d366 !important; color: #052e16 !important; border-color: rgba(5,46,22,.18) !important; }
 .catalog-page-shell .header-controls { flex-wrap: wrap; justify-content: flex-end; }
-.catalog-page-shell .header-controls button { min-height: 40px; color: var(--pp-text-primary); }
+.catalog-page-shell .header-controls button { min-height: 44px; min-width: 44px; color: var(--pp-text-primary); }
 .catalog-page-shell .cat-chip.active { color: #fff !important; background: #174c97 !important; border-color: #174c97 !important; }
 .catalog-page-shell .admin-link { opacity: 1; color: var(--pp-text-muted); }
 .catalog-page-shell .trust-desc { color: var(--pp-text-muted); }

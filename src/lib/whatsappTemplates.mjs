@@ -23,7 +23,7 @@ export const APPROVED_WHATSAPP_AGENT_TEMPLATES = [
     body: 'Hola {{1}}, dejaste algunos productos en tu carrito en Peptides Panama.\n\nTus productos seleccionados aun estan disponibles. Puedes completar tu pedido aqui:\n{{2}}\n\nSi tienes alguna pregunta antes de ordenar, nuestro equipo con gusto te ayuda.',
     variables: [
       { key: 'customerName', label: 'Nombre', fallback: 'Cliente' },
-      { key: 'checkoutUrl', label: 'Link de carrito', fallback: 'https://catalog.peptidespanama.net/catalog' },
+      { key: 'checkoutUrl', label: 'Link de carrito', fallback: 'https://www.peptidospty.com/catalog' },
     ],
   },
   {
@@ -36,7 +36,7 @@ export const APPROVED_WHATSAPP_AGENT_TEMPLATES = [
     description: 'Recordatorio corto con link de checkout.',
     body: 'Hola! Notamos que dejaste algunos articulos en tu carrito en Peptides Panama. Tuviste algun problema al completar tu pedido? Usa este enlace para finalizar tu compra: {{1}} Gracias!',
     variables: [
-      { key: 'checkoutUrl', label: 'Link de checkout', fallback: 'https://catalog.peptidespanama.net/catalog' },
+      { key: 'checkoutUrl', label: 'Link de checkout', fallback: 'https://www.peptidospty.com/catalog' },
     ],
   },
   {
@@ -49,7 +49,7 @@ export const APPROVED_WHATSAPP_AGENT_TEMPLATES = [
     description: 'Short English cart reminder with checkout link.',
     body: 'Hi! We noticed you left some items in your cart at Peptides Panama. Did you have any issues completing your order? Use this link to complete your checkout: {{1}} Thanks!',
     variables: [
-      { key: 'checkoutUrl', label: 'Checkout link', fallback: 'https://catalog.peptidespanama.net/catalog' },
+      { key: 'checkoutUrl', label: 'Checkout link', fallback: 'https://www.peptidospty.com/catalog' },
     ],
   },
   {

@@ -92,8 +92,8 @@ export async function GET(request) {
     const period = searchParams.get('period') || 'previous';
     const targetAgentEmail = searchParams.get('agentEmail');
 
-    // 3. Calculate Monday-to-Sunday boundaries in panama Time (UTC-6)
-    const CR_OFFSET = -6; // panama is UTC-6 all year
+    // 3. Calculate Monday-to-Sunday boundaries in panama Time (UTC-5)
+    const CR_OFFSET = -5; // panama is UTC-5 all year
     const nowUTC = new Date();
     
     // Shift current time to panama timezone to correctly determine current "day"
@@ -557,7 +557,7 @@ export async function GET(request) {
           <div style="background:#f1f5f9;padding:24px 12px;">
           <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#334155;background:#ffffff;max-width:680px;margin:0 auto;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;">
             <div style="background:#0f172a;padding:28px 24px;text-align:center;">
-              <img src="https://catalog.peptidespanama.net/logo.png?v=3" alt="Panama Peptide" width="96" height="96" style="display:block;width:96px;height:96px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+              <img src="https://www.peptidospty.com/logo.png?v=3" alt="Panama Peptide" width="96" height="96" style="display:block;width:96px;height:96px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
               <div style="color:#ffffff;font-size:19px;font-weight:800;letter-spacing:.7px;">Peptides Panama</div>
               <h1 style="color:#ffffff;font-size:24px;margin:14px 0 6px;">Weekly team pay report</h1>
               <p style="color:#cbd5e1;font-size:13px;margin:0;">${periodDisplay} · panama time</p>
@@ -590,7 +590,7 @@ export async function GET(request) {
             </div>
 
             <div style="text-align:center;margin-bottom:24px;">
-              <a href="https://peptidespanama.net/admin?tab=team" style="display:inline-block;background:#0f766e;color:#ffffff;font-weight:bold;padding:13px 24px;border-radius:9px;text-decoration:none;font-size:13px;">
+              <a href="https://www.peptidospty.com/admin?tab=team" style="display:inline-block;background:#0f766e;color:#ffffff;font-weight:bold;padding:13px 24px;border-radius:9px;text-decoration:none;font-size:13px;">
                 Review & Approve Payouts
               </a>
             </div>

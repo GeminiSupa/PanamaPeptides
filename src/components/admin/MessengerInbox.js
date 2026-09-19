@@ -19,7 +19,7 @@ function replyWindowHoursLeft(conv) {
 // Canned replies (Spanish-first) for one-tap common answers.
 const QUICK_REPLIES = [
   { label: '👋 Saludo', text: '¡Hola! Gracias por escribirnos. ¿En qué le podemos ayudar?' },
-  { label: '🛒 Catálogo', text: 'Puede ver nuestro catálogo completo aquí: https://catalog.peptidespanama.net/catalog' },
+  { label: '🛒 Catálogo', text: 'Puede ver nuestro catálogo completo aquí: https://www.peptidospty.com/catalog' },
   { label: '🚚 Envío', text: 'Realizamos envíos a todo panama por Correos de panama (1 a 3 días). Envío gratis en pedidos superiores a ₡30,000.' },
   { label: '💳 Pago', text: 'Aceptamos tarjeta y SINPE Móvil. ¿Cómo prefiere pagar?' },
 ];

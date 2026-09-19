@@ -5,8 +5,8 @@ import { readFile } from 'node:fs/promises';
 import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT } from '../src/lib/businessLinks.js';
 
 test('public Trustpilot rating matches the verified profile', () => {
-  assert.equal(TRUSTPILOT_RATING, '4.4');
-  assert.equal(TRUSTPILOT_REVIEW_COUNT, 11);
+  assert.equal(TRUSTPILOT_RATING, '4.6');
+  assert.equal(TRUSTPILOT_REVIEW_COUNT, 12);
 });
 
 test('catalog and storefront use the shared Trustpilot rating', async () => {
@@ -15,7 +15,7 @@ test('catalog and storefront use the shared Trustpilot rating', async () => {
     readFile(new URL('../src/components/StorefrontChrome.js', import.meta.url), 'utf8'),
   ]);
 
-  assert.match(catalog, /\{TRUSTPILOT_RATING\}/);
-  assert.match(chrome, /score: TRUSTPILOT_RATING/);
+  assert.match(catalog, /liveTrustpilotRating/);
+  assert.match(chrome, /score: liveTrustpilotRating/);
   assert.doesNotMatch(catalog, /Trustpilot[\s\S]{0,500}\b5\.0\b/);
 });

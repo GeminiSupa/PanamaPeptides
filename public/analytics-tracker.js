@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   var script = document.currentScript;
-  var endpoint = (script && script.dataset.endpoint) || 'https://catalog.peptidespanama.net/api/analytics/track';
+  var endpoint = (script && script.dataset.endpoint) || 'https://www.peptidospty.com/api/analytics/track';
   var cookieName = 'pcr_visitor_id';
   var sessionKey = 'pcr_analytics_session_id';
   function id(prefix) {
@@ -13,7 +13,10 @@
     return found ? decodeURIComponent(found.slice(name.length + 1)) : '';
   }
   var visitorId = cookie(cookieName) || localStorage.getItem(cookieName) || id('visitor');
-  document.cookie = cookieName + '=' + encodeURIComponent(visitorId) + '; Max-Age=31536000; Path=/; Domain=.peptidespanama.net; SameSite=Lax; Secure';
+  var cookieDomain = location.hostname === 'peptidospty.com' || location.hostname.endsWith('.peptidospty.com')
+    ? '; Domain=.peptidospty.com; Secure'
+    : '';
+  document.cookie = cookieName + '=' + encodeURIComponent(visitorId) + '; Max-Age=31536000; Path=/; SameSite=Lax' + cookieDomain;
   localStorage.setItem(cookieName, visitorId);
   var sessionId = sessionStorage.getItem(sessionKey) || id('session');
   sessionStorage.setItem(sessionKey, sessionId);

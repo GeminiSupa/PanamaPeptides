@@ -61,13 +61,13 @@ export async function GET(request) {
       const subject = `Time to restock ${topItem}? 📦`;
       const html = `
         <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#333;">
-          <img src="https://catalog.peptidespanama.net/logo.png?v=3" alt="Panama Peptide" width="96" height="96" style="display:block;width:96px;height:96px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
+          <img src="https://www.peptidospty.com/logo.png?v=3" alt="Panama Peptide" width="96" height="96" style="display:block;width:96px;height:96px;margin:0 auto 14px auto;border:0;outline:none;text-decoration:none;border-radius:10px;">
           <h2>Time for a refill?</h2>
           <p>Hi ${order.customer_name || 'there'},</p>
           <p>It's been about a month since you ordered <strong>${topItem}</strong>. If you're running low on supplies, we've got you covered!</p>
           <p>Restock your research materials today and enjoy fast shipping directly from our panama facility.</p>
           <p>
-            <a href="https://catalog.peptidespanama.net/catalog" style="display:inline-block;padding:12px 24px;background:#3b82f6;color:#fff;text-decoration:none;border-radius:6px;font-weight:bold;">Shop the Catalog</a>
+            <a href="https://www.peptidospty.com/catalog" style="display:inline-block;padding:12px 24px;background:#3b82f6;color:#fff;text-decoration:none;border-radius:6px;font-weight:bold;">Shop the Catalog</a>
           </p>
           <p>Need assistance with your next cycle? Reply to this email or reach us on WhatsApp!</p>
           <p>Thank you,<br/>The Peptides Panama Team</p>

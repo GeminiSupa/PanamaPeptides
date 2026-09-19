@@ -17,7 +17,7 @@ const FLOW_CATALOG = [
 Thanks for checking out our catalog. If you need help choosing products, shipping options, or bulk pricing, reply here and our team will help.
 
 View the catalog anytime:
-https://catalog.peptidespanama.net/catalog`
+https://www.peptidospty.com/catalog`
   },
   {
     id: 'abandoned_cart',
@@ -30,7 +30,7 @@ https://catalog.peptidespanama.net/catalog`
 Looks like you started an order but did not finish checkout. If you had a question about availability, payment, or delivery inside panama, our team can help.
 
 You can return to the catalog here:
-https://catalog.peptidespanama.net/catalog`
+https://www.peptidospty.com/catalog`
   },
   {
     id: 'reorder_30_day',
@@ -43,7 +43,7 @@ https://catalog.peptidespanama.net/catalog`
 It may be time to restock your research supplies. Panama Peptides offers fast local delivery, bulk pricing, and direct support if you need help planning your next order.
 
 Browse the catalog:
-https://catalog.peptidespanama.net/catalog`
+https://www.peptidospty.com/catalog`
   },
   {
     id: 'winback_60_day',
@@ -56,7 +56,7 @@ https://catalog.peptidespanama.net/catalog`
 We have not seen you in a while. If you need updated availability, pricing, or product guidance, reply to this email and we will help.
 
 Catalog:
-https://catalog.peptidespanama.net/catalog`
+https://www.peptidospty.com/catalog`
   }
 ];
 

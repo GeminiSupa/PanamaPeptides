@@ -10,7 +10,7 @@ const TEMPLATES = [
     id: 'welcome', name: 'Welcome & Educate', description: 'Welcome new subscribers and follow up with the catalog.',
     trigger: { type: 'new_subscriber' },
     steps: [
-      { channel: 'email', delay_hours: 0, subject: 'Welcome to Panama Peptides, [FIRST_NAME]', message: 'Hi [FIRST_NAME],\n\nThanks for joining Panama Peptides. Explore our catalog and reply if you need help with availability, ordering, or delivery.\n\nhttps://catalog.peptidespanama.net/catalog' },
+      { channel: 'email', delay_hours: 0, subject: 'Welcome to Panama Peptides, [FIRST_NAME]', message: 'Hi [FIRST_NAME],\n\nThanks for joining Panama Peptides. Explore our catalog and reply if you need help with availability, ordering, or delivery.\n\nhttps://www.peptidospty.com/catalog' },
       { channel: 'email', delay_hours: 48, subject: 'Can we help with your research order?', message: 'Hi [FIRST_NAME],\n\nIf you have questions about availability, bulk pricing, or delivery, reply here and our team will help.' },
     ],
   },
@@ -26,7 +26,7 @@ const TEMPLATES = [
     id: 'reorder', name: '30-Day Reorder', description: 'Reach customers when they enter their likely reorder window.',
     trigger: { type: 'reorder_due', days: 30 },
     steps: [
-      { channel: 'email', delay_hours: 0, subject: 'Time to restock, [FIRST_NAME]?', message: 'Hi [FIRST_NAME],\n\nIt may be time to restock your research supplies. Browse current availability or reply for direct support.\n\nhttps://catalog.peptidespanama.net/catalog' },
+      { channel: 'email', delay_hours: 0, subject: 'Time to restock, [FIRST_NAME]?', message: 'Hi [FIRST_NAME],\n\nIt may be time to restock your research supplies. Browse current availability or reply for direct support.\n\nhttps://www.peptidospty.com/catalog' },
     ],
   },
 ];

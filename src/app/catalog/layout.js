@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Catálogo de Péptidos de Investigación | Panama Peptides',
+  title: 'Catálogo de Péptidos de Investigación',
   description: 'Consulta el inventario local, precios y documentación disponible de péptidos de investigación en Panamá.',
   alternates: { canonical: '/catalog' },
   openGraph: {

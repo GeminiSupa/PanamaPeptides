@@ -95,7 +95,7 @@ const COPY = {
   },
 };
 
-const LOGO_URL = 'https://catalog.peptidespanama.net/logo.png?v=3';
+const LOGO_URL = 'https://www.peptidospty.com/logo.png?v=3';
 
 /**
  * The one placeholder a custom body must contain.

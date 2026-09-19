@@ -106,11 +106,13 @@ export default function LandingPage() {
 
   useEffect(() => {
     const urlLang = new URLSearchParams(window.location.search).get('lang');
-    const savedLang = localStorage.getItem(USER_SELECTED_LANG_KEY) === 'true'
-      ? localStorage.getItem('lang') || 'es'
+    const storedLang = localStorage.getItem('lang');
+    const savedLang = localStorage.getItem(USER_SELECTED_LANG_KEY) === 'true' && (storedLang === 'en' || storedLang === 'es')
+      ? storedLang
       : 'es';
     const selectedLang = ['en', 'es'].includes(urlLang) ? urlLang : savedLang;
     setLang(selectedLang);
+    localStorage.setItem('lang', selectedLang);
     document.documentElement.lang = selectedLang;
   }, []);
 
@@ -150,6 +152,7 @@ export default function LandingPage() {
     setLang(nextLang);
     localStorage.setItem('lang', nextLang);
     localStorage.setItem(USER_SELECTED_LANG_KEY, 'true');
+    document.documentElement.lang = nextLang;
   };
 
   const openWhatsApp = (source) => {

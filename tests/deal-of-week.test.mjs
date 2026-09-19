@@ -22,63 +22,63 @@ import {
   isUnavailableForDeal,
 } from '../src/lib/dealOfWeek.mjs';
 
-// panama is UTC-6, so 23:59:59.999 CR is 05:59:59.999 UTC the NEXT day.
+// panama is UTC-5, so 23:59:59.999 panama is 04:59:59.999 UTC the NEXT day.
 // Every expected endsAt below is a Monday morning in UTC for that reason.
-const SUNDAY_2_AUG_END = '2026-08-03T05:59:59.999Z';
+const SUNDAY_2_AUG_END = '2026-08-03T04:59:59.999Z';
 
 test('a midweek launch ends at the close of the coming Sunday, panama time', () => {
-  // Thursday 30 Jul 2026, 10:00 CR = 16:00 UTC
-  const window = weekWindow(new Date('2026-07-30T16:00:00Z'));
+  // Thursday 30 Jul 2026, 10:00 panama = 15:00 UTC
+  const window = weekWindow(new Date('2026-07-30T15:00:00Z'));
   assert.equal(window.endsAt, SUNDAY_2_AUG_END);
   assert.equal(window.endsAtDate, '2026-08-02');
   assert.equal(window.rolledForward, false);
 });
 
 test('the window starts the moment it is launched, not at the top of the week', () => {
-  const launchedAt = new Date('2026-07-30T16:00:00Z');
+  const launchedAt = new Date('2026-07-30T15:00:00Z');
   assert.equal(weekWindow(launchedAt).startsAt, launchedAt.toISOString());
 });
 
 test('a Monday launch still ends the same Sunday, giving the full week', () => {
-  // Monday 27 Jul 2026, 09:00 CR = 15:00 UTC
-  const window = weekWindow(new Date('2026-07-27T15:00:00Z'));
+  // Monday 27 Jul 2026, 09:00 panama = 14:00 UTC
+  const window = weekWindow(new Date('2026-07-27T14:00:00Z'));
   assert.equal(window.endsAt, SUNDAY_2_AUG_END);
   assert.equal(window.rolledForward, false);
 });
 
 test('an early-Sunday launch keeps that same Sunday when a full day remains', () => {
-  // Sunday 2 Aug 2026, 08:00 CR = 14:00 UTC — nearly 16 hours left, but the
+  // Sunday 2 Aug 2026, 08:00 panama = 13:00 UTC — nearly 16 hours left, but the
   // 24-hour floor rolls it on rather than announcing a deal that dies tonight.
-  const window = weekWindow(new Date('2026-08-02T14:00:00Z'));
+  const window = weekWindow(new Date('2026-08-02T13:00:00Z'));
   assert.equal(window.endsAtDate, '2026-08-09');
   assert.equal(window.rolledForward, true);
 });
 
 test('a Sunday-evening launch rolls to the following Sunday instead of expiring in hours', () => {
-  // Sunday 2 Aug 2026, 20:00 CR = 3 Aug 02:00 UTC. Left alone this would be a
+  // Sunday 2 Aug 2026, 20:00 panama = 3 Aug 01:00 UTC. Left alone this would be a
   // "Deal of the Week" with four hours in it.
-  const window = weekWindow(new Date('2026-08-03T02:00:00Z'));
-  assert.equal(window.endsAt, '2026-08-10T05:59:59.999Z');
+  const window = weekWindow(new Date('2026-08-03T01:00:00Z'));
+  assert.equal(window.endsAt, '2026-08-10T04:59:59.999Z');
   assert.equal(window.rolledForward, true);
 });
 
 test('the 24-hour floor is what rolls the window, and it can be relaxed', () => {
   // Same Sunday-evening instant, but a caller that genuinely wants tonight.
-  const window = weekWindow(new Date('2026-08-03T02:00:00Z'), { minHours: 0 });
+  const window = weekWindow(new Date('2026-08-03T01:00:00Z'), { minHours: 0 });
   assert.equal(window.endsAtDate, '2026-08-02');
   assert.equal(window.rolledForward, false);
 });
 
 test('a Saturday launch is short but not rolled forward — the week is nearly over by design', () => {
-  // Saturday 1 Aug 2026, 12:00 CR = 18:00 UTC, ~36 hours left.
-  const window = weekWindow(new Date('2026-08-01T18:00:00Z'));
+  // Saturday 1 Aug 2026, 12:00 panama = 17:00 UTC, ~36 hours left.
+  const window = weekWindow(new Date('2026-08-01T17:00:00Z'));
   assert.equal(window.endsAt, SUNDAY_2_AUG_END);
   assert.equal(window.rolledForward, false);
 });
 
 test('the end boundary lands inside Sunday, never on Monday', () => {
-  const endsAt = new Date(weekWindow(new Date('2026-07-30T16:00:00Z')).endsAt);
-  const crWall = new Date(endsAt.getTime() - 6 * 60 * 60 * 1000);
+  const endsAt = new Date(weekWindow(new Date('2026-07-30T15:00:00Z')).endsAt);
+  const crWall = new Date(endsAt.getTime() - 5 * 60 * 60 * 1000);
   assert.equal(crWall.getUTCDay(), 0, 'still Sunday in panama');
   assert.equal(crWall.getUTCHours(), 23);
   assert.equal(crWall.getUTCMinutes(), 59);
@@ -122,7 +122,7 @@ const GHK = {
 };
 
 const RATE = 454.48;
-const WINDOW = { startsAt: '2026-07-30T16:00:00.000Z', endsAt: SUNDAY_2_AUG_END };
+const WINDOW = { startsAt: '2026-07-30T15:00:00.000Z', endsAt: SUNDAY_2_AUG_END };
 
 test('a launch marks the price down and preserves the shelf price to strike through', () => {
   const markdown = buildMarkdown(snapshotBaseline(GHK), 0.15, WINDOW, RATE);
@@ -214,8 +214,8 @@ test('a deal is live only inside its own window and only while marked live', () 
   const deal = { status: 'live', starts_at: WINDOW.startsAt, ends_at: WINDOW.endsAt };
 
   assert.equal(isDealLive(deal, new Date('2026-07-31T12:00:00Z')), true);
-  assert.equal(isDealLive(deal, new Date('2026-07-30T15:59:00Z')), false, 'before it starts');
-  assert.equal(isDealLive(deal, new Date('2026-08-03T06:00:01Z')), false, 'after Sunday closes');
+  assert.equal(isDealLive(deal, new Date('2026-07-30T14:59:00Z')), false, 'before it starts');
+  assert.equal(isDealLive(deal, new Date('2026-08-03T05:00:01Z')), false, 'after Sunday closes');
   assert.equal(isDealLive({ ...deal, status: 'draft' }, new Date('2026-07-31T12:00:00Z')), false);
   assert.equal(isDealLive({ ...deal, status: 'ended' }, new Date('2026-07-31T12:00:00Z')), false);
   assert.equal(isDealLive(null), false);
@@ -260,13 +260,13 @@ test('deal links use the real catalog host and preserve attribution', () => {
   const deal = { id: 'deal-123', product_names: ['NAD+ 1000/500'] };
   const url = new URL(dealCatalogUrl(deal));
 
-  assert.equal(url.origin, 'https://catalog.peptidespanama.net');
+  assert.equal(url.origin, 'https://www.peptidospty.com');
   assert.equal(url.pathname, '/catalog');
   assert.equal(url.searchParams.get('deal_id'), 'deal-123');
   assert.equal(url.searchParams.get('utm_source'), 'weekly_deal');
   assert.equal(url.searchParams.get('utm_campaign'), 'deal_deal-123');
   assert.equal(url.searchParams.get('product'), 'NAD+ 1000/500');
-  assert.match(dealBroadcastDrafts({ ...deal, discount_pct: 0.15 }).message, /catalog\.peptidespanama\.net/);
+  assert.match(dealBroadcastDrafts({ ...deal, discount_pct: 0.15 }).message, /www\.peptidospty\.com/);
 });
 
 test('stacking safety requires review at 30% and refuses dangerous totals', () => {

@@ -239,8 +239,8 @@ body {
     order: 0;
     display: inline-grid !important;
     place-items: center;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border: 1px solid var(--pp-border-default);
     border-radius: var(--pp-radius-md);
     background: var(--pp-bg-surface);
@@ -269,7 +269,8 @@ body {
   .clone-home .clone-search input {
     flex: 1;
     min-width: 0;
-    height: 38px;
+    min-height: 44px;
+    height: 44px;
     font-size: 16px !important; /* below 16px iOS zooms the page on focus */
   }
 
@@ -279,7 +280,7 @@ body {
   }
 
   .clone-home .clone-nav-actions > a {
-    height: 42px;
+    height: 44px;
     padding: 0 12px;
   }
 
@@ -304,6 +305,7 @@ body {
   .clone-home .clone-nav-group > button {
     width: 100%;
     padding: 14px 2px !important;
+    min-height: 44px;
     font-size: 0.95rem !important;
     text-align: left;
     border-bottom: 1px solid var(--pp-border-subtle) !important;
@@ -471,7 +473,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  height: 38px;
+  min-width: 44px;
+  height: 44px;
   padding: 0 14px;
   background: var(--pp-bg-surface) !important;
   border: 1px solid var(--pp-border-default) !important;
@@ -1638,6 +1641,7 @@ body {
   color: var(--pp-text-secondary) !important;
   font-weight: 600 !important;
   font-size: 0.78rem !important;
+  min-height: 44px;
 }
 
 .mobile-action-bar a:hover,
@@ -1672,4 +1676,5 @@ body {
     box-shadow: var(--pp-shadow-lg);
   }
 }
+
 

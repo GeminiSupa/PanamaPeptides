@@ -211,7 +211,7 @@ export async function POST(request) {
           postal_code: '10101',
           city: 'San Jose',
           state: 'San Jose',
-          country: 'CR',
+          country: 'PA',
         },
         card: normalizedCard,
       }, { mode: 'test' });

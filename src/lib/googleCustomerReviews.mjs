@@ -30,7 +30,7 @@ export const GCR_STORAGE_KEY = 'gcr_review_optin';
  * and ships with Correos de panama and Moovin. A record that predates a
  * country field is therefore panaman, not unknown.
  */
-export const GCR_DEFAULT_COUNTRY = 'CR';
+export const GCR_DEFAULT_COUNTRY = 'PA';
 
 /**
  * Working days from order to doormat.

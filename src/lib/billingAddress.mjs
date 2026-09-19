@@ -25,8 +25,8 @@
  * because this gateway is visibly unhappy with anything else.
  */
 
-/** San José centro. Used whenever the order carries nothing usable. */
-export const DEFAULT_CR_POSTAL_CODE = '10101';
+/** Panamá centro. Used whenever the order carries nothing usable. */
+export const DEFAULT_PA_POSTAL_CODE = '10101';
 
 /** panaman postal codes are five digits; four to six is accepted as plausible. */
 const POSTAL_CODE_PATTERN = /^\d{4,6}$/;
@@ -60,12 +60,12 @@ export function gatewaySafeText(value, maxLength) {
  */
 export function normalizePostalCode(value) {
   const trimmed = String(value ?? '').trim();
-  return POSTAL_CODE_PATTERN.test(trimmed) ? trimmed : DEFAULT_CR_POSTAL_CODE;
+  return POSTAL_CODE_PATTERN.test(trimmed) ? trimmed : DEFAULT_PA_POSTAL_CODE;
 }
 
 /**
  * @param {string} shippingAddress the order's stored shipping address
- * @returns {{address: string, postal_code: string, city: string, state: string, country: 'CR'}}
+ * @returns {{address: string, postal_code: string, city: string, state: string, country: 'PA'}}
  */
 export function parseBillingAddress(shippingAddress = '') {
   const lines = String(shippingAddress || '')
@@ -82,8 +82,8 @@ export function parseBillingAddress(shippingAddress = '') {
     .map((part) => part.trim())
     .filter(Boolean);
 
-  const city = gatewaySafeText(areaParts[1] || areaParts[0], 40) || 'San Jose';
-  const state = gatewaySafeText(areaParts[0], 40) || 'San Jose';
+  const city = gatewaySafeText(areaParts[1] || areaParts[0], 40) || 'Panama';
+  const state = gatewaySafeText(areaParts[0], 40) || 'Panama';
 
-  return { address, postal_code, city, state, country: 'CR' };
+  return { address, postal_code, city, state, country: 'PA' };
 }

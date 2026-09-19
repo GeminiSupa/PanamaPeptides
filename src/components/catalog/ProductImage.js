@@ -11,6 +11,7 @@ function isOptimizableSrc(src) {
     const { hostname } = new URL(src);
     return (
       hostname.endsWith('supabase.co') ||
+      hostname.includes('peptidospty.com') ||
       hostname.includes('peptidespanama.net')
     );
   } catch {

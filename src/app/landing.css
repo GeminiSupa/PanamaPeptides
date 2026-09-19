@@ -2376,8 +2376,15 @@
 }
 
 .lp-mobile-action--wa {
-    background: var(--pp-bg-elevated);
-    border: 1px solid var(--pp-border-default);
+    background: #25d366;
+    color: #052e16;
+    border: 1px solid rgba(5, 46, 22, 0.18);
+}
+
+.lp-mobile-action--wa:hover,
+.lp-mobile-action--wa:focus-visible {
+    background: #1ebe5d;
+    color: #052e16;
 }
 
 .trust-flow-band {

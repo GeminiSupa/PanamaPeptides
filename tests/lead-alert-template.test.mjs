@@ -25,10 +25,10 @@ test('the alert fills every approved variable in template order', () => {
 });
 
 test('the deadline is rendered in panama time, not the server timezone', () => {
-  // 17:41 UTC is 11:41 in panama. A server in another zone must not shift it,
+  // 17:41 UTC is 12:41 in panama. A server in another zone must not shift it,
   // or the agent is given a deadline that has already passed.
   const [, , , , , due] = buildLeadAlertParameters(fullLead);
-  assert.equal(due, '11:41 AM');
+  assert.equal(due, '12:41 PM');
 });
 
 test('a lead with no deadline says so rather than showing a bare dash', () => {

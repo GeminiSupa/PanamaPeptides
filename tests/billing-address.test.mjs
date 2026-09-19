@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 import {
-  DEFAULT_CR_POSTAL_CODE,
+  DEFAULT_PA_POSTAL_CODE,
   gatewaySafeText,
   normalizePostalCode,
   parseBillingAddress,
@@ -21,29 +21,29 @@ const WHATSAPP_ADDRESS = [
 ].join('\n');
 
 // What the catalog checkout produces, which is what the old parser assumed.
-const CATALOG_ADDRESS = 'Avenida 10, Casa 34\nCatedral, San Jose, San Jose\n10101';
+const CATALOG_ADDRESS = 'Avenida 10, Casa 34\nSan Francisco, Panamá, Panamá\n10101';
 
 test('a hand-typed address no longer sends a sentence as the postal code', () => {
   const billing = parseBillingAddress(WHATSAPP_ADDRESS);
 
-  assert.equal(billing.postal_code, DEFAULT_CR_POSTAL_CODE);
+  assert.equal(billing.postal_code, DEFAULT_PA_POSTAL_CODE);
   assert.doesNotMatch(billing.postal_code, /correos|oficina|norte/);
   assert.ok(billing.postal_code.length <= 6);
 });
 
 test('a catalog address still sends its real postal code', () => {
   assert.equal(parseBillingAddress(CATALOG_ADDRESS).postal_code, '10101');
-  assert.equal(parseBillingAddress(CATALOG_ADDRESS).city, 'San Jose');
-  assert.equal(parseBillingAddress(CATALOG_ADDRESS).state, 'Catedral');
+  assert.equal(parseBillingAddress(CATALOG_ADDRESS).city, 'Panama');
+  assert.equal(parseBillingAddress(CATALOG_ADDRESS).state, 'San Francisco');
 });
 
 test('digits are never scraped out of a sentence to fake a postal code', () => {
   // "250 mts norte de la..." starts with a number. Taking it would send a
   // postal code that looks real and belongs to somebody else.
-  assert.equal(normalizePostalCode('250 mts norte de la oficina'), DEFAULT_CR_POSTAL_CODE);
-  assert.equal(normalizePostalCode('San Roque'), DEFAULT_CR_POSTAL_CODE);
-  assert.equal(normalizePostalCode(''), DEFAULT_CR_POSTAL_CODE);
-  assert.equal(normalizePostalCode(null), DEFAULT_CR_POSTAL_CODE);
+  assert.equal(normalizePostalCode('250 mts norte de la oficina'), DEFAULT_PA_POSTAL_CODE);
+  assert.equal(normalizePostalCode('San Roque'), DEFAULT_PA_POSTAL_CODE);
+  assert.equal(normalizePostalCode(''), DEFAULT_PA_POSTAL_CODE);
+  assert.equal(normalizePostalCode(null), DEFAULT_PA_POSTAL_CODE);
   // Real ones survive untouched.
   assert.equal(normalizePostalCode('10101'), '10101');
   assert.equal(normalizePostalCode('50301'), '50301');
@@ -65,17 +65,17 @@ test('free text is clamped so no field can arrive oversized', () => {
   assert.ok(billing.address.length <= 100, `address was ${billing.address.length}`);
   assert.ok(billing.city.length <= 40, `city was ${billing.city.length}`);
   assert.ok(billing.state.length <= 40, `state was ${billing.state.length}`);
-  assert.equal(billing.postal_code, DEFAULT_CR_POSTAL_CODE);
+  assert.equal(billing.postal_code, DEFAULT_PA_POSTAL_CODE);
 });
 
 test('an empty or missing address still produces a sendable billing block', () => {
   for (const input of ['', null, undefined, '   ', '\n\n\n']) {
     const billing = parseBillingAddress(input);
     assert.equal(billing.address, 'N/A');
-    assert.equal(billing.city, 'San Jose');
-    assert.equal(billing.state, 'San Jose');
-    assert.equal(billing.postal_code, DEFAULT_CR_POSTAL_CODE);
-    assert.equal(billing.country, 'CR');
+    assert.equal(billing.city, 'Panama');
+    assert.equal(billing.state, 'Panama');
+    assert.equal(billing.postal_code, DEFAULT_PA_POSTAL_CODE);
+    assert.equal(billing.country, 'PA');
   }
 });
 

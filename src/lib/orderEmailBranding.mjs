@@ -1,4 +1,6 @@
-export const ORDER_EMAIL_LOGO_URL = 'https://catalog.peptidespanama.net/logo.png?v=3';
+import { LIVE_SITE_URL } from './publicUrl.js';
+
+export const ORDER_EMAIL_LOGO_URL = `${LIVE_SITE_URL}/logo.png?v=3`;
 export const ORDER_EMAIL_LOGO_CID = 'peptides-costa-rica-logo@order-email';
 export const ORDER_EMAIL_LOGO_SRC = `cid:${ORDER_EMAIL_LOGO_CID}`;
 

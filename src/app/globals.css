@@ -309,6 +309,8 @@ body {
     background: transparent;
     padding: 5px 10px;
     font-size: 1rem;
+    min-width: 44px;
+    min-height: 44px;
     cursor: pointer;
     border-radius: 7px;
     transition: all 0.2s;
@@ -330,6 +332,8 @@ body {
     border: none;
     background: transparent;
     padding: 5px 12px;
+    min-width: 44px;
+    min-height: 44px;
     font-size: 0.75rem;
     font-weight: 600;
     border-radius: 7px;
@@ -657,6 +661,7 @@ body {
 .cat-chip {
     white-space: nowrap;
     padding: 8px 16px;
+    min-height: 44px;
     border-radius: 6px;
     border: 1px solid var(--border);
     background: var(--bg-card);
@@ -669,7 +674,7 @@ body {
 
 .cat-chip.active {
     background: var(--text-primary);
-    color: #0b101d;
+    color: #ffffff;
     border-color: var(--text-primary);
 }
 
@@ -1530,6 +1535,8 @@ body {
 .cart-close-btn {
     background: transparent;
     border: none;
+    min-width: 44px;
+    min-height: 44px;
     cursor: pointer;
     color: var(--text-muted);
 }
@@ -6295,12 +6302,14 @@ body:has(.product-grid.grid-view) {
 
 #searchInput,
 .filter-btn {
-    height: 38px;
+    min-height: 44px;
+    height: 44px;
     border-radius: 10px;
 }
 
 .filter-btn {
-    width: 38px;
+    min-width: 44px;
+    width: 44px;
 }
 
 .category-scroll {
@@ -6310,7 +6319,8 @@ body:has(.product-grid.grid-view) {
 }
 
 .cat-chip {
-    padding: 6px 14px;
+    padding: 9px 14px;
+    min-height: 44px;
     border-radius: 8px;
     font-size: 0.68rem;
 }
@@ -6527,10 +6537,10 @@ body:has(.product-grid.grid-view) {
     .theme-toggle button,
     .lang-selector button,
     .currency-selector button {
-        min-width: 34px;
-        min-height: 28px;
-        padding: 4px 7px;
-        font-size: 0.64rem;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 7px 9px;
+        font-size: 0.68rem;
     }
 
     .header-content {
@@ -6626,12 +6636,13 @@ body:has(.product-grid.grid-view) {
 
     #searchInput,
     .filter-btn {
-        height: 36px;
+        min-height: 44px;
+        height: 44px;
     }
 
     .filter-btn {
-        width: 36px;
-        flex: 0 0 36px;
+        width: 44px;
+        flex: 0 0 44px;
     }
 
     .category-scroll {
@@ -6640,8 +6651,9 @@ body:has(.product-grid.grid-view) {
     }
 
     .cat-chip {
-        padding: 6px 11px;
-        font-size: 0.58rem;
+        padding: 9px 13px;
+        min-height: 44px;
+        font-size: 0.68rem;
     }
 
     .main.container {

@@ -2,22 +2,22 @@
  * Every date an admin types means panama time, regardless of where the
  * admin sits.
  *
- * The team operates 11 hours ahead of the business (UTC+5 vs UTC-6). Left to
+ * The team operates 11 hours ahead of the business (UTC+5 vs UTC-5). Left to
  * the browser's own timezone, a sale typed to end "Saturday 23:59" was stored
  * as Saturday 23:59 PAKISTAN time = Saturday 12:59 in panama - or worse,
  * whatever timezone the admin of the day happened to be in. Promo expiries and
  * sale windows kept dying half a day before what customers were promised.
  *
- * panama is UTC-6 year-round (no DST), which makes the conversion a fixed
+ * panama is UTC-5 year-round (no DST), which makes the conversion a fixed
  * offset and safe to do without a timezone library.
  */
 
-export const CR_UTC_OFFSET_HOURS = 6; // panama is UTC minus 6, all year
+export const CR_UTC_OFFSET_HOURS = 5; // panama is UTC minus 5, all year
 const CR_OFFSET_MS = CR_UTC_OFFSET_HOURS * 60 * 60 * 1000;
 
 /**
  * A datetime-local input value ("2026-07-25T23:59"), read as CR wall time,
- * converted to the UTC instant to store. 23:59 in CR is 05:59 UTC next day.
+ * converted to the UTC instant to store. 23:59 in panama is 04:59 UTC next day.
  */
 export function crWallToIso(wall) {
   if (!wall || typeof wall !== 'string') return null;
@@ -116,7 +116,7 @@ export function formatCrDate(value, options = {}) {
   }).format(date);
 }
 
-/** A stored instant shown as panama local time, 24-hour: "25/07/2026, 23:59 (CR)". */
+/** A stored instant shown as panama local time, 24-hour: "25/07/2026, 23:59 (panama)". */
 export function formatCrInstant(iso) {
   if (!iso) return '';
   const date = new Date(iso);
@@ -126,5 +126,5 @@ export function formatCrInstant(iso) {
     day: '2-digit', month: '2-digit', year: 'numeric',
     hour: '2-digit', minute: '2-digit', hour12: false,
   }).format(date);
-  return `${formatted} (CR)`;
+  return `${formatted} (panama)`;
 }

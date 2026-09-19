@@ -17,7 +17,7 @@ import {
 const validRecord = {
   orderId: 'PCR-10428',
   email: 'Ana@Example.com',
-  country: 'CR',
+  country: 'PA',
   estimatedDeliveryDate: '2026-09-04',
 };
 
@@ -38,7 +38,7 @@ test('a date that cannot be read yields no estimate rather than a wrong one', ()
 });
 
 test('the order date is panama\'s, not the browser\'s', () => {
-  // 03:00 UTC on the 4th is still the evening of the 3rd in panama (UTC-6),
+  // 03:00 UTC on the 4th is still the evening of the 3rd in panama (UTC-5),
   // so an order placed then must not be dated a day late.
   assert.equal(crToday(new Date('2026-09-04T03:00:00.000Z')), '2026-09-03');
   assert.equal(crToday(new Date('2026-09-04T12:00:00.000Z')), '2026-09-04');
@@ -52,7 +52,7 @@ test('checkout captures what the confirmation page cannot recover', () => {
   });
   assert.equal(record.orderId, 'PCR-10428');
   assert.equal(record.email, 'ana@example.com');
-  // Checkout only collects panaman addresses, so an absent country is CR.
+  // Checkout only collects panaman addresses, so an absent country is PA.
   assert.equal(record.country, GCR_DEFAULT_COUNTRY);
   assert.equal(record.estimatedDeliveryDate, '2026-09-09');
 });
@@ -63,7 +63,7 @@ test('a complete record becomes the payload Google expects', () => {
     merchant_id: GCR_MERCHANT_ID,
     order_id: 'PCR-10428',
     email: 'ana@example.com',
-    delivery_country: 'CR',
+    delivery_country: 'PA',
     estimated_delivery_date: '2026-09-04',
   });
 });

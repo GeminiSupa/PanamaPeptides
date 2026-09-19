@@ -13,7 +13,9 @@
  * renaming after cards are printed is still a decision, not a typo fix.
  */
 
-const DEFAULT_CATALOG_BASE_URL = 'https://catalog.peptidespanama.net/catalog?lang=es';
+import { LIVE_CATALOG_URL } from './publicUrl.js';
+
+const DEFAULT_CATALOG_BASE_URL = `${LIVE_CATALOG_URL}?lang=es`;
 
 export function catalogBaseUrl(env = {}) {
   return env.NEXT_PUBLIC_AFFILIATE_CATALOG_URL || DEFAULT_CATALOG_BASE_URL;

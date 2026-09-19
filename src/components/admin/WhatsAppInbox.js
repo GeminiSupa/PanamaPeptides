@@ -969,8 +969,8 @@ export default function WhatsAppInbox({
     const latestOrder = customerContext?.latestOrder;
     const cart = customerContext?.cart;
     const checkoutUrl = cart?.session_id
-      ? `https://catalog.peptidespanama.net/catalog?recover_session=${encodeURIComponent(cart.session_id)}`
-      : 'https://catalog.peptidespanama.net/catalog';
+      ? `https://www.peptidospty.com/catalog?recover_session=${encodeURIComponent(cart.session_id)}`
+      : 'https://www.peptidospty.com/catalog';
 
     return {
       customerName: cleanContactName(currentChat?.displayName).split(/\s+/)[0] || '',
@@ -1063,7 +1063,7 @@ export default function WhatsAppInbox({
 
   const quickReplyTemplates = [
     { label: 'Greeting', text: 'Hello! How can I help you today?' },
-    { label: 'Price list', text: 'Here is our full catalog and price list: https://peptidespanama.net/' },
+    { label: 'Price list', text: 'Here is our full catalog and price list: https://www.peptidospty.com/catalog' },
     { label: 'Cart help', text: 'I can help finish your order. Do you want delivery or pickup?' },
     { label: 'Payment', text: 'Once payment is complete, send the receipt here and we will process your order.' },
     { label: 'Delivery', text: 'We offer fast local delivery in panama.' },

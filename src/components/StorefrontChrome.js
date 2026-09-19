@@ -138,16 +138,28 @@ export function StorefrontHeader({ lang, onLanguage, settings, active = '' }) {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
-    const saved = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+    const readTheme = () => {
+      const attr = document.documentElement.getAttribute('data-theme');
+      return attr === 'dark' || localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+    };
+    const syncTheme = () => setTheme(readTheme());
+    const saved = readTheme();
     setTheme(saved);
     document.documentElement.setAttribute('data-theme', saved);
+    window.addEventListener('storage', syncTheme);
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => {
+      window.removeEventListener('storage', syncTheme);
+      observer.disconnect();
+    };
   }, []);
 
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    localStorage.setItem('theme', next);
     document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    setTheme(next);
   };
 
   // The cart only changes on the catalog page, so re-reading on mount, on focus

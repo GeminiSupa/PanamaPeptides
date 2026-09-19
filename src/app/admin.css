@@ -86,6 +86,13 @@
     box-shadow: 0 6px 16px rgba(0, 212, 255, 0.4);
 }
 
+.admin-loading-card {
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .admin-login-card .error-msg {
     background: rgba(239, 68, 68, 0.15);
     color: #f87171;
@@ -711,6 +718,7 @@
     margin-bottom: 30px;
     max-height: 70vh;
     position: relative;
+    -webkit-overflow-scrolling: touch;
 }
 
 .spreadsheet-table {
@@ -10776,3 +10784,109 @@
 
 /* A folded card is still a search target: filtering forces every section open
    (see cmsSectionProps), so a match can never hide inside one. */
+
+/* --------------------------------------------------------------------------
+   Mobile APK usability guardrails
+   --------------------------------------------------------------------------
+   The admin app contains wide tables, rich editors, charts and dense CMS rows.
+   These rules keep controls finger-sized, prevent fixed/sticky chrome from
+   clipping focused fields, and make wide content scroll within its own panel
+   instead of pushing the whole webview sideways.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .admin-layout {
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .admin-login-container {
+    align-items: flex-start;
+    padding: max(18px, env(safe-area-inset-top, 0px)) 14px max(28px, env(safe-area-inset-bottom, 0px));
+  }
+
+  .admin-login-card {
+    padding: 28px 20px;
+  }
+
+  .admin-login-card input,
+  .admin-login-card button,
+  .admin-input,
+  .admin-select,
+  .admin-textarea,
+  .cms-search-box,
+  .cms-search-box input,
+  .spreadsheet-table input,
+  .spreadsheet-table select,
+  .spreadsheet-table textarea {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .admin-btn,
+  .admin-tab-btn,
+  .cms-section-toggle,
+  .cms-search-box button,
+  .spreadsheet-table button,
+  .admin-icon-btn,
+  button[aria-label] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .admin-tab-panel,
+  .admin-orders-tab,
+  .cms-section,
+  .cms-safety-panel,
+  .cms-preview-card,
+  .spreadsheet-container,
+  .admin-table-wrap {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .spreadsheet-container,
+  .admin-table-wrap,
+  .cms-preview-card,
+  .cms-safety-panel {
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .spreadsheet-table,
+  .responsive-table {
+    min-width: 760px;
+  }
+
+  .cms-section-head,
+  .admin-page-header,
+  .admin-section-header {
+    align-items: stretch;
+  }
+
+  .cms-section-head,
+  .admin-page-header,
+  .admin-section-header,
+  .admin-toolbar-filters {
+    flex-wrap: wrap;
+  }
+
+  .cms-section-head > *,
+  .admin-toolbar-filters > * {
+    min-width: 0;
+  }
+
+  .admin-tab-panel {
+    padding-bottom: max(96px, calc(76px + env(safe-area-inset-bottom, 0px))) !important;
+    scroll-padding-bottom: 120px;
+  }
+
+  textarea,
+  input,
+  select,
+  [contenteditable="true"] {
+    scroll-margin-top: 110px;
+    scroll-margin-bottom: 130px;
+  }
+}

@@ -3,7 +3,7 @@
  *
  * Correos identifies a destination by three numbers, not by names: provincia
  * (1 digit), cantón (2) and distrito (2). Strung together they are also the
- * postal code — San José / Alajuelita / Alajuelita is 1-10-01, or 11001.
+ * postal code — Panamá / Panamá / San Francisco is 1-01-01, or 10101.
  *
  * Checkout collects all three from linked dropdowns, so the values start out
  * clean. They do not stay that way: the order row keeps `shipping_address` as
@@ -18,7 +18,7 @@
  * to the cantón and says so rather than picking the nearest-looking name.
  *
  * The data is src/lib/panama.json, the same file the checkout dropdowns are
- * built from: 7 provincias, 82 cantones, 479 distritos, keyed by official code.
+ * built from: 7 provinces and the service areas currently offered by the store, keyed by official code.
  */
 
 import territory from './panama.json' with { type: 'json' };
@@ -26,7 +26,7 @@ import territory from './panama.json' with { type: 'json' };
 /**
  * Names compare with accents and case removed.
  *
- * "Pérez Zeledón", "PEREZ ZELEDON" and "perez zeledon" are one place. The blob
+ * "Panamá", "PANAMA" and "panama" are one place. The blob
  * these names are recovered from has been through a checkout, a database, an
  * email and sometimes a person retyping it, and the accent is the first thing
  * any of those drops.
@@ -300,7 +300,7 @@ export function parseShippingAddress(blob) {
 export function buildShipmentDraft(order = {}) {
   const address = parseShippingAddress(order.shipping_address);
   const name = String(order.customer_name ?? '').trim();
-  const phone = String(order.customer_phone ?? '').replace(/[^0-9]/g, '').replace(/^506/, '');
+  const phone = String(order.customer_phone ?? '').replace(/[^0-9]/g, '').replace(/^(506|507)/, '');
   const email = String(order.customer_email ?? '').trim();
 
   const missing = [];

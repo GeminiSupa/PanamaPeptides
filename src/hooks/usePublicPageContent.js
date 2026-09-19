@@ -18,12 +18,16 @@ export function usePublicPageContent(pageId) {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const requestedLang = params.get('lang');
-    const savedLang = localStorage.getItem('lang') || 'es';
-    const nextLang = requestedLang === 'en' || requestedLang === 'es' ? requestedLang : savedLang;
+    const savedLang = localStorage.getItem('lang');
+    const nextLang = requestedLang === 'en' || requestedLang === 'es'
+      ? requestedLang
+      : savedLang === 'en' || savedLang === 'es'
+        ? savedLang
+        : 'es';
     setLangState(nextLang);
     localStorage.setItem('lang', nextLang);
     document.documentElement.lang = nextLang;
-  }, []);
+  }, [pageId]);
 
   useEffect(() => {
     async function load() {

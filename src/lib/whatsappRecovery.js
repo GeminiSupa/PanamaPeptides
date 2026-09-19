@@ -1,6 +1,8 @@
 /** Shared helpers for cart recovery links and WhatsApp outreach. */
 
-export const CATALOG_ORIGIN = 'https://catalog.peptidespanama.net';
+import { LIVE_SITE_URL } from './publicUrl.js';
+
+export const CATALOG_ORIGIN = LIVE_SITE_URL;
 export const WHATSAPP_COMPLIANCE_BLOCK_REASON =
   'WhatsApp cart recovery, sales outreach, and marketing broadcasts are disabled while the account is in support-only compliance mode.';
 

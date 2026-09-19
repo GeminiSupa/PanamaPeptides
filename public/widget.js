@@ -9,7 +9,7 @@
   var iframe = document.createElement('iframe');
   
   // You can set default parameters here if needed, like language
-  var widgetUrl = 'https://catalog.peptidespanama.net/embed/catalog';
+  var widgetUrl = 'https://www.peptidospty.com/embed/catalog';
   
   iframe.src = widgetUrl;
   iframe.style.width = '100%';
@@ -26,8 +26,8 @@
 
   // Optional: Auto-resize iframe height based on content
   window.addEventListener('message', function(e) {
-    // Basic security check (allow panamapeptides domains or localhost for testing)
-    if (!e.origin.includes('peptidespanama.net') && !e.origin.includes('localhost')) return;
+    // Basic security check (allow Panama Peptides domains or localhost for testing)
+    if (!e.origin.includes('peptidospty.com') && !e.origin.includes('peptidespanama.net') && !e.origin.includes('localhost')) return;
     
     if (e.data && e.data.type === 'resize' && e.data.height) {
       iframe.style.height = e.data.height + 'px';
