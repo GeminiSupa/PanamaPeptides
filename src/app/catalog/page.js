@@ -58,7 +58,6 @@ import { getCustomerSupabase } from '@/lib/customerSupabase';
 import { useCustomerSession } from '@/hooks/useCustomerSession';
 import { buildReorderLines, mergeReorderIntoCart, reorderNoticeMessage } from '@/lib/reorderCart.mjs';
 import { takeReorder } from '@/lib/reorderHandoff';
-import PressBand from '@/components/PressBand';
 import ExitIntentOffer from '@/components/catalog/ExitIntentOffer';
 import { mergeLandingPageSettings } from '@/lib/landingContent';
 import {
@@ -3383,7 +3382,6 @@ export default function CatalogPage() {
             </div>
 
             {/* Press feature band — outlets come from the CMS (site_settings.landing_page) */}
-            <PressBand lang={lang} settings={landingSettings} variant="catalog" />
           </div>
         </div>
       </section>

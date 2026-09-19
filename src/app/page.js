@@ -19,7 +19,6 @@ import { buildWhatsAppLink, logWhatsAppSource } from '@/lib/whatsapp';
 import { useBusinessLinks } from '@/hooks/useBusinessLinks';
 import ContactLeadModal from '@/components/ContactLeadModal';
 import MobileActionBar from '@/components/MobileActionBar';
-import PressBand from '@/components/PressBand';
 import { StorefrontFooter, StorefrontHeader } from '@/components/StorefrontChrome';
 import {
   DEFAULT_LANDING_PAGE_SETTINGS,
@@ -237,7 +236,6 @@ export default function LandingPage() {
         </section>
 
         <div className="clone-shell">
-          <PressBand lang={lang} settings={settings} variant="landing" />
         </div>
 
         {/* Battle Born Feature Highlights Grid */}
